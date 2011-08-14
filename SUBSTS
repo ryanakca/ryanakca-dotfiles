@@ -1,0 +1,14 @@
+# File format:
+key value
+# Mail passwords
+GMAIL_PASS secret
+QUEENSU_PASS secret
+LOCAL_PASS secret
+# xmonad
+XMONAD_DZEN_W 808
+XMONAD_DZEN_X 114
+XMONAD_DZEN_Y 0
+# screen dimensions / arandr
+SCREENLAYOUT epsilon-SAIL
+# Pipe major's email
+PM_EMAIL pipemajor@example.org

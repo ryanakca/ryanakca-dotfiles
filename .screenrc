@@ -1,0 +1,14 @@
+defutf8 on
+shell /bin/zsh
+encoding UTF-8
+vbell on
+defnonblock 5
+
+startup_message off
+
+hardstatus alwayslastline
+hardstatus string "%{=}%{g}[%{B}%D %d/%m%{W}%c:%s%{g}][%= %{w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{+b r}%H%{-b r}%{W}:%l%{g}]"
+#hardstatus string "%{=}%{g}[%{B}%D %d/%m%{W}%c:%s%{g}][%= %{w}%?%-Lw%?%{b}(%{C}%n%{W}*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%?%= %{g}][%{b}%H%{-s w}:%{W}%l%{g}]"
+
+shelltitle '$ |zsh'
+idle 3600 detach

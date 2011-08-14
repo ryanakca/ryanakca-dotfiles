@@ -1,0 +1,24 @@
+uncolor index *
+unscore *
+source ~/.mutt/color.rc
+# Set directly to me
+score "~p" 8
+# from me
+score "~P" 8
+# I replied to
+score "~Q" 10
+# GPG signed
+score "~g" 4
+# GPG encrypted
+score "~G" 4
+# Flagged
+score "~F" 5
+# Known ML
+score "~l" 2
+# Add a point to messages less than 80,000 bytes
+score "~z 0-80000" 1
+# From EG
+score "~f MUTT_20_SCORE" 20
+score "~f MUTT_10_SCORE" 10
+# Unread
+score "~U" 2

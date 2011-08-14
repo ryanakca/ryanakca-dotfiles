@@ -1,0 +1,73 @@
+#!/bin/zsh
+# gpg-wrapper for users who put their .gnupg on a LUKS (encrypted) device
+# Copyright (C) 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# ====== Configure devices here =======
+
+# Encrypted decive containing .gnupg/
+device='/dev/epsilon_crypted/gpg'
+# Will become /dev/mapper/decrypted_name
+decrypted_name='gpg-decrypted'
+# Where to mount decrypted device
+mount_point='/media/encrypted'
+# Path to your GPG
+gpg_path='/usr/bin/gpg'
+# In how many minutes should we close and unmount your encrypted device?
+unmount_time=15
+
+# ======= End user config, don't touch below =======
+# ======= unless you know what you're doing. =======
+
+if [ ! -b '/dev/mapper/'$decrypted_name ]
+then
+    count=0
+    mnt=''
+    # If the user doesn't know wether or not they want to mount it, give up on
+    # them.
+    while [[ $mnt != 'Y' && $count -le 2 ]]
+    do
+        echo 'Would you like to mount the encrypted GPG dir? [Y/n]'
+        read mnt
+        case '$mnt' in
+        '' | 'Y' | 'y' ) 
+            mnt='Y'
+        ;;
+        'N' | 'n' )
+            break;
+        ;;
+        * )
+        count=`expr $count + 1`
+        ;;
+        esac
+    done
+
+    if [[ $mnt == 'Y' ]]
+    then
+        sudo cryptsetup luksOpen $device $decrypted_name
+        sudo mount /dev/mapper/$decrypted_name $mount_point
+        # We'll do this here instead of elsewheres, since if the user has
+        # already / manually mounted the directory, they might not want us to
+        # unmount it on them.
+        echo "cp -f ${mount_point}/.gnupg/pubring.gpg /root/pr.gpg && cp -f ${mount_point}/.gnupg/trustdb.gpg /root/tdb.gpg && && umount ${mount_point} && cryptsetup luksClose ${decrypted_name} && \
+              cp /root/pr.gpg ${mount_point}/.gnupg/pubring.gpg && cp /root/tdb.gpg ${mount_point}/.gnupg/trustdb.gpg && chown -R ryan:ryan ${mount_point}" | \
+            sudo at now + $unmount_time min 
+    else
+        exit 0
+    fi
+fi
+
+exit 0

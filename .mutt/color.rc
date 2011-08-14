@@ -1,0 +1,127 @@
+# Score coloring
+# We put this first since we want it overridden if required by the colors
+# below.
+
+color index             brightwhite     default "~n -100"
+color index             yellow          default "~n -25"
+color index             magenta         default "~n -10"
+color index             brightblack     default "~n -5"
+
+# Message colors
+color attachment        brightblack     default
+color error             brightred       default
+color hdrdefault        brightyellow    default
+color indicator         brightyellow    red
+color markers           brightcyan      default
+color message           brightcyan      default
+color normal            default         default
+color quoted            magenta         default
+color search            default         green
+color signature         red             default
+color status            white           blue
+color tilde             magenta         default
+color tree              magenta         default
+color sidebar_new       yellow          default
+
+# Pretty Colors
+color status white blue
+color index green  default ~N  # new
+color index cyan default ~O  # old
+color index red default ~D  # deleted
+color index brightmagenta default ~T  # tagged
+color index brightyellow default ~F  # flagged
+color header green default "^Subject:"
+color header yellow default "^Date:"
+color header yellow default "^To:"
+color header yellow default "^Cc:"
+color header yellow default "^Bcc:"
+color header yellow default "^From:"
+color header red default "^X-.*:"
+color header brightwhite default '^X-Label:'
+
+# LP colors
+color index red         blue            "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Wishlist\\;"
+color index red         white           "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Undecided\\;"
+color index red         black           "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Low\\;"
+color index red         green           "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Medium\\;"
+color index red         brightyellow    "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=High\\;"
+color index red         brightred       "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Critical\\;"
+color index red         white           "~hX-Launchpad-Bug:.*status\\=Incomplete\\;.*importance\\=Unknown\\;"
+
+color index yellow      blue            "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Wishlist\\;"
+color index yellow      white           "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Undecided\\;"
+color index yellow      black           "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Low\\;"
+color index yellow      green           "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Medium\\;"
+color index yellow      brightyellow    "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=High\\;"
+color index yellow      brightred       "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Critical\\;"
+color index yellow      white           "~hX-Launchpad-Bug:.*status\\=Triaged\\;.*importance\\=Unknown\\;"
+
+color index brightblue  blue            "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Wishlist\\;"
+color index brightblue  white           "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Undecided\\;"
+color index brightblue  black           "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Low\\;"
+color index brightblue  green           "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Medium\\;"
+color index brightblue  brightyellow    "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=High\\;"
+color index brightblue  brightred       "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Critical\\;"
+color index brightblue  white           "~hX-Launchpad-Bug:.*status\\=Confirmed\\;.*importance\\=Unknown\\;"
+
+color index brightgreen blue            "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Wishlist\\;"
+color index brightgreen white           "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Undecided\\;"
+color index brightgreen black           "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Low\\;"
+color index brightgreen green           "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Medium\\;"
+color index brightgreen brightyellow    "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=High\\;"
+color index brightgreen brightred       "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Critical\\;"
+color index brightgreen white           "~hX-Launchpad-Bug:.*status\\=Fix\\ Released\\;.*importance\\=Unknown\\;"
+
+color index green       blue            "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Wishlist\\;"
+color index green       white           "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Undecided\\;"
+color index green       black           "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Low\\;"
+color index green       black           "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Medium\\;"
+color index green       brightyellow    "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=High\\;"
+color index green       brightred       "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Critical\\;"
+color index green       white           "~hX-Launchpad-Bug:.*status\\=Fix\\ Commited\\;.*importance\\=Unknown\\;"
+
+color index cyan        blue            "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Wishlist\\;"
+color index cyan        white           "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Undecided\\;"
+color index cyan        black           "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Low\\;"
+color index cyan        green           "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Medium\\;"
+color index cyan        brightyellow    "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=High\\;"
+color index cyan        brightred       "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Critical\\;"
+color index cyan        white           "~hX-Launchpad-Bug:.*status\\=In\\ Progress\\;.*importance\\=Unknown\\;"
+
+
+color index default     blue            "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Wishlist\\;"
+color index brightwhite white           "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Undecided\\;"
+color index default     black           "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Low\\;"
+color index default     green           "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Medium\\;"
+color index default     brightyellow    "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=High\\;"
+color index default     brightred       "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Critical\\;"
+color index brightwhite white           "~hX-Launchpad-Bug:.*status\\=Won\'t\\ Fix\\;.*importance\\=Unknown\\;"
+
+color index default     blue            "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Wishlist\\;"
+color index brightwhite white           "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Undecided\\;"
+color index default     black           "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Low\\;"
+color index default     green           "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Medium\\;"
+color index default     brightyellow    "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=High\\;"
+color index default     brightred       "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Critical\\;"
+color index brightwhite white           "~hX-Launchpad-Bug:.*status\\=Invalid\\;.*importance\\=Unknown\\;"
+
+
+color index yellow      default         "~hX-Launchpad-Bug:.*status\\=New\\;"
+color index magenta     default         "~b\This\\ bug\\ has\\ been\\ marked\\ a\\ duplicate\\ of\\ bug"
+
+# Various smilies and the like
+color body brightwhite default "<[Gg]>"                            # <g>
+color body brightwhite default "<[Bb][Gg]>"                        # <bg>
+color body brightwhite default " [;:]-*[})>{(<|]"                  # :-) etc...
+# *bold*
+color body brightblue  default "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+mono  body bold                "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+# _underline_
+color body brightblue  default "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+mono  body underline           "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+# /italic/  (Sometimes gets directory names)
+color body brightblue  default "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+mono  body underline           "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+
+# Border lines.
+color body blue default "( *[-+=#*~_]){6,}"

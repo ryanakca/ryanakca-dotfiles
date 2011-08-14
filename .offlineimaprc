@@ -1,0 +1,87 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# suit to get started fast.
+
+[general]
+metadata = ~/.offlineimap
+accounts = QueensU, GMAIL
+pythonfile=~/.offlineimap.py
+# EIMEAR
+maxsyncaccounts = 2
+
+#### GMAIL Account Settings
+[Account GMAIL]
+localrepository = LocalGmail
+remoterepository = RemoteGmail
+autorefresh = 20
+quick = 10
+presynchook = imapfilter -c /home/ryan/.imapfilter/config.lua
+postsynchook = imapfilter -c /home/ryan/.imapfilter/config.lua && /home/ryan/bin/run-mailcheck && notmuch new
+foldersort = mycmp
+
+[Repository LocalGmail]
+#type = Maildir    
+#localfolders = ~/.maildb/GMAIL 
+#restoreatime = no  
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+
+[Repository RemoteGmail]
+foldersort = lambda x, y: cmp(x, y)
+type = Gmail
+remoteuser = ryanakca@gmail.com
+remotepass = GMAIL_PASS
+spamfolder = [Google Mail]/Spam
+trashfolder = [Google Mail]/Bin
+realdelete = no
+folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail']
+#folderfilter = lambda foldername: foldername in ['INBOX']
+
+##### QueensU mail
+[Account QueensU]
+localrepository = LocalGmail
+remoterepository = RemoteQueensU
+autorefresh = 20
+quick = 10
+# presynchook = imapfilter
+foldersort = lamba x, y: cmp(x, y)
+postsynchook = /home/ryan/bin/run-mailcheck
+
+[Repository RemoteQueensU]
+nametrans = lambda foldername: 'QueensU.' + foldername
+foldersort = lambda x, y: cmp(y, x)
+type = IMAP
+remoteuser = 9rak
+remotehost = mail.queensu.ca
+remotepass = QUEENSU_PASS
+
+[Account EIMEAR]
+localrepository = LocalEimear
+remoterepository = RemoteEimear
+foldersort = lambda x, y: cmp(x, y)
+
+[Repository LocalEimear]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+
+[Repository RemoteEimear]
+foldersort = lambda x, y: cmp(x, y)
+type = IMAP
+remotehost = ryanak.ca
+remoteuser = ryan
+remotepass = LOCAL_PASS
+ssl = yes
+
+[mbnames]
+enabled = no
+filename = .muttrc.mailboxes
+header = "mailboxes "
+peritem = "+%(foldername)s"
+sep = " "
+footer = "\n"
+
+[ui.Curses.Blinkenlights]
+statuschar = %

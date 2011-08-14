@@ -1,0 +1,63 @@
+lists kubuntu-devel.lists.ubuntu.com
+lists kubuntu-bugs.lists.ubuntu.com
+lists kubuntu-users.lists.ubuntu.com
+lists ubuntu-website.lists.canonical.com
+lists ubuntu-devel-announce.lists.ubuntu.com
+lists launchpad-users.lists.launchpad.net
+lists launchpad-users.lists.canonical.com
+lists ubuntu-ca.lists.ubuntu.com
+lists ubuntu-doc.lists.ubuntu.com
+lists ubuntu-classroom.lists.ubuntu.com
+lists ubuntu.*.lists.ubuntu.com
+lists debian-python.lists.debian.org
+lists debian-qt-kde.lists.debian.org
+lists debian-mentors.lists.debian.org
+lists debian-devel-fr.lists.debian.org
+lists python-apps-team.lists.debian.org
+lists pkg-kde-talk.lists.debian.org
+lists pkg-multimedia-commits.lists.alioth.debian.org
+lists pkg-multimedia-maintainers.lists.alioth.debian.org
+lists kde-francophone.kde.org
+lists oevolve.googlegroups.com
+lists oactivists.googlegroups.com
+lists oproducers.googlegroups.com
+lists ogeeks.googlegroups.com
+
+subscribe kubuntu-devel.lists.ubuntu.com
+alias kubuntu-devel kubuntu-devel@lists.ubuntu.com
+subscribe kubuntu-bugs.lists.ubuntu.com
+alias kubuntu-bugs kubuntu-bugs@lists.ubuntu.com
+subscribe ubuntu-website.lists.canonical.com
+alias ubuntu-website ubuntu-website@lists.canonical.com
+subscribe ubuntu-devel-announce.lists.ubuntu.com
+subscribe launchpad-users.lists.launchpad.net
+subscribe launchpad-users.lists.canonical.com
+alias launchpad-users launchpad-users@lists.launchpad.net
+subscribe ubuntu-ca.lists.ubuntu.com
+alias ubuntu-ca ubuntu-ca@lists.ubuntu.com
+subscribe ubuntu-classroom.lists.ubuntu.com
+subscribe debian-python.lists.debian.org
+alias debian-python debian-python@lists.debian.org
+subscribe debian-qt-kde.lists.debian.org
+alias debian-qt-kde debian-qt-kde@lists.debian.org
+subscribe debian-mentors.lists.debian.org
+alias debian-mentors debian-mentors@lists.debian.org
+subscribe debian-devel-fr.lists.debian.org
+alias debian-devel-fr debian-devel-fr@lists.debian.org
+subscribe python-apps-team.lists.debian.org
+alias python-apps-team python-apps-team@lists.debian.org
+subscribe pkg-kde-talk.lists.debian.org
+alias pkg-kde-talk pkg-kde-talk@lists.debian.org
+subscribe pkg-multimedia-commits.lists.alioth.debian.org
+subscribe pkg-multimedia-maintainers.lists.alioth.debian.org
+alias pkg-multimedia-maintainers pkg-multimedia-maintainers@lists.alioth.debian.org
+subscribe kde-francophone.kde.org
+alias kde-francophone kde-francophone@kde.org
+subscribe oevolve.googlegroups.com
+alias oevolve oevolve@googlegroups.com
+subscribe oactivists.googlegroups.com
+alias oactivists oactivists@googlegroups.com
+subscribe oproducers.googlegroups.com
+alias oproducers oproducers@googlegroups.com
+subscribe ogeeks.googlegroups.com
+alias ogeeks ogeeks@googlegroups.com

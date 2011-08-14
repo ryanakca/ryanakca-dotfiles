@@ -1,0 +1,97 @@
+# vim: syntax=muttrc
+
+account-hook imaps://imap.gmail.com \
+"set imap_user = 'ryanakca@gmail.com';\
+set imap_pass = 'GMAIL_PASS';\
+set imap_passive = 'no';\
+set folder = 'imaps://imap.gmail.com:933';\
+set spoolfile = '=INBOX'"
+
+account-hook imap://localhost \
+"set imap_user = 'ryan';\
+set imap_pass = 'LOCAL_PASS';\
+set imap_passive = 'no';\
+set folder = 'imap://localhost';\
+set spoolfile = '=INBOX'"
+
+account-hook imaps://mail.queensu.ca \
+"set imap_user = '9rak';\
+set imap_pass = 'QUEENSU_PASS';\
+set folder = 'imaps://9rak@mail.queensu.ca:993';\
+set record = 'imaps://9rak@mail.queensu.ca/Sent';\
+set postponed = 'imaps://9rak@mail.queensu.ca/Drafts';\
+set spoolfile = 'imaps://9rak@mail.queensu.ca/Inbox';\
+set imap_passive = 'no'"
+
+send-hook . \
+"set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
+set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
+set use_from = yes;\
+set use_envelope_from = 'yes';\
+my_hdr From: ryanakca@kubuntu.org;\
+my_hdr Reply-To: ryanakca@kubuntu.org;\
+my_hdr Return-Path: ryanakca@kubuntu.org;\
+set sendmail='/usr/bin/msmtp';\
+unset smtp_url;\
+unset smtp_pass;\
+unset record;\
+set spoolfile = '=INBOX';\
+set postponed = '=[Google Mail]/Drafts'"
+
+folder-hook . \
+"set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
+set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
+set use_from = yes;\
+set use_envelope_from = 'yes';\
+my_hdr From: ryanakca@kubuntu.org;\
+my_hdr Reply-To: ryanakca@kubuntu.org;\
+my_hdr Return-Path: ryanakca@kubuntu.org;\
+set sendmail='/usr/bin/msmtp';\
+unset smtp_url;\
+unset smtp_pass;\
+unset record;\
+set spoolfile = '=INBOX';\
+set postponed = '=[Google Mail]/Drafts';\
+macro index,pager <ESC>a '<save-message>=[Google Mail]/All Mail<enter><enter>' 'Archive';\
+macro index,pager S '<save-message>=[Google Mail].Spam<enter><enter>' 'Spam';\
+macro index .s '<tag-prefix><copy-message>=Debian.archive<enter>' 'Saves Deb packaging email to Debian.archive';\
+set pager_format = '-%Z-MAIN: %C/%m: %-20.20n %s';\
+set compose_format = '-- MAIN: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-MAIN: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+
+folder-hook .*[Qq]ueens[uU].* \
+"unhook send-hook;\
+set envelope_from_address = 'ryan.kavanagh@queensu.ca';\
+set from = 'ryan.kavanagh@queensu.ca';\
+my_hdr From: ryan.kavanagh@queensu.ca;\
+my_hdr Reply-To: ryan.kavanagh@queensu.ca;\
+my_hdr Return-Path: ryan.kavanagh@queensu.ca;\
+set use_envelope_from = 'yes';\
+unset sendmail;
+set smtp_url="smtps://9rak@mail.queensu.ca:465/";\
+set smtp_pass = 'QUEENSU_PASS';\
+set record='=QueensU.Sent';\
+set postponed='=QueensU.Drafts';\
+set pager_format = '-%Z-QUEENS: %C/%m: %-20.20n %s';\
+set compose_format = '-- QUEENS: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-QUEENS: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+
+folder-hook /var/mail/ryan \
+"set mbox_type = Maildir;\
+set folder = /var/mail/ryan;\
+set spoolfile = /var/mail/ryan;\
+set postponed = $HOME/.maildb/GMAIL/Drafts;\
+macro index,pager <ESC>a '<save-message>$HOME/.maildb/GMAIL/[Google Mail]/All Mail<enter><enter>' 'Archive';\
+set pager_format = '-%Z-LOCAL: %C/%m: %-20.20n %s';\
+set compose_format = '-- LOCAL: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-LOCAL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+
+macro index <F12> "cimaps://imap.gmail.com/INBOX<enter>"
+macro index <F11> "cimap://localhost/INBOX<enter>"
+macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
+
+macro compose <F2> '<enter-command>set sendmail="/usr/bin/msmtp -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-reply-to>ryanakca@ubuntu.com<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
+macro compose <F3> '<enter-command>set sendmail="/usr/bin/msmtp"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-reply-to>ryanakca@kubuntu.org<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
+macro compose <F4> '<enter-command>unset sendmail<enter><edit-from>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-reply-to>ryan.kavanagh@queensu.ca<enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
+
+set certificate_file = '~/.mutt/certs/certificates'

@@ -1,0 +1,150 @@
+set realname = 'Ryan Kavanagh' # default: ''
+set reverse_name
+alternates "ryanakca@gmail\.com|ryanakca@kubuntu\.org|ryanakca@ubuntu\.com|9rak@queensu\.ca|ryan\.kavanagh@queensu\.ca"
+
+set crypt_autosign = yes # default: no
+set crypt_replysign = yes # default: no
+set crypt_replysignencrypted = yes # default: no
+
+set editor="/usr/bin/vim"
+
+set pager_context = 1
+
+set send_charset="utf-8"
+
+set imap_check_subscribed = yes # default: no
+#set imap_list_subscribed = yes # default: no
+
+# Don't continue to next email when reaching end of current
+set pager_stop = yes
+
+set timeout=15
+set mail_check=60
+
+set pgp_decode_command="gpg --no-verbose --batch --output - %f"
+set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --no-verbose --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --output - --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0x4A11C97A -- -r %r -- %f"
+set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0x4A11C97A -- -r %r -- %f"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+set pgp_autosign=yes
+set pgp_sign_as=0x4A11C97A
+set pgp_replyencrypt=yes
+set pgp_timeout=1800
+set pgp_good_sign="^gpg: Good signature from"
+set pgp_use_gpg_agent = yes
+
+set move = no
+
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+
+set edit_headers = yes
+
+#set arrow_cursor
+#noop pager G
+bind index G imap-fetch-mail
+bind index ( next-unread-mailbox
+bind index * next-unread
+
+macro index .n "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>~R<enter>" "Catchup all new messages"
+
+# This shows up in a nice message box at the top of e-mails for MS Outlook users
+my_hdr X-message-flag: Please do NOT send HTML e-mail or MS Word attachments - use plain text instead
+my_hdr X-GPG-ID: 0x4A11C97A
+my_hdr X-GPG-Fingerprint: 4E46 9519 ED67 7734 268F  BD95 8F7B F8FC 4A11 C97A
+
+set sort=threads
+set sort_aux=date
+set move=no
+set mark_old=no
+ignore * # ignore all headers except for ...
+unignore Date: From: To: CC: Bcc: Subject:
+hdr_order Subject: Date: From: To: CC: Bcc:
+# MessageNo Mo Day (To if sent by me, from if sent to me) List [Flags] [Score] Subject
+set index_format="%4C %{%b %d} %-20.20F %-15.15B [%Z] [%-2.2N] %s" # custom index format
+
+set mark_old=yes
+
+set query_command = "abook --mutt-query '%s'"
+macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
+macro index,pager A "<pipe-message>abook --add-email-quiet<return>" 
+
+# set up the sidebar, default not visible
+set sidebar_width=30 
+set sidebar_visible=yes
+set sidebar_delim=' '
+# which # mailboxes to list in the sidebar
+# mailboxes =inbox =ml
+# color of folders with new mail
+
+# ctrl-n, ctrl-p to select next, prev folder #
+# ctrl-o to open selected folder
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+# Remap bounce-message function  to "B" 
+bind index B bounce-message
+
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+macro index \cb |urlscan\n
+macro pager \cb |urlscan\n
+macro index I 'c=INBOX<enter>'
+macro index x 'c=QueensU.INBOX<enter>'
+#:source ~/.muttrc<enter>'
+
+bind editor <space> noop
+
+unignore X-Label:
+
+set mbox_type=Maildir
+
+source ~/.mutt/alias.rc
+source ~/.mutt/mailinglists.rc
+source ~/.mutt/score.rc
+source ~/.mutt/color.rc
+source ~/.mutt/accounts.rc
+source ~/.mutt/savehooks.rc
+
+set folder='imap://localhost'
+set spoolfile='=INBOX'
+ 
+#set folder="/home/ryan/.maildb/GMAIL/"
+#set spoolfile='/home/ryan/.maildb/GMAIL/INBOX'
+#mailboxes ! + `sed -e 's/\(.*\)$/"+.\1"/g' .maildb/GMAIL/subscriptions | tr '\n' ' '`
+#mailboxes ! + `\
+#for file in ~/.maildb/GMAIL/.*; do \
+#box=$(basename "$file"); \
+#if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+#   -a ! "$box" = '.subscriptions' ]; then \
+# echo -n "\"+$box\" "; \
+#fi; \
+#done`
+
+set tmpdir='~/.mutt/tmp'
+
+macro index <F8> \
+  "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+  "search mail (using notmuch)"
+macro index <F9> \
+  "<enter-command>unset wait_key<enter><pipe-message>~/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+  "search and reconstruct owning thread (using notmuch)"
+
+macro index \e,k "<enter-command> set sendmail='/usr/bin/msmtp'<enter>\
+    <enter-command>set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>'<enter>\
+    <enter-command>set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>'<enter>\
+    <enter-command>set use_from = yes<enter>\
+    <enter-command>set use_envelope_from = 'yes'<enter>\
+    <enter-command>my_hdr From: ryanakca@kubuntu.org<enter>\
+    <enter-command>my_hdr Reply-To: ryanakca@kubuntu.org<enter>\
+    <enter-command>my_hdr Return-Path: ryanakca@kubuntu.org<enter>"
+macro index \e,u "<enter-command> set sendmail='/usr/bin/msmtp -a ubuntu'<enter><enter-command>set from = 'Ryan Kavanagh <ryanakca@ubuntu.com>'<enter><enter-command>set envelope_from_address = 'Ryan Kavanagh <ryanakca@ubuntu.com>'<enter><enter-command>set use_from = yes<enter><enter-command>set use_envelope_from = 'yes'<enter><enter-command>my_hdr From: ryanakca@ubuntu.com<enter><enter-command>my_hdr Reply-To: ryanakca@ubuntu.com<enter><enter-command>my_hdr Return-Path: ryanakca@ubuntu.com<enter>"

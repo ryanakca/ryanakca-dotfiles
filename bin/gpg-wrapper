@@ -1,0 +1,41 @@
+#!/bin/zsh
+# gpg-wrapper for users who put their .gnupg on a LUKS (encrypted) device
+# Copyright (C) 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+mount_point='/media/encrypted'
+gpg_path='/usr/bin/gpg'
+gnupg_dir=${mount_point}/.gnupg/
+
+# Is there a .gnupg dir on $mount_point? If so, we ought to tell gpg to use
+# $mount_point/.gnupg, just in case the user didn't setup symlinks from
+# $HOME/.gnupg/ pointing to $mount_point/.gnupg
+if [ -d ${gnupg_dir} ]
+then
+    exec $gpg_path --homedir $gnupg_dir $@
+
+else
+    gpg-mounter
+    if [ -d ${gnupg_dir} ]
+    then
+        exec $gpg_path --homedir $gnupg_dir $@
+    else
+        echo 'No .gnupg dir in $mount_point'
+        exit 1
+    fi
+fi
+
+exit 0
