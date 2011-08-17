@@ -1,0 +1,9 @@
+[user]
+	name = Ryan Kavanagh
+	email = ryanakca@kubuntu.org
+[color]
+	ui = auto
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+[alias]
+	wdiff = diff --color-words

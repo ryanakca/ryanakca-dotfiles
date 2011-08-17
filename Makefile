@@ -16,6 +16,7 @@ GLOBAL_FILES = \
     .Xdefaults \
     .config/nitrogen/ \
     .dzen/ \
+    .gitconfig \
     .imapfilter/ \
     .inputrc \
     .local/share/wallpapers/ \
