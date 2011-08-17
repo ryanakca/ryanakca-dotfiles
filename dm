@@ -95,7 +95,7 @@ build/%: %
 install: $(BUILD)
 	rsync -a build/ ~/
 
-sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) Makefile
+sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) dm
 	$(SHA256) `git ls-files | grep -v $@` > $@
 
 sha256sums.asc: sha256sums
