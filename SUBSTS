@@ -1,5 +1,10 @@
 # File format:
 key value
+# Path to sha256/sha256sum:
+# /usr/bin/sha256sum on Kubuntu/Debian
+# /sbin/sha256 on FreeBSD
+# /bin/sha256 on OpenBSD
+SHA256 /sbin/sha256
 # Mail passwords
 GMAIL_PASS secret
 QUEENSU_PASS secret

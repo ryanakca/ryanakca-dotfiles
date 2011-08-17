@@ -1,3 +1,4 @@
+#!gmake -f
 SUBSTS_FILE=SUBSTS.local
 
 # Files that need changes to work locally or that contain sensitive
@@ -37,6 +38,8 @@ GLOBAL_FILES = \
     bin/ \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
+
+SHA256        = $(call get-val,SHA256)
 
 LOCAL_PASS    = $(call get-val,LOCAL_PASS)
 GMAIL_PASS    = $(call get-val,GMAIL_PASS)
@@ -92,14 +95,37 @@ install: $(BUILD)
 	rsync -a build/ ~/
 
 sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) Makefile
-	sha256sum `git ls-files | grep -v sha256sums` > $@
+	$(SHA256) `git ls-files | grep -v $@` > $@
 
 sha256sums.asc: sha256sums
 	rm -f $@
 	gpg --clearsign --detach-sign $<
 
 verify:
-	sha256sum -c sha256sums
+	# BSD sha256 sum command doesn't have a -c option.
+	# BSD and coreutils sha256 commands have different outputs, however, the
+	# sum is always the last field.
+	awk 'BEGIN {\
+		mismatch_count = 0; \
+		match_count = 0; \
+	    } { \
+		file = $$2; \
+		sub(/^\(/, "", file); \
+		sub(/\)$$/, "", file); \
+		cmd = "$(SHA256) " file; \
+		cmd | getline sum; \
+		close(cmd); \
+		sum = split(sum, fields); \
+		if (fields[sum] == $$NF) { \
+		    print "Match: " file; \
+		    match_count += 1; \
+		} else { \
+		    print "Mismatch: " file; \
+		    mismatch_count += 1; \
+		} \
+	    } END { \
+		print match_count, "matches, ", mismatch_count, "mismatches." \
+	}' sha256sums
 	gpg --verify sha256sums.asc
 
 clean:
