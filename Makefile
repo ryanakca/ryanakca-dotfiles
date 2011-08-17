@@ -100,7 +100,7 @@ sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) Makefile
 
 sha256sums.asc: sha256sums
 	rm -f $@
-	gpg --clearsign --detach-sign $<
+	gpg --armor --detach-sign $<
 
 verify:
 	# BSD sha256 sum command doesn't have a -c option.
