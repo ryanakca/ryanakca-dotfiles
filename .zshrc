@@ -44,7 +44,6 @@ export NAME="Ryan Kavanagh"             # Our name.
 export EMAIL="ryanakca@kubuntu.org"     # Our email address.
 export GPGKEY1="E95EDDC9"               # Our old GnuPG key ID.
 export GPGKEY="4A11C97A"                # Our GnuPG key ID. 
-export GNUPGHOME="/media/encrypted/.gnupg"
 export DEBFULLNAME=$NAME                # These are used by Debian packaging...
 export DEBEMAIL=$EMAIL                  # ...programs.
 export DEBSIGN_KEYID=$GPGKEY            # Key ID for signing Debian packages.
