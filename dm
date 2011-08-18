@@ -99,7 +99,7 @@ build/%: %
 	rsync -a $< $@
 
 install: $(BUILD)
-	rsync -a build/ ~/
+	rsync -a build/ ~
 
 sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) dm
 	$(SHA256) `git ls-files | grep -v $@` > $@
