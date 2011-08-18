@@ -1,9 +1,9 @@
-My dotfiles. Copy SUBSTS to SUBSTS.local and edit. Then run 'make install'. This
+My dotfiles. Copy SUBSTS to SUBSTS.local and edit. Then run './dm install'. This
 will copy updated distfiles to $HOME.
 
 This collection has '/home/ryan' hardcoded in various spots, you can probably
 fix this with sed.
 
-Make sure to run 'make sha256sums.asc' before commiting so that you know nobody
+Make sure to run './dm sha256sums.asc' before commiting so that you know nobody
 tampers with your dotfiles if remotely hosted and you're using this to share
-them between various hosts. 'make verify' will check their integrity.
+them between various hosts. './dm verify' will check their integrity.
