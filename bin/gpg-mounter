@@ -21,7 +21,6 @@ decrypted_dir=${HOME}/.gnupg
 if [ -n "${GNUPGHOME}" ]
 then
     decrypted_dir=${GNUPGHOME}
-    echo "ABC"$decrypted_dir
 fi
 mounted=`mount | grep ${decrypted_dir}`
 
