@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # gpg-wrapper for users who put their .gnupg in encfs
 # Copyright (C) 2009, 2011  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
