@@ -2,4 +2,5 @@
 .*.swp
 build
 SUBSTS.local
+SUBSTS.merged
 .mutt/alias.rc

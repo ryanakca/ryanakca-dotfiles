@@ -108,6 +108,13 @@ sha256sums.asc: sha256sums
 	rm -f $@
 	gpg --armor --detach-sign $<
 
+merge: SUBSTS $(SUBSTS_FILE)
+	# sdiff has exit status 1 if files are different. Ignore
+	- sdiff -o SUBSTS.merged $^
+	@echo ""
+	@echo "Please review SUBSTS.merged, then run"
+	@echo "mv SUBSTS.merged $(SUBSTS_FILE)"
+
 verify:
 	# BSD sha256 sum command doesn't have a -c option.
 	# BSD and coreutils sha256 commands have different outputs, however, the
@@ -153,4 +160,4 @@ verify:
 clean:
 	rm -fr build
 
-.PHONY: build install clean verify
+.PHONY: build install clean verify merge
