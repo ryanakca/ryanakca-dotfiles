@@ -5,6 +5,7 @@ SUBSTS_FILE=SUBSTS.local
 # information
 LOCAL_FILES = \
     .imapfilter/config.lua \
+    .msmtprc \
     .mutt/accounts.rc \
     .netrc \
     .offlineimaprc \
@@ -74,9 +75,14 @@ build/.imapfilter/config.lua: .imapfilter/config.lua $(SUBSTS_FILE)
 	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
 	    -e 's/PM_EMAIL/$(PM_EMAIL)/g' $< > $@
 
-build/.netrc: .netrc $(SUBSTS_FILES)
+build/.netrc: .netrc $(SUBSTS_FILE)
 	[ -d build ] || mkdir build
 	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' $< > $@
+
+build/.msmtprc: .msmtprc $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir $(dir $@)
+	sed -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
+	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' $< > $@
 
 build/.mutt/accounts.rc: .mutt/accounts.rc $(SUBSTS_FILE)
 	[ -d build/.mutt ] || mkdir -p build/.mutt
