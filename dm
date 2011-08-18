@@ -43,6 +43,8 @@ GLOBAL_FILES = \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
 
+CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
+
 SHA256        = $(call get-val,SHA256)
 
 LOCAL_PASS    = $(call get-val,LOCAL_PASS)
@@ -103,8 +105,16 @@ build/%: %
 install: $(BUILD)
 	rsync -a build/ ~
 
-sha256sums: $(LOCAL_FILES) $(GLOBAL_FILES) dm
+sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 	$(SHA256) `git ls-files | grep -v $@` > $@
+	[ $(SHA256) = 'sha256' ] || awk '{ \
+	    sum = $$1; \
+	    $$1 = ""; \
+	    # We want (filename), not ( filename). \
+	    gsub(/^ /,""); \
+	    print "SHA256 (" $$0 ") = " sum; \
+	    }' $@ > $@.temp
+	mv $@.temp $@
 
 sha256sums.asc: sha256sums
 	rm -f $@
