@@ -1,7 +1,6 @@
 #!/bin/sh
 redshift -l 44.22:-76.48 -t 6500:2500 &
-setxkbmap -layout us -variant icd -option -option lv3:ralt_switch_multikey \
-    -option ctrl:nocaps
+xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY
 # xcompmgr &
 urxvt &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \

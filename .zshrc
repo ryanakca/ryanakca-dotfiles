@@ -95,7 +95,7 @@ alias wtau='sudo etherwake tau'
 alias pology='python $HOME/work/pology/scripts/posieve.py'
 alias daylog='dch --changelog /home/ryan/work/sail/drafts/daylog/daylog'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
-alias kbd="setxkbmap -layout us -variant icd -option -option lv3:ralt_switch_multikey -option ctrl:nocaps"
+alias kbd="xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY"
 
 # END LOCAL
 

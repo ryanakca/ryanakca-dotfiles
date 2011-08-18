@@ -31,6 +31,7 @@ GLOBAL_FILES = \
     .vim/ \
     .vimrc \
     .xinitrc \
+    .xkb/ \
     .xmobarrc \
     .xmonad/ \
     .zsh/ \
