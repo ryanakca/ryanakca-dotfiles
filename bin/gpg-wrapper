@@ -1,6 +1,6 @@
 #!/bin/zsh
-# gpg-wrapper for users who put their .gnupg on a LUKS (encrypted) device
-# Copyright (C) 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+# gpg-wrapper for users who put their .gnupg in encfs
+# Copyright (C) 2009, 2011  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,24 +16,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-mount_point='/media/encrypted'
-gpg_path='/usr/bin/gpg'
-gnupg_dir=${mount_point}/.gnupg/
-
-# Is there a .gnupg dir on $mount_point? If so, we ought to tell gpg to use
-# $mount_point/.gnupg, just in case the user didn't setup symlinks from
-# $HOME/.gnupg/ pointing to $mount_point/.gnupg
-if [ -d ${gnupg_dir} ]
+if [ ! -n "${GNUPGHOME}" ]
 then
-    exec $gpg_path --homedir $gnupg_dir $@
+    decrypted_dir=${HOME}/.gnupg
+else
+    decrypted_dir=${GNUPGHOME}
+fi
 
+if [ -f ${decrypted_dir}/gpg.conf ]
+then
+    exec gpg --homedir ${decrypted_dir} $@
 else
     gpg-mounter
-    if [ -d ${gnupg_dir} ]
+    if [ -f ${decrypted_dir}/gpg.conf ]
     then
-        exec $gpg_path --homedir $gnupg_dir $@
+        exec gpg --homedir ${decrypted_dir} $@
     else
-        echo 'No .gnupg dir in $mount_point'
+        echo 'No gnupg.conf in ${decrypted_dir}'
         exit 1
     fi
 fi
