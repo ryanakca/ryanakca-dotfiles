@@ -27,6 +27,7 @@ GLOBAL_FILES = \
     .mutt/ \
     .muttrc \
     .notmuch-config \
+    .pythonrc.py \
     .quiltrc-dpkg \
     .screenrc \
     .screenlayout/ \
