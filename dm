@@ -15,6 +15,7 @@ LOCAL_FILES = \
 # IMPORTANT: directories must have trailing slash
 GLOBAL_FILES = \
     .Xdefaults \
+    .Xsession \
     .config/nitrogen/ \
     .dzen/ \
     .gitconfig \
