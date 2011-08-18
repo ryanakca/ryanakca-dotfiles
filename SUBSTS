@@ -17,3 +17,5 @@ XMONAD_DZEN_Y 0
 SCREENLAYOUT epsilon-SAIL
 # Pipe major's email
 PM_EMAIL pipemajor@example.org
+# Locale
+LOCALE es_ES.UTF-8

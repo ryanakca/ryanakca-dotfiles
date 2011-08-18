@@ -9,6 +9,7 @@ LOCAL_FILES = \
     .netrc \
     .offlineimaprc \
     .xmonad/xmonad.hs \
+    .zshrc \
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
@@ -36,7 +37,6 @@ GLOBAL_FILES = \
     .xmonad/ \
     .zsh/ \
     .zsh_logout \
-    .zshrc \
     bin/ \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
@@ -51,6 +51,7 @@ SCREENLAYOUT  = $(call get-val,SCREENLAYOUT)
 XMONAD_DZEN_W = $(call get-val,XMONAD_DZEN_W)
 XMONAD_DZEN_X = $(call get-val,XMONAD_DZEN_X)
 XMONAD_DZEN_Y = $(call get-val,XMONAD_DZEN_Y)
+LOCALE	      = $(call get-val,LOCALE)
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
@@ -88,6 +89,10 @@ build/.xmonad/xmonad.hs: .xmonad/xmonad.hs $(SUBSTS_FILE)
 	sed -e 's/XMONAD_DZEN_W/$(XMONAD_DZEN_W)/g' \
 	    -e 's/XMONAD_DZEN_X/$(XMONAD_DZEN_X)/g' \
 	    -e 's/XMONAD_DZEN_y/$(XMONAD_DZEN_Y)/g' $< > $@
+
+build/.zshrc: .zshrc $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir -p $(dir $@)
+	sed -e 's/LOCALE/$(LOCALE)/g' $< > $@
 
 build/%: %
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
