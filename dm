@@ -31,6 +31,7 @@ GLOBAL_FILES = \
     .screenlayout/ \
     .signature \
     .vim/ \
+    .vimperatorrc \
     .vimrc \
     .xinitrc \
     .xkb/ \
