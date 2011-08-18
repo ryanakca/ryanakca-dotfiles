@@ -105,19 +105,34 @@ sha256sums.asc: sha256sums
 verify:
 	# BSD sha256 sum command doesn't have a -c option.
 	# BSD and coreutils sha256 commands have different outputs, however, the
-	# sum is always the last field.
-	awk 'BEGIN {\
+	# file is always in field two. The sum's location varies.
+	awk --posix 'BEGIN {\
 		mismatch_count = 0; \
 		match_count = 0; \
 	    } { \
+		# The file associated with the sum we`re checking \
+		# Appears to be field 2 in BSD and coreutils sum \
 		file = $$2; \
+		# We want `filename`, not `(filename)` \
 		sub(/^\(/, "", file); \
 		sub(/\)$$/, "", file); \
+		# Generate the sum to compare with \
 		cmd = "$(SHA256) " file; \
-		cmd | getline sum; \
+		cmd | getline gensum; \
 		close(cmd); \
-		sum = split(sum, fields); \
-		if (fields[sum] == $$NF) { \
+		split(gensum, gensum_fields); \
+		gensum = ""; \
+		for (field in gensum_fields) { \
+		    if (gensum_fields[field] ~ /[[:xdigit:]]{64}/) { \
+			gensum = gensum_fields[field]; \
+		    } \
+		} \
+		for (i = 1; i <= NF; i++) { \
+		    if ($$i ~ /[[:xdigit:]]{64}/) { \
+			filesum = $$i; \
+		    } \
+		} \
+		if (filesum == gensum) { \
 		    print "Match: " file; \
 		    match_count += 1; \
 		} else { \
