@@ -7,3 +7,5 @@
 	smtpserver = MSMTP_PATH
 [alias]
 	wdiff = diff --color-words
+[color]
+	ui = auto
