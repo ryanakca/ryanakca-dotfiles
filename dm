@@ -72,6 +72,10 @@ build/.offlineimaprc: .offlineimaprc $(SUBSTS_FILE)
 	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' \
 	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' $< > $@
 
+build/.gitconfig: .gitconfig $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir $(dir $@)
+	sed -e 's/MSMTP_PATH/$(MSMTP_PATH)/g' $< > $@
+
 build/.imapfilter/config.lua: .imapfilter/config.lua $(SUBSTS_FILE)
 	[ -d build/.imapfilter ] || mkdir -p build/.imapfilter
 	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
@@ -86,11 +90,16 @@ build/.msmtprc: .msmtprc $(SUBSTS_FILE)
 	sed -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
 	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' $< > $@
 
+build/.muttrc: .muttrc $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir $(dir $@)
+	sed -e 's/MSMTP_PATH/$(MSMTP_PATH)/g' $< > $@
+
 build/.mutt/accounts.rc: .mutt/accounts.rc $(SUBSTS_FILE)
 	[ -d build/.mutt ] || mkdir -p build/.mutt
 	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
 	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' \
-	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' $< > $@
+	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
+	    -e 's/MSMTP_PATH/$(MSMTP_PATH)/g' $< > $@
 
 build/.xinitrc: .xinitrc $(SUBSTS_FILE)
 	[ -d build ] || mkdir build
@@ -105,6 +114,7 @@ build/.xmonad/xmonad.hs: .xmonad/xmonad.hs $(SUBSTS_FILE)
 build/.zshrc: .zshrc $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	sed -e 's/LOCALE/$(LOCALE)/g' \
+	    -e 's/MSMTP_PATH/$(MSMTP_PATH)/g' \
 	    -e 's/SUBSTS_LS/$(SUBSTS_LS)/g' $< > $@
 
 build/%: %

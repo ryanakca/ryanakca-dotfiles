@@ -22,3 +22,6 @@ LOCALE es_ES.UTF-8
 
 # ls or gls command
 SUBSTS_LS ls
+
+# path to msmtp
+MSMTP_PATH /usr/bin/msmtp

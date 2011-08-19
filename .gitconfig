@@ -4,6 +4,6 @@
 [color]
 	ui = auto
 [sendemail]
-	smtpserver = /usr/bin/msmtp
+	smtpserver = MSMTP_PATH
 [alias]
 	wdiff = diff --color-words

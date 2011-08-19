@@ -31,7 +31,7 @@ set use_envelope_from = 'yes';\
 my_hdr From: ryanakca@kubuntu.org;\
 my_hdr Reply-To: ryanakca@kubuntu.org;\
 my_hdr Return-Path: ryanakca@kubuntu.org;\
-set sendmail='/usr/bin/msmtp';\
+set sendmail='MSMTP_PATH';\
 unset smtp_url;\
 unset smtp_pass;\
 unset record;\
@@ -46,7 +46,7 @@ set use_envelope_from = 'yes';\
 my_hdr From: ryanakca@kubuntu.org;\
 my_hdr Reply-To: ryanakca@kubuntu.org;\
 my_hdr Return-Path: ryanakca@kubuntu.org;\
-set sendmail='/usr/bin/msmtp';\
+set sendmail='MSMTP_PATH';\
 unset smtp_url;\
 unset smtp_pass;\
 unset record;\
@@ -90,8 +90,8 @@ macro index <F12> "cimaps://imap.gmail.com/INBOX<enter>"
 macro index <F11> "cimap://localhost/INBOX<enter>"
 macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
 
-macro compose <F2> '<enter-command>set sendmail="/usr/bin/msmtp -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-reply-to>ryanakca@ubuntu.com<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
-macro compose <F3> '<enter-command>set sendmail="/usr/bin/msmtp"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-reply-to>ryanakca@kubuntu.org<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
+macro compose <F2> '<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-reply-to>ryanakca@ubuntu.com<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
+macro compose <F3> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-reply-to>ryanakca@kubuntu.org<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
 macro compose <F4> '<enter-command>unset sendmail<enter><edit-from>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-reply-to>ryan.kavanagh@queensu.ca<enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
 
 set certificate_file = '~/.mutt/certs/certificates'

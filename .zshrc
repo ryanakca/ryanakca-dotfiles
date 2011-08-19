@@ -60,7 +60,7 @@ export CCACHE_DIR=/ccache
 #export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
 export MANOPT="-L en"
-export BTS_SENDMAIL_COMMAND="/usr/bin/msmtp"
+export BTS_SENDMAIL_COMMAND="MSMTP_PATH"
 export PYTHONSTARTUP=~/.pythonrc.py
 
 alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
