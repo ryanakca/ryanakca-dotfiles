@@ -58,6 +58,7 @@ XMONAD_DZEN_W = $(call get-val,XMONAD_DZEN_W)
 XMONAD_DZEN_X = $(call get-val,XMONAD_DZEN_X)
 XMONAD_DZEN_Y = $(call get-val,XMONAD_DZEN_Y)
 LOCALE	      = $(call get-val,LOCALE)
+SUBSTS_LS     = $(call get-val,SUBSTS_LS)
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
@@ -103,7 +104,8 @@ build/.xmonad/xmonad.hs: .xmonad/xmonad.hs $(SUBSTS_FILE)
 
 build/.zshrc: .zshrc $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
-	sed -e 's/LOCALE/$(LOCALE)/g' $< > $@
+	sed -e 's/LOCALE/$(LOCALE)/g' \
+	    -e 's/SUBSTS_LS/$(SUBSTS_LS)/g' $< > $@
 
 build/%: %
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)

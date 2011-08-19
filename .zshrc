@@ -157,15 +157,15 @@ export WORDCHARS='*?_-[]~=&;!#$%^(){}'
 zmodload -i zsh/complist
 
 # Should dircolors exist. Fetch LS_COLORS from it.
-if [ `which dircolors` ]; then
+if [ "`which dircolors`" != 'dircolors not found' ]; then
     eval "$(dircolors -b)"
 fi
 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:kill:*' list-colors '=%*=01;31'
 
-alias ls="ls --classify --color=always" # Add all colours and have fancy
-                                        # symbols for files, etc.
+alias ls="SUBSTS_LS --classify --color=always" # Add all colours and 
+                                        # have fancy symbols for files, etc.
 alias grep="grep --colour=always" # Colour grep too.
 # Load the completion system
 autoload -U compinit; compinit
@@ -558,6 +558,20 @@ proxy() {
 
 noproxy() {
     unset http_proxy
+}
+
+gbp-snap() {
+    if [[ -e $@ ]]; then
+        git-dch -aSN $1
+    else
+        git-dch -aS
+    fi
+    gpg-mounter
+    gibuild --git-ignore-new
+    DSC=`head -n1 debian/changelog | sed -e 's/\(.*\) (\(.*\)).*/\1_\2.dsc/g'`
+    DIST=`head -n1 debian/changelog | sed -e 's/.* \(.*\);.*/\1/g'`
+    cd ..
+    sbuild -d $DIST $DSC
 }
 
 # Pretty menu!
