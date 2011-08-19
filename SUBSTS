@@ -25,3 +25,6 @@ SUBSTS_LS ls
 
 # path to msmtp
 MSMTP_PATH /usr/bin/msmtp
+
+# path to zsh
+ZSH_PATH /bin/zsh

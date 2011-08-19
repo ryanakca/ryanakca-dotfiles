@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 MAIL=`mailcheck`
 GMAIL=`echo $MAIL | /bin/grep -v QueensU`
 QUEENSU=`echo $MAIL | /bin/grep QueensU`

@@ -1,5 +1,5 @@
 defutf8 on
-shell /bin/zsh
+shell ZSH_PATH
 encoding UTF-8
 vbell on
 defnonblock 5

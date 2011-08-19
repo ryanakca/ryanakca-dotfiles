@@ -4,11 +4,14 @@ SUBSTS_FILE=SUBSTS.local
 # Files that need changes to work locally or that contain sensitive
 # information
 LOCAL_FILES = \
+    .gitconfig \
     .imapfilter/config.lua \
     .msmtprc \
+    .muttrc \
     .mutt/accounts.rc \
     .netrc \
     .offlineimaprc \
+    .screenrc \
     .xmonad/xmonad.hs \
     .zshrc \
 
@@ -59,6 +62,8 @@ XMONAD_DZEN_X = $(call get-val,XMONAD_DZEN_X)
 XMONAD_DZEN_Y = $(call get-val,XMONAD_DZEN_Y)
 LOCALE	      = $(call get-val,LOCALE)
 SUBSTS_LS     = $(call get-val,SUBSTS_LS)
+MSMTP_PATH    = $(call get-val,MSMTP_PATH)
+ZSH_PATH      = $(call get-val,ZSH_PATH)
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
@@ -100,6 +105,10 @@ build/.mutt/accounts.rc: .mutt/accounts.rc $(SUBSTS_FILE)
 	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' \
 	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
 	    -e 's/MSMTP_PATH/$(MSMTP_PATH)/g' $< > $@
+
+build/.screenrc: .screenrc $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir $(dir $@)
+	sed -e 's/ZSH_PATH/$(ZSH_PATH)/g' $< > $@
 
 build/.xinitrc: .xinitrc $(SUBSTS_FILE)
 	[ -d build ] || mkdir build
