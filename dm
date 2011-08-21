@@ -7,8 +7,8 @@ LOCAL_FILES = \
     .gitconfig \
     .imapfilter/config.lua \
     .msmtprc \
-    .muttrc \
     .mutt/accounts.rc \
+    .muttrc \
     .netrc \
     .offlineimaprc \
     .screenrc \
@@ -47,6 +47,7 @@ GLOBAL_FILES = \
     bin/ \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
+get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$($(var))|g')
 
 CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 
@@ -68,76 +69,36 @@ ZSH_HOST_COLOUR = $(call get-val,ZSH_HOST_COLOUR)
 SCREEN_HOST_COLOUR = $(call get-val,SCREEN_HOST_COLOUR)
 SUBSTS_RM     = $(call get-val,SUBSTS_RM)
 
+VARS_.gitconfig         = MSMTP_PATH
+VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL
+VARS_.msmtprc           = QUEENSU_PASS
+VARS_.mutt/accounts.rc  = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MSMTP_PATH
+VARS_.muttrc            = MSMTP_PATH
+VARS_.netrc             = LOCAL_PASS
+VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS
+VARS_.screenrc          = ZSH_PATH SCREEN_HOST_COLOUR
+VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
+VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
+VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH
+
+all: clean build
+
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES))
 
 build: $(BUILD)
 
-build/.offlineimaprc: .offlineimaprc $(SUBSTS_FILE)
-	[ -d build ] || mkdir build
-	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
-	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' \
-	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' $< > $@
-
-build/.gitconfig: .gitconfig $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir $(dir $@)
-	sed -e 's:MSMTP_PATH:$(MSMTP_PATH):g' $< > $@
-
-build/.imapfilter/config.lua: .imapfilter/config.lua $(SUBSTS_FILE)
-	[ -d build/.imapfilter ] || mkdir -p build/.imapfilter
-	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
-	    -e 's/PM_EMAIL/$(PM_EMAIL)/g' $< > $@
-
-build/.netrc: .netrc $(SUBSTS_FILE)
-	[ -d build ] || mkdir build
-	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' $< > $@
-
-build/.msmtprc: .msmtprc $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir $(dir $@)
-	sed -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
-	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' $< > $@
-
-build/.muttrc: .muttrc $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir $(dir $@)
-	sed -e 's:MSMTP_PATH:$(MSMTP_PATH):g' $< > $@
-
-build/.mutt/accounts.rc: .mutt/accounts.rc $(SUBSTS_FILE)
-	[ -d build/.mutt ] || mkdir -p build/.mutt
-	sed -e 's/LOCAL_PASS/$(LOCAL_PASS)/g' \
-	    -e 's/GMAIL_PASS/$(GMAIL_PASS)/g' \
-	    -e 's/QUEENSU_PASS/$(QUEENSU_PASS)/g' \
-	    -e 's:MSMTP_PATH:$(MSMTP_PATH):g' $< > $@
-
-build/.screenrc: .screenrc $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir $(dir $@)
-	sed -e 's:ZSH_PATH:$(ZSH_PATH):g' \
-	    -e 's:SCREEN_HOST_COLOUR:$(SCREEN_HOST_COLOUR):g' $< > $@
-
-build/.xinitrc: .xinitrc $(SUBSTS_FILE)
-	[ -d build ] || mkdir build
-	sed -e 's/SCREENLAYOUT/$(SCREENLAYOUT)/g' $< > $@
-
-build/.xmonad/xmonad.hs: .xmonad/xmonad.hs $(SUBSTS_FILE)
-	[ -d build/.xmonad ] || mkdir -p build/.xmonad
-	sed -e 's/XMONAD_DZEN_W/$(XMONAD_DZEN_W)/g' \
-	    -e 's/XMONAD_DZEN_X/$(XMONAD_DZEN_X)/g' \
-	    -e 's/XMONAD_DZEN_y/$(XMONAD_DZEN_Y)/g' $< > $@
-
-build/.zsh/func/prompt_wunjo_setup: .zsh/func/prompt_wunjo_setup $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir -p $(dir $@)
-	sed -e 's:ZSH_HOST_COLOUR:$(ZSH_HOST_COLOUR):g' $< > $@
-
-build/.zshrc: .zshrc $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir -p $(dir $@)
-	sed -e 's/LOCALE/$(LOCALE)/g' \
-	    -e 's:MSMTP_PATH:$(MSMTP_PATH):g' \
-	    -e 's/SUBSTS_LS/$(SUBSTS_LS)/g' \
-	    -e 's/SUBSTS_RM/$(SUBSTS_RM)/g' $< > $@
-
-build/%: %
+build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	rsync -a $< $@
+	@# sed will only be called if $* is in LOCAL_FILES.
+	@# Thought of using ifeq/ifneq, but the gmake manual reads:
+	@# "make evaluates conditionals when it reads a makefile. Consequently,
+	@# you cannot use automatic variables in the tests of conditionals
+	@# because they are not defined until recipes are run (see Automatic
+	@# Variables)."
+	[ "$(filter $*,$(LOCAL_FILES))" != "$*" ] || sed $(call get-sed-args,VARS_$*) $< > $@
 
 install: $(BUILD)
 	rsync -a build/ ~
