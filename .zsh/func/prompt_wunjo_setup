@@ -90,7 +90,7 @@ prompt_wunjo_setup() {
 	pc[default]='default'
 	pc[date]='cyan'
 	pc[time]='Blue'
-	pc[host]='Magenta'
+	pc[host]='ZSH_HOST_COLOUR'
 	pc[user]='cyan'
 	pc[punc]='yellow'
 	pc[line]='magenta'

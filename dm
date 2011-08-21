@@ -13,6 +13,7 @@ LOCAL_FILES = \
     .offlineimaprc \
     .screenrc \
     .xmonad/xmonad.hs \
+    .zsh/func/prompt_wunjo_setup \
     .zshrc \
 
 # Files that are system independent.
@@ -32,7 +33,6 @@ GLOBAL_FILES = \
     .notmuch-config \
     .pythonrc.py \
     .quiltrc-dpkg \
-    .screenrc \
     .screenlayout/ \
     .signature \
     .vim/ \
@@ -64,6 +64,8 @@ LOCALE	      = $(call get-val,LOCALE)
 SUBSTS_LS     = $(call get-val,SUBSTS_LS)
 MSMTP_PATH    = $(call get-val,MSMTP_PATH)
 ZSH_PATH      = $(call get-val,ZSH_PATH)
+ZSH_HOST_COLOUR = $(call get-val,ZSH_HOST_COLOUR)
+SCREEN_HOST_COLOUR = $(call get-val,SCREEN_HOST_COLOUR)
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
@@ -108,7 +110,8 @@ build/.mutt/accounts.rc: .mutt/accounts.rc $(SUBSTS_FILE)
 
 build/.screenrc: .screenrc $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir $(dir $@)
-	sed -e 's:ZSH_PATH:$(ZSH_PATH):g' $< > $@
+	sed -e 's:ZSH_PATH:$(ZSH_PATH):g' \
+	    -e 's:SCREEN_HOST_COLOUR:$(SCREEN_HOST_COLOUR):g' $< > $@
 
 build/.xinitrc: .xinitrc $(SUBSTS_FILE)
 	[ -d build ] || mkdir build
@@ -119,6 +122,10 @@ build/.xmonad/xmonad.hs: .xmonad/xmonad.hs $(SUBSTS_FILE)
 	sed -e 's/XMONAD_DZEN_W/$(XMONAD_DZEN_W)/g' \
 	    -e 's/XMONAD_DZEN_X/$(XMONAD_DZEN_X)/g' \
 	    -e 's/XMONAD_DZEN_y/$(XMONAD_DZEN_Y)/g' $< > $@
+
+build/.zsh/func/prompt_wunjo_setup: .zsh/func/prompt_wunjo_setup $(SUBSTS_FILE)
+	[ -d $(dir $@) ] || mkdir -p $(dir $@)
+	sed -e 's:ZSH_HOST_COLOUR:$(ZSH_HOST_COLOUR):g' $< > $@
 
 build/.zshrc: .zshrc $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
