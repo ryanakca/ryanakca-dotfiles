@@ -3,6 +3,8 @@ shell ZSH_PATH
 encoding UTF-8
 vbell on
 defnonblock 5
+term screen-256color
+terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 startup_message off
 
