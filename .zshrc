@@ -62,6 +62,7 @@ export MANWIDTH=80
 export MANOPT="-L en"
 export BTS_SENDMAIL_COMMAND="MSMTP_PATH"
 export PYTHONSTARTUP=~/.pythonrc.py
+export PAGER=less
 
 alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
 alias emacs='/usr/bin/emacs -nw'
