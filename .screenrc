@@ -14,3 +14,6 @@ hardstatus string "%{=}%{g}[%{B}%D %d/%m%{W}%c:%s%{g}][%= %{w}%?%-Lw%?%{b}(%{C}%
 
 shelltitle '$ |zsh'
 idle 3600 detach
+
+# define a bigger scrollback, default is 100 lines
+defscrollback 1024
