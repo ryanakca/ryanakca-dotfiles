@@ -89,6 +89,15 @@ BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES))
 
 build: $(BUILD)
 
+# We must force these with a phony target, otherwise, make will see that they're
+# already there (for example, from installing the rest of .mutt or .zsh) and
+# will skip them---which means they don't get their substitutions
+build/.imapfilter/config.lua: FORCE
+build/.mutt/accounts.rc: FORCE
+build/.xmonad/xmonad.hs: FORCE
+build/.zsh/func/prompt_wunjo_setup: FORCE
+FORCE:
+
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	rsync -a $< $@
