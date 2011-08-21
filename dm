@@ -66,6 +66,7 @@ MSMTP_PATH    = $(call get-val,MSMTP_PATH)
 ZSH_PATH      = $(call get-val,ZSH_PATH)
 ZSH_HOST_COLOUR = $(call get-val,ZSH_HOST_COLOUR)
 SCREEN_HOST_COLOUR = $(call get-val,SCREEN_HOST_COLOUR)
+SUBSTS_RM     = $(call get-val,SUBSTS_RM)
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
@@ -131,7 +132,8 @@ build/.zshrc: .zshrc $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	sed -e 's/LOCALE/$(LOCALE)/g' \
 	    -e 's:MSMTP_PATH:$(MSMTP_PATH):g' \
-	    -e 's/SUBSTS_LS/$(SUBSTS_LS)/g' $< > $@
+	    -e 's/SUBSTS_LS/$(SUBSTS_LS)/g' \
+	    -e 's/SUBSTS_RM/$(SUBSTS_RM)/g' $< > $@
 
 build/%: %
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
