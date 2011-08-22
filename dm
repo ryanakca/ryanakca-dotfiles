@@ -71,7 +71,7 @@ SUBSTS_RM     = $(call get-val,SUBSTS_RM)
 
 VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL
-VARS_.msmtprc           = QUEENSU_PASS
+VARS_.msmtprc           = GMAIL_PASS QUEENSU_PASS
 VARS_.mutt/accounts.rc  = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MSMTP_PATH
 VARS_.muttrc            = MSMTP_PATH
 VARS_.netrc             = LOCAL_PASS
