@@ -1,6 +1,8 @@
 // International Coder Dvorak
 // By: Ryan Kavanagh <ryanakca@kubuntu.org> , http://ryanak.ca/
 //
+// Optimised for typing in English, French and Spanish.
+//
 // Based on the Dvorak International (dvorak-intl) layout:
 //      Stephane Magnenat (stephane at magnenat dot net, http://stephane.magnenat.net)
 //      Based on information from http://www.poupinou.org/dvorak/index.html
@@ -20,13 +22,13 @@
 //
 //       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
-//       CAPL  à   ô   é   ù   î   ð   ¶   þ   ñ   ß   –   ENTER
-//       CAPL  À   Ô   É   Ù   Î   Ð   §   Þ   Ñ       —   ENTER
+//       CAPL  à   ó   é   ù   î   ð   ¶   þ   ñ   ß   –   ENTER
+//       CAPL  À   Ó   É   Ù   Î   Ð   §   Þ   Ñ       —   ENTER
 //
 //      SHIFT  "   Q   J   K   X   B   M   W   V   Z   SHIFT
 //      SHIFT  '   q   j   k   x   b   m   w   v   z   SHIFT
-//      SHIFT  â   ó   è   ù   ï   å   ê   w   v   z   SHIFT
-//      SHIFT  Â   ó   È   Ù   Ï   Å   Ê   W   V   Z
+//      SHIFT  â   ô   è   ù   ï   å   ê   w   v   z   SHIFT
+//      SHIFT  Â   Ô   È   Ù   Ï   Å   Ê   W   V   Z
 //
 // Legend: dX -> dead_X
 //
@@ -38,7 +40,7 @@
 
 partial alphanumeric_keys
 xkb_symbols "icd" {
-    include "us(dvorak)"
+    include "us(dvp)"
 
     name[Group1] = "USA - International Coder Dvorak";
 
@@ -80,7 +82,7 @@ xkb_symbols "icd" {
 
     // home row, left side
     key <AC01> { [ a,               A,              agrave,          Agrave     ] };
-    key <AC02> { [ o,               O,              ocircumflex,     Ocircumflex] };
+    key <AC02> { [ o,               O,              oacute,          Oacute     ] };
     key <AC03> { [ e,               E,              eacute,          Eacute     ] };
     key <AC04> { [ u,               U,              ugrave,          Ugrave     ] };
     key <AC05> { [ i,               I,              icircumflex,     Icircumflex] };
@@ -90,18 +92,18 @@ xkb_symbols "icd" {
     key <AC07> { [ h,               H,              paragraph,       section    ] };
     key <AC08> { [ t,               T,              thorn,           THORN      ] };
     key <AC09> { [ n,               N,              ntilde,          Ntilde     ] };
-    key <AC10> { [ s,               S,              ssharp,          aboveline  ] };
+    key <AC10> { [ s,               S,              ssharp,          overline   ] };
     key <AC11> { [ minus,           underscore,     endash,          emdash     ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
 
     // lower row, left side
     key <AB01> { [ apostrophe,      quotedbl,       acircumflex,     Acircumflex] };
-    key <AB02> { [ q,               Q,              oacute,          Oacute     ] };
+    key <AB02> { [ q,               Q,              ocircumflex,     Ocircumflex] };
     key <AB03> { [ j,               J,              egrave,          Egrave     ] };
     key <AB05> { [ x,               X,              idiaeresis,      Idiaeresis ] };
 
     // lower row, right side
     key <AB06> { [ b,               B,              acircumflex,     Acircumflex] };
     key <AB07> { [ m,               M,              ecircumflex,     Ecircumflex] };
-    key <AB11> { [ Shift,           Shift,          Shift,           Shift      ] };
+    key <AB11> { [ Shift_R,         Shift_R,        Shift_R,         Shift_R    ] };
 
 };
