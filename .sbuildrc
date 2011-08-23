@@ -1,0 +1,24 @@
+# *** VERIFY AND UPDATE $mailto and $maintainer_name BELOW ***
+
+# Mail address where logs are sent to (mandatory, no default!)
+$mailto = 'ryan';
+
+# Name to use as override in .changes files for the Maintainer: field
+# (mandatory, no default!).
+$maintainer_name='Ryan Kavanagh <ryanakca@kubuntu.org>';
+
+# Directory for chroot symlinks and sbuild logs.  Defaults to the
+# current directory if unspecified.
+#$build_dir='/home/ryan/ubuntu/build';
+
+# Directory for writing build logs to
+$log_dir="/home/ryan/ubuntu/logs";
+
+$build_environment = {
+    'CCACHE_DIR' => '/ccache',
+    'PATH' => '/usr/lib/ccache:$PATH'
+};
+
+
+# don't remove this, Perl needs it:
+1;

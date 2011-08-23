@@ -35,6 +35,7 @@ GLOBAL_FILES = \
     .offlineimap.py \
     .pythonrc.py \
     .quiltrc-dpkg \
+    .sbuildrc \
     .screenlayout/ \
     .signature \
     .vim/ \
