@@ -46,7 +46,7 @@ GLOBAL_FILES = \
     .xmobarrc \
     .xmonad/ \
     .zsh/ \
-    .zsh_logout \
+    .zlogout \
     bin/ \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
