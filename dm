@@ -32,6 +32,7 @@ GLOBAL_FILES = \
     .mutt/ \
     .muttrc \
     .notmuch-config \
+    .offlineimap.py \
     .pythonrc.py \
     .quiltrc-dpkg \
     .screenlayout/ \
