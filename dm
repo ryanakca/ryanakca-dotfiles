@@ -4,6 +4,7 @@ SUBSTS_FILE=SUBSTS.local
 # Files that need changes to work locally or that contain sensitive
 # information
 LOCAL_FILES = \
+    .devscripts \
     .gitconfig \
     .imapfilter/config.lua \
     .msmtprc \
@@ -69,6 +70,7 @@ ZSH_HOST_COLOUR = $(call get-val,ZSH_HOST_COLOUR)
 SCREEN_HOST_COLOUR = $(call get-val,SCREEN_HOST_COLOUR)
 SUBSTS_RM     = $(call get-val,SUBSTS_RM)
 
+VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL
 VARS_.msmtprc           = GMAIL_PASS QUEENSU_PASS
