@@ -98,6 +98,7 @@ alias daylog='dch --changelog /home/ryan/work/sail/drafts/daylog/daylog'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias kbd="xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY"
 alias vi='vim'
+alias sm='screen -r mail || screen -c ${HOME}/.screenrc-mail'
 
 # END LOCAL
 

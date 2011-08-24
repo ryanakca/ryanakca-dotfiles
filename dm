@@ -37,6 +37,7 @@ GLOBAL_FILES = \
     .quiltrc-dpkg \
     .sbuildrc \
     .screenlayout/ \
+    .screenrc-mail \
     .signature \
     .vim/ \
     .vimperatorrc \
