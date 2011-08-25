@@ -2,7 +2,6 @@
 redshift -l 44.22:-76.48 -t 6500:2500 &
 xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY
 # xcompmgr &
-urxvt &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
   --expand true --width 10 --transparent true --height 18 --align right &
 xautolock -time 2 &
@@ -13,6 +12,7 @@ gnome-settings-daemon &
 # feh --bg-center /home/ryan/.local/share/wallpapers/skyscraper_at_sunset.bmp
 # feh --bg-center /home/ryan/.local/share/wallpapers/totheglory.jpg
 urxvtd -q -f -o &
+urxvtc &
 # /home/ryan/.screenlayout/work.sh
 /home/ryan/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
 exec /usr/local/bin/xmonad
