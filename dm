@@ -39,6 +39,7 @@ GLOBAL_FILES = \
     .screenlayout/ \
     .screenrc-mail \
     .signature \
+    .urxvt/ \
     .vim/ \
     .vimperatorrc \
     .vimrc \
