@@ -38,3 +38,7 @@ SCREEN_HOST_COLOUR G
 
 # rm or grm command
 SUBSTS_RM grm
+
+# Emails that get a score of 10/20. Escape |.
+MUTT_20_SCORE \\"(bob@foo.org\|alice@example.org)\\"
+MUTT_10_SCORE \\"(eve@foo.org)\\"

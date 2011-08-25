@@ -9,6 +9,7 @@ LOCAL_FILES = \
     .imapfilter/config.lua \
     .msmtprc \
     .mutt/accounts.rc \
+    .mutt/score.rc \
     .muttrc \
     .netrc \
     .offlineimaprc \
@@ -64,6 +65,7 @@ VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL
 VARS_.msmtprc           = GMAIL_PASS QUEENSU_PASS
 VARS_.mutt/accounts.rc  = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MSMTP_PATH
+VARS_.mutt/score.rc     = MUTT_10_SCORE MUTT_20_SCORE
 VARS_.muttrc            = MSMTP_PATH
 VARS_.netrc             = LOCAL_PASS
 VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS
