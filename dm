@@ -13,6 +13,7 @@ LOCAL_FILES = \
     .netrc \
     .offlineimaprc \
     .screenrc \
+    .xinitrc \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
     .zshrc \
@@ -83,6 +84,7 @@ VARS_.muttrc            = MSMTP_PATH
 VARS_.netrc             = LOCAL_PASS
 VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS
 VARS_.screenrc          = ZSH_PATH SCREEN_HOST_COLOUR
+VARS_.xinitrc           = SCREENLAYOUT
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
 VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH
