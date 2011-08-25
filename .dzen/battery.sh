@@ -28,24 +28,21 @@ TIME_INT=30      # time intervall in seconds
 PREBAR='^i(/home/ryan/.dzen/icons/power-bat.xbm) ' # caption (also icons are possible)
  
 while true; do
-    # look up battery's data
-    PRESENT=`cat $STATEFILE|grep POWER_SUPPLY_PRESENT|cut -d '=' -f 2`;
-    if [ $PRESENT = '1' ]; then
+    PRESENT=`acpi -b`;
+    if [ "${PRESENT}" ]; then
         BAT_FULL=`cat $STATEFILE|grep POWER_SUPPLY_CHARGE_FULL_DESIGN | cut -d '=' -f 2 `;
-        STATUS=`cat $STATEFILE|grep POWER_SUPPLY_STATUS |cut -d '=' -f 2`;
-        RCAP=`cat $STATEFILE|grep POWER_SUPPLY_CHARGE_NOW|cut -d '=' -f 2`;
+        STATUS=`echo ${PRESENT} | grep Charging`;
 
-        echo $BAT_FULL " " $STATUS " " $RCAP > /dev/stdout
-         
-        # calculate remaining power
-        RPERCT=`expr $RCAP \* 100`;
-        RPERC=`expr $RPERCT / $BAT_FULL`;
+#        echo $BAT_FULL " " $STATUS " " $RCAP > /dev/stdout
+
+        RPERC=`echo ${PRESENT} | cut -d, -f2 | sed -e 's/[^0-9]//g'`;
+        echo ${RPERC} > /tmp/rperc
          
         # draw the bar and pipe everything into dzen
         if [ $RPERC -le $LOWBAT ]; then
             GFG=$LOWCOL;
         fi
-        if [ $STATUS = 'Charging' ]; then
+        if [ "${STATUS}" ]; then
             GFG=$CHGCOL;
         else
             GFG='#33ccff';
