@@ -53,27 +53,11 @@ GLOBAL_FILES = \
     bin/ \
 
 get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
-get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$($(var))|g')
+get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$(call get-val,$(var))|g')
 
 CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 
 SHA256        = $(call get-val,SHA256)
-
-LOCAL_PASS    = $(call get-val,LOCAL_PASS)
-GMAIL_PASS    = $(call get-val,GMAIL_PASS)
-QUEENSU_PASS  = $(call get-val,QUEENSU_PASS)
-PM_EMAIL      = $(call get-val,PM_EMAIL)
-SCREENLAYOUT  = $(call get-val,SCREENLAYOUT)
-XMONAD_DZEN_W = $(call get-val,XMONAD_DZEN_W)
-XMONAD_DZEN_X = $(call get-val,XMONAD_DZEN_X)
-XMONAD_DZEN_Y = $(call get-val,XMONAD_DZEN_Y)
-LOCALE	      = $(call get-val,LOCALE)
-SUBSTS_LS     = $(call get-val,SUBSTS_LS)
-MSMTP_PATH    = $(call get-val,MSMTP_PATH)
-ZSH_PATH      = $(call get-val,ZSH_PATH)
-ZSH_HOST_COLOUR = $(call get-val,ZSH_HOST_COLOUR)
-SCREEN_HOST_COLOUR = $(call get-val,SCREEN_HOST_COLOUR)
-SUBSTS_RM     = $(call get-val,SUBSTS_RM)
 
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
