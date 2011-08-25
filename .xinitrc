@@ -14,6 +14,5 @@ gnome-settings-daemon &
 # feh --bg-center /home/ryan/.local/share/wallpapers/totheglory.jpg
 urxvtd -q -f -o &
 # /home/ryan/.screenlayout/work.sh
-/home/ryan/.screenlayout/SCREENLAYOUT.sh
-nitrogen --restore
+/home/ryan/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
 exec /usr/local/bin/xmonad
