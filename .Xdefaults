@@ -24,7 +24,8 @@ URxvt.matcher.button: 1
 URxvt.visualBell: false
 URxvt.urgentOnBell: true
 URxvt.keysym.M-C-1: command:\033]50;xft:Inconsolata:size=7\007
-URxvt.keysym.M-C-2: command:\033]50;xft:Inconsolata:size=11\007
+URxvt.keysym.M-C-2: command:\033]50;xft:Inconsolata:size=9\007
+URxvt.keysym.M-C-3: command:\033]50;xft:Inconsolata:size=11\007
 URxvt.keysym.M-y: perl:mark-and-yank:activate_mark_mode
 URxvt.keysym.M-u: perl:mark-and-yank:activate_mark_url_mode
 XLock*logoutButton:     -1
