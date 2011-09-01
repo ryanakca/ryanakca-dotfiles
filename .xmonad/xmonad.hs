@@ -239,6 +239,7 @@ mPP h = defaultPP
                                                             "myGrid"                                    -> pad "^i(/home/ryan/.dzen/icons/layout-gimp.xbm)"
                                                             "myChat"                                    -> pad "^i(/home/ryan/.dzen/icons/layout-im.xbm)"
                                                             "myLaTeX"                                   -> pad "^i(/home/ryan/.dzen/icons/layoput-gimp.xbm)"
+                                                            "Full"                                      -> pad "^i(/home/ryan/.dzen/icons/layout-full.xbm)"
                                                             _                                           -> pad $ shorten 10 x
                                                    )
         , ppUrgent  = dzenColor colorDarkGray colorYellow . wrap "[" "]"
