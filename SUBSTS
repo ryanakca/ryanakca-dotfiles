@@ -45,3 +45,6 @@ MUTT_10_SCORE \\"(eve@foo.org)\\"
 
 # redshift mode to use (xrandr or vidmode)
 REDSHIFT_MODE vidmode
+
+# Grep path
+GREP_PATH /bin/grep

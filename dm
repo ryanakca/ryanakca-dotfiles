@@ -18,6 +18,7 @@ LOCAL_FILES = \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
     .zshrc \
+    bin/run-mailcheck
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
@@ -74,6 +75,7 @@ VARS_.xinitrc           = SCREENLAYOUT
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
 VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH
+VARS_bin/run-mailcheck  = ZSH_PATH GREP_PATH
 
 all: clean build
 
