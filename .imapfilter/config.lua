@@ -223,6 +223,11 @@ qsocial = ( GMAIL.INBOX:is_seen() *
           GMAIL.INBOX:match_cc('social@cs.queensu.ca') ) )
 GMAIL.INBOX:move_messages(GMAIL['Queens.social'], qsocial)
 
+qsail = ( GMAIL.INBOX:match_to('sail.*@cs.queensu.ca') +
+          GMAIL.INBOX:match_cc('sail.*@cs.queensu.ca') +
+          GMAIL.INBOX:match_to('sail4schedule@gmail.com') ) *
+        GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['Queens.SAIL'], qsail)
 
 -- People 
 
