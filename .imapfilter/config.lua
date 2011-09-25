@@ -223,6 +223,7 @@ qsocial = ( GMAIL.INBOX:is_seen() *
           GMAIL.INBOX:match_cc('social@cs.queensu.ca') ) )
 GMAIL.INBOX:move_messages(GMAIL['Queens.social'], qsocial)
 
+
 -- People 
 
 bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
@@ -238,3 +239,7 @@ GMAIL.INBOX:move_messages(GMAIL['PJM'], pjm)
 rubinreports = GMAIL.INBOX:match_from('profbarryrubin@yahoo.com') *
                GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['RubinReports'], rubinreports)
+
+vfr = GMAIL.INBOX:match_from('vfr-no-reply@aynrand.org') *
+      GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['VfR'], vfr)
