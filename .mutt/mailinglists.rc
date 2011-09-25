@@ -22,6 +22,8 @@ lists oevolve.googlegroups.com
 lists oactivists.googlegroups.com
 lists oproducers.googlegroups.com
 lists ogeeks.googlegroups.com
+lists paleobloggers.googlegroups.com
+lists paleocooks.googlegroups.com
 
 subscribe kubuntu-devel.lists.ubuntu.com
 alias kubuntu-devel kubuntu-devel@lists.ubuntu.com
@@ -61,3 +63,7 @@ subscribe oproducers.googlegroups.com
 alias oproducers oproducers@googlegroups.com
 subscribe ogeeks.googlegroups.com
 alias ogeeks ogeeks@googlegroups.com
+subscribe paleobloggers.googlegroups.com
+alias paleobloggers PaleoBloggers <paleobloggers@googlegroups.com>
+subscribe paleocooks.googlegroups.com
+alias paleocooks PaleoCooks <paleocooks@googlegroups.com>

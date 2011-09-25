@@ -211,6 +211,11 @@ paleobloggers = GMAIL.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups
             GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleobloggers)
 
+paleocooks = GMAIL.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com') *
+            GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleocooks)
+
+
 -- Queen's
 
 qsocial = ( GMAIL.INBOX:is_seen() *
