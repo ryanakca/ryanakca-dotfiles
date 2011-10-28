@@ -237,7 +237,7 @@ GMAIL.INBOX:move_messages(GMAIL['Bagpipes'], bagpipes)
 
 -- Misc
 
-pjm = GMAIL.INBOX:match_from('webmaster@pajamasmedia.com') *
+pjm = GMAIL.INBOX:match_from('webmaster@pjmedia.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PJM'], pjm)
 
