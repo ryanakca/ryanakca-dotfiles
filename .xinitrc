@@ -3,7 +3,7 @@ redshift -m REDSHIFT_MODE  -l 44.22:-76.48 -t 6500:2500 &
 xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY
 # xcompmgr &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
-  --expand true --width 10 --transparent true --height 18 --align right &
+  --expand true --width 10 --transparent true --height 13 --align right &
 xautolock -time 2 &
 /home/ryan/.dzen/battery.sh &
 /home/ryan/.dzen/temperature.sh &
