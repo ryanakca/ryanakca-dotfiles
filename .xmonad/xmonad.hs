@@ -77,6 +77,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 -- Theme {{{
 -- Color names are easier to remember:
+colorBlack           = "#000000"
 colorOrange          = "#ff7701"
 colorDarkGray        = "#171717"
 colorPink            = "#e3008d"
@@ -88,16 +89,16 @@ colorBrightGreen     = "#00FF00"
 
 colorNormalBorder    = "#1c2636"
 colorFocusedBorder   = "#2797d8"
-barFont  = "terminus"
-barXFont = "terminus"
+barFont = "'-misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1'"
+barXFont = barFont
 xftFont = "xft: inconsolata-14"
 --}}}
 statusBarCmd = "dzen2" ++
-               " -bg '" ++ colorDarkGray ++ "'" ++
+               " -bg '" ++ colorBlack ++ "'" ++
                " -fg '" ++ colorBlue ++ "'" ++
                " -sa c" ++
-               --" -fn '" ++ barXFont ++ "'" ++
-               " -w XMONAD_DZEN_W -x XMONAD_DZEN_X -y XMONAD_DZEN_Y -ta l -e ''"
+               " -fn '" ++ barXFont ++ "'" ++
+               " -w 808 -x 114 -y 0 -ta l -e ''"
 
 
 -- Color theme for the window decorations
@@ -227,8 +228,8 @@ myLayout = smartBorders $ toggleLayouts Full perWS
 -- Pretty printer {{{
 -- dynamiclog pretty printer for dzen
 mPP h = defaultPP
-        { ppCurrent = wrap ("^fg(" ++ colorOrange ++ ")^bg(" ++ colorDarkGray ++ ")^p(2)") "^p(2)^fg()^bg()"
-        , ppVisible = wrap ("^fg(" ++ colorBlue ++ ")^bg(" ++ colorDarkGray ++ ")^p(2)") "^p(2)^fg()^bg()"
+        { ppCurrent = wrap ("^fg(" ++ colorOrange ++ ")^bg(" ++ colorBlack ++ ")^p(2)") "^p(2)^fg()^bg()"
+        , ppVisible = wrap ("^fg(" ++ colorBlue ++ ")^bg(" ++ colorBlack ++ ")^p(2)") "^p(2)^fg()^bg()"
         , ppSep     = " ^fg(grey60)^r(1x8)^fg() "
         , ppLayout  = dzenColor colorWhite "" . (\x -> case x of
                                                             "myCode"                                    -> pad "^i(/home/ryan/.dzen/icons/layout-threecol.xbm)"

@@ -7,7 +7,7 @@
 # Kavanagh <ryanakca@kubuntu.org> to add support for a missing battery and use
 # /sys instead of /proc/acpi/battery
  
-BG='#171717'  # dzen backgrounad
+BG='#000000'  # dzen backgrounad
 FG='#008dd5'  # dzen foreground
 W=114         # width of the dzen bar
 GW=50         # width of the gauge
@@ -16,7 +16,7 @@ GH=7          # height of the gauge
 GBG='#333'    # color of gauge background
 X=0           # x position
 Y=0           # y position
-FN='snap'     # font
+FN='-misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1'     # font
  
 STATEFILE='/sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT1/uevent' # battery's state file
  
@@ -48,10 +48,10 @@ while true; do
             GFG='#33ccff';
         fi
         echo -n $PREBAR #uncomment for an icon
-        eval echo $RPERC | dzen2-gdbar -h $GH -w $GW -fg $GFG -bg $GBG
+        eval echo $RPERC | dzen2-gdbar -h $GH -w $GW -fg $GFG -bg $GBG -fn $FN
     else
         echo -n $PREBAR #uncomment for an icon
         eval echo 'Missing'
     fi
     sleep $TIME_INT;
-done | dzen2 -ta c -tw $W -y $Y -x $X -fg $FG -bg $BG #-fn $FN
+done | dzen2 -ta c -tw $W -y $Y -x $X -fg $FG -bg $BG -fn $FN
