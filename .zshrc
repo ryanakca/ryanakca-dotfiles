@@ -64,6 +64,7 @@ export BTS_SENDMAIL_COMMAND="MSMTP_PATH"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export TEXMFHOME=/home/ryan/.texmf
+export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 
 alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
 alias emacs='/usr/bin/emacs -nw'
@@ -576,6 +577,10 @@ gbp-snap() {
     DIST=`head -n1 debian/changelog | sed -e 's/.* \(.*\);.*/\1/g'`
     cd ..
     sbuild -d $DIST $DSC
+}
+
+enru() {
+    dict -d mueller7accent $@ | less
 }
 
 # Pretty menu!
