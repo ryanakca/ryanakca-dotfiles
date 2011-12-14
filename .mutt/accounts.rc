@@ -24,13 +24,7 @@ set spoolfile = 'imaps://9rak@mail.queensu.ca/Inbox';\
 set imap_passive = 'no'"
 
 send-hook . \
-"set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
-set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
-set use_from = yes;\
-set use_envelope_from = 'yes';\
-my_hdr From: ryanakca@kubuntu.org;\
-my_hdr Reply-To: ryanakca@kubuntu.org;\
-my_hdr Return-Path: ryanakca@kubuntu.org;\
+"set from = ryanakca@kubuntu.org;\
 set sendmail='MSMTP_PATH';\
 unset smtp_url;\
 unset smtp_pass;\
@@ -39,13 +33,7 @@ set spoolfile = '=INBOX';\
 set postponed = '=[Google Mail]/Drafts'"
 
 folder-hook . \
-"set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
-set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>';\
-set use_from = yes;\
-set use_envelope_from = 'yes';\
-my_hdr From: ryanakca@kubuntu.org;\
-my_hdr Reply-To: ryanakca@kubuntu.org;\
-my_hdr Return-Path: ryanakca@kubuntu.org;\
+"set from = ryanakca@kubuntu.org;\
 set sendmail='MSMTP_PATH';\
 unset smtp_url;\
 unset smtp_pass;\
@@ -61,12 +49,7 @@ set status_format = '-%r-MAIN: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? D
 
 folder-hook .*[Qq]ueens[uU].* \
 "unhook send-hook;\
-set envelope_from_address = 'ryan.kavanagh@queensu.ca';\
-set from = 'ryan.kavanagh@queensu.ca';\
-my_hdr From: ryan.kavanagh@queensu.ca;\
-my_hdr Reply-To: ryan.kavanagh@queensu.ca;\
-my_hdr Return-Path: ryan.kavanagh@queensu.ca;\
-set use_envelope_from = 'yes';\
+set from = ryan.kavanagh@queensu.ca;\
 unset sendmail;
 set smtp_url="smtps://9rak@mail.queensu.ca:465/";\
 set smtp_pass = 'QUEENSU_PASS';\
@@ -90,8 +73,8 @@ macro index <F12> "cimaps://imap.gmail.com/INBOX<enter>"
 macro index <F11> "cimap://localhost/INBOX<enter>"
 macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
 
-macro compose <F2> '<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-reply-to>ryanakca@ubuntu.com<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
-macro compose <F3> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-reply-to>ryanakca@kubuntu.org<enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
-macro compose <F4> '<enter-command>unset sendmail<enter><edit-from>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-reply-to>ryan.kavanagh@queensu.ca<enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
+macro compose <F2> '<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
+macro compose <F3> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-fcc><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
+macro compose <F4> '<enter-command>unset sendmail<enter><edit-from>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
 
 set certificate_file = '~/.mutt/certs/certificates'
