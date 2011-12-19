@@ -1,0 +1,3 @@
+#!/bin/sh
+xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/dpr $DISPLAY
+echo dpr > /home/ryan/.xmonad/layout

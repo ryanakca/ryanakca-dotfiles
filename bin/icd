@@ -1,0 +1,3 @@
+#!/bin/sh
+xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/icd $DISPLAY
+echo icd > /home/ryan/.xmonad/layout
