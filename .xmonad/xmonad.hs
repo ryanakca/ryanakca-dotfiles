@@ -243,7 +243,9 @@ mPP h = defaultPP
                                                    )
         , ppUrgent  = dzenColor colorDarkGray colorYellow . wrap "[" "]"
         , ppTitle   = dzenColor colorWhite "" . trim
-        , ppExtras  = [dzenColorL colorYellow "". wrapL mailIcon "" . padL $ gmailCheck, dzenColorL colorBrightGreen "" . wrapL mailIcon "" . padL $ queensuCheck]
+        , ppExtras  = [dzenColorL colorYellow "". wrapL mailIcon "" . padL $ gmailCheck,
+                       dzenColorL colorBrightGreen "" . wrapL mailIcon "" . padL $ queensuCheck,
+                       dzenColorL colorWhite "". padL $ layoutCheck]
         , ppOutput  = hPutStrLn h
         }
     where
@@ -254,6 +256,7 @@ mPP h = defaultPP
         --queensuCheck = padL $ (dzenColorL colorYellow "" . logCmd "cat /home/ryan/.xmonad/queensucheck")
         gmailCheck = logCmd "cat /home/ryan/.xmonad/gmailcheck"
         queensuCheck = logCmd "cat /home/ryan/.xmonad/queensucheck"
+        layoutCheck = logCmd "cat /home/ryan/.xmonad/layout"
 
 --}}}
 
