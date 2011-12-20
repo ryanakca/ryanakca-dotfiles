@@ -1,0 +1,106 @@
+// Phonetic Russian (Dvorak)
+// By: Ryan Kavanagh <ryanakca@kubuntu.org> , http://ryanak.ca/
+//
+// Based on the ICD layout
+//
+//  SHIFT:     ~   %   7   5   3   1   9   0   2   4   6   8   Ц   BCKSP
+// NORMAL:     $   &   [   {   }   (   =   *   )   +   ]   !   ц   BCKSP
+//  AltGr:     d~  ø   €   ¥   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   #   BCKSP
+// SFT-AG:     ¢   Ø   £   ¤                                   `   BCKSP
+//
+//        TAB  :   ,   >   П   ап  Ф   Г   Ч   Р   Л   Щ   Й   ?
+//        TAB  ;   .   .   п   и   ф   г   ч   р   л   щ   й   /
+//        TAB  ä   «   »   ö   ë   ü   ï   ç   ®   æ   ?   @   |
+//        TAB  Ä       ·   Ö   Ë   Ü   Ï   Ç   ™   Æ   /   ^   \
+//
+//       CAPL  А   О   Е   У   И   Д   Х   Т   Н   С   _   ENTER
+//       CAPL  а   о   е   у   и   д   х   т   н   с   -   ENTER
+//       CAPL  a   o   e   u   i   d   h   t   n   s   –   ENTER
+//       CAPL  A   O   E   U   I   D   H   T   N   S   —   ENTER
+//
+//      SHIFT  "   Я   Ж   К   ъ   Б   М   Ш   В   З   SHIFT
+//      SHIFT  '   я   ж   к   ь   б   м   ш   в   з   SHIFT
+//      SHIFT  â   q   j   k   x   b   m   w   v   z   SHIFT
+//      SHIFT  Â   Q   J   K   X   B   M   W   V   Z
+//
+// Legend: dX -> dead_X
+//
+// en dash: AltGr-hyphen_minus
+// em dash: Shift-AltGr-hyphen_minus
+// dead_doublegrave: AltGr-asterisk
+// dead_abovedot: on AltGr-backslash
+// dead_belowdot: on Shift-AltGr-backslash
+
+partial alphanumeric_keys
+xkb_symbols "dpr" {
+    include "ru(phonetic)"
+
+    name[Group1] = "Russia - Dvorak Phonetic";
+
+    //             Unmodified       Shift           AltGr            Shift+AltGr
+    // symbols row, left side
+    key <TLDE> { [ dollar,          asciitilde,     dead_tilde,      cent       ] };
+    key <AE01> { [ ampersand,       percent,        oslash,          Ooblique   ] };
+    key <AE02> { [ bracketleft,     7,              EuroSign,        sterling   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE03> { [ braceleft,       5,              yen,             currency   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE04> { [ braceright,      3,              dead_hook                   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE05> { [ parenleft,       1,              dead_diaeresis              ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE06> { [ equal,           9,              dead_cedilla                ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+
+    // symbols row, right side
+    key <AE07> { [ asterisk,        0,              dead_doublegrave            ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE08> { [ parenright,      2,              dead_grave                  ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE09> { [ plus,            4,              dead_acute                  ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE10> { [ bracketright,    6,              dead_doubleacute            ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE11> { [ exclam,          8,              exclamdown                  ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE12> { [ Cyrillic_tse,    Cyrillic_TSE,   numbersign,      grave      ] };
+    key <BKSP> { [ BackSpace                                                    ] };
+
+    // upper row, left side
+    key <AD01> { [ semicolon,       colon,          adiaeresis,      Adiaeresis ] };
+    key <AD02> { [ comma,           less,           guillemotleft,   degree     ] };
+    key <AD03> { [ period,          greater,        guillemotright,  periodcentered ] };
+    key <AD04> { [ Cyrillic_pe,     Cyrillic_PE,    p,               P          ] };
+    key <AD05> { [ Cyrillic_yeru,   Cyrillic_YERU,  y,               Y          ] };
+
+    // upper row, right side
+    key <AD06> { [ Cyrillic_ef,     Cyrillic_EF,    f,               F          ] };
+    key <AD07> { [ Cyrillic_ghe,    Cyrillic_GHE,   g,               G          ] };
+    key <AD08> { [ Cyrillic_che,    Cyrillic_CHE,   c,               C          ] };
+    key <AD09> { [ Cyrillic_er,     Cyrillic_ER,    r,               R          ] };
+    key <AD10> { [ Cyrillic_el,     Cyrillic_EL,    l,               L          ] };
+    key <AD11> { [ Cyrillic_shcha,  Cyrillic_SHCHA, question,        slash      ] };
+    key <AD12> { [ Cyrillic_shorti, Cyrillic_SHORTI,at,              asciicircum] };
+    key <BKSL> { [ question,        slash,          bar,             backslash  ] };
+
+    // home row, left side
+    key <AC01> { [ Cyrillic_a,      Cyrillic_A,     a,               A          ] };
+    key <AC02> { [ Cyrillic_o,      Cyrillic_O,     o,               O          ] };
+    key <AC03> { [ Cyrillic_ie,     Cyrillic_IE,    e,               E          ] };
+    key <AC04> { [ Cyrillic_u,      Cyrillic_U,     u,               U          ] };
+    key <AC05> { [ Cyrillic_i,      Cyrillic_I,     i,               I          ] };
+
+    // home row, right side
+    key <AC06> { [ Cyrillic_de,     Cyrillic_DE,    d,               D          ] };
+    key <AC07> { [ Cyrillic_ha,     Cyrillic_HA,    h,               H          ] };
+    key <AC08> { [ Cyrillic_te,     Cyrillic_TE,    t,               T          ] };
+    key <AC09> { [ Cyrillic_en,     Cyrillic_EN,    n,               N          ] };
+    key <AC10> { [ Cyrillic_es,     Cyrillic_ES,    s,               S          ] };
+    key <AC11> { [ minus,           underscore,     endash,          emdash     ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+
+    // lower row, left side
+    key <AB01> { [ apostrophe,      quotedbl,       acircumflex,     Acircumflex] };
+    key <AB02> { [ Cyrillic_ya,     Cyrillic_YA,    q,               Q          ] };
+    key <AB03> { [ Cyrillic_zhe,    Cyrillic_ZHE   ,j,               J          ] };
+    key <AB04> { [ Cyrillic_ka,     Cyrillic_KA,    k,               K          ] };
+    key <AB05> { [ Cyrillic_softsign,Cyrillic_hardsign,x,            X          ] };
+
+    // lower row, right side
+    key <AB06> { [ Cyrillic_be,     Cyrillic_BE,    b,               B          ] };
+    key <AB07> { [ Cyrillic_em,     Cyrillic_EM,    m,               M          ] };
+    key <AB08> { [ Cyrillic_sha,    Cyrillic_SHA,   w,               W          ] };
+    key <AB09> { [ Cyrillic_ve,     Cyrillic_VE,    v,               V          ] };
+    key <AB10> { [ Cyrillic_ze,     Cyrillic_ZE,    z,               Z          ] };
+    key <AB11> { [ Shift_R,         Shift_R,        Shift_R,         Shift_R    ] };
+
+};
