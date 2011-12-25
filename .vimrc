@@ -94,4 +94,6 @@ let g:Tex_CompileRule_pdf = 'latex-mk --pdflatex $*'
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_ItemStyle_inparaenum = '\item'
 
+let g:po_translator = 'Ryan Kavanagh <ryanakca@kubuntu.org>'
+
 au BufEnter ~/.mutt/tmp/mutt-* set textwidth=72
