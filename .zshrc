@@ -41,7 +41,7 @@ export LANG="LOCALE"
 export TZ="America/Toronto"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
 export NAME="Ryan Kavanagh"             # Our name.
-export EMAIL="ryanakca@kubuntu.org"     # Our email address.
+export EMAIL="rak@debian.org"     # Our email address.
 export GPGKEY1="E95EDDC9"               # Our old GnuPG key ID.
 export GPGKEY="4A11C97A"                # Our GnuPG key ID. 
 export DEBFULLNAME=$NAME                # These are used by Debian packaging...
@@ -69,7 +69,7 @@ export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
 alias emacs='/usr/bin/emacs -nw'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
-alias itp='reportbug -M -B debian --email ryanakca@kubuntu.org --paranoid -K $GPGKEY wnpp'
+alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
 alias sneezymud='nc play.sneezymud.com 7900'
 alias news='tin -g  pqnews.cogeco.ca'
 alias bbcr1='mplayer mms://wmlive.bbc.net.uk/wms/bbc_ami/radio1/radio1_bb_live_int_eq1_sl1'
