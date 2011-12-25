@@ -47,8 +47,7 @@ while true; do
         else
             GFG='#33ccff';
         fi
-        echo -n $PREBAR #uncomment for an icon
-        eval echo $RPERC | dzen2-gdbar -h $GH -w $GW -fg $GFG -bg $GBG -fn $FN
+        eval echo $RPERC | dzen2-gdbar -h $GH -w $GW -fg $GFG -bg $GBG -l $PREBAR
     else
         echo -n $PREBAR #uncomment for an icon
         eval echo 'Missing'
