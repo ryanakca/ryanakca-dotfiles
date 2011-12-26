@@ -33,6 +33,7 @@ GLOBAL_FILES = \
     .local/share/wallpapers/ \
     .mailcheckrc \
     .mutt/ \
+    .mutt/alias.rc \
     .muttrc \
     .notmuch-config \
     .offlineimap.py \
@@ -93,6 +94,9 @@ build/.mutt/accounts.rc: FORCE
 build/.xmonad/xmonad.hs: FORCE
 build/.zsh/func/prompt_wunjo_setup: FORCE
 FORCE:
+
+.mutt/alias.rc: .mutt/alias.rc.gpg
+	gpg --decrypt $^ > $@
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
