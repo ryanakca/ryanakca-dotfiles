@@ -100,7 +100,7 @@ FORCE:
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
-	rsync -a $< $@
+	( [ -d $< ] && rsync -a $<* $@ ) || rsync -a $< $@
 	@# sed will only be called if $* is in LOCAL_FILES.
 	@# Thought of using ifeq/ifneq, but the gmake manual reads:
 	@# "make evaluates conditionals when it reads a makefile. Consequently,
