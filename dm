@@ -26,6 +26,7 @@ GLOBAL_FILES = \
     .Xdefaults \
     .Xsession \
     .config/nitrogen/ \
+    .dput.cf \
     .dzen/ \
     .gitconfig \
     .imapfilter/ \
