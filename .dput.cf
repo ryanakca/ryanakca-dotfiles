@@ -4,7 +4,7 @@ incoming                = /var/repo/incoming/
 post_upload_command     = /usr/bin/reprepro -Vb /var/repo/ processincoming default && zsh -c "rsync --delete -avze ssh /var/repo/{dists,pool} ryanak@ubuntu.caslab.queensu.ca:lucid/"
 
 [puc]
-method                  = scp
+method                  = sftp
 fqdn                    = people.ubuntu.com
 incoming                = /public_html
 login                   = ryanakca
@@ -21,5 +21,24 @@ allow_unsigned_uploads  = 0
 fqdn                    = ppa.launchpad.net
 method                  = ftp
 incoming                = ~ryanakca/frescobaldi/ubuntu/
+login                   = anonymous
+allow_unsigned_uploads  = 0
+
+[ppa]
+fqdn			= ppa.launchpad.net
+method			= ftp
+incoming		= ~ryanakca/ubuntu
+login			= anonymous
+
+[mentors]
+fqdn			= mentors.debian.net
+incoming		= .
+method			= ftp
+login			= anonymous
+
+[kn]
+fqdn                    = ppa.launchpad.net
+method                  = ftp
+incoming                = ~kubuntu-ninjas/ppa/ubuntu/
 login                   = anonymous
 allow_unsigned_uploads  = 0
