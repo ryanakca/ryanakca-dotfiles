@@ -141,13 +141,3 @@ macro index <F8> \
 macro index <F9> \
   "<enter-command>unset wait_key<enter><pipe-message>~/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
   "search and reconstruct owning thread (using notmuch)"
-
-macro index \e,k "<enter-command> set sendmail='MSMTP_PATH'<enter>\
-    <enter-command>set from = 'Ryan Kavanagh <ryanakca@kubuntu.org>'<enter>\
-    <enter-command>set envelope_from_address = 'Ryan Kavanagh <ryanakca@kubuntu.org>'<enter>\
-    <enter-command>set use_from = yes<enter>\
-    <enter-command>set use_envelope_from = 'yes'<enter>\
-    <enter-command>my_hdr From: ryanakca@kubuntu.org<enter>\
-    <enter-command>my_hdr Reply-To: ryanakca@kubuntu.org<enter>\
-    <enter-command>my_hdr Return-Path: ryanakca@kubuntu.org<enter>"
-macro index \e,u "<enter-command> set sendmail='MSMTP_PATH -a ubuntu'<enter><enter-command>set from = 'Ryan Kavanagh <ryanakca@ubuntu.com>'<enter><enter-command>set envelope_from_address = 'Ryan Kavanagh <ryanakca@ubuntu.com>'<enter><enter-command>set use_from = yes<enter><enter-command>set use_envelope_from = 'yes'<enter><enter-command>my_hdr From: ryanakca@ubuntu.com<enter><enter-command>my_hdr Reply-To: ryanakca@ubuntu.com<enter><enter-command>my_hdr Return-Path: ryanakca@ubuntu.com<enter>"
