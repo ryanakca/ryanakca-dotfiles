@@ -5,7 +5,7 @@ $mailto = 'ryan';
 
 # Name to use as override in .changes files for the Maintainer: field
 # (mandatory, no default!).
-$maintainer_name='Ryan Kavanagh <ryanakca@kubuntu.org>';
+$maintainer_name='Ryan Kavanagh <rak@debian.org>';
 
 # Directory for chroot symlinks and sbuild logs.  Defaults to the
 # current directory if unspecified.
