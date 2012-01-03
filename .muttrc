@@ -3,7 +3,7 @@ set use_from = yes
 set use_envelope_from = yes
 set reverse_name = yes
 set reverse_realname = no
-alternates "ryanakca@gmail\.com|ryanakca@kubuntu\.org|ryanakca@ubuntu\.com|9rak@queensu\.ca|ryan\.kavanagh@queensu\.ca|rak@debian\.org"
+alternates "ryanakca@gmail\.com|ryanakca@kubuntu\.org|ryanakca@ubuntu\.com|9rak@queensu\.ca|ryan\.kavanagh@queensu\.ca|rak@debian\.org|ryan@cs\.queensu\.ca"
 
 set crypt_autosign = yes # default: no
 set crypt_replysign = yes # default: no
