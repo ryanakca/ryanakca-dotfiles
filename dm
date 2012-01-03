@@ -20,6 +20,12 @@ LOCAL_FILES = \
     .zshrc \
     bin/run-mailcheck
 
+# GPG encrypted files
+GPG_FILES = \
+    .mutt/alias.rc \
+    .ssh/id_ecdsa \
+    .ssh/id_rsa
+
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
 GLOBAL_FILES = \
@@ -96,8 +102,11 @@ build/.xmonad/xmonad.hs: FORCE
 build/.zsh/func/prompt_wunjo_setup: FORCE
 FORCE:
 
-.mutt/alias.rc: .mutt/alias.rc.gpg
-	gpg --decrypt $^ > $@
+.mutt/alias.rc: gpg/.mutt/alias.rc.gpg
+.ssh/id_%: gpg/.ssh/id_%.gpg
+# $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
+$(GPG_FILES):
+	gpg --decrypt gpg/$@.gpg > $@
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
@@ -181,4 +190,6 @@ verify:
 clean:
 	rm -fr build
 
+clobber: clean
+	rm -f $(GPG_FILES)
 .PHONY: build install clean verify merge
