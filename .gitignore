@@ -4,3 +4,5 @@ build
 SUBSTS.local
 SUBSTS.merged
 .mutt/alias.rc
+.ssh/id_rsa
+.ssh/id_ecdsa

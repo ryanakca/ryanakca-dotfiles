@@ -50,6 +50,7 @@ GLOBAL_FILES = \
     .screenlayout/ \
     .screenrc-mail \
     .signature \
+    .ssh/ \
     .urxvt/ \
     .vim/ \
     .vimperatorrc \
@@ -89,7 +90,7 @@ all: clean build
 
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
-BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES))
+BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 
 build: $(BUILD)
 
