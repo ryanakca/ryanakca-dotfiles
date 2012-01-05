@@ -51,3 +51,5 @@ GREP_PATH /bin/grep
 
 # path to gnome-settings-daemon
 GSD_PATH /usr/local/libexec/gnome-settings-daemon
+
+LOCALHOST epsilon.ryanak.ca
