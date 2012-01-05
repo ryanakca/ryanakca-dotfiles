@@ -38,6 +38,7 @@ GLOBAL_FILES = \
     .imapfilter/ \
     .inputrc \
     .local/share/wallpapers/ \
+    .mailcap \
     .mailcheckrc \
     .mutt/ \
     .mutt/alias.rc \
