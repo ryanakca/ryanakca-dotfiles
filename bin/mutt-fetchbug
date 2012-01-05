@@ -1,0 +1,161 @@
+#!/usr/bin/perl -w
+#
+# mutt-fetchbug, extensively based off of
+#       mutt-notmuch - notmuch (of a) helper for Mutt
+#
+#       Copyright: © 2011 Stefano Zacchiroli <zack@upsilon.cc>
+#       License: GNU General Public License (GPL), version 3 or above
+#
+# Differences between mutt-notmuch and mutt-fetchbug are
+#       Copyright: © 2012 Ryan Kavanagh <rak@debian.org>
+#       License: GNU General Public License (GPL), version 3 or above
+#
+# See the bottom of this file for more documentation.
+# A manpage can be obtained by running "pod2man mutt-fetchbug > mutt-fetchbug.1"
+
+use strict;
+use warnings;
+
+use File::Path;
+use Getopt::Long;
+use Pod::Usage;
+
+# search($btsmbox, $query)
+# Fetch bugs matching $query with bts; store results in $btsmbox
+sub search($$) {
+    my ($btsmbox, $query) = @_;
+
+    system("bts --cache-mode=mbox cache $query"
+	   . " && ln -fs ~/.devscripts_cache/bts/$query.mbox $btsmbox");
+}
+
+sub search_action($$@) {
+    my ($interactive, $btsmbox, @params) = @_;
+
+    if (! $interactive) {
+	fetch($btsmbox, join(' ', @params));
+    } else {
+	my $query = "";
+	my $done = 0;
+	while (! $done) {
+	    print "bug number ('?' for man): ";
+	    chomp($query = <STDIN>);
+	    if ($query eq "?") {
+		system("man bts");
+	    } elsif ($query eq "") {
+		$done = 1;	# quit doing nothing
+	    } else {
+		search($btsmbox, $query);
+		$done = 1;
+	    }
+	}
+    }
+}
+
+sub die_usage() {
+    my %podflags = ( "verbose" => 1,
+		    "exitval" => 2 );
+    pod2usage(%podflags);
+}
+
+sub main() {
+    my $btsmbox = "$ENV{HOME}/.cache/mutt_btsresults";
+    my $interactive = 0;
+    my $help_needed = 0;
+
+    my $getopt = GetOptions(
+	"h|help" => \$help_needed,
+        "o|output-mbox=s" => \$btsmbox,
+	"p|prompt" => \$interactive);
+    if (! $getopt || $#ARGV < 0) { die_usage() };
+    my ($action, @params) = ($ARGV[0], @ARGV[1..$#ARGV]);
+
+    if ($help_needed) {
+	die_usage();
+    } elsif ($action eq "search" && $#ARGV == 0 && ! $interactive) {
+	print STDERR "Error: no search term provided\n\n";
+	die_usage();
+    } elsif ($action eq "search") {
+	search_action($interactive, $btsmbox, @params);
+    } else {
+	die_usage();
+    }
+}
+
+main();
+
+__END__
+
+=head1 NAME
+
+mutt-fetchbug - 'bts show' frontend for Mutt
+
+=head1 SYNOPSIS
+
+=over
+
+=item B<mutt-fetchbug> [I<OPTION>]... search [I<SEARCH-TERM>]...
+
+=back
+
+=head1 DESCRIPTION
+
+mutt-fetchbug is a frontend to the 'bts show' command (Debian package:
+devscripts) designed to fetch bugs and place them in a predefined mbox. The
+search term should typically be a bug number.
+
+=head1 OPTIONS
+
+=over 4
+
+=item -o DIR
+
+=item --output-mbox DIR
+
+Store search results as (symlink) mbox MBOX. Beware: MBOX will be overwritten.
+(Default: F<~/.cache/mutt_btsresults/>)
+
+=item -p
+
+=item --prompt
+
+Instead of using command line search terms, prompt the user for them (only for
+"search").
+
+=item -h
+
+=item --help
+
+Show usage information and exit.
+
+=back
+
+=head1 INTEGRATION WITH MUTT
+
+mutt-fetchbug can be used to integrate 'bts show' with the Mutt mail user agent
+(unsurprisingly, given the name). To that end, you should define the following
+macros in your F<~/.muttrc> (replacing F<~/bin/mutt-fetchbug> for the actual
+location of mutt-fetchbug on your system):
+
+    macro index <F7> \
+        "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-fetchbug --prompt search<enter><change-folder-readonly>~/.cache/mutt_btsresults<enter><enter-command>set wait_key<enter>" \
+        "fetch bug(s) (using bts show)"
+
+The macro (activated by <F7>) will prompt the user for a bug number and then
+jump to a temporary mbox showing the fetched bug.
+
+=head1 SEE ALSO
+
+mutt(1), bts(1)
+
+=head1 AUTHOR
+
+mutt-fetchbug is extensively based off of 'mutt-notmuch', which is
+Copyright: (C) 2011 Stefano Zacchiroli <zack@upsilon.cc>.
+
+All differences between mutt-fetchbug and mutt-notmuch are
+Copyright (C) 2012 Ryan Kavanagh <rak@debian.org>
+
+License: GNU General Public License (GPL), version 3 or higher
+
+=cut

@@ -138,6 +138,9 @@ set spoolfile='=INBOX'
 
 set tmpdir='~/.mutt/tmp'
 
+macro index <F7> \
+  "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-fetchbug --prompt search<enter><change-folder-readonly>~/.cache/mutt_btsresults<enter><enter-command>set wait_key<enter>" \
+  "fetch bug(s) (using bts show)"
 macro index <F8> \
   "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
   "search mail (using notmuch)"
