@@ -152,6 +152,9 @@ GMAIL.INBOX:move_messages(GMAIL['Debian.debian-project'], debianproject)
 debianqa = GMAIL.INBOX:contain_field('List-ID', 'debian-qa.lists.debian.org')
 GMAIL.INBOX:move_messages(GMAIL['Debian.debian-qa'], debianqa)
 
+debianprivate = GMAIL.INBOX:contain_field('List-ID', 'debian-private.lists.debian.org')
+GMAIL.INBOX:move_messages(GMAIL['Debian.debian-private'], debianprivate)
+
 dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org')
 GMAIL.INBOX:move_messages(GMAIL['Debian.dBugs'], dbugs)
 
