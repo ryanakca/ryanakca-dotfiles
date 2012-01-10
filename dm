@@ -108,6 +108,7 @@ FORCE:
 .ssh/id_%: gpg/.ssh/id_%.gpg
 # $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
 $(GPG_FILES):
+	touch $@ && chmod 600 $@
 	gpg --decrypt gpg/$@.gpg > $@
 
 build/%: % $(SUBSTS_FILE)
