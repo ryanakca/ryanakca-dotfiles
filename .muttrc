@@ -21,7 +21,8 @@ set imap_check_subscribed = yes # default: no
 # Don't continue to next email when reaching end of current
 set pager_stop = yes
 
-# Display HTML mail
+# Display HTML mail only if there's no text/plain
+alternative_order text/plain text/html *
 auto_view text/html
 
 set timeout=15
