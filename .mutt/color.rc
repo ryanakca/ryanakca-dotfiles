@@ -107,7 +107,7 @@ color index brightwhite white           "~hX-Launchpad-Bug:.*status\\=Invalid\\;
 
 
 color index yellow      default         "~hX-Launchpad-Bug:.*status\\=New\\;"
-color index magenta     default         "~b\This\\ bug\\ has\\ been\\ marked\\ a\\ duplicate\\ of\\ bug"
+# color index magenta     default         "~b\This\\ bug\\ has\\ been\\ marked\\ a\\ duplicate\\ of\\ bug"
 
 # Various smilies and the like
 color body brightwhite default "<[Gg]>"                            # <g>
