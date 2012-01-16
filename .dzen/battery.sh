@@ -23,7 +23,8 @@ STATEFILE='/sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT1/uevent' # 
 LOWBAT=10        # percentage of battery life marked as low
 LOWCOL='#ff4747' # color when battery is low
 CHGCOL='#60da11' # color when battery is charging
-TIME_INT=30      # time intervall in seconds
+TIME_INT=2       # time interval in seconds to hold display
+TIME_ITER=5      # no of iterations in which time is displayed
  
 PREBAR='^i(/home/ryan/.dzen/icons/power-bat.xbm) ' # caption (also icons are possible)
  
@@ -36,7 +37,6 @@ while true; do
 #        echo $BAT_FULL " " $STATUS " " $RCAP > /dev/stdout
 
         RPERC=`echo ${PRESENT} | cut -d, -f2 | sed -e 's/[^0-9]//g'`;
-        echo ${RPERC} > /tmp/rperc
          
         # draw the bar and pipe everything into dzen
         if [ $RPERC -le $LOWBAT ]; then
@@ -53,4 +53,11 @@ while true; do
         eval echo 'Missing'
     fi
     sleep $TIME_INT;
+    I=0;
+    while [ ${I} -lt ${TIME_ITER} ]; do
+        DATE=`date +"%X"`;
+        eval echo $DATE;
+        I=$((${I}+1));
+        sleep $TIME_INT;
+    done
 done | dzen2 -ta c -tw $W -y $Y -x $X -fg $FG -bg $BG -fn $FN
