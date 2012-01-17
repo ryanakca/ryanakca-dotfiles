@@ -3,10 +3,10 @@ redshift -m REDSHIFT_MODE  -l 44.22:-76.48 -t 6500:2500 &
 /home/ryan/bin/icd
 # xcompmgr &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
-  --expand true --width 10 --transparent true --height 13 --align right &
+  --expand true --width 10 --transparent true --height 12 --align right &
 xautolock -time 2 &
 /home/ryan/.dzen/battery.sh &
-/home/ryan/.dzen/temperature.sh &
+# /home/ryan/.dzen/temperature.sh &
 # GSD_PATH &
 #kmix &
 # feh --bg-center /home/ryan/.local/share/wallpapers/skyscraper_at_sunset.bmp
