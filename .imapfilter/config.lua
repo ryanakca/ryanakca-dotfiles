@@ -104,7 +104,8 @@ GMAIL.INBOX:move_messages(GMAIL['Debian.debian-mentors'], debianmentorslist)
 debiandevel = GMAIL.INBOX:contain_field('List-ID', 'debian-devel.lists.debian.org')
 GMAIL.INBOX:move_messages(GMAIL['Debian.debian-devel'], debiandevel)
 
-debiandevelann = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org')
+debiandevelann = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org') *
+                 GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Debian.debian-devel-announce'], debiandevelann)
 
 debiannewmaint = GMAIL.INBOX:contain_field('List-ID', 'debian-newmaint.lists.debian.org')
