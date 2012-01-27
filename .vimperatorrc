@@ -3,6 +3,7 @@
 inoremap <C-g> <Nop>
 set defsearch=scroogle
 set runtimepath=/home/ryan/.vimperator
+set scrollbars=false
 set gui=none
 source! /home/ryan/.vimperatorrc.local
 
