@@ -169,7 +169,7 @@ GMAIL.INBOX:move_messages(GMAIL['KDE.kde-francophone'], kdefrancophone)
 -- Other computer stuff 
 --
 slashdot = ( GMAIL.INBOX:is_seen() * 
-             GMAIL.INBOX:match_from('slashdot@slashdot.org') )
+             GMAIL.INBOX:match_from('slashdot@newsletters.slashdot.org') )
 GMAIL.INBOX:move_messages(GMAIL['Slashdot'], slashdot)
 --
 lwn = ( GMAIL.INBOX:is_seen() * 
