@@ -36,8 +36,8 @@
 #export LANG="en_CA.UTF-8"               # ...as default language.
 #export LC_ALL="fr_CA.UTF-8"
 #export LANG="fr_CA.UTF-8"
-export LC_ALL="LOCALE"
-export LANG="LOCALE"
+export LC_ALL="es_ES.UTF-8"
+export LANG="es_ES.UTF-8"
 export TZ="America/Toronto"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
 export NAME="Ryan Kavanagh"             # Our name.
@@ -60,7 +60,7 @@ export CCACHE_DIR=/ccache
 #export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
 export MANOPT="-L en"
-export BTS_SENDMAIL_COMMAND="MSMTP_PATH"
+export BTS_SENDMAIL_COMMAND="/usr/bin/msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export TEXMFHOME=/home/ryan/.texmf
@@ -126,7 +126,7 @@ alias mv="mv -iv"
 alias ln="ln -v"
 # Only delete files on the current file system to avoid removing recursively
 # from bind mounts.
-alias rm="SUBSTS_RM -iv --one-file-system"
+alias rm="rm -iv --one-file-system"
 
 alias chown="chown -v"
 alias chmod="chmod -v"
@@ -169,7 +169,7 @@ fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:kill:*' list-colors '=%*=01;31'
 
-alias ls="SUBSTS_LS --classify --color=always" # Add all colours and 
+alias ls="ls --classify --color=always" # Add all colours and 
                                         # have fancy symbols for files, etc.
 alias grep="grep --colour=always" # Colour grep too.
 # Load the completion system
@@ -372,6 +372,11 @@ loop() {
     while [ 1 -eq 1 ]; do
         $@
     done
+}
+
+# For formating text files for a printer
+fmtpr() {
+    fmt --width=62 $@ | LC_ALL=C LANG=C pr -o 10 -W 62 -J -F -l 62 
 }
 
 #
