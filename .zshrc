@@ -126,7 +126,7 @@ alias mv="mv -iv"
 alias ln="ln -v"
 # Only delete files on the current file system to avoid removing recursively
 # from bind mounts.
-alias rm="rm -iv --one-file-system"
+alias rm="SUBSTS_RM -iv --one-file-system"
 
 alias chown="chown -v"
 alias chmod="chmod -v"
@@ -169,7 +169,7 @@ fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:kill:*' list-colors '=%*=01;31'
 
-alias ls="ls --classify --color=always" # Add all colours and 
+alias ls="SUBSTS_LS --classify --color=always" # Add all colours and 
                                         # have fancy symbols for files, etc.
 alias grep="grep --colour=always" # Colour grep too.
 # Load the completion system
