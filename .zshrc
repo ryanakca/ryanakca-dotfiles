@@ -32,12 +32,8 @@
 
 # BEGIN LOCAL
 
-#export LC_ALL="en_CA.UTF-8"             # Use Canadian English...
-#export LANG="en_CA.UTF-8"               # ...as default language.
-#export LC_ALL="fr_CA.UTF-8"
-#export LANG="fr_CA.UTF-8"
-export LC_ALL="es_ES.UTF-8"
-export LANG="es_ES.UTF-8"
+export LC_ALL="LOCALE"
+export LANG="LOCALE"
 export TZ="America/Toronto"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
 export NAME="Ryan Kavanagh"             # Our name.
