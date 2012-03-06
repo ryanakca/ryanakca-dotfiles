@@ -8,18 +8,18 @@
 //  AltGr:     d~  ø   €   ¥   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   #   BCKSP
 // SFT-AG:     ¢   Ø   £   ¤                                   `   BCKSP
 //
-//        TAB  :   ,   >   П   ап  Ф   Г   Ч   Р   Л   Щ   Й   ?
-//        TAB  ;   .   .   п   и   ф   г   ч   р   л   щ   й   /
-//        TAB  ä   «   »   ö   ë   ü   ï   ç   ®   æ   ?   @   |
-//        TAB  Ä       ·   Ö   Ë   Ü   Ï   Ç   ™   Æ   /   ^   \
+//        TAB  :   <   >   П   Ы   Ф   Г   Ч   Р   Л   Щ   Й   ?
+//        TAB  ;   ,   .   п   ы   ф   г   ч   р   л   щ   й   /
+//        TAB  ä   «   »   p   y   f   g   c   r   l   ?   @   |
+//        TAB  Ä       ·   P   Y   F   G   C   R   L   /   ^   \
 //
-//       CAPL  А   О   Е   У   И   Д   Х   Т   Н   С   _   ENTER
-//       CAPL  а   о   е   у   и   д   х   т   н   с   -   ENTER
-//       CAPL  a   o   e   u   i   d   h   t   n   s   –   ENTER
-//       CAPL  A   O   E   U   I   D   H   T   N   S   —   ENTER
+//       CAPL  А   О   Е   У   И   Д   Х   Т   Н   С   ъ   ENTER
+//       CAPL  а   о   е   у   и   д   х   т   н   с   ь   ENTER
+//       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
+//       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //
-//      SHIFT  "   Я   Ж   К   ъ   Б   М   Ш   В   З   SHIFT
-//      SHIFT  '   я   ж   к   ь   б   м   ш   в   з   SHIFT
+//      SHIFT  "   Я   Ж   К   Ё   Б   М   Ш   В   З   SHIFT
+//      SHIFT  '   я   ж   к   ё   б   м   ш   в   з   SHIFT
 //      SHIFT  â   q   j   k   x   b   m   w   v   z   SHIFT
 //      SHIFT  Â   Q   J   K   X   B   M   W   V   Z
 //
@@ -86,14 +86,14 @@ xkb_symbols "dpr" {
     key <AC08> { [ Cyrillic_te,     Cyrillic_TE,    t,               T          ] };
     key <AC09> { [ Cyrillic_en,     Cyrillic_EN,    n,               N          ] };
     key <AC10> { [ Cyrillic_es,     Cyrillic_ES,    s,               S          ] };
-    key <AC11> { [ minus,           underscore,     endash,          emdash     ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AC11> { [ Cyrillic_softsign,Cyrillic_hardsign,minus,        underscore ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
 
     // lower row, left side
     key <AB01> { [ apostrophe,      quotedbl,       acircumflex,     Acircumflex] };
     key <AB02> { [ Cyrillic_ya,     Cyrillic_YA,    q,               Q          ] };
-    key <AB03> { [ Cyrillic_zhe,    Cyrillic_ZHE   ,j,               J          ] };
+    key <AB03> { [ Cyrillic_zhe,    Cyrillic_ZHE,   j,               J          ] };
     key <AB04> { [ Cyrillic_ka,     Cyrillic_KA,    k,               K          ] };
-    key <AB05> { [ Cyrillic_softsign,Cyrillic_hardsign,x,            X          ] };
+    key <AB05> { [ Cyrillic_yu,     Cyrillic_YU,    x,               X          ] };
 
     // lower row, right side
     key <AB06> { [ Cyrillic_be,     Cyrillic_BE,    b,               B          ] };
