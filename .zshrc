@@ -96,6 +96,7 @@ alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias kbd="xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY"
 alias vi='vim'
 alias sm='screen -r mail || screen -c ${HOME}/.screenrc-mail'
+alias remote_3051='ssh -f -N -q -L 6301:192.168.1.207:631 ryan@ryanak.ca'
 
 # END LOCAL
 
