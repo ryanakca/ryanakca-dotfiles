@@ -425,7 +425,7 @@ main = do
               , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
               , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
               , ((myMod, xK_F7), spawn "sleep 0.5 && /home/ryan/bin/dpr")
-              , ((myMod, xK_l), spawn "xautolock -enable && xautolock -locknow")
+              , ((myMod, xK_l), spawn "xautolock -enable && sleep 1 && xautolock -locknow")
               , ((myMod .|. shiftMask, xK_l), spawn "xautolock -toggle")
               , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
               , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
