@@ -57,13 +57,13 @@ alias pkg-multimedia-maintainers pkg-multimedia-maintainers@lists.alioth.debian.
 subscribe kde-francophone.kde.org
 alias kde-francophone kde-francophone@kde.org
 subscribe oevolve.googlegroups.com
-alias oevolve oevolve@googlegroups.com
+alias oevolve OEvolve <oevolve@googlegroups.com>
 subscribe oactivists.googlegroups.com
-alias oactivists oactivists@googlegroups.com
+alias oactivists OActivists <oactivists@googlegroups.com>
 subscribe oproducers.googlegroups.com
-alias oproducers oproducers@googlegroups.com
+alias oproducers OProducers <oproducers@googlegroups.com>
 subscribe ogeeks.googlegroups.com
-alias ogeeks ogeeks@googlegroups.com
+alias ogeeks OGeeks< ogeeks@googlegroups.com>
 subscribe paleobloggers.googlegroups.com
 alias paleobloggers PaleoBloggers <paleobloggers@googlegroups.com>
 subscribe paleocooks.googlegroups.com
