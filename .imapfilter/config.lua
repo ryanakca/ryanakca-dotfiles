@@ -220,7 +220,7 @@ paleocooks = GMAIL.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com')
             GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleocooks)
 
-PiA = GMAIL.INBOX:contain_subject('[Philosophy In Action]') *
+PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
 
