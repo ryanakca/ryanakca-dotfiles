@@ -56,24 +56,6 @@ remoteuser = 9rak
 remotehost = mail.queensu.ca
 remotepass = QUEENSU_PASS
 
-[Account EIMEAR]
-localrepository = LocalEimear
-remoterepository = RemoteEimear
-foldersort = lambda x, y: cmp(x, y)
-
-[Repository LocalEimear]
-type = IMAP
-remotehost = localhost
-remoteuser = ryan
-remotepass = LOCAL_PASS
-
-[Repository RemoteEimear]
-foldersort = lambda x, y: cmp(x, y)
-type = IMAP
-remotehost = ryanak.ca
-remoteuser = ryan
-remotepass = LOCAL_PASS
-ssl = yes
 
 [mbnames]
 enabled = no
