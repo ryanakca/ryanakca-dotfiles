@@ -1,3 +1,5 @@
+import re
+
 prioritized = ['INBOX', 'QueensU.INBOX']
 
 def mycmp(x, y):

@@ -3,7 +3,8 @@
 
 [general]
 metadata = ~/.offlineimap
-accounts = QueensU, GMAIL
+accounts = QueensU
+#, GMAIL
 pythonfile=~/.offlineimap.py
 # EIMEAR
 maxsyncaccounts = 2
@@ -35,8 +36,7 @@ remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 realdelete = no
-folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail']
-#folderfilter = lambda foldername: foldername in ['INBOX']
+folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
 
 ##### QueensU mail
 [Account QueensU]
@@ -46,9 +46,10 @@ autorefresh = 20
 quick = 10
 # presynchook = imapfilter
 foldersort = lamba x, y: cmp(x, y)
-postsynchook = /home/ryan/bin/run-mailcheck
+postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
 
 [Repository RemoteQueensU]
+# Add QueensU prefix when copying to local
 nametrans = lambda foldername: 'QueensU.' + foldername
 foldersort = lambda x, y: cmp(y, x)
 type = IMAP
@@ -56,6 +57,15 @@ remoteuser = 9rak
 remotehost = mail.queensu.ca
 remotepass = QUEENSU_PASS
 
+[Repository LocalQueensU]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+# Only copy folders from local to remote if they start with QueensU
+folderfilter = lambda folder: folder.startswith('QueensU.')
+# Remove QueensU prefix when copying to remote
+nametrans = lambda folder: re.sub('^QueensU.', '', folder)
 
 [mbnames]
 enabled = no
