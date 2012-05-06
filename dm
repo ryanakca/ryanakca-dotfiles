@@ -70,6 +70,7 @@ get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$(call get-val,$(var))|g')
 CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 
 SHA256        = $(call get-val,SHA256)
+GPG_DISABLED  = $(CALL get-val,GPG_DISABLED)
 
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
@@ -109,7 +110,7 @@ FORCE:
 # $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
 $(GPG_FILES):
 	touch $@ && chmod 600 $@
-	gpg --decrypt gpg/$@.gpg > $@
+	[ $(GPG_DISABLED) = "True" ] || gpg --decrypt gpg/$@.gpg > $@
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)

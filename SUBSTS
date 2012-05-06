@@ -5,6 +5,9 @@ key value
 # /sbin/sha256 on FreeBSD
 # /bin/sha256 on OpenBSD
 SHA256 /sbin/sha256
+# Disable GPG decryption of sensitive files. Must be True to disable, enabled
+# for all other values
+GPG_DISABLED False
 # Mail passwords
 GMAIL_PASS secret
 QUEENSU_PASS secret
