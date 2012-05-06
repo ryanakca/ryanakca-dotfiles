@@ -113,20 +113,24 @@ fi
 
 # Alias/custom commands
 #
+# Many of these options don's exist on BSD rm/cp/mkdir/ln/etc.
+#
 # Some are just in case - for 'rm', 'cp' and 'mv' - ask about overwriting or
 # deleting files.
 # Furthermore, be verbose about what each command is performing to be present of
 # what is occuring every time.
-alias cp="cp -iv"
-alias mkdir="mkdir -v"
-alias mv="mv -iv"
-alias ln="ln -v"
-# Only delete files on the current file system to avoid removing recursively
-# from bind mounts.
-alias rm="SUBSTS_RM -iv --one-file-system"
+if [[ `uname` = "Linux" ]]; then
+    alias cp="cp -iv"
+    alias mkdir="mkdir -v"
+    alias mv="mv -iv"
+    alias ln="ln -v"
+    # Only delete files on the current file system to avoid removing recursively
+    # from bind mounts.
+    alias rm="SUBSTS_RM -iv --one-file-system"
 
-alias chown="chown -v"
-alias chmod="chmod -v"
+    alias chown="chown -v"
+    alias chmod="chmod -v"
+fi
 
 # Cause encfs unmount a mounted encrypted partition after twenty minutes of
 # inactivity by default.
