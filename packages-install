@@ -1,5 +1,6 @@
 apt-get build-dep xmonad
 apt-get install \
+    alsa-utils \
     arandr \
     build-essential \
     cmus \
