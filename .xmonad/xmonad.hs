@@ -40,14 +40,13 @@ import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Loggers
 import XMonad.Util.Run -- for spawnPipe
 import XMonad.Util.Themes
-import qualified XMonad.Actions.FlexibleResize as Flex
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Control.Monad
 import Data.Ratio ((%))
 import Data.Maybe
 import Data.List
-import IO (hPutStrLn)
+import System.IO (hPutStrLn)
 
 myMod = mod4Mask -- windows key
 myCtrl = controlMask
