@@ -125,7 +125,8 @@ build/%: % $(SUBSTS_FILE)
 
 install: $(BUILD)
 	rsync -a build/ ~
-	chmod 600 ~/.msmtprc
+	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
+	chmod 700 ~/.ssh
 
 sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 	$(SHA256) `git ls-files | grep -v $@` > $@
