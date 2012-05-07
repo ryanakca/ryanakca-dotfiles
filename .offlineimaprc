@@ -29,7 +29,7 @@ remoteuser = ryan
 remotepass = LOCAL_PASS
 
 [Repository RemoteGmail]
-foldersort = lambda x, y: cmp(x, y)
+foldersort = lambda x, y: mycmp(x, y)
 type = Gmail
 remoteuser = ryanakca@gmail.com
 remotepass = GMAIL_PASS

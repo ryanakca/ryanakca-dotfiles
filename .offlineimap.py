@@ -4,8 +4,8 @@ prioritized = ['INBOX', 'QueensU.INBOX']
 
 def mycmp(x, y):
   for prefix in prioritized:
-    xsw = x.startswith(prefix)
-    ysw = y.startswith(prefix)
+    xsw = x.visiblename.startswith(prefix)
+    ysw = y.visiblename.startswith(prefix)
     if xsw and ysw:
       return cmp(x, y)
     elif xsw:
