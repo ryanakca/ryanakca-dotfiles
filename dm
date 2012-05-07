@@ -24,7 +24,8 @@ LOCAL_FILES = \
 GPG_FILES = \
     .mutt/alias.rc \
     .ssh/id_ecdsa \
-    .ssh/id_rsa
+    .ssh/id_rsa \
+    .ssh/id_rsa.lambda
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
