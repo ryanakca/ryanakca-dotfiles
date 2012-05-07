@@ -32,6 +32,7 @@ folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not f
 [Repository RemoteGmail]
 foldersort = lambda x, y: mycmp(x, y)
 type = Gmail
+maxconnections = 4
 remoteuser = ryanakca@gmail.com
 remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
