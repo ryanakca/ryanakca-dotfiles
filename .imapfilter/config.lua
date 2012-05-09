@@ -237,6 +237,13 @@ qsail = ( GMAIL.INBOX:match_to('sail.*@cs.queensu.ca') +
         GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Queens.SAIL'], qsail)
 
+-- McGill
+
+-- Academia
+
+typesann = GMAIL.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
+GMAIL.INBOX:move_messages(GMAIL['Academia.types-announce'], typesann)
+
 -- People 
 
 bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
