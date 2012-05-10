@@ -3,7 +3,7 @@
 
 [general]
 metadata = ~/.offlineimap
-accounts = QueensU
+accounts = GMAIL, QueensU
 #, GMAIL
 pythonfile=~/.offlineimap.py
 # EIMEAR
@@ -42,7 +42,7 @@ folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not f
 
 ##### QueensU mail
 [Account QueensU]
-localrepository = LocalGmail
+localrepository = LocalQueensU
 remoterepository = RemoteQueensU
 autorefresh = 20
 quick = 10
@@ -51,13 +51,13 @@ foldersort = lamba x, y: cmp(x, y)
 postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
 
 [Repository RemoteQueensU]
-# Add QueensU prefix when copying to local
-nametrans = lambda foldername: 'QueensU.' + foldername
 foldersort = lambda x, y: cmp(y, x)
 type = IMAP
 remoteuser = 9rak
 remotehost = mail.queensu.ca
 remotepass = QUEENSU_PASS
+# Add QueensU prefix when copying to local
+nametrans = lambda foldername: 'QueensU.' + foldername
 
 [Repository LocalQueensU]
 type = IMAP
