@@ -377,6 +377,12 @@ loop() {
     done
 }
 
+# CTAN downloader
+
+ctand() {
+    wget http://mirror.ctan.org/macros/latex/contrib/$1.zip && unzip $1.zip
+}
+
 # For formating text files for a printer
 fmtpr() {
     fmt --width=62 $@ | LC_ALL=C LANG=C pr -o 10 -W 62 -J -F -l 62 
