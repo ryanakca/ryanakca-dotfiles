@@ -59,6 +59,7 @@ export MANOPT="-L en"
 export BTS_SENDMAIL_COMMAND="/usr/bin/msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
+export PDFVIEWER=evince
 export TEXMFHOME=/home/ryan/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 
