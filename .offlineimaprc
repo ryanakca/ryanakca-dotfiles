@@ -28,6 +28,7 @@ remotehost = localhost
 remoteuser = ryan
 remotepass = LOCAL_PASS
 folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
+idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
 foldersort = lambda x, y: mycmp(x, y)
