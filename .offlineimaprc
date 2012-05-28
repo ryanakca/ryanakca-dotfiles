@@ -3,11 +3,11 @@
 
 [general]
 metadata = ~/.offlineimap
-accounts = GMAIL, QueensU
+accounts = GMAIL, QueensU, McGillSOCS
 #, GMAIL
 pythonfile=~/.offlineimap.py
 # EIMEAR
-maxsyncaccounts = 2
+maxsyncaccounts = 4
 
 #### GMAIL Account Settings
 [Account GMAIL]
@@ -69,6 +69,39 @@ remotepass = LOCAL_PASS
 folderfilter = lambda folder: folder.startswith('QueensU.')
 # Remove QueensU prefix when copying to remote
 nametrans = lambda folder: re.sub('^QueensU.', '', folder)
+
+#### McGillSOCS mail
+[Account McGillSOCS]
+localrepository = LocalMcGillSOCS
+remoterepository = RemoteMcGillSOCS
+autorefresh = 20
+quick = 10
+# presynchook = imapfilter
+foldersort = lamba x, y: cmp(x, y)
+postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
+
+[Repository RemoteMcGillSOCS]
+foldersort = lambda x, y: cmp(y, x)
+type = IMAP
+remoteuser = ryank
+remotehost = mail.cs.mcgill.ca
+remotepass = MCGSOCS_PASS
+ssl = yes
+cert_fingerprint = 20:7B:11:4F:C9:CD:4A:52:F5:86:A3:50:A4:DF:AB:05:C5:C7:AD:8B
+# sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
+# Add McGSOCS prefix when copying to local
+nametrans = lambda foldername: 'McGSOCS.' + foldername
+folderfilter = lambda folder: folder not in ['user.globalspam']
+
+[Repository LocalMcGillSOCS]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+# Only copy folders from local to remote if they start with McGSOCS
+folderfilter = lambda folder: folder.startswith('McGSOCS.')
+# Remove McGSOCS prefix when copying to remote
+nametrans = lambda folder: re.sub('^McGSOCS.', '', folder)
 
 [mbnames]
 enabled = no

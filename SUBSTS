@@ -11,6 +11,7 @@ GPG_DISABLED False
 # Mail passwords
 GMAIL_PASS secret
 QUEENSU_PASS secret
+MCGSOCS_PASS secret
 LOCAL_PASS secret
 # xmonad
 XMONAD_DZEN_W 808
