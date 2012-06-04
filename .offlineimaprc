@@ -7,7 +7,7 @@ accounts = GMAIL, QueensU, McGillSOCS
 #, GMAIL
 pythonfile=~/.offlineimap.py
 # EIMEAR
-maxsyncaccounts = 4
+maxsyncaccounts = 5
 
 #### GMAIL Account Settings
 [Account GMAIL]
@@ -40,6 +40,7 @@ spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 realdelete = no
 folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
+idlefolders = ['INBOX']
 
 ##### QueensU mail
 [Account QueensU]
