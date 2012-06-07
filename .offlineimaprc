@@ -38,6 +38,7 @@ remoteuser = ryanakca@gmail.com
 remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
+cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
 realdelete = no
 folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
 idlefolders = ['INBOX']
@@ -88,7 +89,7 @@ remoteuser = ryank
 remotehost = mail.cs.mcgill.ca
 remotepass = MCGSOCS_PASS
 ssl = yes
-cert_fingerprint = 20:7B:11:4F:C9:CD:4A:52:F5:86:A3:50:A4:DF:AB:05:C5:C7:AD:8B
+cert_fingerprint = 207b114fc9cd4a52f586a350a4dfab05c5c7ad8b
 # sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
 # Add McGSOCS prefix when copying to local
 nametrans = lambda foldername: 'McGSOCS.' + foldername
@@ -121,8 +122,8 @@ remoteuser = ryan.kavanagh@mail.mcgill.ca
 remotehost = exchange.mcgill.ca
 remotepass = MCGILL_PASS
 remortport = 993
+cert_fingerprint = 9f3fc06c357ecfcaaaf0cebedfb8d6b94f0926f6
 ssl = yes
-# cert_fingerprint = 20:7B:11:4F:C9:CD:4A:52:F5:86:A3:50:A4:DF:AB:05:C5:C7:AD:8B
 # sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
 # Add McGSOCS prefix when copying to local
 nametrans = lambda foldername: 'McGill.' + foldername
