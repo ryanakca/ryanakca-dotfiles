@@ -31,7 +31,7 @@ path=/home/ryan/.maildb/GMAIL/
 [user]
 name=Ryan Kavanagh
 primary_email=rak@debian.org
-other_email=ryanakca@gmail.com;9rak@queensu.ca;ryan.kavanagh@queensu.ca;ryan@ryanak.ca;ryanakca-guest@users.alioth.debian.org;ryanakca@ubuntu.com;ryan@cs.queensu.ca;rak@debian.org;
+other_email=ryanakca@gmail.com;9rak@queensu.ca;ryan.kavanagh@queensu.ca;ryan@ryanak.ca;ryanakca-guest@users.alioth.debian.org;ryanakca@ubuntu.com;ryan@cs.queensu.ca;rak@debian.org;ryank@cs.mcgill.ca;ryan.kavanagh@mail.mcgill.ca;
 
 # Configuration for "notmuch new"
 #
