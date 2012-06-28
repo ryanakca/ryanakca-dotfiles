@@ -93,7 +93,7 @@ cert_fingerprint = 207b114fc9cd4a52f586a350a4dfab05c5c7ad8b
 # sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
 # Add McGSOCS prefix when copying to local
 nametrans = lambda foldername: 'McGSOCS.' + foldername
-folderfilter = lambda folder: folder not in ['user.globalspam']
+folderfilter = lambda folder: folder not in ['user.globalspam', 'user.graduate', 'user.undergraduate']
 
 [Repository LocalMcGillSOCS]
 type = IMAP
