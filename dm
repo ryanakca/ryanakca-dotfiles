@@ -193,9 +193,12 @@ verify:
 	}' sha256sums
 	gpg --verify sha256sums.asc
 
+udh:
+	rsync -avz master.debian.org:/var/lib/misc/master.debian.org/ssh_known_hosts .ssh/known_hosts.d/debian
+
 clean:
 	rm -fr build
 
 clobber: clean
 	rm -f $(GPG_FILES)
-.PHONY: build install clean verify merge
+.PHONY: build install clean verify merge udh
