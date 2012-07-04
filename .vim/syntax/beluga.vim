@@ -2,7 +2,7 @@
 " Language:     bel
 " Filenames:    *.bel
 " Maintainers:  Vincent Aravantinos <vincent.aravantinos@gmail.com>
-" Last Change:  2010 Jun 9 - Initial version.
+" Last Change:  2012 Jun 28 - Added new syntax
 " TODO see what the Twelf vim file does
 
 " For version 5.x: Clear all syntax items
@@ -20,7 +20,7 @@ endif
 syn match  belComment   containedin=ALL  "%.*" extend
 
 syn match   belId       contained "[[:lower:]][[:lower:][:digit:]']*"
-syn keyword belTermOp   contained type
+syn keyword belTermOp   contained "\(type\|ctype\|datatype\)"
 syn match   belTermOp   contained "\(->\|<-\|\\\|\.\|_\|:\)"
 syn region  belTerm     contained contains=@belTermClu matchgroup=belTermOp start="(" end=")"
 syn region  belTerm     contained contains=belId,belColonType,@belTermClu matchgroup=belTermOp start="{" end="}"
