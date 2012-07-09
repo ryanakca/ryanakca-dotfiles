@@ -49,6 +49,7 @@ export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
 export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 export BZR_EMAIL="$NAME <$EMAIL>"       # Override email for Bazaar.
 export GIT_AUTHOR_NAME=$NAME
+export DARCS_EMAIL="$NAME <$EMAIL>"
 export GREP_OPTIONS="--color=auto"
 export QUILT_PATCHES=debian/patches
 export PATH=/usr/lib/ccache:/usr/lib/distcc/bin:$HOME/bin:/sbin:$PATH
