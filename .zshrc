@@ -77,7 +77,7 @@ alias rtvec='mplayer -playlist http://radioclasica.rtve.stream.flumotion.com/rtv
 alias rtve3='mplayer -playlist http://radio3.rtve.stream.flumotion.com/rtve/radio3.mp3.m3u'
 alias rtve5='mplayer -playlist http://radio5.rtve.stream.flumotion.com/rtve/radio5.mp3.m3u'
 alias am740='mplayer -playlist http://provisioning.streamtheworld.com/asx/cfzmam.asx'
-alias dismuke='mplayer -playlist http://www.loudcity.com/player/radio-dismuke/pls_mp3.pls\?cache_bust\=1279637216\&max_bitrate\=1000'
+alias dismuke='mplayer -playlist http://www.loudcity.com/launch?file=ram&id=183&playid=625320120528221148183'
 alias 1920s='mplayer -playlist http://64.5.130.43/listen.pls'
 alias up-theme='rsync -avz --no-p --no-o --no-times -e ssh ~/work/kubuntu-theme-v2/* ryanak.ca:/home/ryan/kubuntu-theme-v2/'
 alias startxkde4='startx -nolisten tcp -- :0 &'
