@@ -29,7 +29,7 @@ import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.SimpleDecoration
-import XMonad.Layout.Tabbed
+import XMonad.Layout.Tabbed (tabbed)
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.TwoPane
@@ -85,6 +85,7 @@ colorBlue            = "#008dd5"
 colorYellow          = "#fee100"
 colorWhite           = "#cfbfad"
 colorBrightGreen     = "#00FF00"
+colorRed             = "#FF0000"
 
 colorNormalBorder    = "#1c2636"
 colorFocusedBorder   = "#2797d8"
@@ -99,20 +100,28 @@ statusBarCmd = "dzen2" ++
                " -fn '" ++ barXFont ++ "'" ++
                " -w 808 -x 114 -y 0 -ta l -e ''"
 
+newTheme :: ThemeInfo
+newTheme = TI "" "" "" defaultTheme
 
--- Color theme for the window decorations
-myTheme = defaultTheme {
-    activeColor         = blue
-  , inactiveColor       = grey
-  , activeBorderColor   = blue
-  , inactiveBorderColor = grey
-  , activeTextColor     = "white"
-  , inactiveTextColor   = "black"
-  , decoHeight          = 12
-  }
-    where
-      blue = "#4a708b" -- same color used by gnome pager
-      grey = "#cccccc"
+rakTheme :: ThemeInfo
+rakTheme =
+    newTheme { themeName        = "rakTheme"
+             , themeAuthor      = "Ryan Kavanagh"
+             , themeDescription = "Small decorations: orange and blue theme"
+             , theme            = defaultTheme { activeColor         = colorBlack
+                                               , inactiveColor       = colorBlack
+                                               , activeBorderColor   = colorOrange
+                                               , inactiveBorderColor = colorBlue
+                                               , activeTextColor     = colorOrange
+                                               , inactiveTextColor   = colorBlue
+                                               , urgentColor         = colorRed
+                                               , urgentTextColor     = colorYellow
+                                               , decoHeight          = 12
+                                               , fontName            = "xft: inconsolata-07"
+                                               }
+             }
+
+myTheme = theme rakTheme
 
 myXPConfig = defaultXPConfig {
     fgColor  = "white"
@@ -126,7 +135,7 @@ myXPConfig = defaultXPConfig {
 myLayout = smartBorders $ toggleLayouts Full perWS
   where
     -- Per workspace layout selection.
-    perWS = onWorkspace "web"     (noTitles   $ (simpleTabbed ||| mySplit ||| myWide)) $
+    perWS = onWorkspace "web"     (noTitles   $ (tabbed shrinkText myTheme ||| mySplit ||| myWide)) $
             onWorkspace "term"    (noTitles   $ (Full ||| myTall2 ||| customRyan)) $
             onWorkspace "chatter" (noTitles   $ myChat gridFirst) $
             onWorkspace "code"    (noTitles   $ codeFirst) $
