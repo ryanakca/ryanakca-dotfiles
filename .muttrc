@@ -55,8 +55,8 @@ set mark_old=no
 ignore * # ignore all headers except for ...
 unignore Date: From: To: CC: Bcc: Subject:
 hdr_order Subject: Date: From: To: CC: Bcc:
-# MessageNo Mo Day (To if sent by me, from if sent to me) List [Flags] [Score] Subject
-set index_format="%4C %{%b %d} %-20.20F %-15.15B [%Z] [%-2.2N] %s" # custom index format
+# MessageNo Mo Day (To if sent by me, from if sent to me) List [Flags (Hidden Messages/line count) Subject
+set index_format="%4C %{%M%d} %-16.16F %-15.15B [%Z] %?M?(#%03M)&(%4l)? %s"
 
 set mark_old=yes
 
