@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -W -fwarn-unused-imports -fno-warn-missing-signatures #-}
+{-# OPTIONS_GHC -W -fwarn-unused-imports -fno-warn-missing-signatures -O2 #-}
 import XMonad
 -- import XMonad.Config.Kde
 import XMonad.Actions.CycleWS
