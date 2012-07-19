@@ -215,8 +215,7 @@ opeople = GMAIL.INBOX:contain_field('List-ID', 'opeople.googlegroups.com') *
          GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['OPeople'], opeople)
 
-paleobloggers = GMAIL.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
+paleobloggers = GMAIL.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups.com')
 GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleobloggers)
 
 paleocooks = GMAIL.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com') *
