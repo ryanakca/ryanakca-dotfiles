@@ -9,6 +9,8 @@ lists ubuntu-ca.lists.ubuntu.com
 lists ubuntu-doc.lists.ubuntu.com
 lists ubuntu-classroom.lists.ubuntu.com
 lists ubuntu.*.lists.ubuntu.com
+lists debian-devel.lists.debian.org
+lists debian-devel-announce.lists.debian.org
 lists debian-haskell.lists.debian.org
 lists debian-python.lists.debian.org
 lists debian-qt-kde.lists.debian.org
@@ -41,6 +43,10 @@ subscribe ubuntu-ca.lists.ubuntu.com
 alias ubuntu-ca ubuntu-ca@lists.ubuntu.com
 subscribe ubuntu-classroom.lists.ubuntu.com
 subscribe debian-haskell.lists.debian.org
+alias debian-devel debian-devel@lists.debian.org
+subscribe debian-devel.lists.debian.org
+alias debian-devel-announce debian-devel-announce@lists.debian.org
+subscribe debian-devel-announce.lists.debian.org
 alias debian-haskell debian-haskell@lists.debian.org
 subscribe debian-python.lists.debian.org
 alias debian-python debian-python@lists.debian.org
