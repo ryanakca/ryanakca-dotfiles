@@ -128,7 +128,7 @@ myXPConfig = defaultXPConfig {
   , bgColor  = "black"
   , promptBorderWidth = 0
   , position = Bottom
-  , height   = 25
+  , height   = 15
   }
 
 
