@@ -27,7 +27,7 @@ type = IMAP
 remotehost = localhost
 remoteuser = ryan
 remotepass = LOCAL_PASS
-folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
+folderfilter = lambda folder: True not in map(lambda x: x.startswith(folder), ['QueensU.', 'McGill.', 'McGSOCS.', '[Google Mail]/All Mail'])
 idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
@@ -40,7 +40,7 @@ spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
 realdelete = no
-folderfilter = lambda folder: folder not in ['[Google Mail]/All Mail'] and not folder.startswith('QueensU.')
+folderfilter = lambda folder: True not in map(lambda x: x.startswith(folder), ['QueensU.', 'McGill.', 'McGSOCS.', '[Google Mail]/All Mail'])
 idlefolders = ['INBOX']
 
 ##### QueensU mail
