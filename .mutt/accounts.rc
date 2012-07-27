@@ -63,6 +63,8 @@ folder-hook .*McGill.* \
 "unhook send-hook;\
 set from = ryan.kavanagh@mail.mcgill.ca;\
 set sendmail="MSMTP_PATH -a mcgill"
+unset smtp_url;\
+unset smtp_pass;\
 set record='=McGill.Sent Items';\
 set postponed='=McGill.Drafts';\
 set pager_format = '-%Z-McGILL: %C/%m: %-20.20n %s';\
