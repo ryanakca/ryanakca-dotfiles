@@ -93,14 +93,17 @@ set pager_format = '-%Z-LOCAL: %C/%m: %-20.20n %s';\
 set compose_format = '-- LOCAL: Compose [Approx. msg size: %l Atts: %a]%>-';\
 set status_format = '-%r-LOCAL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
 
+
 macro index <F12> "cimaps://imap.gmail.com/INBOX<enter>"
 macro index <F11> "cimap://localhost/INBOX<enter>"
 macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
 
 macro compose <F2> '<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryanakca@ubuntu.com><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Ubuntu account"
-macro compose <F3> '<enter-command>set sendmail="MSMTP_PATH -a kubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
+macro compose <Esc><F2> '<enter-command>set sendmail="MSMTP_PATH -a kubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
+macro compose <F3> '<enter-command>set sendmail="/usr/bin/msmtp -a mcgill"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@mail.mcgill.ca><enter><edit-fcc>=McGill.Sent Items<enter><enter-command>set postponed="=McGill.Drafts"<enter><enter-command>set record="=McGill.Sent Items"<enter>' "Sent mail from McGill account"
+macro compose <Esc><F3> '<enter-command>set sendmail="/usr/bin/msmtp -a mcgillsocs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryank@cs.mcgill.ca><enter><edit-fcc>=McGSOCS.INBOX.Sent Items<enter><enter-command>set postponed="=McGSOCS.INBOX.Drafts"<enter><enter-command>set record="=McGSOCS.INBOX.Sent"<enter>' "Sent mail from McGill SOCS account"
 macro compose <F4> '<enter-command>unset sendmail<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
+macro compose <Esc><F4> '<enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from cs.queensu.ca account"
 macro compose <F5> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Debian account"
-macro compose <F6> '<enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from cs.queensu.ca account"
 
 set certificate_file = '~/.mutt/certs/certificates'
