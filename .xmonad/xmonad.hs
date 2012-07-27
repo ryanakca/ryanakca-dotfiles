@@ -116,8 +116,8 @@ rakTheme =
                                                , inactiveTextColor   = colorBlue
                                                , urgentColor         = colorRed
                                                , urgentTextColor     = colorYellow
-                                               , decoHeight          = 12
-                                               , fontName            = "xft: inconsolata-07"
+                                               , decoHeight          = 13
+                                               , fontName            = "xft: inconsolata-8:pixelsize=10:weight=bold"
                                                }
              }
 
