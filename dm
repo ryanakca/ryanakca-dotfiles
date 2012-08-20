@@ -33,6 +33,7 @@ GLOBAL_FILES = \
     .Xdefaults \
     .Xsession \
     .config/nitrogen/ \
+    .cmus/ \
     .dput.cf \
     .dzen/ \
     .gitconfig \
