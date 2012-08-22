@@ -17,6 +17,7 @@ set textwidth=80
 set bg=dark
 set modeline
 set modelines=1
+set pastetoggle=<F10>
 command -nargs=1 Hugged :/<args>/s/\(.*\) ;\(.*\)\(||\)/\1 lightgreen;\2 RyanKavanagh ||/c
 """ Don't connect to X clipboard, slow
 """ set clipboard=exclude:.*
