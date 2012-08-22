@@ -36,6 +36,7 @@ GLOBAL_FILES = \
     .cmus/ \
     .dput.cf \
     .dzen/ \
+    .fonts.conf \
     .gitconfig \
     .imapfilter/ \
     .inputrc \
