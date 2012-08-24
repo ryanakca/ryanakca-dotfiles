@@ -15,4 +15,4 @@ urxvtd -q -f -o &
 urxvtc &
 # /home/ryan/.screenlayout/work.sh
 /home/ryan/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
-exec /usr/local/bin/xmonad
+exec /usr/bin/xmonad
