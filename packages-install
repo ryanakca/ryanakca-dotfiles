@@ -1,4 +1,3 @@
-apt-get build-dep xmonad
 apt-get install \
     alsa-utils \
     arandr \
@@ -9,6 +8,8 @@ apt-get install \
     darcs \
     devscripts \
     dzen2 \
+    encfs \
+    evince \
     git-buildpackage \
     git-core \
     gnupg-agent \
