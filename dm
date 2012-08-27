@@ -50,6 +50,7 @@ GLOBAL_FILES = \
     .offlineimap.py \
     .pythonrc.py \
     .quiltrc-dpkg \
+    .reportbugrc \
     .sbuildrc \
     .screenlayout/ \
     .screenrc-mail \
