@@ -32,6 +32,7 @@ GPG_FILES = \
 GLOBAL_FILES = \
     .Xdefaults \
     .Xsession \
+    .beetsconfig \
     .config/nitrogen/ \
     .cmus/ \
     .dput.cf \
