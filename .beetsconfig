@@ -1,0 +1,13 @@
+[beets]
+directory: ~/music_clean
+library: ~/.beetsmusic.blb
+path_format: $format/$artist/$album/$track $title
+import_incremental: yes
+import_quiet_fallback: skip
+import_log: ~/music_clean/import_log
+import_move: yes
+
+[paths]
+default: $format/$albumartist/$album/$track $title
+singleton: $format/Singletons/$artist - $title
+comp: $format/comp/$album/$track $title
