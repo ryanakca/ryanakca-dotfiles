@@ -34,7 +34,7 @@
 
 export LC_ALL="LOCALE"
 export LANG="LOCALE"
-export TZ="America/Toronto"             # Force our time zone this location.
+export TZ="Europe/London"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
 export NAME="Ryan Kavanagh"             # Our name.
 export EMAIL="rak@debian.org"     # Our email address.
