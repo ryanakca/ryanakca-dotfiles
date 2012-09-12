@@ -241,6 +241,12 @@ GMAIL.INBOX:move_messages(GMAIL['Queens.SAIL'], qsail)
 
 -- McGill
 
+belcom = GMAIL.INBOX:match_to('beluga-commit@cs.mcgill.ca')
+GMAIL.INBOX:move_messages(GMAIL['Internship.beluga-commit'], belcom)
+
+beldev = GMAIL.INBOX:match_to('beluga-dev@cs.mcgill.ca')
+GMAIL.INBOX:move_messages(GMAIL['Internship.beluga-dev'], beldev)
+
 -- Academia
 
 typesann = GMAIL.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
