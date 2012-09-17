@@ -9,7 +9,7 @@ set crypt_autosign = yes # default: no
 set crypt_replysign = yes # default: no
 set crypt_replysignencrypted = yes # default: no
 
-set editor="/usr/bin/vim"
+set editor="vim"
 
 set pager_context = 1
 
