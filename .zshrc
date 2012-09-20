@@ -134,7 +134,11 @@ if [[ `uname` = "Linux" ]]; then
 
     alias chown="chown -v"
     alias chmod="chmod -v"
+
+    alias grep="grep --colour=always" # Colour grep too.
 fi
+alias ls="SUBSTS_LS --classify --color=always" # Add all colours and
+                                    # have fancy symbols for files, etc.
 
 # Cause encfs unmount a mounted encrypted partition after twenty minutes of
 # inactivity by default.
@@ -174,9 +178,6 @@ fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:kill:*' list-colors '=%*=01;31'
 
-alias ls="SUBSTS_LS --classify --color=always" # Add all colours and 
-                                        # have fancy symbols for files, etc.
-alias grep="grep --colour=always" # Colour grep too.
 # Load the completion system
 autoload -U compinit; compinit
 
