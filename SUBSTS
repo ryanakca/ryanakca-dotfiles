@@ -60,4 +60,9 @@ GSD_PATH /usr/local/libexec/gnome-settings-daemon
 # Enable keychain? If so, set to True
 KEYCHAIN True
 
+# Path to SSL certs for mail, etc.
+# /etc/ssl/cert.pem on OpenBSD
+# /etc/ssl/certs/ca-certificates.crt on Debian
+SSL_CERTS /etc/ssl/cert.pem
+
 LOCALHOST epsilon.ryanak.ca
