@@ -1,5 +1,5 @@
 --
---  Options  
+--  Options
 --
 
 options.timeout = 120
@@ -7,13 +7,17 @@ options.subscribe = true
 
 
 
---  Accounts  
+--  Accounts
 
+REMOTE_GMAIL = IMAP {
+    server = 'imap.gmail.com',
+    port = 993,
+    username = 'ryanakca@gmail.com',
+    password = 'GMAIL_PASS',
+    ssl = 'tls1',
+}
 
-GMAIL = IMAP {
---    server = 'imap.gmail.com',
---    port = 993,
---    username = 'ryanakca@gmail.com',
+LOCAL_GMAIL = IMAP {
     server = 'localhost',
     username = 'ryan',
     password = 'LOCAL_PASS',
@@ -22,252 +26,252 @@ GMAIL = IMAP {
 -- Another account which connects to the mail server using the SSLv3
 
 -- Get a list of the available mailboxes and folders
-mailboxes, folders = GMAIL:list_all()
+mailboxes, folders = IMAPFILTER_GMAIL_SERVER:list_all()
 
 -- Get a list of the subscribed mailboxes and folders
-mailboxes, folders = GMAIL:list_subscribed()
+mailboxes, folders = IMAPFILTER_GMAIL_SERVER:list_subscribed()
 
 --
---   Filters   
---     For     
---    GMAIL    
+--   Filters
+--     For  
+--    GMAIL 
 --
 
--- Ubuntu stuff 
-kubuntu = GMAIL.INBOX:contain_field('List-ID', 'kubuntu-devel.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.kuDevel'], kubuntu)
+-- Ubuntu stuff
+kubuntu = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'kubuntu-devel.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kuDevel'], kubuntu)
 
-ubuntuWeb = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-website.lists.canonical.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uWebML'], ubuntuWeb)
+ubuntuWeb = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-website.lists.canonical.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uWebML'], ubuntuWeb)
 
-UbuntuDevelAnnounce = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-devel-announce.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uDevelAnnounce'], UbuntuDevelAnnounce)
+UbuntuDevelAnnounce = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-devel-announce.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uDevelAnnounce'], UbuntuDevelAnnounce)
 
 
-ubuntuCanada = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-ca.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uCanada'], ubuntuCanada)
+ubuntuCanada = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-ca.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uCanada'], ubuntuCanada)
 
-uDoc = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-doc.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uDoc'], uDoc)
+uDoc = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-doc.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uDoc'], uDoc)
 
-uClassroom = GMAIL.INBOX:contain_field('List-Id', 'ubuntu-classroom.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uClassroom'], uClassroom)
+uClassroom = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'ubuntu-classroom.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uClassroom'], uClassroom)
 
-uClassroomOwner = GMAIL.INBOX:match_from('ubuntu-classroom-owner@lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['[Google Mail].Bin'], uClassroomOwner)
+uClassroomOwner = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('ubuntu-classroom-owner@lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['[Google Mail].Bin'], uClassroomOwner)
 
-launchpadUsers = GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.launchpad.net') +
-                 GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.canonical.com') +
-                 GMAIL.INBOX:match_to('launchpad-users@lists.launchpad.net') +
-                 GMAIL.INBOX:match_cc('launchpad-users@lists.launchpad.net')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.launchpadUsers'], launchpadUsers)
+launchpadUsers = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'launchpad-users.lists.launchpad.net') +
+                 IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'launchpad-users.lists.canonical.com') +
+                 IMAPFILTER_GMAIL_SERVER.INBOX:match_to('launchpad-users@lists.launchpad.net') +
+                 IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('launchpad-users@lists.launchpad.net')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.launchpadUsers'], launchpadUsers)
 
-kubuntuBugs = GMAIL.INBOX:contain_field('List-ID', 'kubuntu-bugs.lists.ubuntu.com') +
-              GMAIL.INBOX:contain_header('X-Launchpad-Message-Rationale: .*@kubuntu-bugs') +
-              GMAIL.INBOX:match_header('X-BeenThere: kubuntu-bugs@lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.kuBugs'], kubuntuBugs)
+kubuntuBugs = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'kubuntu-bugs.lists.ubuntu.com') +
+              IMAPFILTER_GMAIL_SERVER.INBOX:contain_header('X-Launchpad-Message-Rationale: .*@kubuntu-bugs') +
+              IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-BeenThere: kubuntu-bugs@lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kuBugs'], kubuntuBugs)
 
-ubuntuirc = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-irc.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.ubuntu-irc'], ubuntuirc)
+ubuntuirc = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-irc.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.ubuntu-irc'], ubuntuirc)
 
-ubuntuinstaller = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-installer.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.ubuntu-installer'], ubuntuinstaller)
+ubuntuinstaller = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-installer.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.ubuntu-installer'], ubuntuinstaller)
 
-ubuntu = GMAIL.INBOX:contain_field('List-ID', '.*.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu'], ubuntu)
+ubuntu = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', '.*.lists.ubuntu.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu'], ubuntu)
 
-uWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug.*product=ubuntu-website.*')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uWebBugs'], uWebBugs)
+uWebBugs = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Bug.*product=ubuntu-website.*')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uWebBugs'], uWebBugs)
 
-kuWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug:.*product=kubuntu-website.*')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.kuWebBugs'], kuWebBugs)
+kuWebBugs = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Bug:.*product=kubuntu-website.*')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kuWebBugs'], kuWebBugs)
 
-ubugs =  GMAIL.INBOX:match_header('X-Launchpad-Bug:.*distribution=ubuntu;.*') +
-         GMAIL.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uBugs'], ubugs)
+ubugs =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Bug:.*distribution=ubuntu;.*') +
+         IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uBugs'], ubugs)
 
-kubuntuninjas = GMAIL.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.kubuntu-ninjas'], kubuntuninjas)
+kubuntuninjas = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kubuntu-ninjas'], kubuntuninjas)
 
---answers =  GMAIL.INBOX:match_header('X-Launchpad-Question: distribution=ubuntu.*')
---GMAIL.INBOX:mark_seen(answers)
---GMAIL.INBOX:move_messages(GMAIL['Ubuntu.uAnswers'], answers)
+--answers =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Question: distribution=ubuntu.*')
+--IMAPFILTER_GMAIL_SERVER.INBOX:mark_seen(answers)
+--IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uAnswers'], answers)
 
-kubuntuWebmaster = GMAIL.INBOX:contain_to('webmaster@kubuntu.org')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu.kuWebmaster'], kubuntuWebmaster)
+kubuntuWebmaster = IMAPFILTER_GMAIL_SERVER.INBOX:contain_to('webmaster@kubuntu.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kuWebmaster'], kubuntuWebmaster)
 
--- Debian stuff 
+-- Debian stuff
 
-debianmentorslist = GMAIL.INBOX:contain_field('List-ID', 'debian-mentors.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-mentors'], debianmentorslist)
+debianmentorslist = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-mentors.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-mentors'], debianmentorslist)
 
-debiandevel = GMAIL.INBOX:contain_field('List-ID', 'debian-devel.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-devel'], debiandevel)
+debiandevel = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-devel.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-devel'], debiandevel)
 
-debiandevelann = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org') *
-                 GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-devel-announce'], debiandevelann)
+debiandevelann = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org') *
+                 IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-devel-announce'], debiandevelann)
 
-debiannewmaint = GMAIL.INBOX:contain_field('List-ID', 'debian-newmaint.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-newmaint'], debiannewmaint)
+debiannewmaint = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-newmaint.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-newmaint'], debiannewmaint)
 
-debianpythonapps = GMAIL.INBOX:contain_field('List-ID', 'python-apps-team.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.python-apps-team'], debianpythonapps)
+debianpythonapps = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'python-apps-team.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.python-apps-team'], debianpythonapps)
 
-debianqtkde = GMAIL.INBOX:contain_field('List-ID', 'debian-qt-kde.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-qt-kde'], debianqtkde)
+debianqtkde = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-qt-kde.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-qt-kde'], debianqtkde)
 
-debianpkgkdetalk = GMAIL.INBOX:contain_field('List-ID', 'pkg-kde-talk.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.pkg-kde-talk'], debianpkgkdetalk)
+debianpkgkdetalk = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'pkg-kde-talk.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.pkg-kde-talk'], debianpkgkdetalk)
 
-debianpkgkdeextras = GMAIL.INBOX:contain_field('List-ID', 'pkg-kde-extras.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.pkg-kde-extras'], debianpkgkdeextras)
+debianpkgkdeextras = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'pkg-kde-extras.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.pkg-kde-extras'], debianpkgkdeextras)
 
-debianpkgkdecommits = GMAIL.INBOX:contain_field('List-ID', 'pkg-kde-commits.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.pkg-kde-commits'], debianpkgkdecommits)
+debianpkgkdecommits = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'pkg-kde-commits.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.pkg-kde-commits'], debianpkgkdecommits)
 
-debianpython = GMAIL.INBOX:contain_field('List-ID', 'debian-python.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-python'], debianpython)
+debianpython = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-python.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-python'], debianpython)
 
-debiandevelfrench = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-french.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-devel-french'], debiandevelfrench)
+debiandevelfrench = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-devel-french.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-devel-french'], debiandevelfrench)
 
-debianpkgmultimediacommits = GMAIL.INBOX:contain_field('List-ID', 'pkg-multimedia-commits.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.pkg-multimedia-commits'], debianpkgmultimediacommits)
+debianpkgmultimediacommits = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'pkg-multimedia-commits.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.pkg-multimedia-commits'], debianpkgmultimediacommits)
 
-debianpkgmultimediamaintainers = GMAIL.INBOX:contain_field('List-ID', 'pkg-multimedia-maintainers.lists.alioth.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.pkg-multimedia-maintainers'], debianpkgmultimediamaintainers)
+debianpkgmultimediamaintainers = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'pkg-multimedia-maintainers.lists.alioth.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.pkg-multimedia-maintainers'], debianpkgmultimediamaintainers)
 
-debianjava = GMAIL.INBOX:contain_field('List-ID', 'debian-java.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-java'], debianjava)
+debianjava = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-java.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-java'], debianjava)
 
-debiannews = GMAIL.INBOX:contain_field('List-ID', 'debian-news.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-news'], debiannews)
+debiannews = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-news.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-news'], debiannews)
 
-debiandak = GMAIL.INBOX:contain_field('List-ID', 'debian-dak.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-dak'], debiandak)
+debiandak = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-dak.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-dak'], debiandak)
 
-debianproject = GMAIL.INBOX:contain_field('List-ID', 'debian-project.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-project'], debianproject)
+debianproject = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-project.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-project'], debianproject)
 
-debianqa = GMAIL.INBOX:contain_field('List-ID', 'debian-qa.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-qa'], debianqa)
+debianqa = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-qa.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-qa'], debianqa)
 
-debianprivate = GMAIL.INBOX:contain_field('List-ID', 'debian-private.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-private'], debianprivate)
+debianprivate = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-private.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-private'], debianprivate)
 
-debianhaskell = GMAIL.INBOX:contain_field('List-ID', 'debian-haskell.lists.debian.org')
-GMAIL.INBOX:move_messages(GMAIL['Debian.debian-haskell'], debianhaskell)
+debianhaskell = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-haskell.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-haskell'], debianhaskell)
 
-dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org') *
-        GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['Debian.dBugs'], dbugs)
+dbugs = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('.*@bugs.debian.org') *
+        IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.dBugs'], dbugs)
 
 -- KDE Stuff
 
-kdefrancophone = GMAIL.INBOX:contain_field('List-ID', 'kde-francophone.kde.org')
-GMAIL.INBOX:move_messages(GMAIL['KDE.kde-francophone'], kdefrancophone)
+kdefrancophone = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'kde-francophone.kde.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['KDE.kde-francophone'], kdefrancophone)
 
 
--- Other computer stuff 
+-- Other computer stuff
 --
-slashdot = ( GMAIL.INBOX:is_seen() * 
-             GMAIL.INBOX:match_from('slashdot@newsletters.slashdot.org') )
-GMAIL.INBOX:move_messages(GMAIL['Slashdot'], slashdot)
+slashdot = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
+             IMAPFILTER_GMAIL_SERVER.INBOX:match_from('slashdot@newsletters.slashdot.org') )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Slashdot'], slashdot)
 --
-lwn = ( GMAIL.INBOX:is_seen() * 
-        GMAIL.INBOX:match_from('lwn@lwn.net') )
-GMAIL.INBOX:move_messages(GMAIL['lwn'], lwn)
+lwn = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
+        IMAPFILTER_GMAIL_SERVER.INBOX:match_from('lwn@lwn.net') )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['lwn'], lwn)
 
-sbuild = GMAIL.INBOX:match_from('sbuild@.*.ryanak.ca') + 
-        GMAIL.INBOX:match_from('sbuild@lambda')
-GMAIL.INBOX:move_messages(GMAIL['sbuild'], sbuild)
+sbuild = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('sbuild@.*.ryanak.ca') +
+        IMAPFILTER_GMAIL_SERVER.INBOX:match_from('sbuild@lambda')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['sbuild'], sbuild)
 
-freebsdstable = GMAIL.INBOX:contain_field('List-Id', 'freebsd-stable.freebsd.org')
-GMAIL.INBOX:move_messages(GMAIL['FreeBSD.freebsd-stable'], freebsdstable)
+freebsdstable = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'freebsd-stable.freebsd.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['FreeBSD.freebsd-stable'], freebsdstable)
 
-freebsdcurrent = GMAIL.INBOX:contain_field('List-Id', 'freebsd-current.freebsd.org')
-GMAIL.INBOX:move_messages(GMAIL['FreeBSD.freebsd-current'], freebsdcurrent)
+freebsdcurrent = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'freebsd-current.freebsd.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['FreeBSD.freebsd-current'], freebsdcurrent)
 
 -- O'ists
 
-oactivists = GMAIL.INBOX:contain_field('List-Id', 'oactivists.googlegroups.com') *
-             GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OActivists'], oactivists)
+oactivists = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'oactivists.googlegroups.com') *
+             IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OActivists'], oactivists)
 
-oevolve = GMAIL.INBOX:contain_field('List-Id', 'oevolve.googlegroups.com') *
-             GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OEvolve'], oevolve)
+oevolve = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'oevolve.googlegroups.com') *
+             IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OEvolve'], oevolve)
 
-oproducers = GMAIL.INBOX:contain_field('List-Id', 'oproducers.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OProducers'], oproducers)
+oproducers = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'oproducers.googlegroups.com') *
+            IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OProducers'], oproducers)
 
-ogrownups = GMAIL.INBOX:contain_field('List-Id', 'ogrownups.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OGrownups'], ogrownups)
+ogrownups = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'ogrownups.googlegroups.com') *
+            IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OGrownups'], ogrownups)
 
-ogeeks = GMAIL.INBOX:contain_field('List-ID', 'ogeeks.googlegroups.com') *
-         GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OGeeks'], ogeeks)
+ogeeks = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ogeeks.googlegroups.com') *
+         IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OGeeks'], ogeeks)
 
-opeople = GMAIL.INBOX:contain_field('List-ID', 'opeople.googlegroups.com') *
-         GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OPeople'], opeople)
+opeople = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'opeople.googlegroups.com') *
+         IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OPeople'], opeople)
 
-paleobloggers = GMAIL.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups.com')
-GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleobloggers)
+paleobloggers = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups.com')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['PaleoBloggers'], paleobloggers)
 
-paleocooks = GMAIL.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleocooks)
+paleocooks = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com') *
+            IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['PaleoBloggers'], paleocooks)
 
-PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
-      GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
+PiA = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('.*@philosophyinaction.com') *
+      IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['PiA'], PiA)
 
 -- Queen's
 
-qsocial = ( GMAIL.INBOX:is_seen() *
-        ( GMAIL.INBOX:match_to('social@cs.queensu.ca') +
-          GMAIL.INBOX:match_cc('social@cs.queensu.ca') ) )
-GMAIL.INBOX:move_messages(GMAIL['Queens.social'], qsocial)
+qsocial = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
+        ( IMAPFILTER_GMAIL_SERVER.INBOX:match_to('social@cs.queensu.ca') +
+          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('social@cs.queensu.ca') ) )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Queens.social'], qsocial)
 
-qsail = ( GMAIL.INBOX:match_to('sail.*@cs.queensu.ca') +
-          GMAIL.INBOX:match_cc('sail.*@cs.queensu.ca') +
-          GMAIL.INBOX:match_to('sail4schedule@gmail.com') ) *
-        GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['Queens.SAIL'], qsail)
+qsail = ( IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail.*@cs.queensu.ca') +
+          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('sail.*@cs.queensu.ca') +
+          IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail4schedule@gmail.com') ) *
+        IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Queens.SAIL'], qsail)
 
 -- McGill
 
-belcom = GMAIL.INBOX:match_to('beluga-commit@cs.mcgill.ca')
-GMAIL.INBOX:move_messages(GMAIL['Internship.beluga-commit'], belcom)
+belcom = IMAPFILTER_GMAIL_SERVER.INBOX:match_to('beluga-commit@cs.mcgill.ca')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Internship.beluga-commit'], belcom)
 
-beldev = GMAIL.INBOX:match_to('beluga-dev@cs.mcgill.ca')
-GMAIL.INBOX:move_messages(GMAIL['Internship.beluga-dev'], beldev)
+beldev = IMAPFILTER_GMAIL_SERVER.INBOX:match_to('beluga-dev@cs.mcgill.ca')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Internship.beluga-dev'], beldev)
 
 -- Academia
 
-typesann = GMAIL.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
-GMAIL.INBOX:move_messages(GMAIL['Academia.types-announce'], typesann)
+typesann = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Academia.types-announce'], typesann)
 
--- People 
+-- People
 
-bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
-           GMAIL.INBOX:match_cc('PM_EMAIL')
-GMAIL.INBOX:move_messages(GMAIL['Bagpipes'], bagpipes)
+bagpipes = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('PM_EMAIL') +
+           IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('PM_EMAIL')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Bagpipes'], bagpipes)
 
 -- Misc
 
-pjm = GMAIL.INBOX:match_from('webmaster@pjmedia.com') *
-      GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['PJM'], pjm)
+pjm = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('webmaster@pjmedia.com') *
+      IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['PJM'], pjm)
 
-rubinreports = GMAIL.INBOX:match_from('profbarryrubin@yahoo.com') *
-               GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['RubinReports'], rubinreports)
+rubinreports = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('profbarryrubin@yahoo.com') *
+               IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['RubinReports'], rubinreports)
 
-vfr = GMAIL.INBOX:match_from('vfr-no-reply@aynrand.org') *
-      GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['VfR'], vfr)
+vfr = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('vfr-no-reply@aynrand.org') *
+      IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['VfR'], vfr)
