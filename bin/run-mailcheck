@@ -1,7 +1,7 @@
 #!ZSH_PATH
 MAIL=`mailcheck`
-GMAIL=`echo $MAIL | /bin/grep -v QueensU`
-QUEENSU=`echo $MAIL | /bin/grep QueensU`
+GMAIL=`echo $MAIL | grep -v QueensU`
+QUEENSU=`echo $MAIL | grep QueensU`
 if echo $GMAIL | grep -q new ; then
     echo $GMAIL | awk '{printf("%d(%d)"), $6, $3}' > ~/.xmonad/gmailcheck;
 else
