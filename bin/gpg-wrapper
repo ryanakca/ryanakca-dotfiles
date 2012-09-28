@@ -26,12 +26,12 @@ fi
 # --lock-never is needed since encfs doesn't support locking any more
 if [ -f ${decrypted_dir}/gpg.conf ]
 then
-    exec gpg --lock-never --homedir ${decrypted_dir} $@
+    exec GPG_BINARY --lock-never --homedir ${decrypted_dir} $@
 else
     gpg-mounter
     if [ -f ${decrypted_dir}/gpg.conf ]
     then
-        exec gpg --lock-never --homedir ${decrypted_dir} $@
+        exec GPG_BINARY --lock-never --homedir ${decrypted_dir} $@
     else
         echo 'No gnupg.conf in ${decrypted_dir}'
         exit 1

@@ -18,6 +18,7 @@ LOCAL_FILES = \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
     .zshrc \
+    bin/gpg-wrapper \
     bin/run-mailcheck
 
 # GPG encrypted files
@@ -76,6 +77,7 @@ CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 
 SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
+GPG_BINARY    = $(call get-val,GPG_BINARY)
 
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
@@ -91,6 +93,7 @@ VARS_.xinitrc           = SCREENLAYOUT REDSHIFT_MODE GSD_PATH
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
 VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH KEYCHAIN
+VARS_bin/gpg-wrapper    = GPG_BINARY
 VARS_bin/run-mailcheck  = ZSH_PATH GREP_PATH
 
 all: clean build
@@ -115,7 +118,7 @@ FORCE:
 # $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
 $(GPG_FILES):
 	touch $@ && chmod 600 $@
-	[ "$(GPG_DISABLED)" = "True" ] || gpg --decrypt gpg/$@.gpg > $@
+	[ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$@.gpg > $@
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
@@ -146,7 +149,7 @@ sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 
 sha256sums.asc: sha256sums
 	rm -f $@
-	gpg --armor --detach-sign $<
+	$(GPG_BINARY) --armor --detach-sign $<
 
 merge: SUBSTS $(SUBSTS_FILE)
 	# sdiff has exit status 1 if files are different. Ignore
@@ -195,7 +198,7 @@ verify:
 	    } END { \
 		print match_count, "matches, ", mismatch_count, "mismatches." \
 	}' sha256sums
-	gpg --verify sha256sums.asc
+	$(GPG_BINARY) --verify sha256sums.asc
 
 udh:
 	rsync -avz master.debian.org:/var/lib/misc/master.debian.org/ssh_known_hosts .ssh/known_hosts.d/debian
