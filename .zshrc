@@ -57,7 +57,7 @@ export CCACHE_DIR=/ccache
 #export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
 export MANOPT="-L en"
-export BTS_SENDMAIL_COMMAND="/usr/bin/msmtp"
+export BTS_SENDMAIL_COMMAND="msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export PDFVIEWER=evince
@@ -65,7 +65,7 @@ export TEXMFHOME=/home/ryan/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 
 alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
-alias emacs='/usr/bin/emacs -nw'
+alias emacs='emacs -nw'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
 alias sneezymud='nc play.sneezymud.com 7900'
