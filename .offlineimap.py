@@ -23,8 +23,12 @@ def mycmp_oldofflineimap(x, y):
 
 def mycmp_newofflineimap(x, y):
   for prefix in prioritized:
-    xsw = x.visiblename.startswith(prefix)
-    ysw = y.visiblename.startswith(prefix)
+    if offlineimap.__version__ < '6.4':
+      xsw = x.startswith(prefix)
+      ysw = y.startswith(prefix)
+    else:
+      xsw = x.visiblename.startswith(prefix)
+      ysw = y.visiblename.startswith(prefix)
     if xsw and ysw:
       return cmp(x, y)
     elif xsw:
