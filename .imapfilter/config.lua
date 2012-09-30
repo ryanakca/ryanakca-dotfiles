@@ -238,9 +238,9 @@ qsocial = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Queens.social'], qsocial)
 
 qsail = ( IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail.*@cs.queensu.ca') +
-          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('sail.*@cs.queensu.ca') +
-          IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail4schedule@gmail.com') ) *
-        IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('sail.*@cs.queensu.ca') ) *
+        IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() +
+        IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail4schedule@gmail.com')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Queens.SAIL'], qsail)
 
 -- McGill
