@@ -72,3 +72,8 @@ IMAPFILTER_GMAIL_SERVER REMOTE_GMAIL
 
 # gpg or gpg2
 GPG_BINARY gpg2
+
+# pgpewrap
+# /usr/local/bin/pgpewrap on OpenBSD
+# /usr/lib/mutt/pgpewrap on Debian
+PGPEWRAP_BINARY /usr/lib/mutt/pgpewrap
