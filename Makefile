@@ -34,6 +34,7 @@ GPG_FILES = \
 GLOBAL_FILES = \
     .Xdefaults \
     .Xsession \
+    .asoundrc \
     .beetsconfig \
     .config/nitrogen/ \
     .cmus/ \
