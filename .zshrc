@@ -310,7 +310,7 @@ fi
 # % zkbd
 # to discover your keys.
 
-bindkey -v             # Vi keybindings.
+# bindkey -v             # Vi keybindings.
 
 typeset -U fpath
 
@@ -318,7 +318,7 @@ prompt wunjo
 # Actually, stick with emacs for the moment. The vi keymap just doesn't
 # seem to be as complete (even if it's nicer for editing, there's no
 # execute-named-cmd bound, for example).
-#bindkey -e             # Emacs keybindings.
+bindkey -e             # Emacs keybindings.
 
 # Up, down left, right.
 # echotc forms part of the zsh/termcap module. It outputs the termcap value
