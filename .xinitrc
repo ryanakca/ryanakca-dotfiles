@@ -15,8 +15,7 @@ urxvtd -q -f -o &
 urxvtc &
 # /home/ryan/.screenlayout/work.sh
 /home/ryan/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
-if [[ "PULSE_JACKD" = "True" ]]; then
-   start-pulseaudio-x11 &
-   jackd -d alsa &
+if [ "PULSE_JACKD" = "True" ]; then
+    sh bin/startaudio &
 fi
 exec /usr/bin/xmonad
