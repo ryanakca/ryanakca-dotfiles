@@ -6,8 +6,8 @@ metadata = ~/.offlineimap
 accounts = GMAIL, QueensU, McGillSOCS, McGill
 #, GMAIL
 pythonfile=~/.offlineimap.py
-# EIMEAR
 maxsyncaccounts = 5
+sslcacertfile = SSL_CERTS
 
 #### GMAIL Account Settings
 [Account GMAIL]
@@ -38,10 +38,10 @@ remoteuser = ryanakca@gmail.com
 remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
-cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
 realdelete = no
 folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
 idlefolders = ['INBOX']
+sslcacertfile = SSL_CERTS
 
 ##### QueensU mail
 [Account QueensU]
