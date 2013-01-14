@@ -90,7 +90,8 @@ ubugs =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Bug:.*distribut
          IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uBugs'], ubugs)
 
-kubuntuninjas = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas')
+kubuntuninjas = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas') +
+                IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ppa-staging')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kubuntu-ninjas'], kubuntuninjas)
 
 --answers =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Question: distribution=ubuntu.*')
@@ -275,3 +276,6 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['RubinReport
 vfr = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('vfr-no-reply@aynrand.org') *
       IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['VfR'], vfr)
+
+epic = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'Every Pub In Cambridge <epic.einval.com>')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Internship.epic'], epic)
