@@ -1,6 +1,6 @@
 text/html;      w3m %s; nametemplate=%s.html
 text/html;      w3m -dump %s; nametemplate=%s.html; copiousoutput
-application/pdf;            evince '%s';        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
+application/pdf;            mutt_bgrun evince '%s';        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-pdf;          evince '%s';        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-gzpdf;        evince '%s';        nametemplate=%s.pdf.gz;   test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-bzpdf;        evince '%s';        nametemplate=%s.pdf.bz2;  test=test "$DISPLAY" != ""; description=Portable Document Format
