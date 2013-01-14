@@ -27,7 +27,9 @@ type = IMAP
 remotehost = localhost
 remoteuser = ryan
 remotepass = LOCAL_PASS
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
+# Don't try to sync local changes to [Google Mail]/Chat remotely, it's read-only
+# on Gmail's end.
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
 idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
