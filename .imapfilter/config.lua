@@ -47,7 +47,6 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uWeb
 UbuntuDevelAnnounce = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-devel-announce.lists.ubuntu.com')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uDevelAnnounce'], UbuntuDevelAnnounce)
 
-
 ubuntuCanada = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'ubuntu-ca.lists.ubuntu.com')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uCanada'], ubuntuCanada)
 
@@ -91,7 +90,8 @@ ubugs =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Bug:.*distribut
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.uBugs'], ubugs)
 
 kubuntuninjas = IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas') +
-                IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ppa-staging')
+                IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-PPA: kubuntu-ppa-staging') +
+                IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'kubuntu-ppa.lists.launchpad.net')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Ubuntu.kubuntu-ninjas'], kubuntuninjas)
 
 --answers =  IMAPFILTER_GMAIL_SERVER.INBOX:match_header('X-Launchpad-Question: distribution=ubuntu.*')
@@ -193,6 +193,10 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['FreeBSD.fre
 
 freebsdcurrent = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'freebsd-current.freebsd.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['FreeBSD.freebsd-current'], freebsdcurrent)
+
+frescobaldi = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
+                IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com') )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.frescobaldi'], frescobaldi)
 
 -- O'ists
 
