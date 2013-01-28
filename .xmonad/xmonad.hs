@@ -1,10 +1,13 @@
 {-# OPTIONS_GHC -W -fwarn-unused-imports -fno-warn-missing-signatures -O2 #-}
 import XMonad
 -- import XMonad.Config.Kde
+import XMonad.Actions.CopyWindow
 import XMonad.Actions.CycleWS
+import XMonad.Actions.DynamicWorkspaces
 import XMonad.Actions.GridSelect
 import XMonad.Actions.PerWorkspaceKeys
 import XMonad.Actions.RotSlaves
+import XMonad.Actions.Submap
 import XMonad.Actions.UpdatePointer
 import XMonad.Config.Desktop
 -- import XMonad.Config.Kde
@@ -54,7 +57,7 @@ myTerminal = "urxvtc"
 
 -- My workspaces
 
-myWorkspaces = ["term", "web", "chatter", "code", "K/D", "music", "plasma", "LaTeX", "web-nb"]
+myWorkspaces = ["term", "web", "chatter", "code", "K/D", "music", "plasma", "LaTeX", "web-nb"] ++ (map show [10..20])
 
 -- Mouse bindings: default actions bound to mouse events
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
@@ -422,29 +425,48 @@ main = do
               ]
           viewShift = doF . liftM2 (.) W.greedyView W.shift 
           mykeys x = [
-        --      ((myMod, xK_x), spawn  myTerminal)
-        --      , ((myMod, xK_c), kill)
-               ((myMod, xK_Left), prevWS)
-              , ((myMod, xK_Right), nextWS)
-              , ((myMod, xK_a), myToggle)
-              , ((myMod, xK_z), shellPrompt myXPConfig)
-              , ((myMod, xK_g), goToSelected defaultGSConfig)
-              , ((myMod, xK_F4), spawn "sleep 0.5 && xset dpms force suspend")
-              , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
-              , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
-              , ((myMod, xK_F7), spawn "sleep 0.5 && /home/ryan/bin/dpr")
-              , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
-              , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
-              , ((myMod, xK_l), spawn "xautolock -enable && sleep 1 && xautolock -locknow")
-              , ((myMod .|. shiftMask, xK_l), spawn "xautolock -toggle")
-              , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
-              , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
-              , ((myMod .|. myCtrl .|. shiftMask, xK_Up),    sendMessage $ Move U)
-              , ((myMod .|. myCtrl .|. shiftMask, xK_Down),  sendMessage $ Move D)
-              , ((myMod, xK_BackSpace), focusUrgent)
-        --      , ((myMod, xK_Tab), bindOn [("chat", rotSlavesDown), ("", rotAllDown)])
-        --      , ((myMod .|. shiftMask, xK_Tab), bindOn [("chat", rotSlavesUp), ("", rotAllUp)])
-              , ((myMod, xK_s), sendMessage $ ToggleLayout)]
+            --      ((myMod, xK_x), spawn  myTerminal)
+            --      , ((myMod, xK_c), kill)
+            ((myMod, xK_Left), prevWS)
+            , ((myMod, xK_Right), nextWS)
+            , ((myMod .|. shiftMask, xK_Left),  shiftToPrev >> prevWS)
+            , ((myMod .|. shiftMask, xK_Right), shiftToNext >> nextWS)
+            , ((myMod, xK_a), myToggle)
+            , ((myMod, xK_z), shellPrompt myXPConfig)
+            , ((myMod, xK_g), goToSelected defaultGSConfig)
+            , ((myMod .|. shiftMask, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
+            , ((myMod, xK_F4), spawn "sleep 0.5 && xset dpms force suspend")
+            , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
+            , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
+            , ((myMod, xK_F7), spawn "sleep 0.5 && /home/ryan/bin/dpr")
+            , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
+            , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
+            , ((myMod, xK_l), spawn "xautolock -enable && sleep 1 && xautolock -locknow")
+            , ((myMod .|. shiftMask, xK_l), spawn "xautolock -toggle")
+            , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
+            , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
+            , ((myMod .|. myCtrl .|. shiftMask, xK_Up),    sendMessage $ Move U)
+            , ((myMod .|. myCtrl .|. shiftMask, xK_Down),  sendMessage $ Move D)
+            , ((myMod, xK_BackSpace), focusUrgent)
+              --      , ((myMod, xK_Tab), bindOn [("chat", rotSlavesDown), ("", rotAllDown)])
+              --      , ((myMod .|. shiftMask, xK_Tab), bindOn [("chat", rotSlavesUp), ("", rotAllUp)])
+            , ((myMod, xK_s), sendMessage $ ToggleLayout)
+            , (
+               (myMod, xK_m), submap . M.fromList $
+                              [ ((m, k), f)
+                              | m <- [0, myMod]
+                              , (k, f) <- [ (xK_a, addWorkspacePrompt myXPConfig)
+                                          , (xK_c, withWorkspace myXPConfig (windows . copy))
+                                          , (xK_d, kill1)
+                                          , (xK_k, removeWorkspace)
+                                          , (xK_m, withWorkspace myXPConfig (windows . W.shift))
+                                          , (xK_o, killAllOtherCopies)
+                                          , (xK_r, renameWorkspace myXPConfig)
+                                          , (xK_s, selectWorkspace myXPConfig)
+                                          ]
+                              ]
+                )
+              ]
           dvorakify kl = M.fromList $ map (\((m, k), d) -> ((m, dk k), d)) $ M.toList kl
           myFloats      = ["MPlayer", "Plasma-netbook", "Plasma-desktop", "plasma-netbook", "plasma-desktop"]
           plasmaD       = ["Plasma"]
