@@ -4,6 +4,7 @@ import XMonad
 import XMonad.Actions.CopyWindow
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
+import XMonad.Actions.CopyWindow(copy)
 import XMonad.Actions.GridSelect
 import XMonad.Actions.PerWorkspaceKeys
 import XMonad.Actions.RotSlaves
@@ -41,6 +42,7 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Loggers
+import XMonad.Util.NamedWindows
 import XMonad.Util.Run -- for spawnPipe
 import XMonad.Util.Themes
 import qualified XMonad.StackSet as W
@@ -221,7 +223,7 @@ myLayout = smartBorders $ toggleLayouts Full perWS
             )
         where
             -- Percent of the screen to increment by when resizing panes
-            delta = 3/100 
+            delta = 3/100
 
     myTall = ResizableTall nmaster delta ratio [50/100]
         where
@@ -318,10 +320,10 @@ dk k    | k == xK_grave = xK_dollar
 
         | k == xK_q = xK_semicolon -- upper row, left side
         | k == xK_Q = xK_colon
-  
+
         | k == xK_w = xK_comma
         | k == xK_W = xK_less
-  
+
         | k == xK_e = xK_period
         | k == xK_E = xK_greater
 
@@ -392,6 +394,13 @@ dk k    | k == xK_grave = xK_dollar
 	| otherwise = k
 
 
+myGSW :: GSConfig Window -> X (Maybe Window)
+myGSW gsconf = windowMap >>= gridselect gsconf
+
+-- myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
+myGSConfig :: HasColorizer a => GSConfig a
+myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
+
 main = do
     dzenpipe <- spawnPipe statusBarCmd
     xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "red", "-fg", "yellow", "-x", "1"] } urgencyConfig { remindWhen = Every 30 } --NoUrgencyHook
@@ -423,7 +432,7 @@ main = do
               , [ className   =? c --> doIgnore         | c <- panel ]
               , [ isFullscreen     --> doFullFloat ]
               ]
-          viewShift = doF . liftM2 (.) W.greedyView W.shift 
+          viewShift = doF . liftM2 (.) W.greedyView W.shift
           mykeys x = [
             --      ((myMod, xK_x), spawn  myTerminal)
             --      , ((myMod, xK_c), kill)
@@ -433,8 +442,8 @@ main = do
             , ((myMod .|. shiftMask, xK_Right), shiftToNext >> nextWS)
             , ((myMod, xK_a), myToggle)
             , ((myMod, xK_z), shellPrompt myXPConfig)
-            , ((myMod, xK_g), goToSelected defaultGSConfig)
-            , ((myMod .|. shiftMask, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
+            , ((myMod, xK_g), goToSelected myGSConfig)
+            , ((myMod .|. shiftMask, xK_g), gridselectWorkspace myGSConfig W.greedyView)
             , ((myMod, xK_F4), spawn "sleep 0.5 && xset dpms force suspend")
             , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
             , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
