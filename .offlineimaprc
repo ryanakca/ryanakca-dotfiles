@@ -58,9 +58,12 @@ postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
 [Repository RemoteQueensU]
 foldersort = lambda x, y: cmp(y, x)
 type = IMAP
-remoteuser = 9rak
-remotehost = mail.queensu.ca
+remoteuser = 9rak@queensu.ca
+remotehost = pod51018.outlook.com
 remotepass = QUEENSU_PASS
+remoteport = 993
+ssl = yes
+sslcacertfile = SSL_CERTS
 # Add QueensU prefix when copying to local
 nametrans = lambda foldername: 'QueensU.' + foldername
 
