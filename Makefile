@@ -11,6 +11,7 @@ LOCAL_FILES = \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
     .mutt/score.rc \
+    .mutt/ssl.rc \
     .muttrc \
     .netrc \
     .offlineimaprc \
@@ -88,6 +89,7 @@ VARS_.msmtprc           = GMAIL_PASS QUEENSU_PASS LOCALHOST MCGSOCS_PASS MCGILL_
 VARS_.mutt/accounts.rc  = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MSMTP_PATH MCGILL_PASS
 VARS_.mutt/gpg.rc       = GPG_BINARY PGPEWRAP_BINARY
 VARS_.mutt/score.rc     = MUTT_10_SCORE MUTT_20_SCORE
+VARS_.mutt/ssl.rc       = SSL_CERTS
 VARS_.muttrc            = MSMTP_PATH
 VARS_.netrc             = LOCAL_PASS GMAIL_PASS
 VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MCGSOCS_PASS MCGILL_PASS SSL_CERTS
