@@ -38,6 +38,7 @@ GLOBAL_FILES = \
     .asoundrc \
     .beetsconfig \
     .config/nitrogen/ \
+    .config/zathura/ \
     .cmus/ \
     .dput.cf \
     .dzen/ \
