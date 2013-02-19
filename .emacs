@@ -68,6 +68,10 @@
 ;; Emacs24: Also match for substrings in tab completion
 (add-to-list 'completion-styles 'substring)
 
+;; info location:
+(eval-after-load 'info
+                 '(add-to-list 'Info-directory-list "~/.emacs.d/share/info"))
+
 ;; Replace yes or no prompts with y or n.
 (fset 'yes-or-no-p 'y-or-n-p)
 

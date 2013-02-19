@@ -57,7 +57,7 @@ install-color-theme-6.6.0:
 
 install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(shell pwd)/$(@:install-%=%) \
+	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(EMACSD) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
 
 install-proofgeneral:
@@ -66,6 +66,5 @@ install-proofgeneral:
 
 clean-magit:
 	$(MAKE) -C $(@:clean-%=%) clean
-	rm -fr $(@:clean-%=%)/share
 
 .PHONY: all install clean $(CLEANDIRS)
