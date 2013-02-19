@@ -1,11 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d/auto-indent-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/magit")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/proofgeneral/coq/")
+(add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
-(add-to-list 'load-path "~/.emacs.d/ProofGeneral/")
-
-(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
 
 ;;;; AUTO COMPLETE
 (require 'auto-complete-config)
@@ -20,6 +17,9 @@
 
 ;;;; MAGIT
 (require 'magit)
+
+;;;; PROOFGENERAL
+(load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")
 
 ;;;; VC-GIT
 (setq load-path (cons (expand-file-name "/usr/share/doc/git-core/contrib/emacs") load-path))
