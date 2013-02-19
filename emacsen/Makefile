@@ -9,29 +9,39 @@ SUBDIRS = auto-complete \
 	  proofgeneral
 #	  color-theme-6.6.0 \
 
+MAKEDIRS = $(SUBDIRS:%=make-%)
 INSTALLDIRS = $(SUBDIRS:%=install-%)
 CLEANDIRS = $(SUBDIRS:%=clean-%)
 
-subdirs: $(SUBDIRS)
+all: subdirs
 
-$(SUBDIRS):
-	$(MAKE) -C $@
+subdirs: $(MAKEDIRS)
+
+$(MAKEDIRS):
+	$(MAKE) -C $(@:make-%=%)
+	touch $@
 
 install: $(INSTALLDIRS)
+install-% : make-%
 $(INSTALLDIRS):
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) install DIR=$(EMACSD)/$(@:install-%=%)
 
 clean: $(CLEANDIRS)
+	rm -f make-*
+
 $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-auto-indent-mode clean-auto-indent-mode:
+make-auto-indent-mode:
+	touch $@
+
+clean-auto-indent-mode:
 	echo $@
 
-proofgeneral:
-	$(MAKE) -C $@ compile
+make-proofgeneral:
+	$(MAKE) -C $(@:make-%=%) compile
 
 install-auto-complete:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
@@ -58,6 +68,4 @@ clean-magit:
 	$(MAKE) -C $(@:clean-%=%) clean
 	rm -fr $(@:clean-%=%)/share
 
-all: subdirs
-
-.PHONY: all subdirs $(SUBDIRS) install $(INSTALLDIRS) clean $(CLEANDIRS)
+.PHONY: all install clean $(CLEANDIRS)
