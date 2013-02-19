@@ -142,7 +142,7 @@ build/%: % $(SUBSTS_FILE)
 	@# Variables)."
 	[ "$(filter $*,$(LOCAL_FILES))" != "$*" ] || sed $(call get-sed-args,VARS_$*) $< > $@
 
-install: $(BUILD)
+install: build
 	rsync -a build/ ~
 	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
 	chmod 700 ~/.ssh
