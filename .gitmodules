@@ -1,0 +1,3 @@
+[submodule "emacsen/auto-complete"]
+	path = emacsen/auto-complete
+	url = git@github.com:auto-complete/auto-complete.git
