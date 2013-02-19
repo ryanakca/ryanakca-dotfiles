@@ -10,3 +10,6 @@
 [submodule "emacsen/proofgeneral"]
 	path = emacsen/proofgeneral
 	url = git@github.com:emacsmirror/proofgeneral.git
+[submodule "emacsen/popup"]
+	path = emacsen/popup
+	url = git@github.com:auto-complete/popup-el.git

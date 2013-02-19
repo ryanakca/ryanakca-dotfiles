@@ -6,6 +6,7 @@ export ELISPDIR
 SUBDIRS = auto-complete \
 	  auto-indent-mode \
 	  magit \
+	  popup \
 	  proofgeneral
 #	  color-theme-6.6.0 \
 
@@ -34,11 +35,15 @@ $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-auto-indent-mode:
+make-auto-indent-mode make-popup:
 	touch $@
 
 clean-auto-indent-mode:
 	echo $@
+
+make-auto-complete:
+	$(MAKE) -C $(@:make-%=%) -e EMACS="emacs -L ../popup/"
+	touch $@
 
 make-proofgeneral:
 	$(MAKE) -C $(@:make-%=%) compile
@@ -59,6 +64,10 @@ install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(EMACSD) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
+
+install-popup:
+	mkdir -p $(EMACSD)/$(@:install-%=%)
+	install -m 644 $(@:install-%=%)/popup.el $(EMACSD)/$(@:install-%=%)/
 
 install-proofgeneral:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
