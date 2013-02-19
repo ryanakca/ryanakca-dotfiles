@@ -1,3 +1,9 @@
 [submodule "emacsen/auto-complete"]
 	path = emacsen/auto-complete
 	url = git@github.com:auto-complete/auto-complete.git
+[submodule "emacsen/auto-indent-mode"]
+	path = emacsen/auto-indent-mode
+	url = https://github.com/mlf176f2/auto-indent-mode.el/
+[submodule "emacsen/magit"]
+	path = emacsen/magit
+	url = git@github.com:magit/magit.git
