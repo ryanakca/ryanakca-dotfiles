@@ -1,6 +1,6 @@
 ROOT=$(shell pwd)/..
 export ROOT
-EMACSD=$(ROOT)/.emacs.d/
+EMACSD=$(ROOT)/build/.emacs.d/
 export ELISPDIR
 
 SUBDIRS = auto-complete \
@@ -19,7 +19,7 @@ $(SUBDIRS):
 
 install: $(INSTALLDIRS)
 $(INSTALLDIRS):
-	-mkdir $(EMACSD)/$(@:install-%=%)
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) install DIR=$(EMACSD)/$(@:install-%=%)
 
 clean: $(CLEANDIRS)
@@ -31,19 +31,19 @@ auto-indent-mode clean-auto-indent-mode:
 	echo $@
 
 install-auto-complete:
-	-mkdir $(EMACSD)/$(@:install-%=%)
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) install
 
 install-auto-indent-mode:
-	-mkdir $(EMACSD)/$(@:install-%=%)
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	cp $(@:install-%=%)/auto-indent-mode.el $(EMACSD)/$(@:install-%=%)
 	
 install-color-theme-6.6.0:
-	-mkdir $(EMACSD)/$(@:install-%=%)
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e ELISPDIR=$(EMACSD)/$(@:install-%=%) install
 
 install-magit:
-	-mkdir $(EMACSD)/$(@:install-%=%)
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(shell pwd)/$(@:install-%=%) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
 

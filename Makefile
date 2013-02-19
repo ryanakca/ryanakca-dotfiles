@@ -42,6 +42,7 @@ GLOBAL_FILES = \
     .cmus/ \
     .dput.cf \
     .dzen/ \
+    .emacs \
     .fonts.conf \
     .gitconfig \
     .imapfilter/ \
@@ -108,7 +109,7 @@ all: clean build
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 
-build: $(BUILD)
+build: $(BUILD) emacsen
 
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
@@ -125,6 +126,10 @@ FORCE:
 $(GPG_FILES):
 	touch $@ && chmod 600 $@
 	[ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$@.gpg > $@
+
+emacsen:
+	$(MAKE) -C $@
+	$(MAKE) -C $@ install
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
@@ -211,7 +216,8 @@ udh:
 
 clean:
 	rm -fr build
+	$(MAKE) -C emacsen clean
 
 clobber: clean
 	rm -f $(GPG_FILES)
-.PHONY: build install clean verify merge udh
+.PHONY: build install clean verify merge udh emacsen
