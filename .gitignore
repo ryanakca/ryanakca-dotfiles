@@ -7,3 +7,4 @@ SUBSTS.merged
 .ssh/id_rsa
 .ssh/id_ecdsa
 .ssh/id_rsa.lambda
+emacsen/make-*
