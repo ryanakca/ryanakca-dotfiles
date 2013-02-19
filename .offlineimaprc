@@ -94,7 +94,7 @@ remoteuser = ryank
 remotehost = mail.cs.mcgill.ca
 remotepass = MCGSOCS_PASS
 ssl = yes
-cert_fingerprint = 207b114fc9cd4a52f586a350a4dfab05c5c7ad8b
+cert_fingerprint = ec83347f1871cb06d12910bf88b6ebea53ee4d33
 # sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
 # Add McGSOCS prefix when copying to local
 nametrans = lambda foldername: 'McGSOCS.' + foldername
