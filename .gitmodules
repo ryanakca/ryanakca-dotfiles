@@ -7,3 +7,6 @@
 [submodule "emacsen/magit"]
 	path = emacsen/magit
 	url = git@github.com:magit/magit.git
+[submodule "emacsen/proofgeneral"]
+	path = emacsen/proofgeneral
+	url = git@github.com:emacsmirror/proofgeneral.git

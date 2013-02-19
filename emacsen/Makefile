@@ -5,9 +5,9 @@ export ELISPDIR
 
 SUBDIRS = auto-complete \
 	  auto-indent-mode \
-	  magit
+	  magit \
+	  proofgeneral
 #	  color-theme-6.6.0 \
-#	  ProofGeneral-4.1
 
 INSTALLDIRS = $(SUBDIRS:%=install-%)
 CLEANDIRS = $(SUBDIRS:%=clean-%)
@@ -30,6 +30,9 @@ $(CLEANDIRS):
 auto-indent-mode clean-auto-indent-mode:
 	echo $@
 
+proofgeneral:
+	$(MAKE) -C $@ compile
+
 install-auto-complete:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) install
@@ -46,6 +49,10 @@ install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(shell pwd)/$(@:install-%=%) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
+
+install-proofgeneral:
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
+	$(MAKE) -C $(@:install-%=%) -e ELISP=$(EMACSD)/$(@:install-%=%) install-el install-elc
 
 clean-magit:
 	$(MAKE) -C $(@:clean-%=%) clean
