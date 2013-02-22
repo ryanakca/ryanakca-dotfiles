@@ -56,6 +56,7 @@
  '(auto-indent-next-pair-timer-interval (quote ((css-mode 1.5) (haskell-mode 1.5) (python-mode 1.5) (latex-mode 1.5) (coq-mode 1.5) (default 0.0005))))
  '(column-number-mode t)
  '(default-input-method "TeX")
+ '(inhibit-startup-screen t)
  '(proof-disappearing-proofs t)
  '(proof-electric-terminator-enable t)
  '(scroll-bar-mode nil)
