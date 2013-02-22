@@ -7,6 +7,9 @@
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
 
+(require 'epa-file)
+(epa-file-enable)
+
 ;;;; AUTO COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
