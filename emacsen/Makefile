@@ -6,6 +6,7 @@ export ELISPDIR
 SUBDIRS = auto-complete \
 	  auto-indent-mode \
 	  magit \
+	  markdown-mode \
 	  popup \
 	  proofgeneral
 #	  color-theme-6.6.0 \
@@ -35,10 +36,10 @@ $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-auto-indent-mode make-popup:
+make-auto-indent-mode make-markdown-mode make-popup:
 	touch $@
 
-clean-auto-indent-mode:
+clean-auto-indent-mode clean-markdown-mode clean-popup:
 	echo $@
 
 make-auto-complete:
@@ -64,6 +65,9 @@ install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(EMACSD) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
+install-markdown-mode:
+	mkdir -p $(EMACSD)/$(@:install-%=%)
+	install -m 644 $(@:install-%=%)/markdown-mode.el $(EMACSD)/$(@:install-%=%)/
 
 install-popup:
 	mkdir -p $(EMACSD)/$(@:install-%=%)

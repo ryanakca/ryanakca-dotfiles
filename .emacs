@@ -1,6 +1,8 @@
+(add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-indent-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/magit")
+(add-to-list 'load-path "~/.emacs.d/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
 
@@ -17,6 +19,11 @@
 
 ;;;; MAGIT
 (require 'magit)
+
+;;;; MARKDOWN-MODE
+(autoload 'markdown-mode "markdown-mode"
+          "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 
 ;;;; PROOFGENERAL
 (load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")

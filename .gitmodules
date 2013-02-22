@@ -13,3 +13,6 @@
 [submodule "emacsen/popup"]
 	path = emacsen/popup
 	url = git@github.com:auto-complete/popup-el.git
+[submodule "emacsen/markdown-mode"]
+	path = emacsen/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
