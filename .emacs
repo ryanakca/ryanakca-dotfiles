@@ -8,9 +8,6 @@
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
 
-(require 'epa-file)
-(epa-file-enable)
-
 ;;;; AUTO COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
@@ -24,6 +21,10 @@
 
 ;;;; DICTEM
 (require 'dictem)
+
+;;; EasyPG, bunled with emacs for encrypted files
+(require 'epa-file)
+(epa-file-enable)
 
 ;;;; MAGIT
 (require 'magit)
