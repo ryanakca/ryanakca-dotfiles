@@ -16,3 +16,9 @@
 [submodule "emacsen/markdown-mode"]
 	path = emacsen/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "dictem"]
+	path = dictem
+	url = git@github.com:cheusov/dictem.git
+[submodule "emacsen/dictem"]
+	path = emacsen/dictem
+	url = git@github.com:cheusov/dictem.git

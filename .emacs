@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-indent-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/dictem")
 (add-to-list 'load-path "~/.emacs.d/popup")
 (add-to-list 'load-path "~/.emacs.d/magit")
 (add-to-list 'load-path "~/.emacs.d/markdown-mode")
@@ -20,6 +21,9 @@
 ;;;; AUTO INDENT
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
+
+;;;; DICTEM
+(require 'dictem)
 
 ;;;; MAGIT
 (require 'magit)

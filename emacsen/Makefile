@@ -5,6 +5,7 @@ export ELISPDIR
 
 SUBDIRS = auto-complete \
 	  auto-indent-mode \
+	  dictem \
 	  magit \
 	  markdown-mode \
 	  popup \
@@ -36,10 +37,10 @@ $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-auto-indent-mode make-markdown-mode make-popup:
+make-auto-indent-mode make-markdown-mode make-popup make-dictem:
 	touch $@
 
-clean-auto-indent-mode clean-markdown-mode clean-popup:
+clean-auto-indent-mode clean-markdown-mode clean-popup make-dictem:
 	echo $@
 
 make-auto-complete:
@@ -56,6 +57,10 @@ install-auto-complete:
 install-auto-indent-mode:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	cp $(@:install-%=%)/auto-indent-mode.el $(EMACSD)/$(@:install-%=%)
+
+install-dictem:
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
+	install -m 644 $(@:install-%=%)/*.el $(EMACSD)/$(@:install-%=%)
 	
 install-color-theme-6.6.0:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
