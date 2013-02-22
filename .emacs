@@ -15,7 +15,7 @@
 (ac-config-default)
 (ac-set-trigger-key "TAB")
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-(add-to-list 'ac-modes 'Coq-mode)
+(add-to-list 'ac-modes 'Coq-mode 'LaTeX/PS)
 
 ;;;; AUTO INDENT
 (require 'auto-indent-mode)
