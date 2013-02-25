@@ -211,8 +211,12 @@ verify:
 	}' sha256sums
 	$(GPG_BINARY) --verify sha256sums.asc
 
-udh:
-	rsync -avz master.debian.org:/var/lib/misc/master.debian.org/ssh_known_hosts .ssh/known_hosts.d/debian
+udh: udh-master
+
+# As a backup for when master changes
+udh-%:
+	# -L to follow symlinks
+	rsync -avzL $(@:udh-%=%).debian.org:/var/lib/misc/ssh_known_hosts .ssh/known_hosts.d/debian
 
 clean:
 	rm -fr build
