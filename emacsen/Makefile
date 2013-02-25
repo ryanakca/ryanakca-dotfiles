@@ -94,4 +94,10 @@ install-vm:
 clean-vm:
 	$(MAKE) -C $(@:clean-%=%) distclean
 
-.PHONY: all install clean $(CLEANDIRS)
+clobber:
+	for dir in $(SUBDIRS); do \
+	    git --git-dir=$${dir}/.git reset --hard HEAD; \
+	    git --git-dir=$${dir}/.git clean -qxdf; \
+	done
+
+.PHONY: all install clean $(CLEANDIRS) clobber

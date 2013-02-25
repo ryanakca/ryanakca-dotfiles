@@ -220,4 +220,6 @@ clean:
 
 clobber: clean
 	rm -f $(GPG_FILES)
+	$(MAKE) -C emacsen clobber
+
 .PHONY: build install clean verify merge udh emacsen
