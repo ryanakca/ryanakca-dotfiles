@@ -134,8 +134,6 @@ if [[ `uname` = "Linux" ]]; then
 
     alias chown="chown -v"
     alias chmod="chmod -v"
-
-    alias grep="grep --colour=auto" # Colour grep too.
 fi
 alias ls="SUBSTS_LS --classify --color=always" # Add all colours and
                                     # have fancy symbols for files, etc.
