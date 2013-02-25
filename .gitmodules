@@ -22,3 +22,6 @@
 [submodule "emacsen/dictem"]
 	path = emacsen/dictem
 	url = git@github.com:cheusov/dictem.git
+[submodule "emacsen/vm"]
+	path = emacsen/vm
+	url = git@github.com:emacsmirror/vm.git

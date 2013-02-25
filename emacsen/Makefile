@@ -9,7 +9,8 @@ SUBDIRS = auto-complete \
 	  magit \
 	  markdown-mode \
 	  popup \
-	  proofgeneral
+	  proofgeneral \
+	  vm
 #	  color-theme-6.6.0 \
 
 MAKEDIRS = $(SUBDIRS:%=make-%)
@@ -50,6 +51,10 @@ make-auto-complete:
 make-proofgeneral:
 	$(MAKE) -C $(@:make-%=%) compile
 
+make-vm:
+	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD)
+	$(MAKE) -C $(@:make-%=%)
+
 install-auto-complete:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) install
@@ -82,7 +87,14 @@ install-proofgeneral:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e ELISP=$(EMACSD)/$(@:install-%=%) install-el install-elc
 
+install-vm:
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
+	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
+
 clean-magit:
 	$(MAKE) -C $(@:clean-%=%) clean
+
+clean-vm:
+	$(MAKE) -C $(@:clean-%=%) distclean
 
 .PHONY: all install clean $(CLEANDIRS)
