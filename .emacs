@@ -16,6 +16,10 @@
 (add-to-list 'ac-modes 'Coq-mode)
 (add-to-list 'ac-modes 'latex-mode)
 
+;;;; AUTO FILL
+; We want auto-fill enabled for all text modes
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 ;;;; AUTO INDENT
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
