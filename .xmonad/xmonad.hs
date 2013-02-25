@@ -394,8 +394,8 @@ dk k    | k == xK_grave = xK_dollar
 	| otherwise = k
 
 
-myGSW :: GSConfig Window -> X (Maybe Window)
-myGSW gsconf = windowMap >>= gridselect gsconf
+-- myGSW :: GSConfig Window -> X (Maybe Window)
+-- myGSW gsconf = windowMap >>= gridselect gsconf
 
 -- myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
 myGSConfig :: HasColorizer a => GSConfig a
