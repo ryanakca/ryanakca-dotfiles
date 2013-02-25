@@ -91,9 +91,6 @@ install-vm:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
 
-clean-magit:
-	$(MAKE) -C $(@:clean-%=%) clean
-
 clean-vm:
 	$(MAKE) -C $(@:clean-%=%) distclean
 
