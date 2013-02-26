@@ -104,3 +104,4 @@
 (set-face-foreground 'region "gray60")
 (set-foreground-color "white")
 (set-cursor-color "red")
+(put 'narrow-to-region 'disabled nil)
