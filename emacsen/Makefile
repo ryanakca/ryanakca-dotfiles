@@ -41,7 +41,7 @@ $(CLEANDIRS):
 make-auto-indent-mode make-markdown-mode make-popup make-dictem:
 	touch $@
 
-clean-auto-indent-mode clean-markdown-mode clean-popup make-dictem:
+clean-auto-indent-mode clean-markdown-mode clean-popup clean-dictem:
 	echo $@
 
 make-auto-complete:
