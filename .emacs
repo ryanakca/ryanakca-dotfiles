@@ -8,6 +8,10 @@
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
 
+;;;; AUCTEX
+(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
+(setq TeX-view-program-selection '((output-pdf "Evince")))
+
 ;;;; AUTO COMPLETE
 (require 'auto-complete-config)
 (ac-config-default)
