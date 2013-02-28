@@ -50,6 +50,9 @@
 ;;; THEME
 (load-theme 'ryanakca t)
 
+;;;; TRAMP, bundled with emacs for editing remote files
+(require 'tramp)
+
 ;;;; VC-GIT
 (setq load-path (cons (expand-file-name "/usr/share/doc/git-core/contrib/emacs") load-path))
 (require 'vc-git)
