@@ -7,6 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;;;; AUCTEX
 (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
@@ -46,6 +47,9 @@
 ;;;; PROOFGENERAL
 (load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")
 
+;;; THEME
+(load-theme 'ryanakca t)
+
 ;;;; VC-GIT
 (setq load-path (cons (expand-file-name "/usr/share/doc/git-core/contrib/emacs") load-path))
 (require 'vc-git)
@@ -76,7 +80,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 83 :width normal))))
- '(proof-locked-face ((t (:weight bold)))))
+ '(proof-locked-face ((t (:weight bold))) t))
 
 ;;;; TeX
 (setq TeX-PDF-mode t)
@@ -101,11 +105,4 @@
 ;; Replace yes or no prompts with y or n.
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(set-background-color "black")
-(set-face-background 'default "black")
-(set-face-background 'region "black")
-(set-face-foreground 'default "white")
-(set-face-foreground 'region "gray60")
-(set-foreground-color "white")
-(set-cursor-color "red")
 (put 'narrow-to-region 'disabled nil)

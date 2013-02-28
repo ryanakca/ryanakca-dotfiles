@@ -44,6 +44,7 @@ GLOBAL_FILES = \
     .dput.cf \
     .dzen/ \
     .emacs \
+    .emacs.d \
     .fonts.conf \
     .gitconfig \
     .imapfilter/ \
