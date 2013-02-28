@@ -66,6 +66,8 @@
 
 ;;;; VM
 (require 'vm-autoloads)
+; Make 'M-x compose-mail' (C-x m), create a VM-style composition buffer
+(setq mail-user-agent 'vm-user-agent)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
