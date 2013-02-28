@@ -90,10 +90,6 @@
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 83 :width normal))))
  '(proof-locked-face ((t (:weight bold))) t))
 
-(setq mew-proto "%")
-(setq mew-imap-user "ryan")
-(setq mew-imap-server "localhost")
-
 ;;; Others
 ;; Emacs24: Cycle through tab-completions with tab if there are less than 5
 (setq completion-cycle-threshold 5)
