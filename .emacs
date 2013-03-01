@@ -102,6 +102,8 @@
 (setq completion-cycle-threshold 5)
 ;; Emacs24: Also match for substrings in tab completion
 (add-to-list 'completion-styles 'substring)
+;; align text according to a delimiter
+(global-set-key (kbd "C-x a r") 'align-regexp)
 
 ;; info location:
 (eval-after-load 'info
