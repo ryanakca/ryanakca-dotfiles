@@ -28,3 +28,6 @@
 [submodule "emacsen/bbdb"]
 	path = emacsen/bbdb
 	url = git://git.savannah.nongnu.org/bbdb.git
+[submodule "emacsen/haskell-mode"]
+	path = emacsen/haskell-mode
+	url = git@github.com:haskell/haskell-mode.git

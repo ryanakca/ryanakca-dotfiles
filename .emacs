@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/.emacs.d/auto-indent-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/dictem")
+(add-to-list 'load-path "~/.emacs.d/haskell-mode")
 (add-to-list 'load-path "~/.emacs.d/popup")
 (add-to-list 'load-path "~/.emacs.d/magit")
 (add-to-list 'load-path "~/.emacs.d/markdown-mode")
@@ -36,6 +37,11 @@
 ;;; EasyPG, bunled with emacs for encrypted files
 (require 'epa-file)
 (epa-file-enable)
+
+;;;; HASKELL-MODE
+(require 'haskell-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;;;; MAGIT
 (require 'magit)

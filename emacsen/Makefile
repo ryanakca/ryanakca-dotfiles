@@ -8,6 +8,7 @@ SUBDIRS = auto-complete \
 	  auto-indent-mode \
 	  bbdb \
 	  dictem \
+	  haskell-mode \
 	  magit \
 	  markdown-mode \
 	  popup \
@@ -56,6 +57,10 @@ make-bbdb: make-vm
 	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir --with-vm-dir=$(EMACSEN)/vm/lisp
 	$(MAKE) -C $(@:make-%=%)
 
+make-haskell-mode:
+	$(MAKE) -C $(@:make-%=%) compile
+	touch $@
+
 make-proofgeneral:
 	$(MAKE) -C $(@:make-%=%) compile
 
@@ -82,6 +87,10 @@ install-dictem:
 install-color-theme-6.6.0:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e ELISPDIR=$(EMACSD)/$(@:install-%=%) install
+
+install-haskell-mode: make-haskell-mode
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
+	install -m 644 $(@:install-%=%)/*.elc $(EMACSD)/$(@:install-%=%)
 
 install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
