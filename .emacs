@@ -7,6 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/vm")
+(add-to-list 'load-path "~/.emacs.d/share/emacs/site-lisp/bbdb")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;;;; AUCTEX

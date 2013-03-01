@@ -2,9 +2,11 @@ ROOT=$(shell pwd)/..
 export ROOT
 EMACSD=$(ROOT)/build/.emacs.d/
 export ELISPDIR
+EMACSEN=$(ROOT)/emacsen
 
 SUBDIRS = auto-complete \
 	  auto-indent-mode \
+	  bbdb \
 	  dictem \
 	  magit \
 	  markdown-mode \
@@ -48,11 +50,15 @@ make-auto-complete:
 	$(MAKE) -C $(@:make-%=%) -e EMACS="emacs -L ../popup/"
 	touch $@
 
+make-bbdb: make-vm
+	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir --with-vm-dir=$(EMACSEN)/vm/lisp
+	$(MAKE) -C $(@:make-%=%)
+
 make-proofgeneral:
 	$(MAKE) -C $(@:make-%=%) compile
 
 make-vm:
-	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD)
+	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --with-other-dirs=$(EMACSEN)/bbdb/lisp
 	$(MAKE) -C $(@:make-%=%)
 
 install-auto-complete:
@@ -62,6 +68,10 @@ install-auto-complete:
 install-auto-indent-mode:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	cp $(@:install-%=%)/auto-indent-mode.el $(EMACSD)/$(@:install-%=%)
+
+install-bbdb:
+	-mkdir -p $(EMACSD)/$(@:install-%=%)
+	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
 
 install-dictem:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)

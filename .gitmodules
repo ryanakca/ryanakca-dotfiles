@@ -25,3 +25,6 @@
 [submodule "emacsen/vm"]
 	path = emacsen/vm
 	url = git@github.com:emacsmirror/vm.git
+[submodule "emacsen/bbdb"]
+	path = emacsen/bbdb
+	url = git://git.savannah.nongnu.org/bbdb.git
