@@ -28,6 +28,8 @@ $(MAKEDIRS):
 	touch $@
 
 install: $(INSTALLDIRS)
+	install-info $(EMACSD)/share/info/*.info $(EMACSD)/share/info/dir
+
 install-% : make-%
 $(INSTALLDIRS):
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
