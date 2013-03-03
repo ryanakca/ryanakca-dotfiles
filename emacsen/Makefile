@@ -56,6 +56,7 @@ make-auto-complete:
 make-bbdb: make-vm
 	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir --with-vm-dir=$(EMACSEN)/vm/lisp
 	$(MAKE) -C $(@:make-%=%)
+	touch $@
 
 make-haskell-mode:
 	$(MAKE) -C $(@:make-%=%) compile
@@ -63,10 +64,12 @@ make-haskell-mode:
 
 make-proofgeneral:
 	$(MAKE) -C $(@:make-%=%) compile
+	touch $@
 
 make-vm:
 	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --with-other-dirs=$(EMACSEN)/bbdb/lisp
 	$(MAKE) -C $(@:make-%=%)
+	touch $@
 
 install-auto-complete:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
