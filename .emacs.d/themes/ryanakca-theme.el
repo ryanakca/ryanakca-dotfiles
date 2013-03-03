@@ -1,5 +1,5 @@
 (deftheme ryanakca
-  "Created 2013-02-28.")
+  "Created 2013-03-01.")
 
 (custom-theme-set-faces
  'ryanakca
@@ -15,8 +15,8 @@
  '(secondary-selection ((t (:foreground "#f6f3e8" :background "#333366"))))
  '(trailing-whitespace ((t (:background "#a40000"))))
  '(font-lock-builtin-face ((t (:foreground "LightCoral"))))
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "#005fff"))))
- '(font-lock-comment-face ((t (:foreground "#005fff" :slant oblique))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#DC45DC" :inherit font-lock-comment-face))))
+ '(font-lock-comment-face ((t (:foreground "#DC45DC" :slant oblique))))
  '(font-lock-constant-face ((t (:foreground "orchid" :weight bold))))
  '(font-lock-doc-face ((t (:slant oblique :foreground "moccasin" :inherit (font-lock-string-face)))))
  '(font-lock-function-name-face ((t (:foreground "deep sky blue" :weight bold :height 1.1))))
