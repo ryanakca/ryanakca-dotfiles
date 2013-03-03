@@ -40,7 +40,7 @@ clean: $(CLEANDIRS)
 	rm -f make-*
 
 $(CLEANDIRS):
-	$(MAKE) -C $(@:clean-%=%) clean
+	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
 make-auto-indent-mode make-markdown-mode make-popup make-dictem:
@@ -116,7 +116,7 @@ install-vm:
 	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
 
 clean-vm:
-	$(MAKE) -C $(@:clean-%=%) distclean
+	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) distclean
 
 clobber:
 	for dir in $(SUBDIRS); do \
