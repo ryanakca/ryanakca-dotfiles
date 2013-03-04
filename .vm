@@ -1,0 +1,127 @@
+;; -*- Emacs-Lisp -*-
+
+(setq vm-imap-account-alist
+      '(
+	("imap:localhost:143:*:login:ryan:*" "local")
+	("imap-ssl:imap.google.com:993:*:login:ryanakca:*" "gmail")
+	)
+      )
+
+(setq vm-primary-inbox "imap:localhost:143:INBOX:login:ryan:*")
+
+; Setup coloring
+(require 'u-vm-color)
+(add-hook 'vm-select-message-hook 'u-vm-color-fontify-buffer)
+(add-hook 'vm-summary-mode-hook 'u-vm-color-summary-mode)
+
+; Setup a shortcut to the whole visit-imap-folder nonsense
+(defalias 'imap 'vm-visit-imap-folder)
+
+; Keep the -> line centered
+(setq vm-auto-center-summary t)
+
+; Enable multiple sender profiles
+(require 'vm-pcrisis)
+(vmpc-my-identities "rak@debian.org" "ryanakca@gmail.com"
+		    "ryan.kavanagh@queensu.ca" "9rak@queensu.ca"
+                    "ryanakca@kubuntu.org" "ryanakca@ubuntu.com"
+		    "ryan@cs.queensu.ca" "ryank@cs.mcgill.ca"
+		    "ryan.kavanagh@mail.mcgill.ca")
+
+(setq vmpc-conditions
+      '( ("QueensU"
+	  (vmpc-folder-match ".*QueensU.*"))
+	 ("ToDeb"
+	  (vmpc-header-match "To" ".*debian.org"))
+	 ("default"
+	  (vmpc-folder-account-match "local"))
+	 ) )
+
+(setq vmpc-actions
+      '( ("FromQ"
+	  (vmpc-composition-buffer
+	    (setq user-mail-address "ryan.kavanagh@queensu.ca") ) )
+	 ("FromQCS"
+          (vmpc-composition-buffer
+            (setq user-mail-address "ryan@cs.queensu.ca") ) )
+	 ("FromDeb"
+          (vmpc-composition-buffer
+            (setq user-mail-address "rak@debian.org") ) )
+	 ) )
+
+(setq vmpc-default-rules
+      '( ("default" "FromDeb")
+	 ("QueensU" "FromQ")
+	 ) )
+
+(setq vmpc-reply-rules
+      '( ("ToDeb" "FromDeb")
+	 ) )
+
+;; Store login info in .authinfo.gpg
+(require 'auth-source)
+
+;; Display whole message, require <SPC> to mark as read
+(setq vm-preview-lines t)
+
+;; bind ! to flag a message
+(define-key vm-mode-map "!" 'vm-toggle-flag-message)
+;; We'll always be saving to an imap server
+(define-key vm-mode-map "s" 'vm-save-message-to-imap-folder)
+;; We'll always be switching to an imap server
+(define-key vm-mode-map "v" 'vm-visit-imap-folder)
+
+;; assume we're saving to the same imap server
+(setq vm-imap-save-to-server t)
+
+;; delete a message after saving it
+(setq vm-delete-after-saving t)
+
+;; move to the next message after deleting
+(setq vm-move-after-deleting t)
+
+;; ask before creating a new folder to save to
+(setq vm-confirm-new-folders t)
+
+;; Automatically verify mime signatures
+(setq vm-mime-verify-signatures t)
+
+;; Ident threads
+(setq-default vm-summary-show-threads t)
+
+;; Don't try to load entire messages into memory at startup.
+(setq vm-enable-external-messages '(imap))
+
+;; Set attribution format
+(setq vm-included-text-attribution-format "On %w, %m %2d, %y at %h %z, %F wrote:
+")
+
+;; Prefix included text by "> "
+(setq vm-included-text-prefix "> ")
+
+;;  include text in reply
+(setq vm-include-text-basic t)
+
+;; summary format
+(setq vm-summary-format "%n %*%a %-17.17F %2y %-3.3m %2d (%-4l) %4l/%-5c %I\"%s\"
+")
+
+;; fill paragraphs to 72 chars
+(setq vm-fill-paragraphs-containing-long-lines-in-reply 72)
+(setq vm-word-wrap-paragraphs-in-reply t)
+
+;; BBDB
+(require 'bbdb)
+(bbdb-initialize 'vm)
+(setq bbdb-send-mail-style 'vm)
+
+;; signature
+(setq mail-signature t)
+(setq mail-signature-file "~/.signature")
+
+;; gpg?
+(require 'vm-pgg)
+; prompt for signing
+(add-hook 'vm-mail-send-hook 'vm-pgg-ask-hook t)
+
+;; vim: set filetype=lisp:

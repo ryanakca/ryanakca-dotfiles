@@ -69,6 +69,7 @@ GLOBAL_FILES = \
     .vim/ \
     .vimperatorrc \
     .vimrc \
+    .vm \
     .xinitrc \
     .xkb/ \
     .xmobarrc \
