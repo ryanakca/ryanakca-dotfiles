@@ -31,6 +31,9 @@
 (require 'auto-indent-mode)
 (auto-indent-global-mode)
 
+;;;; CC-mode, bundled with emacs
+(setq c-default-style "bsd")
+
 ;;;; DICTEM
 (require 'dictem)
 
