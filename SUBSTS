@@ -8,6 +8,8 @@ SHA256 /sbin/sha256
 # Disable GPG decryption of sensitive files. Must be True to disable, enabled
 # for all other values
 GPG_DISABLED False
+# Do we build emacs? Must be True to disable.
+EMACS_DISABLED True
 # Mail passwords
 GMAIL_PASS secret
 QUEENSU_PASS secret

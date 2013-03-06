@@ -86,6 +86,7 @@ CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
 GPG_BINARY    = $(call get-val,GPG_BINARY)
+EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
@@ -131,8 +132,8 @@ $(GPG_FILES):
 	[ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$@.gpg > $@
 
 emacsen:
-	$(MAKE) -C $@
-	$(MAKE) -C $@ install
+	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@
+	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@ install
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
