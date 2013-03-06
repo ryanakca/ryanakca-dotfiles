@@ -135,9 +135,11 @@ if [[ `uname` = "Linux" ]]; then
 
     alias chown="chown -v"
     alias chmod="chmod -v"
+    alias ls="ls --classify --color=always" # Add all colours and
+                                            # have fancy symbols for files, etc.
+elif [[ `uname` = "OpenBSD" && -x /usr/local/bin/colorls ]]; then
+    alias ls="colorls -G"
 fi
-alias ls="SUBSTS_LS --classify --color=always" # Add all colours and
-                                    # have fancy symbols for files, etc.
 
 # Cause encfs unmount a mounted encrypted partition after twenty minutes of
 # inactivity by default.
