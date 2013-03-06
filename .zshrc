@@ -131,7 +131,7 @@ if [[ `uname` = "Linux" ]]; then
     alias ln="ln -v"
     # Only delete files on the current file system to avoid removing recursively
     # from bind mounts.
-    alias rm="SUBSTS_RM -iv --one-file-system"
+    alias rm="rm -iv --one-file-system"
 
     alias chown="chown -v"
     alias chmod="chmod -v"
