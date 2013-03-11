@@ -176,6 +176,10 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.dBug
 kdefrancophone = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'kde-francophone.kde.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['KDE.kde-francophone'], kdefrancophone)
 
+-- OpenBSD Stuff
+
+obsdtech = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'tech.openbsd.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSD.tech'], obsdtech)
 
 -- Other computer stuff
 --
