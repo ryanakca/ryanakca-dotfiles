@@ -80,6 +80,9 @@
 ;; move to the next message after deleting
 (setq vm-move-after-deleting t)
 
+;; move to the next message after reading
+(setq vm-move-after-reading t)
+
 ;; ask before creating a new folder to save to
 (setq vm-confirm-new-folders t)
 
