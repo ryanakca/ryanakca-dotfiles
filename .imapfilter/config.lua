@@ -164,6 +164,9 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debi
 debianhaskell = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-haskell.lists.debian.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-haskell'], debianhaskell)
 
+debianbsd = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'debian-bsd.lists.debian.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.debian-bsd'], debianbsd)
+
 dbugs = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('.*@bugs.debian.org') *
         IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Debian.dBugs'], dbugs)
