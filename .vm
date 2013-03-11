@@ -91,6 +91,7 @@
 
 ;; Don't try to load entire messages into memory at startup.
 (setq vm-enable-external-messages '(imap))
+(setq vm-imap-max-message-size 0)
 
 ;; Set attribution format
 (setq vm-included-text-attribution-format "On %w, %m %2d, %y at %h %z, %F wrote:
