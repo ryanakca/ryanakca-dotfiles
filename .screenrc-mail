@@ -1,4 +1,3 @@
 source ~/.screenrc
 sessionname mail
-screen -t offlineimap 1 offlineimap
 screen -t mutt 0 mutt
