@@ -30,32 +30,71 @@
 
 (setq vmpc-conditions
       '( ("QueensU"
-	  (vmpc-folder-match ".*QueensU.*"))
-	 ("ToDeb"
-	  (vmpc-header-match "To" ".*debian.org"))
+	  (vmpc-folder-match ".*QueensU.*") )
+	 ("To Debian"
+	  (vmpc-header-match "To" ".*debian.org") )
+	 ("To Queensu"
+	  (vmpc-header-match "To" ".*@queensu.ca") )
+	 ("To Ubuntu"
+	  (vmpc-match-header "To" ".*@ubuntu.com") )
+	 ("To Kubuntu"
+	  (vmpc-match-header "To" ".*@kubuntu.org") )
 	 ("default"
-	  (vmpc-folder-account-match "local"))
+	  (vmpc-none-true-yet) )
 	 ) )
 
 (setq vmpc-actions
-      '( ("FromQ"
+      '( ("From Queens"
 	  (vmpc-composition-buffer
-	    (setq user-mail-address "ryan.kavanagh@queensu.ca") ) )
-	 ("FromQCS"
+	    (setq user-mail-address "ryan.kavanagh@queensu.ca")
+            (setq sendmail-program "~/bin/msmtp/msmtp-queensu")
+	    (setq vm-mail-fcc "local:QueensU.Sent Items") )
+	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryan.kavanagh@queensu.ca>") )
+	 ("From Queens CS"
           (vmpc-composition-buffer
-            (setq user-mail-address "ryan@cs.queensu.ca") ) )
-	 ("FromDeb"
+	   (setq user-mail-address "ryan@cs.queensu.ca")
+           (setq sendmail-program "~/bin/msmtp/msmtp-queensucs")
+	   (setq vm-mail-fcc nil) )
+	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryan@cs.queensu.ca>") )
+	 ("From Debian"
           (vmpc-composition-buffer
-            (setq user-mail-address "rak@debian.org") ) )
+            (setq user-mail-address "rak@debian.org")
+	    (setq sendmail-program "~/bin/msmtp/msmtp-default")
+            (setq vm-mail-fcc nil) )
+	  (vmpc-substitute-header "From" "Ryan Kavanagh <rak@debian.org>") )
+	 ("From Ubuntu"
+	  (vmpc-composition-buffer
+	   (setq user-mail-address "ryanakca@ubuntu.com")
+	   (setq sendmail-program "~/bin/msmtp/msmtp-ubuntu")
+           (setq vm-mail-fcc nil) )
+	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryanakca@ubuntu.com") )
+         ("From Kubuntu"
+          (vmpc-composition-buffer
+           (setq user-mail-address "ryanakca@kubuntu.org")
+           (setq sendmail-program "~/bin/msmtp/msmtp-kubuntu")
+           (setq vm-mail-fcc nil) )
+	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryanakca@kubuntu.org") )
+         ("prompt"
+	  (vmpc-prompt-for-profile) )
 	 ) )
 
+;; Fallback rules
 (setq vmpc-default-rules
-      '( ("default" "FromDeb")
-	 ("QueensU" "FromQ")
+      '( ("QueensU" "From Queens")
+	 ("ToDeb" "From Debian")
+	 ("default" "From Debian")
 	 ) )
 
+;; Rules for mail created with vm-mail
+(setq vmpc-newmail-rules vmpc-default-rules)
+;; Rules for mail created with vm-mail-from-folder
+(setq vmpc-mail-rules vmpc-default-rules)
+;; Rules for mail created with vm-reply
 (setq vmpc-reply-rules
-      '( ("ToDeb" "FromDeb")
+      '( ("To Debian" "From Debian")
+	 ("To Queensu" "From Queens")
+	 ("To Ubuntu" "From Ubuntu")
+	 ("To Kubuntu" "From Kubuntu")
 	 ) )
 
 ;; Store login info in .authinfo.gpg
