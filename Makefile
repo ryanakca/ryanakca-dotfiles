@@ -113,7 +113,7 @@ all: clean build
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 
-build: $(BUILD) emacsen
+build: $(BUILD) emacsen build/bin/msmtp/msmtp-default
 
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
@@ -134,6 +134,11 @@ $(GPG_FILES):
 emacsen:
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@ install
+
+build/bin/msmtp/msmtp-default: build/.msmtprc
+	-mkdir -p $(dir $@)
+	awk '/account/ { print "#!/bin/sh" > "$(dir $@)/msmtp-"$$2 ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> "$(dir $@)/msmtp-"$$2 }' $<
+	chmod 755 build/bin/msmtp/*
 
 build/%: % $(SUBSTS_FILE)
 	[ -d $(dir $@) ] || mkdir -p $(dir $@)
