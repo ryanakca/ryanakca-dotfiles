@@ -13,6 +13,17 @@
 (require 'u-vm-color)
 (add-hook 'vm-select-message-hook 'u-vm-color-fontify-buffer)
 (add-hook 'vm-summary-mode-hook 'u-vm-color-summary-mode)
+(defadvice vm-fill-paragraphs-containing-long-lines
+              (after u-vm-color activate)
+              (u-vm-color-fontify-buffer))
+(defadvice vm-show-current-message (after u-vm-color activate)
+    (u-vm-color-fontify-buffer-even-more))
+(defadvice vm-decode-mime-message (after u-vm-color activate)
+    (u-vm-color-fontify-buffer-even-more))
+
+;; fill paragraphs to 72 chars
+(setq vm-fill-paragraphs-containing-long-lines-in-reply 72)
+(setq vm-word-wrap-paragraphs-in-reply t)
 
 ; Setup a shortcut to the whole visit-imap-folder nonsense
 (defalias 'imap 'vm-visit-imap-folder)
@@ -148,10 +159,6 @@
 ;; summary format
 (setq vm-summary-format "%n %*%a %-17.17F %2y %-3.3m %2d (%-4l) %4l/%-5c %I\"%s\"
 ")
-
-;; fill paragraphs to 72 chars
-(setq vm-fill-paragraphs-containing-long-lines-in-reply 72)
-(setq vm-word-wrap-paragraphs-in-reply t)
 
 ;; BBDB
 (require 'bbdb)
