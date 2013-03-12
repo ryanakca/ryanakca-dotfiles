@@ -75,6 +75,11 @@
 ; Make 'M-x compose-mail' (C-x m), create a VM-style composition buffer
 (setq mail-user-agent 'vm-user-agent)
 
+;;;; Sending mail
+(setq mail-specify-envelope-from t)
+(setq mail-envelope-from 'header)
+(setq message-send-mail-function 'sendmail-send-it)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
