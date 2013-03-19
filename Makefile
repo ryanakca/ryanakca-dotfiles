@@ -137,7 +137,7 @@ emacsen:
 
 build/bin/msmtp/msmtp-default: build/.msmtprc
 	-mkdir -p $(dir $@)
-	awk '/account/ { print "#!/bin/sh" > "$(dir $@)/msmtp-"$$2 ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> "$(dir $@)/msmtp-"$$2 }' $<
+	awk '/account/ { FNAME =  "$(dir $@)/msmtp-"$$2; print "#!/bin/sh" > FNAME ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> FNAME }' $<
 	chmod 755 build/bin/msmtp/*
 
 build/%: % $(SUBSTS_FILE)
