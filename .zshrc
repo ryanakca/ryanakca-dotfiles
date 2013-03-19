@@ -355,8 +355,10 @@ precmd() {
     case $TERM in
     *xterm*|rxvt*) print -Pn "]2;%n@%m:%~\a"
     ;;
-	screen*) print -Pn "\"%n@%m:%~\134"
-	;;
+    # Don't execute if we're in TMUX
+    screen*)
+        [[ -n ${TMUX} ]] || print -Pn "\"%n@%m:%~\134"
+        ;;
     esac
 }
 
@@ -365,10 +367,10 @@ preexec() {
 #    [[ -t 1 ]] || return
     case $TERM in
     *xterm*|rxvt*)
-    print -Pn "]2;$1\a"
-    ;;
-	screen*)
-	print -Pn "\"$1\134"
+        print -Pn "]2;$1\a"
+        ;;
+    screen*)
+	[[ -n ${TMUX} ]] || print -Pn "\"$1\134"
 	;;
     esac
 }
