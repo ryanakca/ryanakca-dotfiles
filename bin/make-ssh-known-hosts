@@ -26,8 +26,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 for i in "$@"; do
-    IP4=$(host -t A "$i" | awk '{ print "," $NF }');
-    IP6=$(host -t AAAA "$i" | awk '{ print "," $NF }');
+    IP4=$(host -t A "$i" | awk '/address/ { print "," $NF }');
+    IP6=$(host -t AAAA "$i" | awk '/address/ { print "," $NF }');
     if test "${IP4}" = ",record"; then
         IP4="";
     fi
