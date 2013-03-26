@@ -115,7 +115,7 @@ all: clean build
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 
-build: $(BUILD) emacsen build/bin/msmtp/msmtp-default
+build: $(BUILD) emacsen fonts build/bin/msmtp/msmtp-default
 
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
@@ -137,6 +137,9 @@ emacsen:
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@ install
 
+fonts:
+	$(MAKE) -C .fonts install
+
 build/bin/msmtp/msmtp-default: build/.msmtprc
 	-mkdir -p $(dir $@)
 	awk '/account/ { FNAME =  "$(dir $@)/msmtp-"$$2; print "#!/bin/sh" > FNAME ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> FNAME }' $<
@@ -157,6 +160,7 @@ install: build
 	rsync -a build/ ~
 	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
 	chmod 700 ~/.ssh
+	fc-cache ~/.fonts
 
 sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 	$(SHA256) `git ls-files | grep -v $@` > $@
