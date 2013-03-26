@@ -349,16 +349,11 @@ bindkey '\e[6~' down-history # PageDown
 # This function sets the window tile to user@host:/workingdir before each
 # prompt. If you're using screen, it sets the window title (works
 # wonderfully for 'hardstatus' lines.
-# Beware: The two functions below have raw control characters.
 precmd() {
 #    [[ -t 1 ]] || return
     case $TERM in
-    *xterm*|rxvt*) print -Pn "]2;%n@%m:%~\a"
+    *xterm*|rxvt*|screen*) print -Pn "\e]2;%n@%m:%~\a"
     ;;
-    # Don't execute if we're in TMUX
-    screen*)
-        [[ -n ${TMUX} ]] || print -Pn "\"%n@%m:%~\134"
-        ;;
     esac
 }
 
@@ -366,12 +361,8 @@ precmd() {
 preexec() {
 #    [[ -t 1 ]] || return
     case $TERM in
-    *xterm*|rxvt*)
-        print -Pn "]2;$1\a"
-        ;;
-    screen*)
-	[[ -n ${TMUX} ]] || print -Pn "\"$1\134"
-	;;
+    *xterm*|rxvt*|screen*) print -Pn "\e]2;$1\a"
+    ;;
     esac
 }
 
