@@ -31,3 +31,6 @@
 [submodule "emacsen/haskell-mode"]
 	path = emacsen/haskell-mode
 	url = git@github.com:haskell/haskell-mode.git
+[submodule ".fonts/Inconsolata-Hellenic"]
+	path = .fonts/Inconsolata-Hellenic
+	url = git://github.com/cosmix/Inconsolata-Hellenic.git
