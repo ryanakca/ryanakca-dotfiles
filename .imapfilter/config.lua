@@ -181,6 +181,12 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['KDE.kde-fra
 obsdtech = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'tech.openbsd.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSD.tech'], obsdtech)
 
+obsdmisc = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'misc.openbsd.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSD.misc'], obsdmisc)
+
+sshud = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'openssh-unix-dev.mindrot.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSD.ssh-unix-dev'], sshud)
+
 -- Other computer stuff
 --
 slashdot = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
