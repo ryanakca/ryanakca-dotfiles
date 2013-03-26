@@ -34,3 +34,6 @@
 [submodule ".fonts/Inconsolata-Hellenic"]
 	path = .fonts/Inconsolata-Hellenic
 	url = git://github.com/cosmix/Inconsolata-Hellenic.git
+[submodule ".tmux/powerline"]
+	path = .tmux/powerline
+	url = git@github.com:erikw/tmux-powerline.git

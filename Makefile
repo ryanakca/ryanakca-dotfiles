@@ -65,8 +65,10 @@ GLOBAL_FILES = \
     .screenrc-mail \
     .signature \
     .ssh/ \
+    .tmux/ \
     .tmux.conf \
     .tmux-mail.conf \
+    .tmux-powerlinerc \
     .urxvt/ \
     .vim/ \
     .vimperatorrc \
