@@ -15,7 +15,7 @@ URxvt*color12: #0088FF
 URxvt.underlineColor: yellow
 URxvt.saveLines: 8192
 URxvt.mapAlert: true
-URxvt.font: xft:Inconsolata:size=7,xft:DejaVu Sans Mono:size=7
+URxvt.font: xft:Inconsolata:size=7,xft:DejaVu Sans Mono:size=7,xft:Liberation Mono:size=7
 URxvt.perl-lib: /home/ryan/.urxvt
 URxvt.perl-ext-common: default,matcher,mark-and-yank
 //URxvt*bellCommand: zenity --info --text="Bell in URxvt"
@@ -23,9 +23,9 @@ URxvt*urlLauncher: firefox
 URxvt.matcher.button: 1
 URxvt.visualBell: false
 URxvt.urgentOnBell: true
-URxvt.keysym.M-C-1: command:\033]50;xft:Inconsolata:size=7,xft:DejaVu Sans Mono:size=7\007
-URxvt.keysym.M-C-2: command:\033]50;xft:Inconsolata:size=9,xft:DejaVu Sans Mono:size=9\007
-URxvt.keysym.M-C-3: command:\033]50;xft:Inconsolata:size=11,xft:DejaVu Sans Mono:size=11\007
+URxvt.keysym.M-C-1: command:\033]50;xft:Inconsolata:size=7,xft:DejaVu Sans Mono:size=7,xft:Liberation Mono:size=7\007
+URxvt.keysym.M-C-2: command:\033]50;xft:Inconsolata:size=9,xft:DejaVu Sans Mono:size=9,xft:Liberation Mono:size=9\007
+URxvt.keysym.M-C-3: command:\033]50;xft:Inconsolata:size=11,xft:DejaVu Sans Mono:size=11,xft:Liberation Mono:size=11\007
 URxvt.keysym.M-Y: perl:mark-and-yank:activate_mark_mode
 URxvt.keysym.M-U: perl:mark-and-yank:activate_mark_url_mode
 XLock*logoutButton:     -1
