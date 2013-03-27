@@ -352,8 +352,10 @@ bindkey '\e[6~' down-history # PageDown
 precmd() {
 #    [[ -t 1 ]] || return
     case $TERM in
-    *xterm*|rxvt*|screen*) print -Pn "\e]2;%n@%m:%~\a"
-    ;;
+        *xterm*|rxvt*) print -Pn "\e]2;%n@%m:%~\a"
+        ;;
+        screen*) print -Pn "\ek%n@%m:%~\a"
+        ;;
     esac
 }
 
@@ -361,8 +363,10 @@ precmd() {
 preexec() {
 #    [[ -t 1 ]] || return
     case $TERM in
-    *xterm*|rxvt*|screen*) print -Pn "\e]2;$1\a"
-    ;;
+        *xterm*|rxvt*) print -Pn "\e]2;$1\a"
+        ;;
+        screen*) print -Pn "\ek$1\a"
+        ;;
     esac
 }
 
