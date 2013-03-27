@@ -354,7 +354,7 @@ precmd() {
     case $TERM in
         *xterm*|rxvt*) print -Pn "\e]2;%n@%m:%~\a"
         ;;
-        screen*) print -Pn "\ek%n@%m:%~\a"
+        screen*) print -Pn "\ek%n@%m:%~\e\\"
         ;;
     esac
 }
@@ -365,7 +365,7 @@ preexec() {
     case $TERM in
         *xterm*|rxvt*) print -Pn "\e]2;$1\a"
         ;;
-        screen*) print -Pn "\ek$1\a"
+        screen*) print -Pn "\ek$1\e\\"
         ;;
     esac
 }
