@@ -47,9 +47,9 @@
 	 ("To Queensu"
 	  (vmpc-header-match "To" ".*@queensu.ca") )
 	 ("To Ubuntu"
-	  (vmpc-match-header "To" ".*@ubuntu.com") )
+	  (vmpc-header-match "To" ".*@ubuntu.com") )
 	 ("To Kubuntu"
-	  (vmpc-match-header "To" ".*@kubuntu.org") )
+	  (vmpc-header-match "To" ".*@kubuntu.org") )
 	 ("default"
 	  (vmpc-none-true-yet) )
 	 ) )
