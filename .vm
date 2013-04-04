@@ -164,6 +164,7 @@
 (require 'bbdb)
 (bbdb-initialize 'vm)
 (setq bbdb-send-mail-style 'vm)
+(add-hook 'vm-reply-hook 'bbdb-force-record-create)
 
 ;; signature
 (setq mail-signature t)
