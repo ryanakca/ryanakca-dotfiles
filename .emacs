@@ -55,6 +55,10 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
 
+;;;; OCTAVE, bundled with emacs
+(autoload 'octave-mode "octave-mod" nil t)
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 ;;;; PROOFGENERAL
 (load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")
 
