@@ -165,6 +165,9 @@
 (bbdb-initialize 'vm)
 (setq bbdb-send-mail-style 'vm)
 (add-hook 'vm-reply-hook 'bbdb-force-record-create)
+(setq bbdb-ignore-some-messages-alist
+      '(("From" . ".*@bugs.(debian.org\\|launchpad.net)")))
+(setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
 
 ;; signature
 (setq mail-signature t)
