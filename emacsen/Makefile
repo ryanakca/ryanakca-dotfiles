@@ -54,7 +54,9 @@ make-auto-complete:
 	touch $@
 
 make-bbdb: make-vm
-	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir --with-vm-dir=$(EMACSEN)/vm/lisp
+	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir \
+	    --with-vm-dir=$(EMACSEN)/vm/lisp \
+	    --with-lispdir=$(EMACSD)bbdb
 	$(MAKE) -C $(@:make-%=%)
 	touch $@
 
