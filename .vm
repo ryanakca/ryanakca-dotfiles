@@ -160,14 +160,46 @@
 (setq vm-summary-format "%n %*%a %-17.17F %2y %-3.3m %2d (%-4l) %4l/%-5c %I\"%s\"
 ")
 
-;; BBDB
+;;; BBDB
+(require 'bbdb-autoloads)
 (require 'bbdb)
-(bbdb-initialize 'vm)
+(bbdb-initialize 'vm 'message 'sendmail)
+;; The following two lines have BBDB automatically add addresses
+(bbdb-mua-auto-update-init 'vm 'message 'sendmail)
+(setq bbdb-update-records-p 'create)
+(setq bbdb-mua-update-interactive-p '(create . create))
+;; Offer to save the database
+(setq bbdb-offer-save t)
+;; Use vm to send mail
 (setq bbdb-send-mail-style 'vm)
-(add-hook 'vm-reply-hook 'bbdb-force-record-create)
+;; Use a horizontal split
+(setq bbdb-mua-pop-up 'horiz)
+;; Maximum height of BBDB popup size for vertical split
+(setq bbdb-mua-pop-up-window-size 10)
+;; Maximum width of BBDB popup size for horizontal split
+(setq bbdb-horiz-pop-up-window-size '(80 . 0.3))
+;; Don't add addresses matching the following regexp to our DB
 (setq bbdb-ignore-some-messages-alist
-      '(("From" . ".*@bugs.(debian.org\\|launchpad.net)")))
-(setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
+      '((("From" "CC" "Reply-To") . ".*@bugs.(debian.org\\|launchpad.net)\\|.*@.*.launchpad.net\\|noreply")
+	(("To" "Sender") . "noreply")))
+;; (setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
+;; Add all addresses in an email
+(setq bbdb-message-all-addresses t)
+;; ???
+(setq bbdb-offer-to-create t)
+;; Add notes when updating a record
+(add-hook 'bbdb-notice-mail-hook 'bbdb-auto-notes)
+;; And track the following:
+(setq bbdb-auto-notes-rules
+      (list
+       '("Organization"
+	 (".*" organization "\\1" nil))
+       '("User-Agent"
+	 (".*" mailer identity nil))
+       '("X-Mailer"
+	 (".*" mailer identity nil))
+       '("X-Newsreader"
+	 (".*" mailer identity nil))))
 
 ;; signature
 (setq mail-signature t)
