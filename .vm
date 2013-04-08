@@ -31,6 +31,9 @@
 ; Keep the -> line centered
 (setq vm-auto-center-summary t)
 
+;; Use a sendmail program
+(setq send-mail-function 'sendmail-send-it)
+
 ; Enable multiple sender profiles
 (require 'vm-pcrisis)
 (vmpc-my-identities "rak@debian.org" "ryanakca@gmail.com"
