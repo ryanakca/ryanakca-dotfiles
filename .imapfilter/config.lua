@@ -269,6 +269,12 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipI
 beldev = IMAPFILTER_GMAIL_SERVER.INBOX:match_to('beluga-dev@cs.mcgill.ca')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipIMAP_FOLDER_SEPbeluga-dev'], beldev)
 
+-- MIT under GMAIL
+
+mitplv = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'plv.csail.mit.edu') *
+         IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['GMAILIMAP_FOLDER_SEPMIT'], mitplv)
+
 -- Academia
 
 typesann = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
