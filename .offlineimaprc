@@ -143,6 +143,35 @@ folderfilter = lambda folder: folder.startswith('McGill.')
 # Remove McGSOCS prefix when copying to remote
 nametrans = lambda folder: re.sub('^McGill.', '', folder)
 
+#### MIT mail
+[Account MIT]
+localrepository = LocalMIT
+remoterepository = RemoteMIT
+autorefresh = 20
+quick = 10
+# presynchook = imapfilter
+foldersort = lamba x, y: cmp(x, y)
+postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
+
+[Repository RemoteMIT]
+foldersort = lambda x, y: cmp(y, x)
+type = IMAP
+remoteuser = rakavan
+remotehost = rakavan.mail.mit.edu
+remotepass = MIT_PASS
+remortport = 993
+cert_fingerprint = 9f3fc06c357ecfcaaaf0cebedfb8d6b94f0926f6
+ssl = yes
+nametrans = lambda foldername: 'MIT.' + foldername
+
+[Repository LocalMIT]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+folderfilter = lambda folder: folder.startswith('MIT.')
+nametrans = lambda folder: re.sub('^MIT.', '', folder)
+
 [mbnames]
 enabled = no
 filename = .muttrc.mailboxes
