@@ -194,7 +194,7 @@ slashdot = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Slashdot'], slashdot)
 --
 lwn = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
-        IMAPFILTER_GMAIL_SERVER.INBOX:match_from('lwn@lwn.net') )
+        IMAPFILTER_GMAIL_SERVER.INBOX:match_from('lwn.*@lwn.net') )
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['lwn'], lwn)
 
 sbuild = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('sbuild@.*.ryanak.ca') +
