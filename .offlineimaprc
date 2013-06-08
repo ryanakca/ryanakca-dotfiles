@@ -29,7 +29,7 @@ remoteuser = ryan
 remotepass = LOCAL_PASS
 # Don't try to sync local changes to [Google Mail]/Chat remotely, it's read-only
 # on Gmail's end.
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
 idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
@@ -41,7 +41,7 @@ remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 realdelete = no
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
 idlefolders = ['INBOX']
 sslcacertfile = SSL_CERTS
 
