@@ -61,6 +61,8 @@
 
 ;;;; PROOFGENERAL
 (load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")
+(setq proof-three-window-enable t)
+(setq proof-three-window-mode-policy 'hybrid)
 
 ;;;; TeX
 (setq TeX-PDF-mode t)
