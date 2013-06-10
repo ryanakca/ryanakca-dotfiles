@@ -95,7 +95,8 @@ alias gibuildi='git-buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
 #alias wtau='wakeonlan 00:0d:56:1b:7a:f0'
 alias wtau='sudo etherwake tau'
 alias pology='python $HOME/work/pology/scripts/posieve.py'
-alias daylog='dch --changelog /home/ryan/work/mcgill/drafts/daylog/daylog'
+alias daylog='dch --changelog ${HOME}/work/mcgill/drafts/daylog/daylog'
+alias dmit='dch --changelog ${HOME}/work/MIT/bedrock-group/rakavan/daylog'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias kbd="xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY"
 alias vi='vim'
