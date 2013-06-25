@@ -461,7 +461,7 @@ main = do
               --      , ((myMod .|. shiftMask, xK_Tab), bindOn [("chat", rotSlavesUp), ("", rotAllUp)])
             , ((myMod, xK_s), sendMessage $ ToggleLayout)
             , (
-               (myMod, xK_m), submap . M.fromList $
+               (myMod, xK_b), submap . M.fromList $
                               [ ((m, k), f)
                               | m <- [0, myMod]
                               , (k, f) <- [ (xK_a, addWorkspacePrompt myXPConfig)
