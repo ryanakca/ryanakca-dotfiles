@@ -62,6 +62,9 @@ unignore Date: From: To: CC: Bcc: Subject:
 hdr_order Subject: Date: From: To: CC: Bcc:
 # MessageNo Mo Day (To if sent by me, from if sent to me) List [Flags (Hidden Messages/line count) Subject
 set index_format="%4C %{%m%d} %-16.16F %-15.15B [%Z] %?M?(#%03M)&(%4l)? %s"
+# Narrow / wide versions.
+macro index \cxn '<enter-command>set index_format="%4C %{%m%d} %-16.16F [%Z] %?M?(#%03M)&(%4l)? %s"<enter>'
+macro index \cxw '<enter-command>set index_format="%4C %{%m%d} %-16.16F %-15.15B [%Z] %?M?(#%03M)&(%4l)? %s"<enter>'
 
 set mark_old=yes
 
