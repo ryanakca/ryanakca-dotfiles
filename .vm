@@ -9,6 +9,8 @@
 
 (setq vm-primary-inbox "imap:localhost:143:INBOX:login:ryan:*")
 
+(setq vm-imap-folder-cache-directory "~/.vm-cache")
+
 ; Setup coloring
 (require 'u-vm-color)
 (add-hook 'vm-select-message-hook 'u-vm-color-fontify-buffer)
