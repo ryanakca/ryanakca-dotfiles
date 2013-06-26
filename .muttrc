@@ -73,7 +73,7 @@ set alias_file = ~/.mutt/alias.rc
 
 # set up the sidebar, default not visible
 set sidebar_width=30 
-set sidebar_visible=yes
+set sidebar_visible=no
 set sidebar_delim=' '
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
