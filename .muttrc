@@ -35,6 +35,11 @@ set message_cachedir="~/.mutt/cache/bodies"
 
 set edit_headers = yes
 
+# Sane subject format when forwarding:
+set forward_format = "Fwd: %s"
+# Mime forwarding
+set mime_forward = ask-yes
+
 #set arrow_cursor
 #noop pager G
 bind index G imap-fetch-mail
