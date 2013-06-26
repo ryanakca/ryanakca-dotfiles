@@ -1,4 +1,15 @@
 [extensions]
+color =
 convert =
+hgk =
+mq =
+pager =
+rebase =
+record =
+shelve = ~/.hgext/hgshelve.py
+
 [ui]
 username = Ryan Kavanagh <rak@debian.org>
+
+[pager]
+pager = less -FRXQ
