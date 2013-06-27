@@ -50,7 +50,7 @@ clean-auto-indent-mode clean-markdown-mode clean-popup clean-dictem:
 	echo $@
 
 make-auto-complete:
-	$(MAKE) -C $(@:make-%=%) -e EMACS="emacs -L ../popup/"
+	$(MAKE) -C $(@:make-%=%) -e EMACS="emacs -L lib/popup/"
 	touch $@
 
 make-bbdb: make-vm
@@ -75,7 +75,8 @@ make-vm:
 
 install-auto-complete:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) install
+	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) \
+				    -e EMACS="emacs -L lib/popup/" install
 
 install-auto-indent-mode:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
