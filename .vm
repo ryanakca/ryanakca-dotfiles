@@ -172,9 +172,9 @@
 ;;; BBDB
 (require 'bbdb-autoloads)
 (require 'bbdb)
-(bbdb-initialize 'vm 'message 'sendmail)
+(bbdb-initialize 'vm); 'mail 'message)
 ;; The following two lines have BBDB automatically add addresses
-(bbdb-mua-auto-update-init 'vm 'message 'sendmail)
+(bbdb-mua-auto-update-init 'vm); 'mail 'message)
 (setq bbdb-update-records-p 'create)
 (setq bbdb-mua-update-interactive-p '(create . create))
 ;; Offer to save the database
@@ -189,7 +189,7 @@
 (setq bbdb-horiz-pop-up-window-size '(80 . 0.3))
 ;; Don't add addresses matching the following regexp to our DB
 (setq bbdb-ignore-some-messages-alist
-      '((("From" "CC" "Reply-To") . ".*@bugs.(debian.org\\|launchpad.net)\\|.*@.*.launchpad.net\\|noreply")
+      '((("From" "CC" "Reply-To") . ".*@bugs.\\(debian.org\\|launchpad.net\\)\\|.*@.*.launchpad.net\\|noreply\\|.*facebook.com")
 	(("To" "Sender") . "noreply")))
 ;; (setq bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook)
 ;; Add all addresses in an email
@@ -201,14 +201,19 @@
 ;; And track the following:
 (setq bbdb-auto-notes-rules
       (list
-       '("Organization"
-	 (".*" organization "\\1" nil))
-       '("User-Agent"
-	 (".*" mailer identity nil))
-       '("X-Mailer"
-	 (".*" mailer identity nil))
-       '("X-Newsreader"
-	 (".*" mailer identity nil))))
+	 '("Organization"
+	   (".*" organization "\\1" nil))
+	 '("User-Agent"
+	   (".*" mailer identity nil))
+	 '("X-Mailer"
+	   (".*" mailer identity nil))
+	 '("X-Newsreader"
+	   (".*" mailer identity nil))))
+;; There is more than one John Smith in the world
+(setq bbdb-allow-duplicates t)
+;; Allow cycling and tab completion of emails when composing
+;;(setq bbdb-complete-mail nil t)
+(setq bbdb-complete-mail-allow-cycling t)
 
 ;; signature
 (setq mail-signature t)
