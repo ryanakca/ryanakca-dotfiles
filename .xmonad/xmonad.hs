@@ -140,7 +140,7 @@ myXPConfig = defaultXPConfig {
 myLayout = smartBorders $ toggleLayouts Full perWS
   where
     -- Per workspace layout selection.
-    perWS = onWorkspace "web"     (noTitles   $ (tabbed shrinkText myTheme ||| mySplit ||| myWide)) $
+    perWS = onWorkspace "web"     (noTitles   $ (tabbed shrinkText myTheme ||| ThreeColMid 1 (3/100) (1/2) ||| mySplit ||| myWide)) $
             onWorkspace "term"    (noTitles   $ (Full ||| myTall2 ||| customRyan)) $
             onWorkspace "chatter" (noTitles   $ myChat gridFirst) $
             onWorkspace "code"    (noTitles   $ codeFirst) $
