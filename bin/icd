@@ -1,3 +1,39 @@
 #!/bin/sh
-xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/icd $DISPLAY
+
+OPTIONS="-option lv3:ralt_switch_multikey \
+    -option terminate:ctrl_alt_bksp \
+    -option ctrl:swapcaps \
+    -option nbsp:level3n \
+    -I${HOME}/.xkb \
+    -layout icd \
+    -variant icd"
+
+SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
+SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+
+setxkbmap ${OPTIONS} -print > ${HOME}/.xkb/keymap/icd
+xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/icd $DISPLAY 2> /dev/null
+
+if [ "x${SUN_XINPUT_ID}" != "x" ]; then
+    setxkbmap \
+        -I${HOME}/.xkb \
+        -keycodes "rak" \
+        -device ${SUN_XINPUT_ID} \
+        -geometry "sun(type6)" \
+        -option "myswap(switch_lalt_lsuper)" \
+        ${OPTIONS} \
+        -print > ${HOME}/.xkb/keymap/icd.sun
+#    awk '{ \
+#        if (/symbols/) { \
+#            sub(/\)\"/, ")+myswap(switch_lalt_lsuper)\""); print \
+#        } else { \
+#            print \
+#        } \
+#    }' ${HOME}/.xkb/keymap/icd.sun2 > ${HOME}/.xkb/keymap/icd.sun
+    xkbcomp -i ${SUN_USB_ID} -I${HOME}/.xkb \
+        ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
+        #xkbcomp -i ${SUN_USB_ID} -I${HOME}/.xkb \
+        #    ${HOME}/.xkb/symbols/myswap ${DISPLAY} # 2> /dev/null
+fi
+
 echo icd > /home/ryan/.xmonad/layout
