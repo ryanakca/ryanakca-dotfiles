@@ -224,4 +224,9 @@
 ; prompt for signing
 (add-hook 'vm-mail-send-hook 'vm-pgg-ask-hook t)
 
+;; shortcut to read theads
+(fset 'ryan-read-thread2
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("MTMn.Mu\356" 0 "%d")) arg)))
+(global-set-key [3 18] 'ryan-read-thread2)
+
 ;; vim: set filetype=lisp:
