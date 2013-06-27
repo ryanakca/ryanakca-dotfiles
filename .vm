@@ -4,6 +4,7 @@
       '(
 	("imap:localhost:143:*:login:ryan:*" "local")
 	("imap-ssl:imap.google.com:993:*:login:ryanakca:*" "gmail")
+        ("imap-ssl:rakavan.mail.mit.edu:993:*:login:rakavan:*" "MIT")
 	)
       )
 
