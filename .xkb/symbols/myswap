@@ -1,0 +1,5 @@
+partial modifier_keys
+xkb_symbols "switch_lalt_lsuper" {
+    key <LALT> { [ Super_L ] } ;
+    key <LMTA> { [ Alt_L ] };
+};
