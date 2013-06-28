@@ -69,6 +69,8 @@ make-proofgeneral:
 	touch $@
 
 make-vm:
+	# info file is broken in vm at the moment.
+	echo '%s/^all: info/all:/g\n%s/^info:.*/info:/g\nw' | ed vm/info/Makefile.in
 	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --with-other-dirs=$(EMACSEN)/bbdb/lisp
 	$(MAKE) -C $(@:make-%=%)
 	touch $@
