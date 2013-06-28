@@ -45,7 +45,6 @@ GLOBAL_FILES = \
     .dzen/ \
     .emacs \
     .emacs.d \
-    .fonts.conf \
     .gitconfig \
     .imapfilter/ \
     .inputrc \
