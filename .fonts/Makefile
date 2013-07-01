@@ -1,5 +1,6 @@
 fonts = InconsolataHellenic.otf \
 	ubuntu-font-family-0.80 \
+	Courier-Prime \
 	Fell \
 	Vollkorn
 
