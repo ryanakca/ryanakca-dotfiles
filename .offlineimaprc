@@ -157,11 +157,12 @@ postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
 foldersort = lambda x, y: cmp(y, x)
 type = IMAP
 remoteuser = rakavan
-remotehost = rakavan.mail.mit.edu
+remotehost = imap.exchange.mit.edu
 remotepass = MIT_PASS
 remortport = 993
-cert_fingerprint = 9f3fc06c357ecfcaaaf0cebedfb8d6b94f0926f6
+sslcacertfile = SSL_CERTS
 ssl = yes
+ssl_version = tls1
 nametrans = lambda foldername: 'MIT.' + foldername
 
 [Repository LocalMIT]
