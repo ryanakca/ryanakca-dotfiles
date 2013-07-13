@@ -40,3 +40,6 @@
 [submodule "emacsen/dtrt-indent"]
 	path = emacsen/dtrt-indent
 	url = git://git.sv.gnu.org/dtrt-indent.git
+[submodule ".rlwrap"]
+	path = .rlwrap
+	url = https://github.com/ryanakca/rlwrap_mail.git

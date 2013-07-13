@@ -38,6 +38,7 @@ GLOBAL_FILES = \
     .asoundrc \
     .beetsconfig \
     .calendar/ \
+    .config/fontconfig/ \
     .config/nitrogen/ \
     .config/zathura/ \
     .cmus/ \
@@ -59,6 +60,7 @@ GLOBAL_FILES = \
     .pythonrc.py \
     .quiltrc-dpkg \
     .reportbugrc \
+    .rlwrap/mail_filter \
     .sbuildrc \
     .screenlayout/ \
     .screenrc-mail \
