@@ -184,6 +184,8 @@ zstyle ':completion:*:*:kill:*' list-colors '=%*=01;31'
 # Load the completion system
 autoload -U compinit; compinit
 
+compdef _quilt dquilt=quilt  # Quilt tab completion for dquilt
+
 # Very powerful version of mv implemented in zsh. The main feature I
 # know of it that seperates it from the standard mv is that it saves you
 # time by being able to use patterns which are expanded into positional
