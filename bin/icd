@@ -9,12 +9,12 @@ OPTIONS="-option lv3:ralt_switch_multikey \
     -variant icd"
 
 SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
-SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 
 setxkbmap ${OPTIONS} -print > ${HOME}/.xkb/keymap/icd
 xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/icd $DISPLAY 2> /dev/null
 
-if [ "x${SUN_XINPUT_ID}" != "x" ]; then
+if [ "x${SUN_USB_ID}" != "x" ]; then
+    SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
     setxkbmap \
         -I${HOME}/.xkb \
         -keycodes "rak" \
