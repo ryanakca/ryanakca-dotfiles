@@ -140,7 +140,7 @@ myXPConfig = defaultXPConfig {
 myLayout = smartBorders $ toggleLayouts Full perWS
   where
     -- Per workspace layout selection.
-    perWS = onWorkspace "web"     (noTitles   $ (tabbed shrinkText myTheme ||| ThreeColMid 1 (3/100) (1/2) ||| mySplit ||| myWide)) $
+    perWS = onWorkspace "web"     (noTitles   $ (tabbed shrinkText myTheme ||| myTCM ||| mySplit ||| myWide)) $
             onWorkspace "term"    (noTitles   $ (Full ||| myTall2 ||| customRyan)) $
             onWorkspace "chatter" (noTitles   $ myChat gridFirst) $
             onWorkspace "code"    (noTitles   $ codeFirst) $
@@ -156,11 +156,13 @@ myLayout = smartBorders $ toggleLayouts Full perWS
 
     -- Each of these allows toggling through a set of layouts
     -- in the same logical order, but from a different starting point.
-    codeFirst  = myCode  ||| myWide  ||| myGrid  ||| myDish
+    codeFirst  = myCode  ||| myTCM   ||| myWide  ||| myGrid   ||| myDish
     gridFirst  = myGrid  ||| myDish  ||| myCode  ||| myWide
     customRyan = myGrid  ||| myDish  ||| Accordion ||| myCode ||| myWide ||| simpleCross ||| myFixed ||| myTall
     latexFirst = myLaTeX ||| myFixed ||| myGrid  ||| myTall
 
+    -- This is a three column mode, with the master in the middle.
+    myTCM = ThreeColMid 1 (3/100) (1/2)
     -- This is a tall-like layout with magnification.
     -- The master window is fixed at 80 columns wide, making this good
     -- for coding. Limited to 3 visible windows at a time to ensure all
