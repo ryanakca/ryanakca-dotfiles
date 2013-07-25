@@ -97,6 +97,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(auto-indent-next-pair-timer-interval (quote ((css-mode 1.5) (haskell-mode 1.5) (python-mode 1.5) (latex-mode 1.5) (coq-mode 1.5) (default 0.0005))))
+ '(safe-local-variable-values (quote ((eval setq debian-changelog-mailing-address "rak@debian.org") (eval add-to-list (quote debian-changelog-allowed-distributions) "daylog"))))
  '(column-number-mode t)
  '(default-input-method "TeX")
  '(inhibit-startup-screen t)
