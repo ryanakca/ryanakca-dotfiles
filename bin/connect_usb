@@ -1,0 +1,6 @@
+#!/bin/sh
+
+alsa_out -d hw:1 -j USB &
+sleep 1 && \
+    jack_connect "PulseAudio JACK Sink:front-left" "USB:playback_1" &&
+    jack_connect "PulseAudio JACK Sink:front-right" "USB:playback_2"
