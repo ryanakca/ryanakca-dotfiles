@@ -149,7 +149,7 @@ build/bin/msmtp/msmtp-default: build/.msmtprc
 	chmod 755 build/bin/msmtp/*
 
 build/%: % $(SUBSTS_FILE)
-	[ -d $(dir $@) ] || mkdir -p $(dir $@)
+	@[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	( [ -d $< ] && rsync -a $</* $@/ ) || rsync -a $< $@
 	@# sed will only be called if $* is in LOCAL_FILES.
 	@# Thought of using ifeq/ifneq, but the gmake manual reads:
@@ -157,7 +157,7 @@ build/%: % $(SUBSTS_FILE)
 	@# you cannot use automatic variables in the tests of conditionals
 	@# because they are not defined until recipes are run (see Automatic
 	@# Variables)."
-	[ "$(filter $*,$(LOCAL_FILES))" != "$*" ] || sed $(call get-sed-args,VARS_$*) $< > $@
+	@[ "$(filter $*,$(LOCAL_FILES))" != "$*" ] || sed $(call get-sed-args,VARS_$*) $< > $@
 
 install: build
 	rsync -a build/ ~
