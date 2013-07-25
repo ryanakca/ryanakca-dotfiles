@@ -1,0 +1,17 @@
+#!/bin/sh
+
+MSG=$(cat)
+
+echo "${MSG}" | grep 'BEGIN PGP SIGNATURE' > /dev/null 2>&1;
+SIGNED=$?
+
+if [ ${SIGNED} = 0 ]; then
+    echo "${MSG}" | \
+        sed -e '/^-\+BEGIN PGP SIGNED MESSAGE-\+/,/^Hash:.*/d' \
+            -e '/^-\+BEGIN PGP SIGNATURE-\+/,$d' | \
+        mutt-autoalias
+    echo '\n'
+    echo "${MSG}" | gpg --verify - 2>&1;
+else
+    echo "${MSG}" | mutt-autoalias
+fi
