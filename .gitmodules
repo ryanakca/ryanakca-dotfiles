@@ -1,42 +1,42 @@
 [submodule "emacsen/auto-complete"]
 	path = emacsen/auto-complete
-	url = git@github.com:auto-complete/auto-complete.git
+	url = https://github.com/auto-complete/auto-complete.git
 [submodule "emacsen/auto-indent-mode"]
 	path = emacsen/auto-indent-mode
 	url = https://github.com/mlf176f2/auto-indent-mode.el/
 [submodule "emacsen/magit"]
 	path = emacsen/magit
-	url = git@github.com:magit/magit.git
+	url = https://github.com/magit/magit.git
 [submodule "emacsen/proofgeneral"]
 	path = emacsen/proofgeneral
-	url = git@github.com:emacsmirror/proofgeneral.git
+	url = https://github.com/emacsmirror/proofgeneral.git
 [submodule "emacsen/popup"]
 	path = emacsen/popup
-	url = git@github.com:auto-complete/popup-el.git
+	url = https://github.com/auto-complete/popup-el.git
 [submodule "emacsen/markdown-mode"]
 	path = emacsen/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
 [submodule "dictem"]
 	path = dictem
-	url = git@github.com:cheusov/dictem.git
+	url = https://github.com/cheusov/dictem.git
 [submodule "emacsen/dictem"]
 	path = emacsen/dictem
-	url = git@github.com:cheusov/dictem.git
+	url = https://github.com/cheusov/dictem.git
 [submodule "emacsen/vm"]
 	path = emacsen/vm
-	url = git@github.com:emacsmirror/vm.git
+	url = https://github.com/emacsmirror/vm.git
 [submodule "emacsen/bbdb"]
 	path = emacsen/bbdb
 	url = git://git.savannah.nongnu.org/bbdb.git
 [submodule "emacsen/haskell-mode"]
 	path = emacsen/haskell-mode
-	url = git@github.com:haskell/haskell-mode.git
+	url = https://github.com/haskell/haskell-mode.git
 [submodule ".fonts/Inconsolata-Hellenic"]
 	path = .fonts/Inconsolata-Hellenic
 	url = git://github.com/cosmix/Inconsolata-Hellenic.git
 [submodule ".tmux/powerline"]
 	path = .tmux/powerline
-	url = git@github.com:erikw/tmux-powerline.git
+	url = https://github.com/erikw/tmux-powerline.git
 [submodule "emacsen/dtrt-indent"]
 	path = emacsen/dtrt-indent
 	url = git://git.sv.gnu.org/dtrt-indent.git
