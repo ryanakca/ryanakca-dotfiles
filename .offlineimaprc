@@ -164,6 +164,7 @@ sslcacertfile = SSL_CERTS
 ssl = yes
 ssl_version = tls1
 nametrans = lambda foldername: 'MIT.' + foldername
+folderfilter = lambda folder: folder not in ['Calendar']
 
 [Repository LocalMIT]
 type = IMAP
