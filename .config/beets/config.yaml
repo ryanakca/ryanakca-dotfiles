@@ -1,0 +1,16 @@
+# Automatically migrated from legacy .beetsconfig.
+
+directory: ~/music_clean
+library: ~/.beetsmusic.blb
+path_format: $format/$artist/$album/$track $title
+
+import:
+    incremental: true
+    quiet_fallback: skip
+    log: ~/music_clean/import_log
+    move: true
+
+paths:
+    default: $format/$albumartist/$album/$track $title
+    singleton: $format/Singletons/$artist - $title
+    comp: $format/comp/$album/$track $title

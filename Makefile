@@ -36,8 +36,8 @@ GLOBAL_FILES = \
     .Xdefaults \
     .Xsession \
     .asoundrc \
-    .beetsconfig \
     .calendar/ \
+    .config/beets/ \
     .config/fontconfig/ \
     .config/nitrogen/ \
     .config/zathura/ \
