@@ -1,0 +1,13 @@
+#!/bin/sh
+
+MUTT_ALIAS=${HOME}/.mutt/alias.rc
+MAILX_ALIAS=${HOME}/.mailx-aliases.rc
+
+awk '{
+    NAME="";
+    for (i = 3; i < NF; i++) {
+        NAME=NAME " " $i;
+    };
+    NAME = substr(NAME, 2);
+    print "alias", $2, "\"" $NF, "(" NAME ")\"";
+}' $MUTT_ALIAS > $MAILX_ALIAS
