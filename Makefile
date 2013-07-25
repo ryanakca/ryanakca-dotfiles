@@ -244,4 +244,9 @@ clobber: clean
 	rm -f $(GPG_FILES)
 	$(MAKE) -C emacsen clobber
 
-.PHONY: build install clean verify merge udh emacsen
+diff: build
+	for file in $(GLOBAL_FILES) $(LOCAL_FILES); do \
+	    diff -u build/$${file} ../$$file; \
+	done
+
+.PHONY: build install clean verify merge udh emacsen diff
