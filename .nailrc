@@ -1,0 +1,106 @@
+define clearset {
+    unset folder from sendmail record smtp password
+    unset smime-sign smime-sign-cert smime-sign-nickname
+}
+
+account l {
+    call clearset
+    set from="ryan@ryanak.ca (Ryan Kavanagh)"
+    set sendmail=/usr/sbin/sendmail
+}
+
+account d {
+    call clearset
+    set folder=imap://ryan@localhost/
+    set sendmail=/home/ryan/bin/msmtp/msmtp-default
+    set from="Ryan Kavanagh <rak@debian.org>"
+    set smime-sign-cert-ryan@localhost="/home/ryan/ssl/mailx-debian.pem"
+    set smime-sign
+}
+
+account g {
+    call clearset
+    set folder=imaps://ryanakca@gmail.com@imap.gmail.com/
+    set password-ryanakca@gmail.com@imap.gmail.com=GMAIL_mailx_PASS
+    set sendmail=/home/ryan/bin/msmtp/msmtp-default
+    set from="Ryan Kavanagh <rak@debian.org>"
+    set smime-sign-cert="/home/ryan/ssl/mailx-debian.pem"
+    set smime-sign
+}
+
+account q {
+    call clearset
+    set folder=imap://ryan@localhost/QueensU.INBOX
+    set record=@QueensU.Sent
+    set MBOX=@QueensU.Read
+    set sendmail=/home/ryan/bin/msmtp/msmtp-queensu
+    set from="ryan.kavanagh@queensu.ca (Ryan Kavanagh)"
+    unset smime-sign
+}
+
+account lm {
+    call clearset
+    set folder=imap://ryan@localhost/MIT.INBOX
+    set record=@MIT.Sent
+    set MBOX=@MIT.Read
+    set sendmail=/home/ryan/bin/msmtp/msmtp-mit
+    set from="rakavan@mit.edu (Ryan Kavanagh)"
+    set smime-sign-cert-ryan@localhost="/home/ryan/ssl/mailx-mit.pem"
+    set smime-sign
+}
+
+account m {
+    call clearset
+    set from="Ryan Kavanagh <rakavan@mit.edu>"
+    set folder=imaps://rakavan@imap.exchange.mit.edu:993/
+    set imap-starttls-rakavan@imap.exchange.mit.edu:993
+    set password-rakavan@imap.exchange.mit.edu:993=MIT_PASS
+    set ssl-method=tls1
+
+    set record=@Sent
+    set MBOX=@Read
+
+    set sendmail="msmtp -a mit"
+
+    set smime-sign-cert=/home/ryan/ssl/mailx-mit.pem
+    set smime-nickname=rakavan@MIT.EDU
+    set smime-sign
+
+    set smtp=rakavan@outgoing.mit.edu:587
+    set smtp-auth-password-rakavan@outgoing.mit.edu:587=MIT_PASS
+}
+
+source ~/.mailx-aliases.rc
+source ~/.mailrc
+
+# Don't display X-Brightmail-Tracker header cruft
+ignore "X-Brightmail-Tracker"
+
+set ssl-ca-dir=/etc/ssl/certs/
+
+set pipe-text/html="w3m -dump -T text/html"
+set pipe-application/pgp-signature="gpg --verify"
+set cmd="gpg-check | mail-highlight"
+set PAGER="less -FXQR"
+
+set nss-config-dir="~/.mozilla/firefox/dbr0vzdh.default/"
+
+set imap-cache=/home/ryan/.mailx/cache
+set imap-keepalive=60
+
+set autosort=thread
+unset autocollapse
+# Requires me to manually add the leading '-- '
+set signature=~/.signature-mailx
+set bsdcompat
+
+set MBOX=~/mbox
+
+set quote="headers"
+
+shortcut mitm imaps://rakavan@imap.exchange.mit.edu:993/
+shortcut lh imap://ryan@localhost/
+
+set keep
+
+set crt=50

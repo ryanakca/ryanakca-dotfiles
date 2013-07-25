@@ -12,6 +12,7 @@ GPG_DISABLED False
 EMACS_DISABLED True
 # Mail passwords
 GMAIL_PASS secret
+GMAIL_mailx_PASS secret
 QUEENSU_PASS secret
 MCGSOCS_PASS secret
 MCGILL_PASS secret

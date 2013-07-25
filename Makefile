@@ -102,6 +102,7 @@ VARS_.mutt/gpg.rc       = GPG_BINARY PGPEWRAP_BINARY
 VARS_.mutt/score.rc     = MUTT_10_SCORE MUTT_20_SCORE
 VARS_.mutt/ssl.rc       = SSL_CERTS
 VARS_.muttrc            = MSMTP_PATH
+VARS_.nailrc		= GMAIL_mailx_PASS
 VARS_.netrc             = LOCAL_PASS GMAIL_PASS
 VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MCGSOCS_PASS MCGILL_PASS SSL_CERTS MIT_PASS
 VARS_.screenrc          = ZSH_PATH SCREEN_HOST_COLOUR
