@@ -8,6 +8,7 @@ SUBDIRS = auto-complete \
 	  auto-indent-mode \
 	  bbdb \
 	  dictem \
+	  dtrt-indent \
 	  haskell-mode \
 	  magit \
 	  markdown-mode \
@@ -43,7 +44,7 @@ $(CLEANDIRS):
 	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-auto-indent-mode make-markdown-mode make-popup make-dictem:
+make-auto-indent-mode make-markdown-mode make-popup make-dictem make-dtrt-indent:
 	touch $@
 
 clean-auto-indent-mode clean-markdown-mode clean-popup clean-dictem:
@@ -80,15 +81,11 @@ install-auto-complete:
 	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) \
 				    -e EMACS="emacs -L lib/popup/" install
 
-install-auto-indent-mode:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	cp $(@:install-%=%)/auto-indent-mode.el $(EMACSD)/$(@:install-%=%)
-
 install-bbdb:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
 
-install-dictem:
+install-auto-indent-mode install-dictem install-dtrt-indent install-markdown-mode install-popup:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	install -m 644 $(@:install-%=%)/*.el $(EMACSD)/$(@:install-%=%)
 	
@@ -104,13 +101,6 @@ install-magit:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(EMACSD) \
 		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
-install-markdown-mode:
-	mkdir -p $(EMACSD)/$(@:install-%=%)
-	install -m 644 $(@:install-%=%)/markdown-mode.el $(EMACSD)/$(@:install-%=%)/
-
-install-popup:
-	mkdir -p $(EMACSD)/$(@:install-%=%)
-	install -m 644 $(@:install-%=%)/popup.el $(EMACSD)/$(@:install-%=%)/
 
 install-proofgeneral:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)

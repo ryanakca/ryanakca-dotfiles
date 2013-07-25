@@ -3,6 +3,7 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/bbdb")
 (add-to-list 'load-path "~/.emacs.d/dictem")
+(add-to-list 'load-path "~/.emacs.d/dtrt-indent")
 (add-to-list 'load-path "~/.emacs.d/haskell-mode")
 (add-to-list 'load-path "~/.emacs.d/popup")
 (add-to-list 'load-path "~/.emacs.d/magit")
@@ -36,6 +37,9 @@
 
 ;;;; DICTEM
 (require 'dictem)
+
+;;;; DTRT-INDENT
+(require 'dtrt-indent)
 
 ;;; EasyPG, bunled with emacs for encrypted files
 (require 'epa-file)
