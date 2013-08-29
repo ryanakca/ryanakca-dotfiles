@@ -2,6 +2,7 @@ fonts = InconsolataHellenic.otf \
 	ubuntu-font-family-0.80 \
 	Courier-Prime \
 	Fell \
+	SourceCodePro_FontsOnly-1.017 \
 	Vollkorn
 
 all: $(fonts)
