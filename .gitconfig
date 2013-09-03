@@ -12,3 +12,7 @@
 	ui = auto
 [push]
 	default = simple
+[url "git://anonscm.debian.org"]
+        insteadOf = "git://git.debian.org"
+[url "ssh://git.debian.org"]
+        pushInsteadOf = "git://git.debian.org"
