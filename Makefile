@@ -164,7 +164,7 @@ install: build
 	rsync -a build/ ~
 	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
 	chmod 700 ~/.ssh
-	fc-cache ~/.fonts
+	-fc-cache ~/.fonts
 
 sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 	$(SHA256) `git ls-files | grep -v $@` > $@
