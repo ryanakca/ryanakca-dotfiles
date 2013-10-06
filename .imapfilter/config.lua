@@ -211,6 +211,10 @@ frescobaldi = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
                 IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com') )
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['DebianIMAP_FOLDER_SEPfrescobaldi'], frescobaldi)
 
+opensmtpd = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
+                IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'misc.opensmtpd.org') )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['DebianIMAP_FOLDER_SEPopensmtpd'], opensmtpd)
+
 -- O'ists
 
 oactivists = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'oactivists.googlegroups.com') *
