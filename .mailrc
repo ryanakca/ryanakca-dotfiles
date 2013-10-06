@@ -9,3 +9,5 @@ retain Date From Sender To CC Subject
 # from /etc/mailrc
 set ask askcc append dot save crt
 ignore Received Message-Id Resent-Message-Id Status Mail-From Return-Path Via Delivered-To
+
+set editheaders
