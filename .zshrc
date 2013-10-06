@@ -52,7 +52,7 @@ export GIT_AUTHOR_NAME=$NAME
 export DARCS_EMAIL="$NAME <$EMAIL>"
 export GREP_OPTIONS="--color=auto"
 export QUILT_PATCHES=debian/patches
-export PATH=/usr/lib/ccache:/usr/lib/distcc/bin:$HOME/bin:/sbin:$PATH
+export PATH=/usr/lib/ccache:/usr/lib/distcc/bin:$HOME/bin:/usr/sbin:/sbin:$PATH
 export CCACHE_DIR=/ccache
 #export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
