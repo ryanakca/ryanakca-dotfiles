@@ -28,6 +28,7 @@ lists ogeeks.googlegroups.com
 lists paleobloggers.googlegroups.com
 lists paleocooks.googlegroups.com
 lists frescobaldi.googlegroups.com
+lists misc.opensmtpd.org
 
 subscribe kubuntu-devel.lists.ubuntu.com
 alias kubuntu-devel kubuntu-devel@lists.ubuntu.com
@@ -79,3 +80,4 @@ subscribe paleocooks.googlegroups.com
 alias paleocooks PaleoCooks <paleocooks@googlegroups.com>
 subscribe frescobaldi.googlegroups.com
 alias frescobaldi-list Frescobaldi <frescobaldi@googlegroups.com>
+subscribe misc.opensmtpd.org
