@@ -14,13 +14,13 @@ set imap_passive = 'no';\
 set folder = 'imap://localhost';\
 set spoolfile = '=INBOX'"
 
-account-hook imaps://mail.queensu.ca \
-"set imap_user = '9rak';\
+account-hook imaps://outlook.office365.com \
+"set imap_user = '9rak@queensu.ca';\
 set imap_pass = 'QUEENSU_PASS';\
-set folder = 'imaps://9rak@mail.queensu.ca:993';\
-set record = 'imaps://9rak@mail.queensu.ca/Sent';\
-set postponed = 'imaps://9rak@mail.queensu.ca/Drafts';\
-set spoolfile = 'imaps://9rak@mail.queensu.ca/Inbox';\
+set folder = 'imaps://outlook.office365.com:993/';\
+set record = '=Sent Items';\
+set postponed = '=Drafts';\
+set spoolfile = '=Inbox';\
 set imap_passive = 'no'"
 
 send-hook . \
@@ -50,10 +50,10 @@ set status_format = '-%r-MAIN: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? D
 folder-hook .*[Qq]ueens[uU].* \
 "unhook send-hook;\
 set from = ryan.kavanagh@queensu.ca;\
-unset sendmail;
-set smtp_url="smtps://9rak@mail.queensu.ca:465/";\
-set smtp_pass = 'QUEENSU_PASS';\
-set record='=QueensU.Sent';\
+set sendmail="MSMTP_PATH -a queensu"\
+unset smtp_url;\
+unset smtp_pass;\
+set record='=QueensU.Sent Items';\
 set postponed='=QueensU.Drafts';\
 set pager_format = '-%Z-QUEENS: %C/%m: %-20.20n %s';\
 set compose_format = '-- QUEENS: Compose [Approx. msg size: %l Atts: %a]%>-';\
@@ -102,7 +102,7 @@ macro compose <F2> '<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter><en
 macro compose <Esc><F2> '<enter-command>set sendmail="MSMTP_PATH -a kubuntu"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Kubuntu account"
 macro compose <F3> '<enter-command>set sendmail="/usr/bin/msmtp -a mcgill"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@mail.mcgill.ca><enter><edit-fcc>=McGill.Sent Items<enter><enter-command>set postponed="=McGill.Drafts"<enter><enter-command>set record="=McGill.Sent Items"<enter>' "Sent mail from McGill account"
 macro compose <Esc><F3> '<enter-command>set sendmail="/usr/bin/msmtp -a mcgillsocs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryank@cs.mcgill.ca><enter><edit-fcc>=McGSOCS.INBOX.Sent Items<enter><enter-command>set postponed="=McGSOCS.INBOX.Drafts"<enter><enter-command>set record="=McGSOCS.INBOX.Sent"<enter>' "Sent mail from McGill SOCS account"
-macro compose <F4> '<enter-command>unset sendmail<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-fcc>=QueensU.Sent<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>set smtp_url="smtps://9rak@mail.queensu.ca:465/"<enter><enter-command>set smtp_pass="QUEENSU_PASS"<enter><enter-command>set record="=QueensU.Sent"<enter>' "Sent mail from Queen's account"
+macro compose <F4> '<enter-command>unset sendmail<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-fcc>=QueensU.Sent Items<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>unset smtp_url<enter><enter-command>set sendmail="MSMTP_PATH -a queensu"<enter><enter-command>set record="=QueensU.Sent Items"<enter>' "Sent mail from Queen's account"
 macro compose <Esc><F4> '<enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from cs.queensu.ca account"
 macro compose <F5> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Debian account"
 
