@@ -3,7 +3,7 @@
 
 [general]
 metadata = ~/.offlineimap
-accounts = GMAIL, QueensU, McGillSOCS, McGill
+accounts = GMAIL, QueensU, McGillSOCS, ENSL, MIT
 #, GMAIL
 pythonfile=~/.offlineimap.py
 maxsyncaccounts = 5
@@ -29,7 +29,7 @@ remoteuser = ryan
 remotepass = LOCAL_PASS
 # Don't try to sync local changes to [Google Mail]/Chat remotely, it's read-only
 # on Gmail's end.
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', 'ENSL', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
 idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
@@ -41,7 +41,7 @@ remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 realdelete = no
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', 'ENSL', '[Google Mail]/All Mail', '[Google Mail]/Important'])
 idlefolders = ['INBOX']
 sslcacertfile = SSL_CERTS
 
@@ -173,6 +173,37 @@ remoteuser = ryan
 remotepass = LOCAL_PASS
 folderfilter = lambda folder: folder.startswith('MIT.')
 nametrans = lambda folder: re.sub('^MIT.', '', folder)
+
+#### ENSL mail
+[Account ENS]
+localrepository = LocalENS
+remoterepository = RemoteENS
+autorefresh = 20
+quick = 10
+# presynchook = imapfilter
+foldersort = lamba x, y: cmp(x, y)
+postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
+
+[Repository RemoteENS]
+foldersort = lambda x, y: cmp(y, x)
+type = IMAP
+remoteuser = rkavanag
+remotehost = imaps.ens-lyon.fr
+remotepass = ENS_PASS
+remortport = 993
+sslcacertfile = SSL_CERTS
+ssl = yes
+ssl_version = tls1
+nametrans = lambda foldername: 'ENSL.' + foldername
+folderfilter = lambda folder: folder not in ['Calendar']
+
+[Repository LocalENS]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+folderfilter = lambda folder: folder.startswith('ENSL.')
+nametrans = lambda folder: re.sub('^ENSL.', '', folder)
 
 [mbnames]
 enabled = no
