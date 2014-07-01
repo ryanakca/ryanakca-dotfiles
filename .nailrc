@@ -70,6 +70,19 @@ account m {
     set smtp-auth-password-rakavan@outgoing.mit.edu:587=MIT_PASS
 }
 
+account r {
+    call clearset
+    set from="Ryan Kavanagh <rak@ryanak.ca>"
+    set folder=imaps://rak@hermes.ryanak.ca/
+    set imap-stharttls-rak@hermes.ryanak.ca
+    set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
+    set sendmail=/usr/sbin/sendmail
+
+    set MBOX=@Read
+    set record=@Sent
+}
+
+
 source ~/.mailx-aliases.rc
 source ~/.mailrc
 
