@@ -23,6 +23,17 @@ set postponed = '=Drafts';\
 set spoolfile = '=Inbox';\
 set imap_passive = 'no'"
 
+account-hook imaps://hermes.ryanak.ca \
+"set imap_user = 'rak';\
+set imap_pass = 'RYANAKCA_PASS';\
+set folder = 'imaps://hermes.ryanak.ca/';\
+set record = '=Sent';\
+set postponed = '=Drafts';\
+set spoolfile = '=';\
+unset smtp_url;\
+unset smtp_pass;\
+set sendmail = 'MSMTP_PATH -a ryanakca';"
+
 send-hook . \
 "set from = rak@debian.org;\
 set sendmail='MSMTP_PATH';\
@@ -105,5 +116,6 @@ macro compose <Esc><F3> '<enter-command>set sendmail="/usr/bin/msmtp -a mcgillso
 macro compose <F4> '<enter-command>unset sendmail<enter><edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter><edit-fcc>=QueensU.Sent Items<enter><enter-command>set postponed="=QueensU.Drafts"<enter><enter-command>unset smtp_url<enter><enter-command>set sendmail="MSMTP_PATH -a queensu"<enter><enter-command>set record="=QueensU.Sent Items"<enter>' "Sent mail from Queen's account"
 macro compose <Esc><F4> '<enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from cs.queensu.ca account"
 macro compose <F5> '<enter-command>set sendmail="MSMTP_PATH"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter><edit-fcc><kill-line><enter><enter-command>set postponed="=[Google Mail]/Drafts"<enter>' "Sent mail from Debian account"
+macro compose <F6> '<enter-command>set sendmail="MSMTP_PATH -a ryanakca"<enter><enter-command>unset smtp_url<enter><enter-command>unset smtp_pass<enter><edit-from><kill-line>Ryan Kavanagh <rak@ryanak.ca><enter><edit-fcc><kill-line>imaps://hermes.ryanak.ca/Sent<enter><enter-command>set postponed="imaps://hermes.ryanak.ca/Drafts"<enter>' "Sent mail from ryanak.ca account"
 
 set certificate_file = '~/.mutt/certs/certificates'
