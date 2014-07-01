@@ -13,6 +13,7 @@ LOCAL_FILES = \
     .mutt/score.rc \
     .mutt/ssl.rc \
     .muttrc \
+    .nailrc \
     .netrc \
     .offlineimaprc \
     .screenrc \
@@ -93,18 +94,20 @@ GPG_DISABLED  = $(call get-val,GPG_DISABLED)
 GPG_BINARY    = $(call get-val,GPG_BINARY)
 EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 
+MAIL_PASS = GMAIL_PASS QUEENSU_PASS MCGSOCS_PASS MCGILL_PASS RYANAKCA_PASS MIT_PASS ENS_PASS
+
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP_FOLDER_SEP
-VARS_.msmtprc           = GMAIL_PASS QUEENSU_PASS LOCALHOST MCGSOCS_PASS MCGILL_PASS RYANAKCA_PASS SSL_CERTS MIT_PASS
-VARS_.mutt/accounts.rc  = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MSMTP_PATH MCGILL_PASS
+VARS_.msmtprc           = $(MAIL_PASS) LOCALHOST SSL_CERTS
+VARS_.mutt/accounts.rc  = $(MAIL_PASS) MSMTP_PATH
 VARS_.mutt/gpg.rc       = GPG_BINARY PGPEWRAP_BINARY
 VARS_.mutt/score.rc     = MUTT_10_SCORE MUTT_20_SCORE
 VARS_.mutt/ssl.rc       = SSL_CERTS
 VARS_.muttrc            = MSMTP_PATH
-VARS_.nailrc		= GMAIL_mailx_PASS
+VARS_.nailrc		= GMAIL_mailx_PASS RYANAKCA_PASS
 VARS_.netrc             = LOCAL_PASS GMAIL_PASS
-VARS_.offlineimaprc     = LOCAL_PASS GMAIL_PASS QUEENSU_PASS MCGSOCS_PASS MCGILL_PASS SSL_CERTS MIT_PASS
+VARS_.offlineimaprc     = $(MAIL_PASS)
 VARS_.screenrc          = ZSH_PATH SCREEN_HOST_COLOUR
 VARS_.xinitrc           = SCREENLAYOUT REDSHIFT_MODE GSD_PATH PULSE_JACKD
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
