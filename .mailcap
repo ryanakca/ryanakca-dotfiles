@@ -1,5 +1,5 @@
-text/html;      w3m %s; nametemplate=%s.html
-text/html;      w3m -dump %s; nametemplate=%s.html; copiousoutput
+text/html;      lynx %s; nametemplate=%s.html
+text/html;      lynx -dump %s; nametemplate=%s.html; copiousoutput
 application/pdf;            mutt_bgrun evince '%s';        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-pdf;          evince '%s';        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-gzpdf;        evince '%s';        nametemplate=%s.pdf.gz;   test=test "$DISPLAY" != ""; description=Portable Document Format
