@@ -45,6 +45,7 @@ set mime_forward = ask-yes
 bind index G imap-fetch-mail
 bind index ( next-unread-mailbox
 bind index * next-unread
+bind pager i exit
 
 macro index .n "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>~R<enter>" "Catchup all new messages"
 
