@@ -43,3 +43,9 @@
 [submodule ".rlwrap"]
 	path = .rlwrap
 	url = https://github.com/ryanakca/rlwrap_mail.git
+[submodule "emacsen/auctex"]
+	path = emacsen/auctex
+	url = git://git.sv.gnu.org/auctex.git
+[submodule "emacsen/Fill-Column-Indicator"]
+	path = emacsen/Fill-Column-Indicator
+	url = https://github.com/alpaker/Fill-Column-Indicator.git
