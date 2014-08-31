@@ -80,7 +80,7 @@ alias am740='mplayer -playlist http://provisioning.streamtheworld.com/asx/cfzmam
 alias 1920s='mplayer -playlist http://kara.fast-serv.com:8398/listen.pls'
 alias 1940s='mplayer http://s2.fastcast4u.com:10102/'
 alias wqxr='mplayer -playlist http://www.wqxr.org/stream/wqxr/aac.pls'
-alias dismuke='`curl -s http://www.loudcity.com/stations/radio-dismuke | grep --color=never launch | grep --color=never ram | tail -n 1 | sed -e "s@.*href=.@mplayer -playlist http://www.loudcity.com@g;s@. class.*@@g"`'
+alias dismuke='mplayer -playlist http://early1900s.org/radiodismuke/radiodismuke.ram'
 alias up-theme='rsync -avz --no-p --no-o --no-times -e ssh ~/work/kubuntu-theme-v2/* ryanak.ca:/home/ryan/kubuntu-theme-v2/'
 alias startxkde4='startx -nolisten tcp -- :0 &'
 alias irssi-notify='ssh -f ryanak.ca -L 2227:127.0.0.1:2227 -N && irssi-notifier &'
