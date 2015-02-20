@@ -5,8 +5,7 @@ define clearset {
 
 account l {
     call clearset
-    set from="ryan@ryanak.ca (Ryan Kavanagh)"
-    set sendmail=/usr/sbin/sendmail
+    set from="rak@ryanak.ca (Ryan Kavanagh)"
 }
 
 account d {
@@ -26,6 +25,7 @@ account g {
     set from="Ryan Kavanagh <rak@debian.org>"
     set smime-sign-cert="/home/ryan/ssl/mailx-debian.pem"
     set smime-sign
+    set imap-keepalive=30
 }
 
 account q {
@@ -38,45 +38,12 @@ account q {
     unset smime-sign
 }
 
-account lm {
-    call clearset
-    set folder=imap://ryan@localhost/MIT.INBOX
-    set record=@MIT.Sent
-    set MBOX=@MIT.Read
-    set sendmail=/home/ryan/bin/msmtp/msmtp-mit
-    set from="rakavan@mit.edu (Ryan Kavanagh)"
-    set smime-sign-cert-ryan@localhost="/home/ryan/ssl/mailx-mit.pem"
-    set smime-sign
-}
-
-account m {
-    call clearset
-    set from="Ryan Kavanagh <rakavan@mit.edu>"
-    set folder=imaps://rakavan@imap.exchange.mit.edu:993/
-    set imap-starttls-rakavan@imap.exchange.mit.edu:993
-    set password-rakavan@imap.exchange.mit.edu:993=MIT_PASS
-    set ssl-method=tls1
-
-    set record=@Sent
-    set MBOX=@Read
-
-    set sendmail="msmtp -a mit"
-
-    set smime-sign-cert=/home/ryan/ssl/mailx-mit.pem
-    set smime-nickname=rakavan@MIT.EDU
-    set smime-sign
-
-    set smtp=rakavan@outgoing.mit.edu:587
-    set smtp-auth-password-rakavan@outgoing.mit.edu:587=MIT_PASS
-}
-
 account r {
     call clearset
     set from="Ryan Kavanagh <rak@ryanak.ca>"
     set folder=imaps://rak@hermes.ryanak.ca/
-    set imap-stharttls-rak@hermes.ryanak.ca
+    set imap-starttls-rak@hermes.ryanak.ca
     set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
-    set sendmail=/usr/sbin/sendmail
 
     set MBOX=@Read
     set record=@Sent
@@ -85,6 +52,9 @@ account r {
 
 source ~/.mailx-aliases.rc
 source ~/.mailrc
+
+set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
+set record=imaps://rak@hermes.ryanak.ca/Sent
 
 # Don't display X-Brightmail-Tracker header cruft
 ignore "X-Brightmail-Tracker"
