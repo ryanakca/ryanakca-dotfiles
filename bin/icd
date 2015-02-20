@@ -1,17 +1,21 @@
 #!/bin/sh
 
-OPTIONS="-option lv3:ralt_switch_multikey \
+GLOBAL_OPTIONS="\
     -option terminate:ctrl_alt_bksp \
-    -option ctrl:swapcaps \
     -option nbsp:level3n \
     -I${HOME}/.xkb \
     -layout icd \
     -variant icd"
 
-SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
+OPTIONS="\
+    ${GLOBAL_OPTIONS} \
+    -option lv3:ralt_switch_multikey \
+    -option ctrl:swapcaps"
 
 setxkbmap ${OPTIONS} -print > ${HOME}/.xkb/keymap/icd
-xkbcomp -I/home/ryan/.xkb /home/ryan/.xkb/keymap/icd $DISPLAY 2> /dev/null
+
+SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
+KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
 
 if [ "x${SUN_USB_ID}" != "x" ]; then
     SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
@@ -20,7 +24,6 @@ if [ "x${SUN_USB_ID}" != "x" ]; then
         -keycodes "rak" \
         -device ${SUN_XINPUT_ID} \
         -geometry "sun(type6)" \
-        -option "myswap(switch_lalt_lsuper)" \
         ${OPTIONS} \
         -print > ${HOME}/.xkb/keymap/icd.sun
 #    awk '{ \
@@ -34,6 +37,25 @@ if [ "x${SUN_USB_ID}" != "x" ]; then
         ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
         #xkbcomp -i ${SUN_USB_ID} -I${HOME}/.xkb \
         #    ${HOME}/.xkb/symbols/myswap ${DISPLAY} # 2> /dev/null
+elif [ "x${KIN_USB_ID}" != "x" ]; then
+    KIN_XINPUT_ID=$(xinput | grep ${KIN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+    for XID in $KIN_XINPUT_ID; do
+        echo $XID
+        setxkbmap \
+            -I${HOME}/.xkb \
+            -device ${XID} \
+            ${GLOBAL_OPTIONS} \
+            -option "lv3:switch" \
+            -option "caps:swapescape" \
+            -print | sed -e 's@+ctrl(nocaps)@@g' > ${HOME}/.xkb/keymap/icd.kin
+        xkbcomp -i ${XID} -I${HOME}/.xkb \
+            ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
+    done
+    xkbcomp -I${HOME}/.xkb \
+        ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
+else
+    xkbcomp -I/home/ryan/.xkb \
+        /home/ryan/.xkb/keymap/icd $DISPLAY # 2> /dev/null
 fi
 
 echo icd > /home/ryan/.xmonad/layout
