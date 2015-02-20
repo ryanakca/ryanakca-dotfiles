@@ -24,6 +24,7 @@ set pager_stop = yes
 # Display HTML mail only if there's no text/plain
 alternative_order text/plain text/html *
 auto_view text/html
+set display_filter="~/bin/mutt-autoalias"
 
 set timeout=15
 set mail_check=60
@@ -47,7 +48,7 @@ bind index ( next-unread-mailbox
 bind index * next-unread
 bind pager i exit
 
-macro index .n "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>~R<enter>" "Catchup all new messages"
+macro index .n "<tag-pattern>~N|~O<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>~T<enter>" "Catchup all new messages"
 
 # This shows up in a nice message box at the top of e-mails for MS Outlook users
 my_hdr X-message-flag: Please do NOT send HTML e-mail or MS Word attachments - use plain text instead
@@ -79,6 +80,7 @@ set alias_file = ~/.mutt/alias.rc
 set sidebar_width=30 
 set sidebar_visible=no
 set sidebar_delim=' '
+set sidebar_delim_chars='/'
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
 # color of folders with new mail
