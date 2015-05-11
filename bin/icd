@@ -4,8 +4,9 @@ GLOBAL_OPTIONS="\
     -option terminate:ctrl_alt_bksp \
     -option nbsp:level3n \
     -I${HOME}/.xkb \
-    -layout icd \
-    -variant icd"
+    -layout icd,dpr \
+    -variant icd,dpr \
+    -option grp:shifts_toggle"
 
 OPTIONS="\
     ${GLOBAL_OPTIONS} \
