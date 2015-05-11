@@ -13,10 +13,16 @@ OPTIONS="\
     -option lv3:ralt_switch_multikey \
     -option ctrl:swapcaps"
 
+[ -d ${HOME}/.xkb/keymap ] || mkdir -p ${HOME}/.xkb/keymap
+
 setxkbmap ${OPTIONS} -print > ${HOME}/.xkb/keymap/icd
 
+LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
 KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
+
+xkbcomp -i $(LAPTOP_ID) -I${HOME}/.xkb \
+    /home/ryan/.xkb/keymap/icd $DISPLAY # 2> /dev/null
 
 if [ "x${SUN_USB_ID}" != "x" ]; then
     SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
@@ -54,9 +60,6 @@ elif [ "x${KIN_USB_ID}" != "x" ]; then
     done
     xkbcomp -I${HOME}/.xkb \
         ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
-else
-    xkbcomp -I/home/ryan/.xkb \
-        /home/ryan/.xkb/keymap/icd $DISPLAY # 2> /dev/null
 fi
 
 echo icd > /home/ryan/.xmonad/layout
