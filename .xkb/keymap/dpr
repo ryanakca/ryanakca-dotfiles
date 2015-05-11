@@ -1,7 +1,0 @@
-xkb_keymap {
-	xkb_keycodes  { include "xfree86+aliases(qwerty)"	};
-	xkb_types     { include "complete"	};
-	xkb_compat    { include "complete"	};
-	xkb_symbols   { include "pc+dpr+inet(pc105)+level3(ralt_switch_multikey)+ctrl(nocaps)+terminate(ctrl_alt_bksp)"	};
-	xkb_geometry  { include "pc(pc105)"	};
-};
