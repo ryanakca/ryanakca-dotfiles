@@ -396,6 +396,14 @@ fmtpr() {
     fmt --width=62 $@ | LC_ALL=C LANG=C pr -o 10 -W 62 -J -F -l 62 
 }
 
+# Russian
+#
+
+verb.rus() {
+    curl -s "http://en.wiktionary.org/w/index.php?title=$1&action=edit" | grep 'ru-conj-'
+    firefox "http://en.wiktionary.org/w/index.php?title=$1"
+}
+
 #
 # Debian.
 #
