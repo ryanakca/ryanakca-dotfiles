@@ -50,7 +50,6 @@ export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 export BZR_EMAIL="$NAME <$EMAIL>"       # Override email for Bazaar.
 export GIT_AUTHOR_NAME=$NAME
 export DARCS_EMAIL="$NAME <$EMAIL>"
-export GREP_OPTIONS="--color=auto"
 export QUILT_PATCHES=debian/patches
 export PATH=/usr/lib/ccache:/usr/lib/distcc/bin:$HOME/bin:/usr/sbin:/sbin:$PATH
 export CCACHE_DIR=/ccache
@@ -148,6 +147,8 @@ fi
 # Cause encfs unmount a mounted encrypted partition after twenty minutes of
 # inactivity by default.
 alias encfs="encfs --idle=20"
+
+alias grep="grep --colour=auto"
 
 fpath=($fpath $HOME/.zsh/func)
 
