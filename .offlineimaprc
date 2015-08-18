@@ -3,7 +3,7 @@
 
 [general]
 metadata = ~/.offlineimap
-accounts = GMAIL, QueensU, McGillSOCS, McGill
+accounts = GMAIL, QueensU, CMU, CMUSCS
 #, GMAIL
 pythonfile=~/.offlineimap.py
 maxsyncaccounts = 5
@@ -20,16 +20,13 @@ postsynchook = imapfilter -c /home/ryan/.imapfilter/config.lua && /home/ryan/bin
 foldersort = mycmp
 
 [Repository LocalGmail]
-#type = Maildir    
-#localfolders = ~/.maildb/GMAIL 
-#restoreatime = no  
 type = IMAP
 remotehost = localhost
 remoteuser = ryan
 remotepass = LOCAL_PASS
 # Don't try to sync local changes to [Google Mail]/Chat remotely, it's read-only
 # on Gmail's end.
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', 'CMU', 'SCS', '[Google Mail]/All Mail', '[Google Mail]/Important', '[Google Mail]/Chat'])
 idlefolders = ['INBOX']
 
 [Repository RemoteGmail]
@@ -41,7 +38,7 @@ remotepass = GMAIL_PASS
 spamfolder = [Google Mail]/Spam
 trashfolder = [Google Mail]/Bin
 realdelete = no
-folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
+folderfilter = lambda folder: True not in map(lambda x: folder.startswith(x), ['MIT', 'QueensU', 'McGill', 'McGSOCS', 'CMU', 'SCS', '[Google Mail]/All Mail', '[Google Mail]/Important'])
 idlefolders = ['INBOX']
 sslcacertfile = SSL_CERTS
 
@@ -77,102 +74,67 @@ folderfilter = lambda folder: folder.startswith('QueensU.')
 # Remove QueensU prefix when copying to remote
 nametrans = lambda folder: re.sub('^QueensU.', '', folder)
 
-#### McGillSOCS mail
-[Account McGillSOCS]
-localrepository = LocalMcGillSOCS
-remoterepository = RemoteMcGillSOCS
+##### CMU mail
+[Account CMU]
+localrepository = LocalCMU
+remoterepository = RemoteCMU
 autorefresh = 20
 quick = 10
 # presynchook = imapfilter
 foldersort = lamba x, y: cmp(x, y)
 postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
 
-[Repository RemoteMcGillSOCS]
-foldersort = lambda x, y: cmp(y, x)
-type = IMAP
-remoteuser = ryank
-remotehost = mail.cs.mcgill.ca
-remotepass = MCGSOCS_PASS
-ssl = yes
-cert_fingerprint = ec83347f1871cb06d12910bf88b6ebea53ee4d33
-# sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
-# Add McGSOCS prefix when copying to local
-nametrans = lambda foldername: 'McGSOCS.' + foldername
-folderfilter = lambda folder: folder not in ['user.globalspam', 'user.graduate', 'user.undergraduate']
-
-[Repository LocalMcGillSOCS]
-type = IMAP
-remotehost = localhost
-remoteuser = ryan
-remotepass = LOCAL_PASS
-# Only copy folders from local to remote if they start with McGSOCS
-folderfilter = lambda folder: folder.startswith('McGSOCS.')
-# Remove McGSOCS prefix when copying to remote
-nametrans = lambda folder: re.sub('^McGSOCS.', '', folder)
-
-#### McGill mail
-[Account McGill]
-localrepository = LocalMcGill
-remoterepository = RemoteMcGill
-autorefresh = 20
-quick = 10
-# presynchook = imapfilter
-foldersort = lamba x, y: cmp(x, y)
-postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
-
-[Repository RemoteMcGill]
-foldersort = lambda x, y: cmp(y, x)
-type = IMAP
-remoteuser = ryan.kavanagh@mail.mcgill.ca
-remotehost = exchange.mcgill.ca
-remotepass = MCGILL_PASS
-remortport = 993
-cert_fingerprint = 9f3fc06c357ecfcaaaf0cebedfb8d6b94f0926f6
-ssl = yes
-# sslcacertfile = /home/ryan/.mutt/certs/mcgillsocs.crt
-# Add McGSOCS prefix when copying to local
-nametrans = lambda foldername: 'McGill.' + foldername
-
-[Repository LocalMcGill]
-type = IMAP
-remotehost = localhost
-remoteuser = ryan
-remotepass = LOCAL_PASS
-# Only copy folders from local to remote if they start with McGSOCS
-folderfilter = lambda folder: folder.startswith('McGill.')
-# Remove McGSOCS prefix when copying to remote
-nametrans = lambda folder: re.sub('^McGill.', '', folder)
-
-#### MIT mail
-[Account MIT]
-localrepository = LocalMIT
-remoterepository = RemoteMIT
-autorefresh = 20
-quick = 10
-# presynchook = imapfilter
-foldersort = lamba x, y: cmp(x, y)
-postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
-
-[Repository RemoteMIT]
-foldersort = lambda x, y: cmp(y, x)
-type = IMAP
-remoteuser = rakavan
-remotehost = imap.exchange.mit.edu
-remotepass = MIT_PASS
-remortport = 993
+[Repository RemoteCMU]
+foldersort = lambda x, y: mycmp(x, y)
+type = Gmail
+maxconnections = 4
+remoteuser = rkavanag@andrew.cmu.edu
+remotepass = CMU_PASS
+spamfolder = [GMAIL].Spam
+trashfolder = [GMAIL].Bin
+realdelete = no
 sslcacertfile = SSL_CERTS
-ssl = yes
-ssl_version = tls1
-nametrans = lambda foldername: 'MIT.' + foldername
-folderfilter = lambda folder: folder not in ['Calendar']
+nametrans = lambda foldername: 'CMU.' + foldername
 
-[Repository LocalMIT]
+[Repository LocalCMU]
 type = IMAP
 remotehost = localhost
 remoteuser = ryan
 remotepass = LOCAL_PASS
-folderfilter = lambda folder: folder.startswith('MIT.')
-nametrans = lambda folder: re.sub('^MIT.', '', folder)
+folderfilter = lambda folder: folder.startswith('CMU.')
+nametrans = lambda folder: re.sub('^CMU.', '', folder)
+
+##### CMU mail
+[Account CMUSCS]
+localrepository = LocalCMUSCS
+remoterepository = RemoteCMUSCS
+autorefresh = 20
+quick = 10
+# presynchook = imapfilter
+foldersort = lamba x, y: cmp(x, y)
+postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
+
+[Repository RemoteCMUSCS]
+foldersort = lambda x, y: mycmp(x, y)
+type = IMAP
+maxconnections = 4
+remoteuser = rkavanag
+remotehost = imap.srv.cs.cmu.edu
+remotepass = CMUSCS_PASS
+remoteport = 993
+spamfolder = Spam
+trashfolder = Bin
+realdelete = no
+sslcacertfile = SSL_CERTS
+nametrans = lambda foldername: 'SCS.' + foldername
+
+[Repository LocalCMUSCS]
+type = IMAP
+remotehost = localhost
+remoteuser = ryan
+remotepass = LOCAL_PASS
+folderfilter = lambda folder: folder.startswith('SCS.')
+nametrans = lambda folder: re.sub('^SCS.', '', folder)
 
 [mbnames]
 enabled = no
