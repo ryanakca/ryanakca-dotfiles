@@ -26,10 +26,7 @@ LOCAL_FILES = \
 
 # GPG encrypted files
 GPG_FILES = \
-    .mutt/alias.rc \
-    .ssh/id_ecdsa \
-    .ssh/id_rsa \
-    .ssh/id_rsa.lambda
+    .mutt/alias.rc
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
@@ -122,7 +119,7 @@ all: clean build
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 
-build: $(BUILD) emacsen fonts build/bin/msmtp/msmtp-default
+build: $(BUILD) fonts build/bin/msmtp/msmtp-default
 
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
