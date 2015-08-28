@@ -49,6 +49,17 @@ account r {
     set record=@Sent
 }
 
+account s {
+    call clearset
+    set from="Ryan Kavanagh <rkavanag@cs.cmu.edu>"
+    set folder=imaps://rkavanag@imap.srv.cs.cmu.edu/
+    set imap-starttls-rkavanag@imap.srv.cs.cmu.edu
+    set password-rkavanag@imap.srv.cmu.edu=CMUSCS_PASS
+
+    set MBOX=@Read
+    set record=@Sent
+}
+
 
 source ~/.mailx-aliases.rc
 source ~/.mailrc
