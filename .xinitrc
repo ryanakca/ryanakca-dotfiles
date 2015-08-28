@@ -1,20 +1,13 @@
 #!/bin/sh
 redshift -m REDSHIFT_MODE  -l 44.22:-76.48 -t 6500:2500 &
-/home/ryan/bin/icd
 # xcompmgr &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
   --expand true --width 10 --transparent true --height 12 --align right &
 xautolock -time 2 &
-/home/ryan/.dzen/battery.sh &
-# /home/ryan/.dzen/temperature.sh &
-# /usr/local/libexec/gnome-settings-daemon &
-#kmix &
-# feh --bg-center /home/ryan/.local/share/wallpapers/skyscraper_at_sunset.bmp
-# feh --bg-center /home/ryan/.local/share/wallpapers/totheglory.jpg
+${HOME}/.dzen/battery.sh &
 urxvtd -q -f -o &
 urxvtc &
-# /home/ryan/.screenlayout/work.sh
-/home/ryan/.screenlayout/nu-home.sh && nitrogen --restore
+${HOME}/.screenlayout/nu-home.sh && nitrogen --restore
 if [ "True" = "True" ]; then
     sh bin/startaudio &
 fi
