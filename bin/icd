@@ -21,14 +21,14 @@ KIN_OPTIONS="\
     -option "lv3:switch" \
     -option caps:swapescape"
 
-LAPTOP_ID=$(xinput | grep "(AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
 
 echo "Setting up laptop"
 setxkbmap ${LAPTOP_OPTIONS} -device ${LAPTOP_ID} -print > ${XKB_DIR}/keymap/icd.laptop
 #xkbcomp -I${HOME}/.xkb -i ${LAPTOP_ID} -synch \
 xkbcomp -I${HOME}/.xkb -synch \
-    /home/ryan/.xkb/keymap/icd.laptop $DISPLAY # 2> /dev/null
+    ${HOME}/.xkb/keymap/icd.laptop $DISPLAY # 2> /dev/null
 
 if [ "x${KIN_USB_ID}" != "x" ]; then
     echo "Setting up Kinesis"
@@ -47,4 +47,4 @@ if [ "x${KIN_USB_ID}" != "x" ]; then
         ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
 fi
 
-echo icd > /home/ryan/.xmonad/layout
+echo icd > ${HOME}/.xmonad/layout
