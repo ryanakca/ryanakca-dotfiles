@@ -1,64 +1,49 @@
 #!/bin/sh
 
+XKB_DIR=${HOME}/.xkb
+[ -d ${XKB_DIR}/keymap ] || mkdir -p ${XKB_DIR}/keymap
+
 GLOBAL_OPTIONS="\
+    -I${XKB_DIR} \
+    -layout icd,ru \
+    -variant icd, \
     -option terminate:ctrl_alt_bksp \
     -option nbsp:level3n \
-    -I${HOME}/.xkb \
-    -layout icd,dpr \
-    -variant icd,dpr \
     -option grp:shifts_toggle"
 
-OPTIONS="\
+LAPTOP_OPTIONS="\
     ${GLOBAL_OPTIONS} \
     -option lv3:ralt_switch_multikey \
     -option ctrl:swapcaps"
 
-[ -d ${HOME}/.xkb/keymap ] || mkdir -p ${HOME}/.xkb/keymap
+KIN_OPTIONS="\
+    ${GLOBAL_OPTIONS} \
+    -option "lv3:switch" \
+    -option caps:swapescape"
 
-setxkbmap ${OPTIONS} -print > ${HOME}/.xkb/keymap/icd
-
-LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
-SUN_USB_ID=$(lsusb | grep Sun | awk '{ print $6 }')
+LAPTOP_ID=$(xinput | grep "(AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
 
-xkbcomp -i $(LAPTOP_ID) -I${HOME}/.xkb \
-    /home/ryan/.xkb/keymap/icd $DISPLAY # 2> /dev/null
+echo "Setting up laptop"
+setxkbmap ${LAPTOP_OPTIONS} -device ${LAPTOP_ID} -print > ${XKB_DIR}/keymap/icd.laptop
+#xkbcomp -I${HOME}/.xkb -i ${LAPTOP_ID} -synch \
+xkbcomp -I${HOME}/.xkb -synch \
+    /home/ryan/.xkb/keymap/icd.laptop $DISPLAY # 2> /dev/null
 
-if [ "x${SUN_USB_ID}" != "x" ]; then
-    SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
-    setxkbmap \
-        -I${HOME}/.xkb \
-        -keycodes "rak" \
-        -device ${SUN_XINPUT_ID} \
-        -geometry "sun(type6)" \
-        ${OPTIONS} \
-        -print > ${HOME}/.xkb/keymap/icd.sun
-#    awk '{ \
-#        if (/symbols/) { \
-#            sub(/\)\"/, ")+myswap(switch_lalt_lsuper)\""); print \
-#        } else { \
-#            print \
-#        } \
-#    }' ${HOME}/.xkb/keymap/icd.sun2 > ${HOME}/.xkb/keymap/icd.sun
-    xkbcomp -i ${SUN_USB_ID} -I${HOME}/.xkb \
-        ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
-        #xkbcomp -i ${SUN_USB_ID} -I${HOME}/.xkb \
-        #    ${HOME}/.xkb/symbols/myswap ${DISPLAY} # 2> /dev/null
-elif [ "x${KIN_USB_ID}" != "x" ]; then
+if [ "x${KIN_USB_ID}" != "x" ]; then
+    echo "Setting up Kinesis"
     KIN_XINPUT_ID=$(xinput | grep ${KIN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
     for XID in $KIN_XINPUT_ID; do
         echo $XID
         setxkbmap \
-            -I${HOME}/.xkb \
+            -I${XKB_DIR} \
             -device ${XID} \
-            ${GLOBAL_OPTIONS} \
-            -option "lv3:switch" \
-            -option "caps:swapescape" \
+            ${KIN_OPTIONS} \
             -print | sed -e 's@+ctrl(nocaps)@@g' > ${HOME}/.xkb/keymap/icd.kin
-        xkbcomp -i ${XID} -I${HOME}/.xkb \
+        xkbcomp -I${HOME}/.xkb -i ${XID} -synch \
             ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
     done
-    xkbcomp -I${HOME}/.xkb \
+    xkbcomp -I${HOME}/.xkb -synch \
         ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
 fi
 
