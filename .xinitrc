@@ -1,5 +1,6 @@
 #!/bin/sh
 redshift -m REDSHIFT_MODE  -l 44.22:-76.48 -t 6500:2500 &
+${HOME}/bin/icd
 # xcompmgr &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
   --expand true --width 10 --transparent true --height 12 --align right &
