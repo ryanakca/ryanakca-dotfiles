@@ -63,7 +63,7 @@ export PDFVIEWER=evince
 export TEXMFHOME=/home/ryan/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 
-alias apt-upgrade='sudo apt-get update && sudo aptitude dist-upgrade'
+alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias emacs='emacs -nw'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
