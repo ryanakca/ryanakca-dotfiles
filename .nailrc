@@ -11,9 +11,9 @@ account l {
 account d {
     call clearset
     set folder=imap://ryan@localhost/
-    set sendmail=/home/ryan/bin/msmtp/msmtp-default
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
-    set smime-sign-cert-ryan@localhost="/home/ryan/ssl/mailx-debian.pem"
+    set smime-sign-cert-ryan@localhost="HOMEDIR/ssl/mailx-debian.pem"
     set smime-sign
 }
 
@@ -21,9 +21,9 @@ account g {
     call clearset
     set folder=imaps://ryanakca@gmail.com@imap.gmail.com/
     set password-ryanakca@gmail.com@imap.gmail.com=GMAIL_mailx_PASS
-    set sendmail=/home/ryan/bin/msmtp/msmtp-default
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
-    set smime-sign-cert="/home/ryan/ssl/mailx-debian.pem"
+    set smime-sign-cert="HOMEDIR/ssl/mailx-debian.pem"
     set smime-sign
     set imap-keepalive=30
 }
@@ -33,7 +33,7 @@ account q {
     set folder=imap://ryan@localhost/QueensU.INBOX
     set record=@QueensU.Sent
     set MBOX=@QueensU.Read
-    set sendmail=/home/ryan/bin/msmtp/msmtp-queensu
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-queensu
     set from="ryan.kavanagh@queensu.ca (Ryan Kavanagh)"
     unset smime-sign
 }
@@ -55,6 +55,7 @@ account s {
     set folder=imaps://rkavanag@imap.srv.cs.cmu.edu/
     set imap-starttls-rkavanag@imap.srv.cs.cmu.edu
     set password-rkavanag@imap.srv.cs.cmu.edu=CMUSCS_PASS
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-cmuscs
 
     set MBOX=@INBOX.Read
     set record=@INBOX.Sent
@@ -79,7 +80,7 @@ set PAGER="less -FXQR"
 
 set nss-config-dir="~/.mozilla/firefox/dbr0vzdh.default/"
 
-set imap-cache=/home/ryan/.mailx/cache
+set imap-cache=HOMEDIR/.mailx/cache
 set imap-keepalive=60
 
 set autosort=thread

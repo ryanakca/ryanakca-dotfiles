@@ -81,3 +81,5 @@ PGPEWRAP_BINARY /usr/lib/mutt/pgpewrap
 # Start pulse and jackd?
 # Set to True to enable, anything else otherwise
 PULSE_JACKD True
+
+HOMEDIR /home/rak
