@@ -211,8 +211,9 @@ frescobaldi = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
                 IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com') )
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['DebianIMAP_FOLDER_SEPfrescobaldi'], frescobaldi)
 
-opensmtpd = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
-                IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'misc.opensmtpd.org') )
+opensmtpd = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+            + IMAPFILTER_GMAIL_SERVER.INBOX:is_older(2) ) *
+                IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'misc.opensmtpd.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['DebianIMAP_FOLDER_SEPopensmtpd'], opensmtpd)
 
 -- O'ists
@@ -254,9 +255,8 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['PiA'], PiA)
 
 -- Queen's
 
-qsocial = ( IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() *
-        ( IMAPFILTER_GMAIL_SERVER.INBOX:match_to('social@cs.queensu.ca') +
-          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('social@cs.queensu.ca') ) )
+qsocial = IMAPFILTER_GMAIL_SERVER.INBOX:match_to('social@.*cs.queensu.ca') +
+          IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('social@.*cs.queensu.ca')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['QueensIMAP_FOLDER_SEPsocial'], qsocial)
 
 qsail = ( IMAPFILTER_GMAIL_SERVER.INBOX:match_to('sail.*@cs.queensu.ca') +
@@ -273,11 +273,16 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipI
 beldev = IMAPFILTER_GMAIL_SERVER.INBOX:match_to('beluga-dev@cs.mcgill.ca')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipIMAP_FOLDER_SEPbeluga-dev'], beldev)
 
+complogic = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'complogic.CS.McGill.CA') *
+            IMAPFILTER_GMAIL_SERVER.INBOX:is_older(1)
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipIMAP_FOLDER_SEPcomplogic'], complogic)
+
 -- MIT under GMAIL
 
-mitplv = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'plv.csail.mit.edu') *
-         IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
-IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['GMAILIMAP_FOLDER_SEPMIT'], mitplv)
+mitplv = ( IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'plv.csail.mit.edu')
+         + IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
+         IMAPFILTER_GMAIL_SERVER.INBOX:is_older(2)
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['IMAPFILTER_GMAIL_SERVERIMAP_FOLDER_SEPMIT'], mitplv)
 
 -- Academia
 
@@ -289,6 +294,13 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['AcademiaIMA
 bagpipes = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('PM_EMAIL') +
            IMAPFILTER_GMAIL_SERVER.INBOX:match_cc('PM_EMAIL')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Bagpipes'], bagpipes)
+
+facebook = IMAPFILTER_GMAIL_SERVER.INBOX:match_from('.*@facebookmail.com') *
+         ( IMAPFILTER_GMAIL_SERVER.INBOX:contain_subject('New messages from ') +
+           IMAPFILTER_GMAIL_SERVER.INBOX:contain_subject('New message from ') ) *
+         ( IMAPFILTER_GMAIL_SERVER.INBOX:is_old()
+         + IMAPFILTER_GMAIL_SERVER.INBOX:is_seen() )
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['Friends'], facebook)
 
 -- Misc
 
