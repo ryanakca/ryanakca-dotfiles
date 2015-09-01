@@ -31,7 +31,7 @@ GPG_FILES = \
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
 GLOBAL_FILES = \
-    .Xdefaults \
+    .Xresources \
     .Xsession \
     .asoundrc \
     .calendar/ \
