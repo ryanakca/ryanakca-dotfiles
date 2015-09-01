@@ -36,3 +36,5 @@ Xft.hintstyle:  hintfull
 Xft.rgba:       bgr
 Xpdf*fileFilterStyle:   filter_hidden_files
 xlock.bg: #000000
+xautolock.locker: xscreensaver-command -lock
+xscreensaver.lock: true
