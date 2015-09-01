@@ -61,6 +61,15 @@ account s {
     set record=@INBOX.Sent
 }
 
+account c {
+    call clearset
+    set folder=imaps://rkavanag@andrew.cmu.edu@imap.gmail.com/
+    set password-rkavanag@andrew.cmu.edu@imap.gmail.com=CMU_PASS
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-cmu
+    set from="Ryan Kavanagh <rkavanag@andrew.cmu.edu>"
+
+    set MBOX=@Read
+}
 
 source ~/.mailx-aliases.rc
 source ~/.mailrc
