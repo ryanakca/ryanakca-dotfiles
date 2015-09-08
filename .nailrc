@@ -13,8 +13,6 @@ account d {
     set folder=imap://ryan@localhost/
     set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
-    set smime-sign-cert-ryan@localhost="HOMEDIR/ssl/mailx-debian.pem"
-    set smime-sign
 }
 
 account g {
@@ -23,8 +21,6 @@ account g {
     set password-ryanakca@gmail.com@imap.gmail.com=GMAIL_mailx_PASS
     set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
-    set smime-sign-cert="HOMEDIR/ssl/mailx-debian.pem"
-    set smime-sign
     set imap-keepalive=30
 }
 
