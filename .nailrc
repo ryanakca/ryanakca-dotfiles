@@ -40,6 +40,7 @@ account r {
     set folder=imaps://rak@hermes.ryanak.ca/
     set imap-starttls-rak@hermes.ryanak.ca
     set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-ryanakca
 
     set MBOX=@Read
     set record=@Sent
