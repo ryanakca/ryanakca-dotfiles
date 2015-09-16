@@ -1,51 +1,15 @@
-[submodule "emacsen/auto-complete"]
-	path = emacsen/auto-complete
-	url = https://github.com/auto-complete/auto-complete.git
-[submodule "emacsen/auto-indent-mode"]
-	path = emacsen/auto-indent-mode
-	url = https://github.com/mlf176f2/auto-indent-mode.el/
-[submodule "emacsen/magit"]
-	path = emacsen/magit
-	url = https://github.com/magit/magit.git
-[submodule "emacsen/proofgeneral"]
-	path = emacsen/proofgeneral
-	url = https://github.com/emacsmirror/proofgeneral.git
-[submodule "emacsen/popup"]
-	path = emacsen/popup
-	url = https://github.com/auto-complete/popup-el.git
-[submodule "emacsen/markdown-mode"]
-	path = emacsen/markdown-mode
-	url = git://jblevins.org/git/markdown-mode.git
-[submodule "dictem"]
-	path = dictem
-	url = https://github.com/cheusov/dictem.git
 [submodule "emacsen/dictem"]
 	path = emacsen/dictem
 	url = https://github.com/cheusov/dictem.git
-[submodule "emacsen/vm"]
-	path = emacsen/vm
-	url = https://github.com/emacsmirror/vm.git
-[submodule "emacsen/bbdb"]
-	path = emacsen/bbdb
-	url = git://git.savannah.nongnu.org/bbdb.git
-[submodule "emacsen/haskell-mode"]
-	path = emacsen/haskell-mode
-	url = https://github.com/haskell/haskell-mode.git
 [submodule ".fonts/Inconsolata-Hellenic"]
 	path = .fonts/Inconsolata-Hellenic
 	url = git://github.com/cosmix/Inconsolata-Hellenic.git
 [submodule ".tmux/powerline"]
 	path = .tmux/powerline
 	url = https://github.com/erikw/tmux-powerline.git
-[submodule "emacsen/dtrt-indent"]
-	path = emacsen/dtrt-indent
-	url = git://git.sv.gnu.org/dtrt-indent.git
 [submodule ".rlwrap"]
 	path = .rlwrap
 	url = https://github.com/ryanakca/rlwrap_mail.git
-[submodule "emacsen/auctex"]
-	path = emacsen/auctex
-	url = git://git.sv.gnu.org/auctex.git
-[submodule "emacsen/Fill-Column-Indicator"]
-	path = emacsen/Fill-Column-Indicator
-	url = https://github.com/alpaker/Fill-Column-Indicator.git
+[submodule "emacsen/use-package"]
+	path = emacsen/use-package
+	url = https://github.com/jwiegley/use-package.git

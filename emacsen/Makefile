@@ -4,18 +4,8 @@ EMACSD=$(ROOT)/build/.emacs.d/
 export ELISPDIR
 EMACSEN=$(ROOT)/emacsen
 
-SUBDIRS = auto-complete \
-	  auto-indent-mode \
-	  bbdb \
-	  dictem \
-	  dtrt-indent \
-	  haskell-mode \
-	  magit \
-	  markdown-mode \
-	  popup \
-	  proofgeneral \
-	  vm
-#	  color-theme-6.6.0 \
+SUBDIRS = dictem \
+	  use-package
 
 MAKEDIRS = $(SUBDIRS:%=make-%)
 INSTALLDIRS = $(SUBDIRS:%=install-%)
@@ -44,74 +34,15 @@ $(CLEANDIRS):
 	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-auto-indent-mode make-markdown-mode make-popup make-dictem make-dtrt-indent:
+make-dictem install-use-package:
 	touch $@
 
-clean-auto-indent-mode clean-markdown-mode clean-popup clean-dictem:
+clean-dictem install-use-package:
 	echo $@
 
-make-auto-complete:
-	$(MAKE) -C $(@:make-%=%) -e EMACS="emacs -L lib/popup/"
-	touch $@
-
-make-bbdb: make-vm
-	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --without-tex-dir \
-	    --with-vm-dir=$(EMACSEN)/vm/lisp \
-	    --with-lispdir=$(EMACSD)bbdb
-	$(MAKE) -C $(@:make-%=%)
-	touch $@
-
-make-haskell-mode:
-	$(MAKE) -C $(@:make-%=%) compile
-	touch $@
-
-make-proofgeneral:
-	$(MAKE) -C $(@:make-%=%) compile
-	touch $@
-
-make-vm:
-	# info file is broken in vm at the moment.
-	echo '%s/^all: info/all:/g\n%s/^info:.*/info:/g\nw' | ed vm/info/Makefile.in
-	cd $(@:make-%=%) && autoconf && ./configure --prefix=$(EMACSD) --with-other-dirs=$(EMACSEN)/bbdb/lisp
-	$(MAKE) -C $(@:make-%=%)
-	touch $@
-
-install-auto-complete:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e DIR=$(EMACSD)/$(@:install-%=%) \
-				    -e EMACS="emacs -L lib/popup/" install
-
-install-bbdb:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
-
-install-auto-indent-mode install-dictem install-dtrt-indent install-markdown-mode install-popup:
+install-dictem install-use-package:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	install -m 644 $(@:install-%=%)/*.el $(EMACSD)/$(@:install-%=%)
-	
-install-color-theme-6.6.0:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e ELISPDIR=$(EMACSD)/$(@:install-%=%) install
-
-install-haskell-mode: make-haskell-mode
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	install -m 644 $(@:install-%=%)/*.elc $(EMACSD)/$(@:install-%=%)
-
-install-magit:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e PREFIX="" -e DESTDIR=$(EMACSD) \
-		-e SYSCONFDIR="" -e ELISP_INSTALL_DIR=$(EMACSD)/$(@:install-%=%) install
-
-install-proofgeneral:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e ELISP=$(EMACSD)/$(@:install-%=%) install-el install-elc
-
-install-vm:
-	-mkdir -p $(EMACSD)/$(@:install-%=%)
-	$(MAKE) -C $(@:install-%=%) -e lispdir=$(EMACSD)/$(@:install-%=%) install
-
-clean-vm:
-	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) distclean
 
 clobber:
 	for dir in $(SUBDIRS); do \
