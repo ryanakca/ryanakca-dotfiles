@@ -10,6 +10,3 @@
 [submodule ".rlwrap"]
 	path = .rlwrap
 	url = https://github.com/ryanakca/rlwrap_mail.git
-[submodule "emacsen/use-package"]
-	path = emacsen/use-package
-	url = https://github.com/jwiegley/use-package.git

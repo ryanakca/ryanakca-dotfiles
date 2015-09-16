@@ -4,8 +4,7 @@ EMACSD=$(ROOT)/build/.emacs.d/
 export ELISPDIR
 EMACSEN=$(ROOT)/emacsen
 
-SUBDIRS = dictem \
-	  use-package
+SUBDIRS = dictem
 
 MAKEDIRS = $(SUBDIRS:%=make-%)
 INSTALLDIRS = $(SUBDIRS:%=install-%)
@@ -20,7 +19,7 @@ $(MAKEDIRS):
 	touch $@
 
 install: $(INSTALLDIRS)
-	install-info $(EMACSD)/share/info/*.info $(EMACSD)/share/info/dir
+	[ ! -d $(EMACSD)/share/info ] || install-info $(EMACSD)/share/info/*.info $(EMACSD)/share/info/dir
 
 install-% : make-%
 $(INSTALLDIRS):
@@ -34,13 +33,13 @@ $(CLEANDIRS):
 	[ ! -f $(@:clean-%=%)/Makefile ] || $(MAKE) -C $(@:clean-%=%) clean
 
 # Manual overrides:
-make-dictem install-use-package:
+make-dictem:
 	touch $@
 
-clean-dictem install-use-package:
+clean-dictem:
 	echo $@
 
-install-dictem install-use-package:
+install-dictem:
 	-mkdir -p $(EMACSD)/$(@:install-%=%)
 	install -m 644 $(@:install-%=%)/*.el $(EMACSD)/$(@:install-%=%)
 

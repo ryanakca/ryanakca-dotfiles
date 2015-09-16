@@ -1,57 +1,92 @@
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/auto-indent-mode")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/bbdb")
-(add-to-list 'load-path "~/.emacs.d/dictem")
-(add-to-list 'load-path "~/.emacs.d/dtrt-indent")
-(add-to-list 'load-path "~/.emacs.d/haskell-mode")
-(add-to-list 'load-path "~/.emacs.d/popup")
-(add-to-list 'load-path "~/.emacs.d/magit")
-(add-to-list 'load-path "~/.emacs.d/markdown-mode")
-(add-to-list 'load-path "~/.emacs.d/proofgeneral/")
-(add-to-list 'load-path "~/.emacs.d/share/emacs/site-lisp/vm")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-;;;; AUCTEX
-(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-(setq TeX-view-program-selection '((output-pdf "Evince")))
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
-;;;; AUTO COMPLETE
-(require 'auto-complete-config)
-(ac-config-default)
-(ac-set-trigger-key "TAB")
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-(add-to-list 'ac-modes 'Coq-mode)
-(add-to-list 'ac-modes 'latex-mode)
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+
+(eval-when-compile
+    (require 'use-package))
+
+;;; LaTeX with AUCTeX
+(use-package tex-site                   ; AUCTeX initialization
+  :ensure auctex)
+
+(use-package tex                        ; TeX editing/processing
+  :ensure auctex
+  :defer t
+  :config
+  (progn
+    (setq TeX-parse-self t              ; Parse documents to provide completion
+                                        ; for packages, etc.
+          TeX-auto-save t               ; Automatically save style information
+          TeX-electric-sub-and-superscript t ; Automatically insert braces after
+                                        ; sub- and superscripts in math mode
+          TeX-electric-math '("\\(" "\\)")
+          ;; Don't insert magic quotes right away.
+          TeX-quote-after-quote t
+          ;; Don't ask for confirmation when cleaning
+          TeX-clean-confirm nil
+          ;; Provide forward and inverse search with SyncTeX
+          TeX-source-correlate-mode t
+          TeX-source-correlate-method 'synctex)
+    (setq-default TeX-master nil        ; Ask for the master file
+                  TeX-engine 'luatex    ; Use a modern engine
+                  ;; Redundant in 11.88, but keep for older AUCTeX
+                  TeX-PDF-mode t)))
+
+(use-package auto-complete
+             :ensure t
+             :config
+             (ac-config-default)
+            (ac-set-trigger-key "TAB")
+            (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+            (add-to-list 'ac-modes 'Coq-mode)
+            (add-to-list 'ac-modes 'latex-mode)
+            (add-to-list 'ac-modes 'sml-mode)
+             )
+
+(use-package auto-indent-mode
+             :ensure t)
+
+(use-package dictem
+             :load-path "~/.emacs.d/dictem/")
+(use-package dtrt-indent
+             :ensure t)
+(use-package fill-column-indicator
+             :ensure t)
+(use-package haskell-mode
+             :ensure t)
+(use-package markdown-mode
+             :ensure t)
+(use-package rainbow-mode
+             :ensure t)
+(use-package sml-mode
+             :ensure t)
 
 ;;;; AUTO FILL
 ; We want auto-fill enabled for all text modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;;; AUTO INDENT
-(require 'auto-indent-mode)
 (auto-indent-global-mode)
 
 ;;;; CC-mode, bundled with emacs
 (setq c-default-style "bsd")
-
-;;;; DICTEM
-(require 'dictem)
-
-;;;; DTRT-INDENT
-(require 'dtrt-indent)
 
 ;;; EasyPG, bunled with emacs for encrypted files
 (require 'epa-file)
 (epa-file-enable)
 
 ;;;; HASKELL-MODE
-(require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;;;; MAGIT
-(require 'magit)
 
 ;;;; MARKDOWN-MODE
 (autoload 'markdown-mode "markdown-mode"
@@ -60,11 +95,9 @@
 (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
 
 ;;;; OCTAVE, bundled with emacs
-(autoload 'octave-mode "octave-mod" nil t)
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 ;;;; PROOFGENERAL
-(load-file "~/.emacs.d/proofgeneral/generic/proof-site.el")
 (setq proof-three-window-enable t)
 (setq proof-three-window-mode-policy 'hybrid)
 
@@ -78,13 +111,7 @@
 (require 'tramp)
 
 ;;;; VC-GIT
-(require 'vc-git)
 (when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
-
-;;;; VM
-(require 'vm-autoloads)
-; Make 'M-x compose-mail' (C-x m), create a VM-style composition buffer
-(setq mail-user-agent 'vm-user-agent)
 
 ;;;; Sending mail
 (setq mail-specify-envelope-from t)
@@ -129,41 +156,3 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'narrow-to-region 'disabled nil)
-
-;; Sentence-fill hack
-;; ==================
-;;
-;; The macros here are based on emacs/23.3/lisp/textmodes/fill.el.gz.
-;; To use them without modifying emacs, you can simply execute `cat
-;; hack.el >> ~/.emacs` if you have downloaded this file (say, by
-;; git).  Otherwise, you can use
-;;
-;; curl http://fermi.mycloudnas.com/cgit.cgi/fill/plain/hack.el >> ~/.emacs
-
-(defun auto-fill-by-sentences ()
-  (if (looking-back (sentence-end))
-      ;; Break at a sentence
-      (progn
-        (LaTeX-newline)
-        t)
-    ;; Fall back to the default
-    (do-auto-fill)))
-(add-hook 'LaTeX-mode-hook (lambda () (setq auto-fill-function 'auto-fill-by-sentences)))
-
-;; Modified from http://pleasefindattached.blogspot.com/2011/12/emacsauctex-sentence-fill-greatly.html
-(defadvice LaTeX-fill-region-as-paragraph (around LaTeX-sentence-filling)
-  "Start each sentence on a new line."
-  (let ((from (ad-get-arg 0))
-        (to-marker (set-marker (make-marker) (ad-get-arg 1)))
-        tmp-end)
-    (while (< from (marker-position to-marker))
-      (forward-sentence)
-      ;; might have gone beyond to-marker---use whichever is smaller:
-      (ad-set-arg 1 (setq tmp-end (min (point) (marker-position to-marker))))
-      ad-do-it
-      (ad-set-arg 0 (setq from (point)))
-      (unless (or (looking-back "^\\s *")
-                  (looking-at "\\s *$"))
-        (LaTeX-newline)))
-    (set-marker to-marker nil)))
-(ad-activate 'LaTeX-fill-region-as-paragraph)
