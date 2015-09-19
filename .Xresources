@@ -37,7 +37,8 @@ Xft.rgba:       bgr
 Xpdf*fileFilterStyle:   filter_hidden_files
 xautolock.locker: xscreensaver-command -lock
 xscreensaver.cycle: 0:10:00
-xscreensaver.dpmsEnabled: False
+xscreensaver.dpmsEnabled: True
+xscreensaver.dpmsQuickOff: True
 xscreensaver.fade: False
 xscreensaver.lock: True
 xscreensaver.lockTimeout: 0:00:00
