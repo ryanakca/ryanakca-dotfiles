@@ -2,9 +2,26 @@
 
 inoremap <C-g> <Nop>
 set defsearch=google
-set runtimepath=/home/ryan/.vimperator
+set runtimepath=~/.vimperator
 set scrollbars=false
 set gui=none
-source! /home/ryan/.vimperatorrc.local
+
+" don't focus any "input" elements automatically when opening pages.
+set focuscontent
+
+" Don't take us home. (Homepages were a stupid idea anyways).
+noremap <C-k> <Nop>
+
+" Panorama
+nnoremap <Leader>pc :<C-u>panorama<Space>
+nnoremap <Leader>ps :<C-u>panorama switch<Space>
+nnoremap <Leader>pa :<C-u>panorama add<Space>
+nnoremap <Leader>pl :<C-u>panorama list<CR>
+nnoremap <Leader>pp :<C-u>panorama pushtab<Space>
+nnoremap <Leader>pu :<C-u>panorama pulltab<Space>
+nnoremap <Leader>pr :<C-u>panorama remove<Space>
+
+source! ~/.vimperatorrc.local
+
 
 " vim: set ft=vimperator:
