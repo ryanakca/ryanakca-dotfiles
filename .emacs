@@ -26,20 +26,11 @@
     (setq TeX-parse-self t              ; Parse documents to provide completion
                                         ; for packages, etc.
           TeX-auto-save t               ; Automatically save style information
-          TeX-electric-sub-and-superscript t ; Automatically insert braces after
-                                        ; sub- and superscripts in math mode
-          TeX-electric-math '("\\(" "\\)")
-          ;; Don't insert magic quotes right away.
-          TeX-quote-after-quote t
           ;; Don't ask for confirmation when cleaning
           TeX-clean-confirm nil
           ;; Provide forward and inverse search with SyncTeX
           TeX-source-correlate-mode t
-          TeX-source-correlate-method 'synctex)
-    (setq-default TeX-master nil        ; Ask for the master file
-                  TeX-engine 'luatex    ; Use a modern engine
-                  ;; Redundant in 11.88, but keep for older AUCTeX
-                  TeX-PDF-mode t)))
+          TeX-source-correlate-method 'synctex)))
 
 (use-package auto-complete
              :ensure t
