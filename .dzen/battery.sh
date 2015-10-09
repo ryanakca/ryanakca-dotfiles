@@ -18,8 +18,6 @@ X=0           # x position
 Y=0           # y position
 FN='-misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1'     # font
  
-STATEFILE='/sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT1/uevent' # battery's state file
- 
 LOWBAT=10        # percentage of battery life marked as low
 LOWCOL='#ff4747' # color when battery is low
 CHGCOL='#60da11' # color when battery is charging
@@ -31,10 +29,7 @@ PREBAR='^i(/home/ryan/.dzen/icons/power-bat.xbm) ' # caption (also icons are pos
 while true; do
     PRESENT=`acpi -b`;
     if [ "${PRESENT}" ]; then
-        BAT_FULL=`cat $STATEFILE|grep POWER_SUPPLY_CHARGE_FULL_DESIGN | cut -d '=' -f 2 `;
         STATUS=`echo ${PRESENT} | grep Charging`;
-
-#        echo $BAT_FULL " " $STATUS " " $RCAP > /dev/stdout
 
         RPERC=`echo ${PRESENT} | cut -d, -f2 | sed -e 's/[^0-9]//g'`;
          
