@@ -60,7 +60,7 @@ export BTS_SENDMAIL_COMMAND="msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export PDFVIEWER=evince
-export TEXMFHOME=/home/ryan/.texmf
+export TEXMFHOME=${HOME}/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
