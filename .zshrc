@@ -104,7 +104,6 @@ alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
 alias remote_3051='ssh -f -N -q -L 6301:192.168.1.207:631 ryan@ryanak.ca'
 alias sshfw='ssh -oForwardAgent=yes'
 alias mail="RLWRAP_FILTERDIR=${HOME}/.rlwrap rlwrap -z mail_filter mail"
-alias s-nail="RLWRAP_FILTERDIR=${HOME}/.rlwrap rlwrap -z mail_filter s-nail"
 
 # END LOCAL
 
