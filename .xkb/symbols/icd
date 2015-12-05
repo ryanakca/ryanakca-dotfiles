@@ -17,8 +17,8 @@
 //
 //        TAB  :   <   >   P   Y   F   G   C   R   L   ?   ^   |
 //        TAB  ;   ,   .   p   y   f   g   c   r   l   /   @   \
-//        TAB  ä   «   »   ö   ë   ü   ï   ç   ®   æ   ¿   dˆ  d'
-//        TAB  Ä       ·   Ö   Ë   Ü   Ï   Ç   ™   Æ       dˇ  d.
+//        TAB  ä   «   »   ö   ë   ü   ï   ç   œ   æ   ¿   dˆ  d'
+//        TAB  Ä       ·   Ö   Ë   Ü   Ï   Ç   Œ   Æ       dˇ  d.
 //
 //       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
@@ -74,7 +74,7 @@ xkb_symbols "icd" {
     key <AD06> { [ f,               F,              udiaeresis,      Udiaeresis ] };
     key <AD07> { [ g,               G,              idiaeresis,      Idiaeresis ] };
     key <AD08> { [ c,               C,              ccedilla,        Ccedilla   ] };
-    key <AD09> { [ r,               R,              registered,      trademark  ] };
+    key <AD09> { [ r,               R,              oe,              OE         ] };
     key <AD10> { [ l,               L,              ae,              AE         ] };
     key <AD11> { [ slash,           question,       questiondown                ] };
     key <AD12> { [ at,              asciicircum,    dead_circumflex, dead_caron ] };
