@@ -17,21 +17,23 @@ account d {
 
 account g {
     call clearset
-    set folder=imaps://ryanakca@gmail.com@imap.gmail.com/
-    set password-ryanakca@gmail.com@imap.gmail.com=GMAIL_mailx_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
+    set folder=imaps://ryanakca%40gmail.com@imap.gmail.com/
+    set password-ryanakca%40gmail.com@imap.gmail.com=GMAIL_mailx_PASS
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set imap-keepalive=30
 }
 
 account q {
     call clearset
-    set folder=imap://ryan@localhost/QueensU.INBOX
-    set record=@QueensU.Sent
-    set MBOX=@QueensU.Read
+    set from="Ryan Kavanagh <ryan.kavanagh@queensu.ca>"
+    set folder=imaps://9rak%40queensu.ca@pod51018.outlook.com/
+    set imap-starttls-9rak%40queensu.ca@pod51018.outlook.com
+    set password-9rak%40queensu.ca@pod51018.outlook.com=QUEENSU_PASS
     set sendmail=HOMEDIR/bin/msmtp/msmtp-queensu
-    set from="ryan.kavanagh@queensu.ca (Ryan Kavanagh)"
-    unset smime-sign
+
+    set MBOX=@Read
+    set record=@"Sent Items"
 }
 
 account r {
@@ -48,7 +50,7 @@ account r {
 
 account s {
     call clearset
-    set from="Ryan Kavanagh <rkavanag@cs.cmu.edu>"
+    set from="Ryan Kavanagh <rkavanagh@cs.cmu.edu>"
     set folder=imaps://rkavanag@imap.srv.cs.cmu.edu/
     set imap-starttls-rkavanag@imap.srv.cs.cmu.edu
     set password-rkavanag@imap.srv.cs.cmu.edu=CMUSCS_PASS
@@ -60,10 +62,10 @@ account s {
 
 account c {
     call clearset
-    set folder=imaps://rkavanag@andrew.cmu.edu@imap.gmail.com/
-    set password-rkavanag@andrew.cmu.edu@imap.gmail.com=CMU_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-cmu
     set from="Ryan Kavanagh <rkavanag@andrew.cmu.edu>"
+    set folder=imaps://rkavanag%40andrew.cmu.edu@imap.gmail.com/
+    set password-rkavanag%40andrew.cmu.edu@imap.gmail.com=CMU_PASS
+    set sendmail=HOMEDIR/bin/msmtp/msmtp-cmu
 
     set MBOX=@Read
 }
@@ -105,3 +107,17 @@ shortcut lh imap://ryan@localhost/
 set keep
 
 set crt=50
+
+# Use colours even with the pager
+set colour-pager=true
+# Indent the message to which I'm replying with "> "
+set indentprefix="> "
+# Don't strip names/comments when replying
+set fullnames
+# My other addresses
+set alternates="ryanakca@gmail.com,rak@debian.org,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
+# Give header when replying
+set quote
+
+# mailing lists
+set followup-to followup-to-honour=ask-yes reply-to-honour=ask-yes
