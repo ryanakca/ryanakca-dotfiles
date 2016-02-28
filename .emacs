@@ -60,6 +60,8 @@
              :ensure t)
 (use-package sml-mode
              :ensure t)
+(use-package yaml-mode
+             :ensure t)
 
 ;;;; AUTO FILL
 ; We want auto-fill enabled for all text modes
