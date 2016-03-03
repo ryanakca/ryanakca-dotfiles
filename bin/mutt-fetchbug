@@ -26,7 +26,7 @@ sub search($$) {
     my ($btsmbox, $query) = @_;
 
     system("bts --cache-mode=mbox cache $query"
-	   . " && ln -fs ~/.devscripts_cache/bts/$query.mbox $btsmbox");
+	   . " && ln -fs ~/.cache/devscripts/bts/$query.mbox $btsmbox");
 }
 
 sub search_action($$@) {
