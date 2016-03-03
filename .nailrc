@@ -1,6 +1,7 @@
 define clearset {
     unset folder from sendmail record smtp password
     unset smime-sign smime-sign-cert smime-sign-nickname
+    unset hold
 }
 
 account l {
@@ -22,6 +23,9 @@ account g {
     set password-ryanakca%40gmail.com@imap.gmail.com=GMAIL_mailx_PASS
     set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set imap-keepalive=30
+    set hold
+    unset MBOX
+
 }
 
 account q {
