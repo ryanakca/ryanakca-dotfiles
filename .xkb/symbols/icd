@@ -1,5 +1,5 @@
 // International Coder Dvorak
-// By: Ryan Kavanagh <ryanakca@kubuntu.org> , http://ryanak.ca/
+// By: Ryan Kavanagh <rak@ryanak.ca> , http://ryanak.ca/
 //
 // Optimised for typing in English, French and Spanish.
 //
@@ -12,23 +12,23 @@
 //
 //  SHIFT:     ~   %   7   5   3   1   9   0   2   4   6   8   `   BCKSP
 // NORMAL:     $   &   [   {   }   (   =   *   )   +   ]   !   #   BCKSP
-//  AltGr:     d~  ø   €   ¥   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   d˚  BCKSP
-// SFT-AG:     ¢   Ø   £   ¤                                   d˳  BCKSP
+//  AltGr:     d~  ø   €   £   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   d˚  BCKSP
+// SFT-AG:     ¢   Ø   ¥   ¤                                   d˳  BCKSP
 //
 //        TAB  :   <   >   P   Y   F   G   C   R   L   ?   ^   |
 //        TAB  ;   ,   .   p   y   f   g   c   r   l   /   @   \
-//        TAB  ä   «   »   ö   ë   ü   ï   ç   œ   æ   ¿   dˆ  d'
-//        TAB  Ä       ·   Ö   Ë   Ü   Ï   Ç   Œ   Æ       dˇ  d.
+//        TAB  ä   «   »   ö   ë   ü   ï   ç   œ   þ   ¿   dˆ  d'
+//        TAB  Ä   °   ·   Ö   Ë   Ü   Ï   Ç   Œ   Þ       dˇ  d.
 //
 //       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
-//       CAPL  à   ó   é   ù   î   ð   ¶   þ   ñ   ß   –   ENTER
-//       CAPL  À   Ó   É   Ù   Î   Ð   §   Þ   Ñ       —   ENTER
+//       CAPL  à   ó   é   û   î   ð   œ   æ   ñ   ß   –   ENTER
+//       CAPL  À   Ó   É   Û   Î   Ð   Œ   Æ   Ñ   ‾   —   ENTER
 //
 //      SHIFT  "   Q   J   K   X   B   M   W   V   Z   SHIFT
 //      SHIFT  '   q   j   k   x   b   m   w   v   z   SHIFT
-//      SHIFT  â   ô   è   ù   ï   å   ê   w   v   z   SHIFT
-//      SHIFT  Â   Ô   È   Ù   Ï   Å   Ê   W   V   Z
+//      SHIFT  â   ô   è   ù   ï   â   ê   ¶   v   z   SHIFT
+//      SHIFT  Â   Ô   È   Ù   Ï   Â   Ê   §   V   Z
 //
 // Legend: dX -> dead_X
 //
@@ -48,8 +48,8 @@ xkb_symbols "icd" {
     // symbols row, left side
     key <TLDE> { [ dollar,          asciitilde,     dead_tilde,      cent       ] };
     key <AE01> { [ ampersand,       percent,        oslash,          Ooblique   ] };
-    key <AE02> { [ bracketleft,     7,              EuroSign,        sterling   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
-    key <AE03> { [ braceleft,       5,              yen,             currency   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE02> { [ bracketleft,     7,              EuroSign,        yen        ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE03> { [ braceleft,       5,              sterling,        currency   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE04> { [ braceright,      3,              dead_hook                   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE05> { [ parenleft,       1,              dead_diaeresis              ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE06> { [ equal,           9,              dead_cedilla                ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
@@ -75,7 +75,7 @@ xkb_symbols "icd" {
     key <AD07> { [ g,               G,              idiaeresis,      Idiaeresis ] };
     key <AD08> { [ c,               C,              ccedilla,        Ccedilla   ] };
     key <AD09> { [ r,               R,              oe,              OE         ] };
-    key <AD10> { [ l,               L,              ae,              AE         ] };
+    key <AD10> { [ l,               L,              thorn,           THORN      ] };
     key <AD11> { [ slash,           question,       questiondown                ] };
     key <AD12> { [ at,              asciicircum,    dead_circumflex, dead_caron ] };
     key <BKSL> { [ backslash,       bar,            dead_abovedot,   dead_belowdot ] };
@@ -84,13 +84,13 @@ xkb_symbols "icd" {
     key <AC01> { [ a,               A,              agrave,          Agrave     ] };
     key <AC02> { [ o,               O,              oacute,          Oacute     ] };
     key <AC03> { [ e,               E,              eacute,          Eacute     ] };
-    key <AC04> { [ u,               U,              ugrave,          Ugrave     ] };
+    key <AC04> { [ u,               U,              ucircumflex,     Ucircumflex] };
     key <AC05> { [ i,               I,              icircumflex,     Icircumflex] };
 
     // home row, right side
     key <AC06> { [ d,               D,              eth,             ETH        ] };
-    key <AC07> { [ h,               H,              paragraph,       section    ] };
-    key <AC08> { [ t,               T,              thorn,           THORN      ] };
+    key <AC07> { [ h,               H,              oe,              OE         ] };
+    key <AC08> { [ t,               T,              ae,              AE         ] };
     key <AC09> { [ n,               N,              ntilde,          Ntilde     ] };
     key <AC10> { [ s,               S,              ssharp,          overline   ] };
     key <AC11> { [ minus,           underscore,     endash,          emdash     ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
@@ -99,11 +99,13 @@ xkb_symbols "icd" {
     key <AB01> { [ apostrophe,      quotedbl,       acircumflex,     Acircumflex] };
     key <AB02> { [ q,               Q,              ocircumflex,     Ocircumflex] };
     key <AB03> { [ j,               J,              egrave,          Egrave     ] };
+    key <AB04> { [ k,               K,              ugrave,          Ugrave     ] };
     key <AB05> { [ x,               X,              idiaeresis,      Idiaeresis ] };
 
     // lower row, right side
     key <AB06> { [ b,               B,              acircumflex,     Acircumflex] };
     key <AB07> { [ m,               M,              ecircumflex,     Ecircumflex] };
+    key <AB08> { [ w,               W,              paragraph,       section    ] };
     key <AB11> { [ Shift_R,         Shift_R,        Shift_R,         Shift_R    ] };
 
 };
