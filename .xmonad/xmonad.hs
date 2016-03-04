@@ -446,6 +446,8 @@ main = do
             , ((myMod, xK_z), shellPrompt myXPConfig)
             , ((myMod, xK_g), goToSelected myGSConfig)
             , ((myMod .|. shiftMask, xK_g), gridselectWorkspace myGSConfig W.greedyView)
+            , ((myMod, xK_F2), spawn "${HOME}/.screenlayout/`hostname`-home.sh")
+            , ((myMod, xK_F3), spawn "${HOME}/.screenlayout/`hostname`-solo.sh")
             , ((myMod, xK_F4), spawn "sleep 0.5 && xset dpms force suspend")
             , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
             , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
