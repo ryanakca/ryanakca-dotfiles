@@ -184,6 +184,13 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSDIMAP
 obsdmisc = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'misc.openbsd.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSDIMAP_FOLDER_SEPmisc'], obsdmisc)
 
+obsdann = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'announce.openbsd.org')
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSDIMAP_FOLDER_SEPannounce'], obsdann)
+
+obsdmir = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'mirrors-discuss.openbsd.org') *
+          IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSDIMAP_FOLDER_SEPmirrors-discuss'], obsdmir)
+
 sshud = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-ID', 'openssh-unix-dev.mindrot.org')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['OpenBSDIMAP_FOLDER_SEPssh-unix-dev'], sshud)
 
@@ -282,12 +289,16 @@ IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['InternshipI
 mitplv = ( IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'plv.csail.mit.edu')
          + IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
          IMAPFILTER_GMAIL_SERVER.INBOX:is_older(2)
-IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['IMAPFILTER_GMAIL_SERVERIMAP_FOLDER_SEPMIT'], mitplv)
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['GMAILIMAP_FOLDER_SEPMIT'], mitplv)
 
 -- Academia
 
 typesann = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn.edu')
 IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['AcademiaIMAP_FOLDER_SEPtypes-announce'], typesann)
+
+typeslist = IMAPFILTER_GMAIL_SERVER.INBOX:contain_field('List-Id', 'types-list.lists.seas.upenn.edu') *
+            IMAPFILTER_GMAIL_SERVER.INBOX:is_seen()
+IMAPFILTER_GMAIL_SERVER.INBOX:move_messages(IMAPFILTER_GMAIL_SERVER['AcademiaIMAP_FOLDER_SEPtypes-list'], typeslist)
 
 -- People
 
