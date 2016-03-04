@@ -18,11 +18,19 @@ LAPTOP_OPTIONS="\
 
 KIN_OPTIONS="\
     ${GLOBAL_OPTIONS} \
-    -option "lv3:switch" \
+    -option lv3:switch \
     -option caps:swapescape"
+
+SUN_OPTIONS="\
+    ${GLOBAL_OPTIONS} \
+    -geometry sun(type6) \
+    -option caps:escape \
+    -option myswap:switch_lalt_lsuper"
+
 
 LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
+SUN_USB_ID=$(lsusb | grep -i "Sun Microsystems, Inc. Type 6 Keyboard" | awk '{ print $6 }')
 
 echo "Setting up laptop"
 setxkbmap ${LAPTOP_OPTIONS} -device ${LAPTOP_ID} -print > ${XKB_DIR}/keymap/icd.laptop
@@ -46,5 +54,25 @@ if [ "x${KIN_USB_ID}" != "x" ]; then
     xkbcomp -I${HOME}/.xkb -synch \
         ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
 fi
+
+if [ "x${SUN_USB_ID}" != "x" ]; then
+    echo "Setting up Sun Type 6"
+    SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+    echo ${SUN_XINPUT_ID}
+    for XID in $SUN_XINPUT_ID; do
+        echo $XID
+        setxkbmap \
+            -I${XKB_DIR} \
+            -device ${XID} \
+            ${SUN_OPTIONS} \
+            -print > ${HOME}/.xkb/keymap/icd.sun
+            #-print | sed -e 's@\(pc+icd.*\)"@\1+myswap(switch_lalt_lsuper)"@g' > ${HOME}/.xkb/keymap/icd.sun
+        xkbcomp -I${HOME}/.xkb -i ${XID} -synch \
+            ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
+    done
+    xkbcomp -I${HOME}/.xkb -synch \
+        ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
+fi
+
 
 echo icd > ${HOME}/.xmonad/layout
