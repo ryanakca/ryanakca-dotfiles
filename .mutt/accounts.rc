@@ -4,7 +4,7 @@ account-hook imaps://ryanakca@gmail.com@imap.gmail.com \
 "set imap_user = 'ryanakca@gmail.com';\
 set imap_pass = 'GMAIL_PASS';\
 set imap_passive = 'no';\
-set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com:933';\
+set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com';\
 set postponed = '=[Google Mail]/Drafts';\
 set spoolfile = '=INBOX';\
 set from = "rak@debian.org";\
@@ -29,7 +29,7 @@ set spoolfile = '=INBOX'"
 account-hook imaps://outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
 set imap_pass = 'QUEENSU_PASS';\
-set folder = 'imaps://outlook.office365.com:993/';\
+set folder = 'imaps://outlook.office365.com';\
 set record = '=Sent Items';\
 set postponed = '=Drafts';\
 set spoolfile = '=Inbox';\
@@ -62,7 +62,7 @@ account-hook imaps://rkavanag@andrew.cmu.edu@imap.gmail.com \
 set imap_pass = 'CMU_PASS';\
 set imap_passive = 'no';\
 set imap_keepalive = 60;\
-set folder = 'imaps://rkavanag@andrew.cmu.edu@imap.gmail.com:933';\
+set folder = 'imaps://rkavanag@andrew.cmu.edu@imap.gmail.com';\
 set spoolfile = '=INBOX';\
 set sendmail='MSMTP_PATH -a cmu';\
 set from = 'Ryan Kavanagh <rkavanag@andrew.cmu.edu>';\
@@ -103,19 +103,19 @@ macro index <F12> "cimaps://ryanakca@gmail.com@imap.gmail.com/INBOX<enter>"
 macro index <F11> "cimap://localhost/INBOX<enter>"
 macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
 
-macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com:933"<enter>\
+macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryanakca@ubuntu.com><enter>' \
 "Send mail from Ubuntu account"
 
-macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com:933"<enter>\
+macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="MSMTP_PATH -a kubuntu"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter>' \
 "Send mail from Kubuntu account"
 
-macro compose <F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com:933"<enter>\
+macro compose <F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanag@andrew.cmu.edu><enter>' \
 "Send mail from CMU account"
@@ -130,13 +130,13 @@ macro compose <F4> '<enter-command>set folder="imaps://outlook.office365.com"<en
 <edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter>' \
 "Send mail from QueensU"
 
-macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com:933"<enter>\
+macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter>' \
 "Send mail from cs.queensu.ca"
 
-macro compose <F5> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com:933"<enter>\
+macro compose <F5> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="MSMTP_PATH"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter>' \
