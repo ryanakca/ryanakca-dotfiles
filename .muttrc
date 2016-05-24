@@ -80,7 +80,6 @@ set alias_file = ~/.mutt/alias.rc
 set sidebar_width=30 
 set sidebar_visible=no
 set sidebar_delim=' '
-set sidebar_delim_chars='/'
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
 # color of folders with new mail
