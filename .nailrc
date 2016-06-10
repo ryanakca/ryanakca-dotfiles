@@ -92,7 +92,7 @@ set PAGER="less -FXQR"
 
 set nss-config-dir="~/.mozilla/firefox/dbr0vzdh.default/"
 
-set imap-cache=HOMEDIR/.mailx/cache
+set imap-cache=HOMEDIR/.cache/mailx
 set imap-keepalive=60
 
 set autosort=thread
