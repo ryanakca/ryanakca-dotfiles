@@ -34,6 +34,7 @@ GLOBAL_FILES = \
     .Xresources \
     .Xsession \
     .asoundrc \
+    .cache/mailx/ \
     .caffrc \
     .calendar/ \
     .config/beets/ \
