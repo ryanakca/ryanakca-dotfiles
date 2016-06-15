@@ -4,6 +4,7 @@ SUBSTS_FILE=SUBSTS.local
 # Files that need changes to work locally or that contain sensitive
 # information
 LOCAL_FILES = \
+    .config/nitrogen/nitrogen.cfg \
     .devscripts \
     .gitconfig \
     .imapfilter/config.lua \
@@ -95,6 +96,7 @@ EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS CMUSCS_PASS
 
+VARS_.config/nitrogen/nitrogen.cfg = HOMEDIR
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS PM_EMAIL IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP_FOLDER_SEP
