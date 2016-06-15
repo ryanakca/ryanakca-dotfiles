@@ -1,2 +1,4 @@
 fset pibroch=genre="Piobaireachd"
+bind -f common = vol +1%
+bind -f common * vol -1%
 factivate
