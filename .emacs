@@ -113,6 +113,10 @@
 (setq mail-envelope-from 'header)
 (setq message-send-mail-function 'sendmail-send-it)
 
+
+;;;; Default dictionary
+(setq ispell-dictionary "british-ise-w_accents")
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
