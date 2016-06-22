@@ -34,7 +34,16 @@
           TeX-source-correlate-mode t
           TeX-source-correlate-method 'synctex
           ;; use reftex to get ToC: C-c = to explore structure of TeX doc
-          reftex-plug-into-AUCTeX t)))
+          reftex-plug-into-AUCTeX t
+	  reftex-label-alist '(("axiom"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
+			       ("theorem" ?h "theorem:" "~\\ref{%s}" t   ("theorem" "th.") -3)
+			       ("proposition" ?p "prop:" "~\\ref{%s}" t   ("proposition" "prop.") -3)
+			       ("definition" ?d "def:" "~\\ref{%s}" t   ("definition" "def.") -3)
+			       ("corollary" ?c "cor:" "~\\ref{%s}" t   ("corollary" "cor.") -3)
+			       ("lemma" ?l "lemma:" "~\\ref{%s}" t   ("lemma" "lem.") -3)
+			       ("conjecture" ?j "conj:" "~\\ref{%s}" t   ("conjecture" "conj.") -3)
+			       )
+          )))
 
 (use-package auto-complete
              :ensure t
