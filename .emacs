@@ -21,7 +21,7 @@
 (use-package tex                        ; TeX editing/processing
   :ensure auctex
   :defer t
-  :init
+  :config
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook
 	    (lambda ()
@@ -33,7 +33,6 @@
 	       '("corollary" LaTeX-env-label)
 	       '("lemma" LaTeX-env-label)
 	       '("conjecture" LaTeX-env-label))))
-  :config
   (progn
     (setq TeX-parse-self t              ; Parse documents to provide completion
 					; for packages, etc.
