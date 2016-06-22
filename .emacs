@@ -8,11 +8,11 @@
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (eval-when-compile
-    (require 'use-package))
+  (require 'use-package))
 
 ;;; LaTeX with AUCTeX
 (use-package tex-site                   ; AUCTeX initialization
@@ -23,18 +23,28 @@
   :defer t
   :init
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook
+	    (lambda ()
+	      (LaTeX-add-environments
+	       '("axiom" LaTeX-env-label)
+	       '("theorem" LaTeX-env-label)
+	       '("proposition" LaTeX-env-label)
+	       '("definition" LaTeX-env-label)
+	       '("corollary" LaTeX-env-label)
+	       '("lemma" LaTeX-env-label)
+	       '("conjecture" LaTeX-env-label))))
   :config
   (progn
     (setq TeX-parse-self t              ; Parse documents to provide completion
-                                        ; for packages, etc.
-          TeX-auto-save t               ; Automatically save style information
-          ;; Don't ask for confirmation when cleaning
-          TeX-clean-confirm nil
-          ;; Provide forward and inverse search with SyncTeX
-          TeX-source-correlate-mode t
-          TeX-source-correlate-method 'synctex
-          ;; use reftex to get ToC: C-c = to explore structure of TeX doc
-          reftex-plug-into-AUCTeX t
+					; for packages, etc.
+	  TeX-auto-save t               ; Automatically save style information
+	  ;; Don't ask for confirmation when cleaning
+	  TeX-clean-confirm nil
+	  ;; Provide forward and inverse search with SyncTeX
+	  TeX-source-correlate-mode t
+	  TeX-source-correlate-method 'synctex
+	  ;; use reftex to get ToC: C-c = to explore structure of TeX doc
+	  reftex-plug-into-AUCTeX t
 	  reftex-label-alist '(("axiom"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
 			       ("theorem" ?h "theorem:" "~\\ref{%s}" t   ("theorem" "th.") -3)
 			       ("proposition" ?p "prop:" "~\\ref{%s}" t   ("proposition" "prop.") -3)
@@ -43,42 +53,42 @@
 			       ("lemma" ?l "lemma:" "~\\ref{%s}" t   ("lemma" "lem.") -3)
 			       ("conjecture" ?j "conj:" "~\\ref{%s}" t   ("conjecture" "conj.") -3)
 			       )
-          )))
+	  )))
 
 (use-package auto-complete
-             :ensure t
-             :config
-             (ac-config-default)
-            (ac-set-trigger-key "TAB")
-            (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-            (add-to-list 'ac-modes 'Coq-mode)
-            (add-to-list 'ac-modes 'latex-mode)
-            (add-to-list 'ac-modes 'sml-mode)
-             )
+  :ensure t
+  :config
+  (ac-config-default)
+  (ac-set-trigger-key "TAB")
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+  (add-to-list 'ac-modes 'Coq-mode)
+  (add-to-list 'ac-modes 'latex-mode)
+  (add-to-list 'ac-modes 'sml-mode)
+  )
 
 (use-package auto-indent-mode
-             :ensure t)
+  :ensure t)
 (use-package dictem
-             :load-path "~/.emacs.d/dictem/")
+  :load-path "~/.emacs.d/dictem/")
 (use-package dtrt-indent
-             :ensure t)
+  :ensure t)
 (use-package fill-column-indicator
-             :ensure t)
+  :ensure t)
 (use-package haskell-mode
-             :ensure t)
+  :ensure t)
 (use-package markdown-mode
-             :ensure t)
+  :ensure t)
 (use-package rainbow-mode
-             :ensure t)
+  :ensure t)
 (use-package sml-mode
-             :ensure t)
+  :ensure t)
 (use-package yaml-mode
-             :ensure t)
+  :ensure t)
 (use-package sass-mode
-             :ensure t)
+  :ensure t)
 
 ;;;; AUTO FILL
-; We want auto-fill enabled for all text modes
+					; We want auto-fill enabled for all text modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;;; AUTO INDENT
@@ -97,7 +107,7 @@
 
 ;;;; MARKDOWN-MODE
 (autoload 'markdown-mode "markdown-mode"
-          "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdown\\'" . markdown-mode))
 
@@ -130,10 +140,10 @@
 (setq ispell-dictionary "british-ise-w_accents")
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-indent-next-pair-timer-interval (quote ((css-mode 1.5) (haskell-mode 1.5) (python-mode 1.5) (latex-mode 1.5) (coq-mode 1.5) (default 0.0005))))
  '(safe-local-variable-values (quote ((eval setq debian-changelog-mailing-address "rak@debian.org") (eval add-to-list (quote debian-changelog-allowed-distributions) "daylog"))))
  '(column-number-mode t)
@@ -144,10 +154,10 @@
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 83 :width normal))))
  '(proof-locked-face ((t (:weight bold))) t))
 
@@ -161,7 +171,7 @@
 
 ;; info location:
 (eval-after-load 'info
-                 '(add-to-list 'Info-directory-list "~/.emacs.d/share/info"))
+  '(add-to-list 'Info-directory-list "~/.emacs.d/share/info"))
 
 ;; Replace yes or no prompts with y or n.
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -175,7 +185,7 @@ AUCTeX's latex.el reimplements the fill functions and is *very*
 convoluted. We use part of it --- skip comment par we are in."
   (interactive)
   (if (save-excursion
-        (beginning-of-line) (looking-at TeX-comment-start-regexp))
+	(beginning-of-line) (looking-at TeX-comment-start-regexp))
       (TeX-comment-forward)
     (let ((to (progn
 		(LaTeX-forward-paragraph)
@@ -199,7 +209,7 @@ convoluted. We use part of it --- skip comment par we are in."
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
 
-; align-regexp should use spaces.
+					; align-regexp should use spaces.
 (defadvice align-regexp (around align-regexp-with-spaces activate)
   (let ((indent-tabs-mode nil))
     ad-do-it))
