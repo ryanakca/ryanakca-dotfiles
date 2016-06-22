@@ -21,6 +21,8 @@
 (use-package tex                        ; TeX editing/processing
   :ensure auctex
   :defer t
+  :init
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   :config
   (progn
     (setq TeX-parse-self t              ; Parse documents to provide completion
@@ -30,7 +32,9 @@
           TeX-clean-confirm nil
           ;; Provide forward and inverse search with SyncTeX
           TeX-source-correlate-mode t
-          TeX-source-correlate-method 'synctex)))
+          TeX-source-correlate-method 'synctex
+          ;; use reftex to get ToC: C-c = to explore structure of TeX doc
+          reftex-plug-into-AUCTeX t)))
 
 (use-package auto-complete
              :ensure t
@@ -45,7 +49,6 @@
 
 (use-package auto-indent-mode
              :ensure t)
-
 (use-package dictem
              :load-path "~/.emacs.d/dictem/")
 (use-package dtrt-indent
