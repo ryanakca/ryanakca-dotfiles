@@ -192,37 +192,6 @@ GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'opensmtpd'], opensmtp
 
 -- O'ists
 
-oactivists = GMAIL.INBOX:contain_field('List-Id', 'oactivists.googlegroups.com') *
-             GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OActivists'], oactivists)
-
-oevolve = GMAIL.INBOX:contain_field('List-Id', 'oevolve.googlegroups.com') *
-             GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OEvolve'], oevolve)
-
-oproducers = GMAIL.INBOX:contain_field('List-Id', 'oproducers.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OProducers'], oproducers)
-
-ogrownups = GMAIL.INBOX:contain_field('List-Id', 'ogrownups.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OGrownups'], ogrownups)
-
-ogeeks = GMAIL.INBOX:contain_field('List-ID', 'ogeeks.googlegroups.com') *
-         GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OGeeks'], ogeeks)
-
-opeople = GMAIL.INBOX:contain_field('List-ID', 'opeople.googlegroups.com') *
-         GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['OPeople'], opeople)
-
-paleobloggers = GMAIL.INBOX:contain_field('List-Id', 'paleobloggers.googlegroups.com')
-GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleobloggers)
-
-paleocooks = GMAIL.INBOX:contain_field('List-Id', 'paleocooks.googlegroups.com') *
-            GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['PaleoBloggers'], paleocooks)
-
 PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
@@ -281,14 +250,6 @@ facebook = GMAIL.INBOX:match_from('.*@facebookmail.com') *
 GMAIL.INBOX:move_messages(GMAIL['Friends'], facebook)
 
 -- Misc
-
-pjm = GMAIL.INBOX:match_from('webmaster@pjmedia.com') *
-      GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['PJM'], pjm)
-
-rubinreports = GMAIL.INBOX:match_from('profbarryrubin@yahoo.com') *
-               GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['RubinReports'], rubinreports)
 
 vfr = GMAIL.INBOX:match_from('vfr-no-reply@aynrand.org') *
       GMAIL.INBOX:is_seen()
