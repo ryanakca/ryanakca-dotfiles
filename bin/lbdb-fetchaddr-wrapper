@@ -1,0 +1,7 @@
+#!/bin/sh
+
+MSG=$(cat /dev/stdin)
+
+echo "$MSG" | lbdb-fetchaddr;
+
+echo "$MSG"

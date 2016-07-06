@@ -19,6 +19,7 @@ apt-get install \
     imapfilter \
     keychain \
     latex-mk \
+    lbdb \
     libmail-box-perl \
     lintex \
     mailcheck \
