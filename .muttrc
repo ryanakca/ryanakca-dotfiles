@@ -107,7 +107,7 @@ bind editor <space> noop
 
 unignore X-Label:
 
-set mbox_type=Maildir
+set mbox_type=mbox
 
 source ~/.mutt/alias.rc
 source ~/.mutt/mailinglists.rc
