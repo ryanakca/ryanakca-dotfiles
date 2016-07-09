@@ -34,26 +34,29 @@ end
 --
 
 -- Ubuntu stuff
-kubuntu = GMAIL.INBOX:contain_field('List-ID', 'kubuntu-devel.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kuDevel'], kubuntu)
 
-ubuntuWeb = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-website.lists.canonical.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uWebML'], ubuntuWeb)
+ubuntu = { 'kubuntu-devel'
+	   , 'ubuntu-ca'
+	   , 'ubuntu-classroom'
+	   , 'ubuntu-devel-announce'
+	   , 'ubuntu-doc'
+	   , 'ubuntu-installer'
+	   , 'ubuntu-irc'
+	   --, 'kubuntu-bugs'
+}
 
-UbuntuDevelAnnounce = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-devel-announce.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uDevelAnnounce'], UbuntuDevelAnnounce)
+canonical = { 'ubuntu-website' }
 
-ubuntuCanada = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-ca.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uCanada'], ubuntuCanada)
 
-uDoc = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-doc.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uDoc'], uDoc)
+for list = 1, #ubuntu do
+    listfilter = GMAIL.INBOX:contain_field('List-ID', ubuntu[list] .. '.lists.ubuntu.com')
+    GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. '' .. folder_sep .. '' .. ubuntu[list]], listfilter)
+end
 
-uClassroom = GMAIL.INBOX:contain_field('List-Id', 'ubuntu-classroom.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uClassroom'], uClassroom)
-
-uClassroomOwner = GMAIL.INBOX:match_from('ubuntu-classroom-owner@lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['[Google Mail]' .. folder_sep .. 'Bin'], uClassroomOwner)
+for list = 1, #canonical do
+   listfilter = GMAIL.INBOX:contain_field('List-ID', canonical[list] .. '.lists.canonical.com')
+   GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. '' .. folder_sep .. '' .. canonical[list]], listfilter)
+end
 
 launchpadUsers = GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.launchpad.net') +
                  GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.canonical.com') +
@@ -61,29 +64,22 @@ launchpadUsers = GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.lau
                  GMAIL.INBOX:match_cc('launchpad-users@lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'launchpadUsers'], launchpadUsers)
 
-kubuntuBugs = GMAIL.INBOX:contain_field('List-ID', 'kubuntu-bugs.lists.ubuntu.com') +
-              GMAIL.INBOX:contain_header('X-Launchpad-Message-Rationale: .*@kubuntu-bugs') +
-              GMAIL.INBOX:match_header('X-BeenThere: kubuntu-bugs@lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kuBugs'], kubuntuBugs)
-
-ubuntuirc = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-irc.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-irc'], ubuntuirc)
-
-ubuntuinstaller = GMAIL.INBOX:contain_field('List-ID', 'ubuntu-installer.lists.ubuntu.com')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-installer'], ubuntuinstaller)
+-- kubuntuBugs = GMAIL.INBOX:contain_header('X-Launchpad-Message-Rationale: .*@kubuntu-bugs') +
+--               GMAIL.INBOX:match_header('X-BeenThere: kubuntu-bugs@lists.ubuntu.com')
+-- GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-bugs'], kubuntuBugs)
 
 ubuntu = GMAIL.INBOX:contain_field('List-ID', '.*.lists.ubuntu.com')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu'], ubuntu)
 
 uWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug.*product=ubuntu-website.*')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uWebBugs'], uWebBugs)
+GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-website-bugs'], uWebBugs)
 
 kuWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug:.*product=kubuntu-website.*')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kuWebBugs'], kuWebBugs)
+GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-website-bugs'], kuWebBugs)
 
 ubugs =  GMAIL.INBOX:match_header('X-Launchpad-Bug:.*distribution=ubuntu;.*') +
          GMAIL.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uBugs'], ubugs)
+GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-bugs'], ubugs)
 
 kubuntuninjas = GMAIL.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas') +
                 GMAIL.INBOX:match_header('X-Launchpad-PPA: kubuntu-ppa-staging') +
@@ -94,8 +90,8 @@ GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-ninjas'], kub
 --GMAIL.INBOX:mark_seen(answers)
 --GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'uAnswers'], answers)
 
-kubuntuWebmaster = GMAIL.INBOX:contain_to('webmaster@kubuntu.org')
-GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kuWebmaster'], kubuntuWebmaster)
+--kubuntuWebmaster = GMAIL.INBOX:contain_to('webmaster@kubuntu.org')
+--GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-webmaster'], kubuntuWebmaster)
 
 -- Debian stuff
 
@@ -174,12 +170,6 @@ GMAIL.INBOX:move_messages(GMAIL['lwn'], lwn)
 sbuild = GMAIL.INBOX:match_from('sbuild@.*.ryanak.ca') +
         GMAIL.INBOX:match_from('sbuild@lambda')
 GMAIL.INBOX:move_messages(GMAIL['sbuild'], sbuild)
-
-freebsdstable = GMAIL.INBOX:contain_field('List-Id', 'freebsd-stable.freebsd.org')
-GMAIL.INBOX:move_messages(GMAIL['FreeBSD' .. folder_sep .. 'freebsd-stable'], freebsdstable)
-
-freebsdcurrent = GMAIL.INBOX:contain_field('List-Id', 'freebsd-current.freebsd.org')
-GMAIL.INBOX:move_messages(GMAIL['FreeBSD' .. folder_sep .. 'freebsd-current'], freebsdcurrent)
 
 frescobaldi = ( GMAIL.INBOX:is_seen() *
                 GMAIL.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com') )
