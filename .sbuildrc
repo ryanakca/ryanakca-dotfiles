@@ -113,10 +113,10 @@ $purge_build_directory="never";
 #$build_dir = undef;
 
 # Directory for writing build logs to
-$log_dir = "$HOME/ubuntu/logs";
+$log_dir = "$HOME/tmp/sbuild/logs";
 
 # Directory for writing build statistics to
-$stats_dir = "$HOME/ubuntu/stats";
+$stats_dir = "$HOME/tmp/sbuild/stats";
 
 
 # don't remove this, Perl needs it:
