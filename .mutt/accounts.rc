@@ -106,7 +106,7 @@ set status_format = '-%r-LOCAL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? 
 
 macro index <F12> "cimaps://ryanakca@gmail.com@imap.gmail.com/INBOX<enter>"
 macro index <F11> "cimap://localhost/INBOX<enter>"
-macro index <F10> "cimaps://mail.queensu.ca/Inbox<enter>"
+macro index <F10> "cimaps://outlook.office365.com/<enter>"
 
 macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
