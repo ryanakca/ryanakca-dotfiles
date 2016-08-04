@@ -29,8 +29,8 @@ end
 
 --
 --   Filters
---     For  
---    GMAIL 
+--     For
+--    GMAIL
 --
 
 -- Ubuntu stuff
@@ -50,12 +50,12 @@ canonical = { 'ubuntu-website' }
 
 for list = 1, #ubuntu do
     listfilter = GMAIL.INBOX:contain_field('List-ID', ubuntu[list] .. '.lists.ubuntu.com')
-    GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. '' .. folder_sep .. '' .. ubuntu[list]], listfilter)
+    GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. ubuntu[list]], listfilter)
 end
 
 for list = 1, #canonical do
    listfilter = GMAIL.INBOX:contain_field('List-ID', canonical[list] .. '.lists.canonical.com')
-   GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. '' .. folder_sep .. '' .. canonical[list]], listfilter)
+   GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. canonical[list]], listfilter)
 end
 
 launchpadUsers = GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.launchpad.net') +
@@ -71,6 +71,9 @@ GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'launchpadUsers'], lau
 ubuntu = GMAIL.INBOX:contain_field('List-ID', '.*.lists.ubuntu.com')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu'], ubuntu)
 
+ubuntuca = GMAIL.INBOX:contain_field('X-Launchpad-Message-For', 'ubuntu-ca')
+GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-ca'], ubuntuca)
+
 uWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug.*product=ubuntu-website.*')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-website-bugs'], uWebBugs)
 
@@ -81,8 +84,9 @@ ubugs =  GMAIL.INBOX:match_header('X-Launchpad-Bug:.*distribution=ubuntu;.*') +
          GMAIL.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-bugs'], ubugs)
 
-kubuntuninjas = GMAIL.INBOX:match_header('X-Launchpad-PPA: kubuntu-ninjas') +
-                GMAIL.INBOX:match_header('X-Launchpad-PPA: kubuntu-ppa-staging') +
+kubuntuninjas = GMAIL.INBOX:contain_field('X-Launchpad-PPA', 'kubuntu-ninjas') +
+                GMAIL.INBOX:contain_field('X-Launchpad-PPA', 'kubuntu-ppa-staging') +
+                GMAIL.INBOX:contain_field('X-Launchpad-Message-For', 'kubuntu-packagers') +
                 GMAIL.INBOX:contain_field('List-ID', 'kubuntu-ppa.lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-ninjas'], kubuntuninjas)
 
@@ -122,7 +126,7 @@ listsdebianorg = { 'debian-backports'
 
 for list = 1, #listsdebianorg do
     listfilter = GMAIL.INBOX:contain_field('List-ID', listsdebianorg[list] .. '.lists.debian.org')
-    GMAIL.INBOX:move_messages(GMAIL['Debian' .. '' .. folder_sep .. '' .. listsdebianorg[list]], listfilter)
+    GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. listsdebianorg[list]], listfilter)
 end
 
 alioth = { 'pkg-kde-commits'
@@ -134,7 +138,7 @@ alioth = { 'pkg-kde-commits'
 
 for list = 1, #alioth do
    listfilter = GMAIL.INBOX:contain_field('List-ID', alioth[list] .. '.lists.alioth.debian.org')
-   GMAIL.INBOX:move_messages(GMAIL['Debian' .. '' .. folder_sep .. '' .. alioth[list]], listfilter)
+   GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. alioth[list]], listfilter)
 end
 
 -- KDE Stuff
@@ -151,7 +155,7 @@ openbsd = { 'announce'
 
 for list = 1, #openbsd do
    listfilter = GMAIL.INBOX:contain_field('List-ID', openbsd[list] .. '.openbsd.org')
-   GMAIL.INBOX:move_messages(GMAIL['OpenBSD' .. '' .. folder_sep .. '' .. openbsd[list]], listfilter)
+   GMAIL.INBOX:move_messages(GMAIL['OpenBSD' .. folder_sep .. openbsd[list]], listfilter)
 end
 
 sshud = GMAIL.INBOX:contain_field('List-ID', 'openssh-unix-dev.mindrot.org')
@@ -180,11 +184,21 @@ opensmtpd = ( GMAIL.INBOX:is_seen()
                 GMAIL.INBOX:contain_field('List-ID', 'misc.opensmtpd.org')
 GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'opensmtpd'], opensmtpd)
 
+mbrainz = ( GMAIL.INBOX:match_from('noreply@musicbrainz.org')
+          * GMAIL.INBOX:match_subject('Edits for your subscriptions')
+          * ( GMAIL.INBOX:is_older(1)
+            + GMAIL.INBOX:is_seen() ) )
+GMAIL.INBOX:move_messages(GMAIL['MusicBrainz'], mbrainz)
+
 -- O'ists
 
 PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
+
+epstein = GMAIL.INBOX:match_from('support@industrialprogress.net') *
+          GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['Epstein'], epstein)
 
 -- Queen's
 
