@@ -9,6 +9,7 @@ GLOBAL_OPTIONS="\
     -variant icd, \
     -option terminate:ctrl_alt_bksp \
     -option nbsp:level3n \
+    -option lalt_meta:lalt_meta \
     -option grp:shifts_toggle"
 
 LAPTOP_OPTIONS="\
@@ -47,12 +48,14 @@ if [ "x${KIN_USB_ID}" != "x" ]; then
             -I${XKB_DIR} \
             -device ${XID} \
             ${KIN_OPTIONS} \
-            -print | sed -e 's@+ctrl(nocaps)@@g' > ${HOME}/.xkb/keymap/icd.kin
+            -print | sed -e 's@+ctrl(nocaps)@@g;s@bksp)@bksp)+lalt_meta(lalt_meta)@g' > ${HOME}/.xkb/keymap/icd.kin
         xkbcomp -I${HOME}/.xkb -i ${XID} -synch \
             ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
     done
     xkbcomp -I${HOME}/.xkb -synch \
         ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
+    xmodmap -e "remove mod1 = Alt_R"
+    xmodmap -e "add mod4 = Alt_R"
 fi
 
 if [ "x${SUN_USB_ID}" != "x" ]; then

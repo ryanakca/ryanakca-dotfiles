@@ -1,0 +1,4 @@
+partial modifier_keys
+xkb_symbols "lalt_meta" {
+    key <LALT> { [ Meta_L ] } ;
+};
