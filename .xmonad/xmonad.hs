@@ -116,7 +116,7 @@ rakTheme =
              , theme            = defaultTheme { activeColor         = colorBlack
                                                , inactiveColor       = colorBlack
                                                , activeBorderColor   = colorOrange
-                                               , inactiveBorderColor = colorBlue
+                                               , inactiveBorderColor = colorBlack
                                                , activeTextColor     = colorOrange
                                                , inactiveTextColor   = colorBlue
                                                , urgentColor         = colorRed
