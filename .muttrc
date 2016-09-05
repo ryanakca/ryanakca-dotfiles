@@ -77,6 +77,8 @@ set query_command="lbdbq %s"
 set reverse_alias = yes
 set alias_file = ~/.mutt/alias.rc
 
+set ispell="aspell -e -c"
+
 # set up the sidebar, default not visible
 set mail_check_stats=yes
 set sidebar_visible=yes
