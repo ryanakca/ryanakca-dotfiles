@@ -27,3 +27,4 @@ subscribe -group ML.openbsd-misc misc@opensmtpd.org
 subscribe -group ML.frescobaldi frescobaldi@googlegroups.com
 
 subscribe -group ML.cmu .*@lists.andrew.cmu.edu
+subscribe -group ML.concertrg concertrg@cs.cmu.edu
