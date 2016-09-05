@@ -5,7 +5,6 @@ ${HOME}/bin/icd
 # xcompmgr &
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
   --expand true --width 10 --transparent true --height 12 --align right &
-xscreensaver -no-splash &
 ${HOME}/.dzen/battery.sh &
 urxvtd -q -f -o &
 urxvtc &

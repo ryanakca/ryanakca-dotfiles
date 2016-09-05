@@ -453,7 +453,7 @@ main = do
             , ((myMod, xK_F6), spawn "sleep 0.5 && /home/ryan/bin/icd")
             , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
             , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
-            , ((myMod, xK_l), spawn "xscreensaver-command -lock")
+            , ((myMod, xK_l), spawn "slock")
             , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
             , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
             , ((myMod .|. myCtrl .|. shiftMask, xK_Up),    sendMessage $ Move U)
