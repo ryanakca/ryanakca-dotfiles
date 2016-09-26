@@ -165,6 +165,7 @@ build/%: % $(SUBSTS_FILE)
 	@[ "$(filter $*,$(LOCAL_FILES))" != "$*" ] || sed $(call get-sed-args,VARS_$*) $< > $@
 
 install: build
+	diff -u ~/.mutt/alias.rc build/.mutt/alias.rc
 	rsync -a build/ ~
 	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
 	chmod 700 ~/.ssh
