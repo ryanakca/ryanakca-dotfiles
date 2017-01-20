@@ -79,8 +79,26 @@ set alias_file = ~/.mutt/alias.rc
 
 set ispell="aspell -e -c"
 
+# set up the sidebar, default not visible
+set mail_check_stats=yes
+set sidebar_visible=yes
+set sidebar_format="%B%*  %S%?N?(%N)?%?F?[%F]?"
+set sidebar_indent_string=" "
+# which # mailboxes to list in the sidebar
+# mailboxes =inbox =ml
+# color of folders with new mail
+
+# ctrl-n, ctrl-p to select next, prev folder #
+# ctrl-o to open selected folder
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
 # Remap bounce-message function  to "B" 
 bind index B bounce-message
+
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 
 macro index \cb |urlscan\n
 macro pager \cb |urlscan\n

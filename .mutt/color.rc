@@ -21,6 +21,7 @@ color signature         red             default
 color status            white           blue
 color tilde             magenta         default
 color tree              magenta         default
+color sidebar_new       yellow          default
 
 # Pretty Colors
 color status white blue
