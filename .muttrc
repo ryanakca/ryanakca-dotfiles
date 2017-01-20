@@ -81,7 +81,7 @@ set ispell="aspell -e -c"
 
 # set up the sidebar, default not visible
 set mail_check_stats=yes
-set sidebar_visible=yes
+set sidebar_visible=no
 set sidebar_format="%B%*  %S%?N?(%N)?%?F?[%F]?"
 set sidebar_indent_string=" "
 # which # mailboxes to list in the sidebar
