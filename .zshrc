@@ -806,3 +806,7 @@ if [[ "True" = "True" ]]; then
     [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
            . $HOME/.keychain/$HOSTNAME-sh-gpg
 fi
+
+# ocaml
+
+. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
