@@ -136,6 +136,8 @@ if [[ `uname` = "Linux" ]]; then
     # from bind mounts.
     alias rm="rm -iv --one-file-system"
 
+    alias grep="grep --colour=auto"
+
     alias chown="chown -v"
     alias chmod="chmod -v"
     alias ls="ls --classify --color=always" # Add all colours and
@@ -147,8 +149,6 @@ fi
 # Cause encfs unmount a mounted encrypted partition after twenty minutes of
 # inactivity by default.
 alias encfs="encfs --idle=20"
-
-alias grep="grep --colour=auto"
 
 fpath=($fpath $HOME/.zsh/func)
 
