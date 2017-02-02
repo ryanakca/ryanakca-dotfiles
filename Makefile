@@ -93,6 +93,7 @@ SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
 GPG_BINARY    = $(call get-val,GPG_BINARY)
 EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
+BUILD_FONTS   = $(call get-val,BUILD_FONTS)
 
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS CMUSCS_PASS
 
@@ -146,7 +147,7 @@ emacsen:
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@ install
 
 fonts:
-	$(MAKE) -C .fonts install
+	[ "$(BUILD_FONTS)" != "True" ] || $(MAKE) -C .fonts install
 
 build/bin/msmtp/msmtp-default: build/.msmtprc
 	-mkdir -p $(dir $@)
