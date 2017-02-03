@@ -175,8 +175,9 @@ sbuild = GMAIL.INBOX:match_from('sbuild@.*.ryanak.ca') +
         GMAIL.INBOX:match_from('sbuild@lambda')
 GMAIL.INBOX:move_messages(GMAIL['sbuild'], sbuild)
 
-frescobaldi = ( GMAIL.INBOX:is_seen() *
-                GMAIL.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com') )
+frescobaldi = ( GMAIL.INBOX:is_seen()
+              + GMAIL.INBOX:is_older(2) )
+              * GMAIL.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com')
 GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'frescobaldi'], frescobaldi)
 
 opensmtpd = ( GMAIL.INBOX:is_seen()
@@ -228,7 +229,8 @@ GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'complogic'], comp
 
 mitplv = ( GMAIL.INBOX:contain_field('List-Id', 'plv.csail.mit.edu')
          + GMAIL.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
-         GMAIL.INBOX:is_older(2)
+         ( GMAIL.INBOX:is_older(1)
+         + GMAIL.INBOX:is_seen() )
 GMAIL.INBOX:move_messages(GMAIL['GMAIL' .. folder_sep .. 'MIT'], mitplv)
 
 -- Academia
