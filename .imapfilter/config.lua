@@ -167,8 +167,9 @@ slashdot = ( GMAIL.INBOX:is_seen() *
              GMAIL.INBOX:match_from('slashdot@newsletters.slashdot.org') )
 GMAIL.INBOX:move_messages(GMAIL['Slashdot'], slashdot)
 --
-lwn = ( GMAIL.INBOX:is_seen() *
-        GMAIL.INBOX:match_from('lwn.*@lwn.net') )
+lwn = ( GMAIL.INBOX:is_seen()
+      + GMAIL.INBOX:is_older(7) )
+      * GMAIL.INBOX:match_from('lwn.*@lwn.net')
 GMAIL.INBOX:move_messages(GMAIL['lwn'], lwn)
 
 sbuild = GMAIL.INBOX:match_from('sbuild@.*.ryanak.ca') +
@@ -228,6 +229,7 @@ GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'complogic'], comp
 -- MIT under GMAIL
 
 mitplv = ( GMAIL.INBOX:contain_field('List-Id', 'plv.csail.mit.edu')
+         + GMAIL.INBOX:contain_field('List-Id', 'plv.lists.csail.mit.edu')
          + GMAIL.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
          ( GMAIL.INBOX:is_older(1)
          + GMAIL.INBOX:is_seen() )
@@ -241,6 +243,11 @@ GMAIL.INBOX:move_messages(GMAIL['Academia' .. folder_sep .. 'types-announce'], t
 typeslist = GMAIL.INBOX:contain_field('List-Id', 'types-list.lists.seas.upenn.edu') *
             GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Academia' .. folder_sep .. 'types-list'], typeslist)
+
+categories = GMAIL.INBOX:contain_field('List-Id', 'maths-categories-seminar.lists.cam.ac.uk')
+             * ( GMAIL.INBOX:is_seen()
+               + GMAIL.INBOX:is_older(1) )
+GMAIL.INBOX:move_messages(GMAIL['Academia'], categories)
 
 -- People
 
