@@ -145,6 +145,8 @@
 (setq mail-envelope-from 'header)
 (setq message-send-mail-function 'sendmail-send-it)
 
+;;;; Python
+(setq python-python-command "/usr/bin/python3")
 
 ;;;; Default dictionary
 (setq ispell-dictionary "british-ise-w_accents")
