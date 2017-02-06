@@ -1,16 +1,16 @@
-# Friends
-save-hook 8bns@queensu\\.ca =Friends.8bns
-
 # Bagpipes
 save-hook info@brownbagpipesupply\\.com =Bagpipes
-save-hook .*ppbso.* =Bagpipes
 
 # Newsletters
 save-hook vfr-no-reply@aynrand\\.org =VfR
-save-hook '~s "Parallel & Unconventional Computation Group Meeting"' =Queens
 
 # SAIL
 save-hook (ahmed|bram|mei)@cs\\.queensu\\.ca =Queens.SAIL
 
 # Catch-all
 save-hook .*@.*queensu\\.ca =Queens
+
+save-hook =fnoreply@musicbrainz.org =MusicBrainz
+
+# Debian
+#save-hook =hX-Debian-PR-Source:\ prerex =Debian.prerex
