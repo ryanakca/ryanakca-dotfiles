@@ -84,7 +84,7 @@ GLOBAL_FILES = \
     .zlogout \
     bin/ \
 
-get-val = $(shell awk '{if (match($$0, /$1/)) { print $$2 } }' $(SUBSTS_FILE))
+get-val = $(shell egrep '^$1' $(SUBSTS_FILE) | cut -f2- -d' ')
 get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$(call get-val,$(var))|g')
 
 CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
