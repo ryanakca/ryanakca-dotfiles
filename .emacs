@@ -85,6 +85,17 @@
   :ensure t)
 (use-package sass-mode
   :ensure t)
+(use-package ess
+  :ensure t)
+(use-package merlin
+   :ensure t)
+(use-package ocp-indent
+   :ensure t)
+(use-package tuareg
+  :ensure t
+  :config
+  (add-hook 'tuareg-mode-hook 'merlin-mode t))
+
 
 ;;;; AUTO FILL
 					; We want auto-fill enabled for all text modes
