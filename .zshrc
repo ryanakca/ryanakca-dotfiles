@@ -797,8 +797,8 @@ NO_verbose		\
 
 # GPG / SSH AGENT
 
-if [[ "KEYCHAIN" = "True" ]]; then
-    keychain id_rsa
+if [ "xKEYCHAIN" != "x" ]; then
+    keychain KEYCHAIN
     #keychain -Q ${GPGKEY} ${GPGKEY1}
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&

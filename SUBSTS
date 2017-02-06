@@ -55,8 +55,9 @@ GREP_PATH /bin/grep
 # path to gnome-settings-daemon
 GSD_PATH /usr/local/libexec/gnome-settings-daemon
 
-# Enable keychain? If so, set to True
-KEYCHAIN True
+# Enable keychain? If so, set to secret key names, e.g., id_rsa id_ecdsa
+# Otherwise, delete everything after N
+KEYCHAIN id_rsa
 
 # Path to SSL certs for mail, etc.
 # /etc/ssl/cert.pem on OpenBSD
