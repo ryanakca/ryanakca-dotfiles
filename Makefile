@@ -27,7 +27,8 @@ LOCAL_FILES = \
 
 # GPG encrypted files
 GPG_FILES = \
-    .mutt/alias.rc
+    .mutt/alias.rc \
+    .mutt/alias-cmu.rc
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
@@ -55,6 +56,7 @@ GLOBAL_FILES = \
     .mailcheckrc \
     .mutt/ \
     .mutt/alias.rc \
+    .mutt/alias-cmu.rc \
     .muttrc \
     .notmuch-config \
     .offlineimap.py \
@@ -136,11 +138,15 @@ build/.zsh/func/prompt_wunjo_setup: FORCE
 FORCE:
 
 .mutt/alias.rc: gpg/.mutt/alias.rc.gpg
+.mutt/alias-cmu.rc: gpg/.mutt/alias-cmu.rc.gpg
 .ssh/id_%: gpg/.ssh/id_%.gpg
 # $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
 $(GPG_FILES):
-	touch $@ && chmod 600 $@
-	[ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$@.gpg > $@
+	for f in $@ ; do \
+	    touch $$f; \
+	    chmod 600 $$f; \
+	    [ "$(GPG_DISABLED)" = "True" ] || echo $(GPG_BINARY) --decrypt gpg/$$f.gpg > $$f; \
+	done
 
 emacsen:
 	[ "$(EMACS_DISABLED)" = "True" ] || $(MAKE) -C $@
