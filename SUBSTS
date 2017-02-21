@@ -84,3 +84,6 @@ PULSE_JACKD True
 HOMEDIR /home/rak
 
 BUILD_FONTS True
+
+MBUSER ryanakca
+MBPASS secret

@@ -4,6 +4,7 @@ SUBSTS_FILE=SUBSTS.local
 # Files that need changes to work locally or that contain sensitive
 # information
 LOCAL_FILES = \
+    .config/beets/config.yaml \
     .config/nitrogen/nitrogen.cfg \
     .devscripts \
     .gitconfig \
@@ -99,6 +100,7 @@ BUILD_FONTS   = $(call get-val,BUILD_FONTS)
 
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS CMUSCS_PASS
 
+VARS_.config/beets/config.yaml = MBUSER MBPASS
 VARS_.config/nitrogen/nitrogen.cfg = HOMEDIR
 VARS_.devscripts        = MSMTP_PATH
 VARS_.gitconfig         = MSMTP_PATH

@@ -3,7 +3,7 @@
 directory: /media/wd/music_clean
 library: /media/wd/music_clean/beetsmusic.blb
 path_format: $format/$artist/$album/$track $title
-plugins: mbsync duplicates fetchart
+plugins: mbsync duplicates fetchart mbcollection
 
 import:
     incremental: true
@@ -15,3 +15,8 @@ paths:
     default: $format/$albumartist/$album/$track $title
     singleton: $format/Singletons/$artist - $title
     comp: $format/comp/$album/$track $title
+
+musicbrainz:
+    user: MBUSER
+    pass: MBPASS
+    auto: yes
