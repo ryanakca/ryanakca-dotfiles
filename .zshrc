@@ -63,6 +63,7 @@ export PAGER=less
 export PDFVIEWER=evince
 export TEXMFHOME=${HOME}/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
+export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias emacs='emacs -nw'
@@ -105,6 +106,8 @@ alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
 alias remote_3051='ssh -f -N -q -L 6301:192.168.1.207:631 ryan@ryanak.ca'
 alias sshfw='ssh -oForwardAgent=yes'
 alias mail="RLWRAP_FILTERDIR=${HOME}/.rlwrap rlwrap -z mail_filter mail"
+alias kinits="kinit -r 200h -f rkavanag && kinit -r 200h -f rkavanag@ANDREW.CMU.EDU"
+alias aklogs="aklog CS.CMU.EDU && aklog ANDREW.CMU.EDU"
 
 # END LOCAL
 
