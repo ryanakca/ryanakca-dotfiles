@@ -61,6 +61,7 @@ GLOBAL_FILES = \
     .muttrc \
     .notmuch-config \
     .offlineimap.py \
+    .pulse/ \
     .pythonrc.py \
     .quiltrc-dpkg \
     .reportbugrc \

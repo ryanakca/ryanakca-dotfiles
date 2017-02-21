@@ -11,3 +11,4 @@ load-module module-always-sink
 load-module module-suspend-on-idle
 set-default-sink jack_out
 set-default-source jack_in
+load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
