@@ -85,6 +85,7 @@ GLOBAL_FILES = \
     .xmobarrc \
     .xmonad/ \
     .zsh/ \
+    .zshenv \
     .zlogout \
     bin/ \
 
