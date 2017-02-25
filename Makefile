@@ -129,6 +129,7 @@ all: clean build
 # This target relies on GLOBAL_FILES being before LOCAL_FILES so that the
 # build/LOCAL_FILES targets overwrite what was copied in GLOBAL_FILES.
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
+LOCALS = $(patsubst %,build/%,$(LOCAL_FILES))
 
 build: $(BUILD) fonts build/bin/msmtp/msmtp-default
 
@@ -164,6 +165,7 @@ build/bin/msmtp/msmtp-default: build/.msmtprc
 	awk '/account/ { FNAME =  "$(dir $@)/msmtp-"$$2; print "#!/bin/sh" > FNAME ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> FNAME }' $<
 	chmod 755 build/bin/msmtp/*
 
+$(LOCALS): .FORCE
 build/%: % $(SUBSTS_FILE)
 	@[ -d $(dir $@) ] || mkdir -p $(dir $@)
 	( [ -d $< ] && rsync -a $</* $@/ ) || rsync -a $< $@
@@ -266,4 +268,5 @@ diff: build
 	    diff -u build/$${file} ../$$file; \
 	done
 
-.PHONY: build install clean verify merge udh emacsen diff
+.FORCE:
+.PHONY: build install clean verify merge udh emacsen diff .FORCE
