@@ -48,6 +48,8 @@ bind index ( next-unread-mailbox
 bind index * next-unread
 bind pager i exit
 
+# To keep the macro .n from binding just .
+bind index . noop
 macro index .n "<tag-pattern>~N|~O<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>~T<enter>" "Catchup all new messages"
 
 # This shows up in a nice message box at the top of e-mails for MS Outlook users
