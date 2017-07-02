@@ -70,6 +70,8 @@ set index_format="%4C %{%m%d} %-16.16F [%Z] %?M?(#%03M)&(%4l)? %s"
 macro index \cxn '<enter-command>set index_format="%4C %{%m%d} %-16.16F [%Z] %?M?(#%03M)&(%4l)? %s"<enter>'
 macro index \cxw '<enter-command>set index_format="%4C %{%m%d} %-16.16F %-15.15B [%Z] %?M?(#%03M)&(%4l)? %s"<enter>'
 
+set print_command="muttprint -2"
+
 set mark_old=yes
 
 set query_command="lbdbq %s"
