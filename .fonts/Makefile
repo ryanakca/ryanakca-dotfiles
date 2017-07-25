@@ -1,4 +1,5 @@
-fonts = InconsolataHellenic.otf \
+fonts = Brill_Typeface_2.06 \
+	InconsolataHellenic.otf \
 	ubuntu-font-family-0.80 \
 	Courier-Prime \
 	Fell \
