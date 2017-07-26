@@ -33,6 +33,50 @@ end
 --    GMAIL
 --
 
+-- Debian stuff
+
+debiandevelann = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org') *
+   GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'debian-devel-announce'], debiandevelann)
+
+listsdebianorg = { 'debian-backports'
+		   , 'debian-bsd'
+		   , 'debian-dak'
+		   , 'debian-devel'
+		   , 'debian-devel-french'
+		   , 'debian-haskell'
+		   , 'debian-java'
+		   , 'debian-mentors'
+		   , 'debian-newmaint'
+		   , 'debian-news'
+		   , 'debian-private'
+		   , 'debian-project'
+		   , 'debian-python'
+		   , 'debian-qa'
+		   , 'debian-qt-kde'
+}
+
+for list = 1, #listsdebianorg do
+    listfilter = GMAIL.INBOX:contain_field('List-ID', listsdebianorg[list] .. '.lists.debian.org')
+    GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. listsdebianorg[list]], listfilter)
+end
+
+alioth = { 'pkg-kde-commits'
+	   , 'pkg-kde-extras'
+	   , 'pkg-kde-talk'
+	   , 'pkg-multimedia-commits'
+	   , 'pkg-multimedia-maintainers'
+	   , 'python-apps-team' }
+
+for list = 1, #alioth do
+   listfilter = GMAIL.INBOX:contain_field('List-ID', alioth[list] .. '.lists.alioth.debian.org')
+   GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. alioth[list]], listfilter)
+end
+
+dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org') *
+   GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'dBugs'], dbugs)
+
 -- Ubuntu stuff
 
 ubuntu = { 'kubuntu-devel'
@@ -97,49 +141,6 @@ GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-ninjas'], kub
 --kubuntuWebmaster = GMAIL.INBOX:contain_to('webmaster@kubuntu.org')
 --GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-webmaster'], kubuntuWebmaster)
 
--- Debian stuff
-
-debiandevelann = GMAIL.INBOX:contain_field('List-ID', 'debian-devel-announce.lists.debian.org') *
-   GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'debian-devel-announce'], debiandevelann)
-
-dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org') *
-   GMAIL.INBOX:is_seen()
-GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'dBugs'], dbugs)
-
-listsdebianorg = { 'debian-backports'
-		   , 'debian-bsd'
-		   , 'debian-dak'
-		   , 'debian-devel'
-		   , 'debian-devel-french'
-		   , 'debian-haskell'
-		   , 'debian-java'
-		   , 'debian-mentors'
-		   , 'debian-newmaint'
-		   , 'debian-news'
-		   , 'debian-private'
-		   , 'debian-project'
-		   , 'debian-python'
-		   , 'debian-qa'
-		   , 'debian-qt-kde'
-}
-
-for list = 1, #listsdebianorg do
-    listfilter = GMAIL.INBOX:contain_field('List-ID', listsdebianorg[list] .. '.lists.debian.org')
-    GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. listsdebianorg[list]], listfilter)
-end
-
-alioth = { 'pkg-kde-commits'
-	   , 'pkg-kde-extras'
-	   , 'pkg-kde-talk'
-	   , 'pkg-multimedia-commits'
-	   , 'pkg-multimedia-maintainers'
-	   , 'python-apps-team' }
-
-for list = 1, #alioth do
-   listfilter = GMAIL.INBOX:contain_field('List-ID', alioth[list] .. '.lists.alioth.debian.org')
-   GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. alioth[list]], listfilter)
-end
 
 -- KDE Stuff
 
