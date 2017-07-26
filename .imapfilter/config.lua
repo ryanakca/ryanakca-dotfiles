@@ -258,7 +258,9 @@ GMAIL.INBOX:move_messages(GMAIL['Bagpipes'], bagpipes)
 
 facebook = GMAIL.INBOX:match_from('.*@facebookmail.com') *
          ( GMAIL.INBOX:contain_subject('New messages from ') +
-           GMAIL.INBOX:contain_subject('New message from ') ) *
+           GMAIL.INBOX:contain_subject('New message from ') +
+           GMAIL.INBOX:contain_subject('sent a message') +
+           GMAIL.INBOX:contain_subject('sent you a message') ) *
          ( GMAIL.INBOX:is_old()
          + GMAIL.INBOX:is_seen() )
 GMAIL.INBOX:move_messages(GMAIL['Friends'], facebook)
