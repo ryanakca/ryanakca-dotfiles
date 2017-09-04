@@ -7,11 +7,12 @@ set imap_passive = 'no';\
 set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com';\
 set postponed = '=[Google Mail]/Drafts';\
 set spoolfile = '=INBOX';\
-set from = "rak@debian.org";\
+set from = "Ryan Kavanagh <rak@debian.org>";\
 set sendmail='MSMTP_PATH';\
+set record = '=[Google Mail]/Sent Mail';\
+set copy = 'no';\
 unset smtp_url;\
 unset smtp_pass;\
-unset record;\
 unset mbox;\
 macro index .s '<tag-prefix><copy-message>=Debian.archive<enter>' 'Saves Deb packaging email to Debian.archive';\
 set pager_format = '-%Z-GMAIL: %C/%m: %-20.20n %s';\
@@ -30,6 +31,7 @@ account-hook imaps://outlook.office365.com \
 set imap_pass = 'QUEENSU_PASS';\
 set folder = 'imaps://outlook.office365.com';\
 set record = '=Sent Items';\
+set copy = 'yes';\
 set postponed = '=Drafts';\
 set spoolfile = '=Inbox';\
 set imap_passive = 'no';\
@@ -47,6 +49,7 @@ account-hook imaps://hermes.ryanak.ca \
 set imap_pass = 'RYANAKCA_PASS';\
 set folder = 'imaps://hermes.ryanak.ca/';\
 set record = '=Sent';\
+set copy = 'yes';\
 set postponed = '=Drafts';\
 set spoolfile = '=';\
 set mbox = '=RAK';\
@@ -65,12 +68,13 @@ set imap_passive = 'no';\
 set imap_keepalive = 60;\
 set folder = 'imaps://rkavanag@andrew.cmu.edu@imap.gmail.com';\
 set spoolfile = '=INBOX';\
-set sendmail='MSMTP_PATH -a cmu';\
-set from = 'Ryan Kavanagh <rkavanag@andrew.cmu.edu>';\
+set sendmail='MSMTP_PATH -a cmuscs';\
+set from = 'Ryan Kavanagh <rkavanagh@cs.cmu.edu>';\
 set mbox = '=Read';\
+set record = '=[Gmail]/Sent Mail';\
+set copy = 'no';\
 unset smtp_url;\
 unset smtp_pass;\
-unset record;\
 set pager_format = '-%Z-CMU: %C/%m: %-20.20n %s';\
 set compose_format = '-- CMU: Compose [Approx. msg size: %l Atts: %a]%>-';\
 set status_format = '-%r-CMU: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
@@ -120,11 +124,13 @@ macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@i
 
 macro compose <F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="MSMTP_PATH -a cmu"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanag@andrew.cmu.edu><enter>' \
 "Send mail from CMU account"
 
-macro compose <Esc><F3> '<enter-command>set folder="imaps://imap.srv.cs.cmu.edu/"<enter>\
-<edit-fcc><kill-line>=INBOX.Sent<enter>\
+macro compose <Esc><F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="MSMTP_PATH -a cmuscs"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.cmu.edu><enter>' \
 "Send mail from CMU SCS account"
 
