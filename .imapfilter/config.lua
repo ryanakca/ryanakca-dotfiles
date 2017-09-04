@@ -199,8 +199,9 @@ PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
 
-epstein = GMAIL.INBOX:match_from('support@industrialprogress.net') *
-          GMAIL.INBOX:is_seen()
+epstein = ( GMAIL.INBOX:match_from('support@industrialprogress.net')
+          + GMAIL.INBOX:match_from('alex@alexepstein.com') )
+          * GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Epstein'], epstein)
 
 -- Queen's
@@ -250,6 +251,12 @@ categories = GMAIL.INBOX:contain_field('List-Id', 'maths-categories-seminar.list
                + GMAIL.INBOX:is_older(1) )
 GMAIL.INBOX:move_messages(GMAIL['Academia'], categories)
 
+
+fields = GMAIL.INBOX:match_from('gensci@fields.utoronto.ca')
+       * ( GMAIL.INBOX:is_old()
+         + GMAIL.INBOX:is_seen() )
+fields = GMAIL.INBOX:move_messages(GMAIL['Academia'], fields)
+
 -- People
 
 bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
@@ -273,3 +280,7 @@ GMAIL.INBOX:move_messages(GMAIL['VfR'], vfr)
 
 epic = GMAIL.INBOX:contain_field('List-Id', 'Every Pub In Cambridge <epic.einval.com>')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'epic'], epic)
+
+banks = GMAIL.INBOX:match_from('pncalerts@pnc.com') *
+        GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['banks'], banks)
