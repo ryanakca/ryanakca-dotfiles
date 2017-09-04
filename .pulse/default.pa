@@ -1,14 +1,14 @@
 load-module module-native-protocol-unix
-load-module module-jack-sink channels=2
-load-module module-jack-source channels=2
-load-module module-null-sink
+#load-module module-jack-sink channels=2
+#load-module module-jack-source channels=2
 #load-module module-alsa-sink
-#load-module module-udev-detect
-#load-module module-detect
+load-module module-udev-detect
 load-module module-stream-restore
 load-module module-rescue-streams
 load-module module-always-sink
 load-module module-suspend-on-idle
-set-default-sink jack_out
-set-default-source jack_in
+#set-default-sink jack_out
+#set-default-source jack_in
 load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
+set-card-profile alsa_card.usb-FiiO_DigiHug_USB_Audio-01 output:iec958-stereo
+load-module module-ladspa-sink sink_name=binaural master=alsa_output.usb-FiiO_DigiHug_USB_Audio-01.iec958-stereo plugin=bs2b label=bs2b control=700,4.5
