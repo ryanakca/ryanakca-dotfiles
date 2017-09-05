@@ -33,6 +33,14 @@
 	       '("corollary" LaTeX-env-label)
 	       '("lemma" LaTeX-env-label)
 	       '("conjecture" LaTeX-env-label))))
+  (add-to-list 'TeX-view-program-list
+	       '("Zathura"
+		 ("zathura "
+		  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\" ")
+		  " %o")
+		 "zathura"))
+  (add-to-list 'TeX-view-program-selection
+			    '(output-pdf "Zathura"))
   (progn
     (setq TeX-parse-self t              ; Parse documents to provide completion
 					; for packages, etc.
