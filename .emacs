@@ -174,6 +174,7 @@
 
 ;;;; Python
 (setq python-python-command "/usr/bin/python3")
+(elpy-enable)
 
 ;;;; Default dictionary
 (setq ispell-dictionary "british-ise-w_accents")
@@ -190,6 +191,9 @@
  '(inhibit-startup-screen t)
  '(proof-disappearing-proofs t)
  '(proof-electric-terminator-enable t)
+ '(python-indent-guess-indent-offset nil)
+ '(python-indent-offset 4)
+ '(python-shell-interpreter "python3")
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
