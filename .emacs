@@ -95,6 +95,16 @@
   :ensure t
   :config
   (add-hook 'tuareg-mode-hook 'merlin-mode t))
+(use-package py-autopep8
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+  (setq py-autopep8-options '("--max-line-length=80")))
+(use-package elpy
+  :ensure t
+  :config
+  (setq elpy-rpc-python-command "python3"))
+
 
 
 ;;;; AUTO FILL
