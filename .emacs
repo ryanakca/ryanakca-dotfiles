@@ -122,6 +122,7 @@
   (setq elpy-rpc-python-command "python3"))
 
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;;; AUTO FILL
 					; We want auto-fill enabled for all text modes
