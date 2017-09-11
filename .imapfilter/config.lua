@@ -278,9 +278,15 @@ vfr = GMAIL.INBOX:match_from('vfr-no-reply@aynrand.org') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['VfR'], vfr)
 
+ari = GMAIL.INBOX:match_from('Impact@aynrand.org')
+      * GMAIL.INBOX:is_seen()
+GMAIL.INBOX:move_messages(GMAIL['ARI'], ari)
+
 epic = GMAIL.INBOX:contain_field('List-Id', 'Every Pub In Cambridge <epic.einval.com>')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'epic'], epic)
 
-banks = GMAIL.INBOX:match_from('pncalerts@pnc.com') *
-        GMAIL.INBOX:is_seen()
+banks = ( GMAIL.INBOX:match_from('pncalerts@pnc.com')
+        + GMAIL.INBOX:match_from('discover@service.discover.com') )
+        * ( GMAIL.INBOX:is_seen()
+          + GMAIL.INBOX:is_older(7) )
 GMAIL.INBOX:move_messages(GMAIL['banks'], banks)
