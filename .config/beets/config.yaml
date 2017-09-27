@@ -1,8 +1,5 @@
-# Automatically migrated from legacy .beetsconfig.
-
 directory: /media/wd/music_clean
 library: /media/wd/music_clean/beetsmusic.blb
-path_format: $format/$artist/$album/$track $title
 plugins: mbsync duplicates fetchart mbcollection
 
 import:
@@ -10,6 +7,8 @@ import:
     quiet_fallback: skip
     log: /media/wd/music_clean/import_log
     move: true
+    write: true
+    autotag: true
 
 paths:
     default: $format/$albumartist/$album/$track $title
@@ -20,3 +19,8 @@ musicbrainz:
     user: MBUSER
     pass: MBPASS
     auto: yes
+
+match:
+    preferred:
+        countries: ['CA', 'US']
+        media: ['CD']
