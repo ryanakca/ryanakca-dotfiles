@@ -8,8 +8,8 @@ trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
 ${HOME}/.dzen/battery.sh &
 urxvtd -q -f -o &
 urxvtc &
-${HOME}/.screenlayout/nu-home.sh && nitrogen --restore
-if [ "True" = "True" ]; then
+${HOME}/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
+if [ "PULSE" = "True" ]; then
     sh bin/startaudio &
 fi
 

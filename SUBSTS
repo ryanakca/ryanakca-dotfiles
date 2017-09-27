@@ -77,9 +77,9 @@ GPG_BINARY gpg2
 # /usr/lib/mutt/pgpewrap on Debian
 PGPEWRAP_BINARY /usr/lib/mutt/pgpewrap
 
-# Start pulse and jackd?
+# Start pulse?
 # Set to True to enable, anything else otherwise
-PULSE_JACKD True
+PULSE True
 
 HOMEDIR /home/rak
 

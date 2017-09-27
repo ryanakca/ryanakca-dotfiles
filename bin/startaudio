@@ -1,2 +1,4 @@
 #!/bin/sh
-start-pulseaudio-x11 && sleep 2 && sh ~/.jackdrc
+start-pulseaudio-x11
+mpd_others.sh
+do_dac.sh
