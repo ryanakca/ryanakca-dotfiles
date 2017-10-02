@@ -23,6 +23,8 @@
   :defer t
   :config
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
+  (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
   (add-hook 'LaTeX-mode-hook
 	    (lambda ()
 	      (LaTeX-add-environments
@@ -59,7 +61,7 @@
 			       ("corollary" ?c "cor:" "~\\ref{%s}" t   ("corollary" "cor.") -3)
 			       ("lemma" ?l "lemma:" "~\\ref{%s}" t   ("lemma" "lem.") -3)
 			       ("conjecture" ?j "conj:" "~\\ref{%s}" t   ("conjecture" "conj.") -3)
-                               ("ax"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
+			       ("ax"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
 			       ("thm" ?h "theorem:" "~\\ref{%s}" t   ("theorem" "th.") -3)
 			       ("prop" ?p "prop:" "~\\ref{%s}" t   ("proposition" "prop.") -3)
 			       ("defi" ?d "def:" "~\\ref{%s}" t   ("definition" "def.") -3)
