@@ -199,7 +199,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (mingus yaml-mode wc-mode use-package tuareg sml-mode sass-mode rainbow-mode py-autopep8 ocp-indent merlin markdown-mode lua-mode haskell-mode fill-column-indicator ess elpy dtrt-indent auto-indent-mode auto-complete auctex)))
+    (airline-themes csv-mode mingus yaml-mode wc-mode use-package tuareg sml-mode sass-mode rainbow-mode py-autopep8 ocp-indent merlin markdown-mode lua-mode haskell-mode fill-column-indicator ess elpy dtrt-indent auto-indent-mode auto-complete auctex)))
  '(proof-disappearing-proofs t)
  '(proof-electric-terminator-enable t)
  '(python-indent-guess-indent-offset nil)
