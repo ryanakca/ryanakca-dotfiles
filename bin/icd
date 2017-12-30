@@ -24,7 +24,7 @@ KIN_OPTIONS="\
 
 SUN_OPTIONS="\
     ${GLOBAL_OPTIONS} \
-    -geometry sun(type6) \
+    -geometry sun(type6unix) \
     -option caps:escape \
     -option myswap:switch_lalt_lsuper"
 
@@ -61,20 +61,17 @@ fi
 if [ "x${SUN_USB_ID}" != "x" ]; then
     echo "Setting up Sun Type 6"
     SUN_XINPUT_ID=$(xinput | grep ${SUN_USB_ID} | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
-    echo ${SUN_XINPUT_ID}
+    echo "ID: ${SUN_XINPUT_ID}"
     for XID in $SUN_XINPUT_ID; do
         echo $XID
         setxkbmap \
             -I${XKB_DIR} \
             -device ${XID} \
             ${SUN_OPTIONS} \
-            -print > ${HOME}/.xkb/keymap/icd.sun
-            #-print | sed -e 's@\(pc+icd.*\)"@\1+myswap(switch_lalt_lsuper)"@g' > ${HOME}/.xkb/keymap/icd.sun
+            -print | sed -e '/xkb_keycodes/s/"[[:space:]]/+sunt6fix&/' > ${HOME}/.xkb/keymap/icd.sun
         xkbcomp -I${HOME}/.xkb -i ${XID} -synch \
             ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
     done
-    xkbcomp -I${HOME}/.xkb -synch \
-        ${HOME}/.xkb/keymap/icd.sun ${DISPLAY} # 2> /dev/null
 fi
 
 

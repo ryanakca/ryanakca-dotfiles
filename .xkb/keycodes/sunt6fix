@@ -1,0 +1,4 @@
+xkb_keycodes {
+    <PGUP> = 86;
+    <PGDN> = 104;
+};
