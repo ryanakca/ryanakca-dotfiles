@@ -16,3 +16,5 @@
         insteadOf = "git://git.debian.org"
 [url "ssh://git.debian.org"]
         pushInsteadOf = "git://git.debian.org"
+[rerere]
+	enabled = true
