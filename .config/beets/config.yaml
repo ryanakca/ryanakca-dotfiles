@@ -1,6 +1,6 @@
 directory: /media/wd/music_clean
 library: /media/wd/music_clean/beetsmusic.blb
-plugins: mbsync duplicates fetchart mbcollection
+plugins: mbsync duplicates fetchart mbcollection badfiles
 
 import:
     incremental: true
