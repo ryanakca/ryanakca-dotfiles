@@ -268,5 +268,10 @@ diff: build
 	    diff -u build/$${file} ../$$file; \
 	done
 
+aliases:
+	cp -f ../.mutt/alias.rc .mutt && \
+	    gpg -r4A11C97A --encrypt .mutt/alias.rc && \
+	    mv -f .mutt/alias.rc.gpg gpg/.mutt/alias.rc.gpg
+
 .FORCE:
-.PHONY: build install clean verify merge udh emacsen diff .FORCE
+.PHONY: build install clean verify merge udh emacsen diff .FORCE aliases
