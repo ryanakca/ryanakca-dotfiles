@@ -125,6 +125,7 @@ source ~/.mutt/accounts.rc
 source ~/.mutt/savehooks.rc
 source ~/.mutt/gpg.rc
 source ~/.mutt/ssl.rc
+source ~/.mutt/news.rc
 
 set folder='imap://localhost'
 set spoolfile='=INBOX'
