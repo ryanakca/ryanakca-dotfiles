@@ -26,6 +26,7 @@ SUN_OPTIONS="\
     ${GLOBAL_OPTIONS} \
     -geometry sun(type6unix) \
     -option caps:escape \
+    -option lv3:menu_switch \
     -option myswap:switch_lalt_lsuper"
 
 
