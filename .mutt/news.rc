@@ -32,7 +32,7 @@ set x_comment_to = no
 # mark all articles in newsgroup as read
 bind browser,index y catchup
 # open a different newsgroup
-bind index,pager i change-newsgroup
+bind index i change-newsgroup
 # edit the Followup-To field
 bind compose o edit-followup-to
 # edit the newsgroups list
