@@ -88,6 +88,7 @@ set mail_check_stats=yes
 set sidebar_visible=no
 set sidebar_format="%B%*  %S%?N?(%N)?%?F?[%F]?"
 set sidebar_indent_string=" "
+set sidebar_short_path=yes
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
 # color of folders with new mail
