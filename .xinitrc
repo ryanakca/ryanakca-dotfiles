@@ -6,6 +6,7 @@ ${HOME}/bin/icd
 trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
   --expand true --width 10 --transparent true --height 12 --align right &
 ${HOME}/.dzen/battery.sh &
+pavucontrol &
 urxvtd -q -f -o &
 urxvtc &
 ${HOME}/.screenlayout/SCREENLAYOUT.sh && nitrogen --restore
