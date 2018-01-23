@@ -199,8 +199,8 @@ PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
       GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
 
-epstein = ( GMAIL.INBOX:match_from('support@industrialprogress.net')
-          + GMAIL.INBOX:match_from('alex@alexepstein.com') )
+epstein = ( GMAIL.INBOX:match_from('.*@industrialprogress.net')
+          + GMAIL.INBOX:match_from('.*@alexepstein.com') )
           * GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Epstein'], epstein)
 
