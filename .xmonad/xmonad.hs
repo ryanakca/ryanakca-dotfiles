@@ -430,6 +430,7 @@ main = do
               , [ className   =? c --> viewShift "term" | c <- term2]
               , [ className   =? c --> viewShift "web" | c <- web]
               , [ className   =? c --> viewShift "chatter" | c <- chatter]
+              , [ className   =? c --> viewShift "music" | c <- music]
             --  , [ className   =? c --> doF (W.shift "plasma") | c <- plasmaD ]
               , [ className   =? c --> doIgnore         | c <- panel ]
               , [ isFullscreen     --> doFullFloat ]
@@ -487,6 +488,7 @@ main = do
           term2         = ["Konsole", "urxvt"]
           web           = ["Firefox", "Iceweasel", "Opera", "Akregator", "Konqueror", "Chromium-browser", "Firefox-bin", "Navigator"] -- open on desktop 2
           chatter       = ["Ksirc", "Krusader", "xchat", "Quassel", "Pidgin", "Kopete", "kopete"]      -- open on desktop 3
+          music         = ["pavucontrol", "Pavucontrol"]
           games         = ["Bzflag"]
           panel         = ["panel", "trayer"]
 
