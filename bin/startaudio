@@ -1,4 +1,2 @@
 #!/bin/sh
-start-pulseaudio-x11
-mpd_others.sh
-do_dac.sh
+start-pulseaudio-x11 && ${HOME}/bin/mpd_others.sh
