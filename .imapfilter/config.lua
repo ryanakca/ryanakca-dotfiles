@@ -105,9 +105,9 @@ for list = 1, #canonical do
 end
 
 launchpadUsers = GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.launchpad.net') +
-                 GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.canonical.com') +
-                 GMAIL.INBOX:match_to('launchpad-users@lists.launchpad.net') +
-                 GMAIL.INBOX:match_cc('launchpad-users@lists.launchpad.net')
+		 GMAIL.INBOX:contain_field('List-ID', 'launchpad-users.lists.canonical.com') +
+		 GMAIL.INBOX:match_to('launchpad-users@lists.launchpad.net') +
+		 GMAIL.INBOX:match_cc('launchpad-users@lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'launchpadUsers'], launchpadUsers)
 
 -- kubuntuBugs = GMAIL.INBOX:contain_header('X-Launchpad-Message-Rationale: .*@kubuntu-bugs') +
@@ -127,13 +127,13 @@ kuWebBugs = GMAIL.INBOX:match_header('X-Launchpad-Bug:.*product=kubuntu-website.
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-website-bugs'], kuWebBugs)
 
 ubugs =  GMAIL.INBOX:match_header('X-Launchpad-Bug:.*distribution=ubuntu;.*') +
-         GMAIL.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
+	 GMAIL.INBOX:contain_field('List-Id', 'ubuntu-bugcontrol.lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'ubuntu-bugs'], ubugs)
 
 kubuntuninjas = GMAIL.INBOX:contain_field('X-Launchpad-PPA', 'kubuntu-ninjas') +
-                GMAIL.INBOX:contain_field('X-Launchpad-PPA', 'kubuntu-ppa-staging') +
-                GMAIL.INBOX:contain_field('X-Launchpad-Message-For', 'kubuntu-packagers') +
-                GMAIL.INBOX:contain_field('List-ID', 'kubuntu-ppa.lists.launchpad.net')
+		GMAIL.INBOX:contain_field('X-Launchpad-PPA', 'kubuntu-ppa-staging') +
+		GMAIL.INBOX:contain_field('X-Launchpad-Message-For', 'kubuntu-packagers') +
+		GMAIL.INBOX:contain_field('List-ID', 'kubuntu-ppa.lists.launchpad.net')
 GMAIL.INBOX:move_messages(GMAIL['Ubuntu' .. folder_sep .. 'kubuntu-ninjas'], kubuntuninjas)
 
 --answers =  GMAIL.INBOX:match_header('X-Launchpad-Question: distribution=ubuntu.*')
@@ -167,7 +167,7 @@ GMAIL.INBOX:move_messages(GMAIL['OpenBSD' .. folder_sep .. 'ssh-unix-dev'], sshu
 -- Other computer stuff
 --
 slashdot = ( GMAIL.INBOX:is_seen() *
-             GMAIL.INBOX:match_from('slashdot@newsletters.slashdot.org') )
+	     GMAIL.INBOX:match_from('slashdot@newsletters.slashdot.org') )
 GMAIL.INBOX:move_messages(GMAIL['Slashdot'], slashdot)
 --
 lwn = ( GMAIL.INBOX:is_seen()
@@ -176,23 +176,23 @@ lwn = ( GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['lwn'], lwn)
 
 sbuild = GMAIL.INBOX:match_from('sbuild@.*.ryanak.ca') +
-        GMAIL.INBOX:match_from('sbuild@lambda')
+	GMAIL.INBOX:match_from('sbuild@lambda')
 GMAIL.INBOX:move_messages(GMAIL['sbuild'], sbuild)
 
 frescobaldi = ( GMAIL.INBOX:is_seen()
-              + GMAIL.INBOX:is_older(2) )
-              * GMAIL.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com')
+	      + GMAIL.INBOX:is_older(2) )
+	      * GMAIL.INBOX:contain_field('List-ID', 'frescobaldi.googlegroups.com')
 GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'frescobaldi'], frescobaldi)
 
 opensmtpd = ( GMAIL.INBOX:is_seen()
-            + GMAIL.INBOX:is_older(2) ) *
-                GMAIL.INBOX:contain_field('List-ID', 'misc.opensmtpd.org')
+	    + GMAIL.INBOX:is_older(2) ) *
+		GMAIL.INBOX:contain_field('List-ID', 'misc.opensmtpd.org')
 GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'opensmtpd'], opensmtpd)
 
 mbrainz = ( GMAIL.INBOX:match_from('noreply@musicbrainz.org')
-          * GMAIL.INBOX:match_subject('Edits for your subscriptions')
-          * ( GMAIL.INBOX:is_older(1)
-            + GMAIL.INBOX:is_seen() ) )
+	  * GMAIL.INBOX:match_subject('Edits for your subscriptions')
+	  * ( GMAIL.INBOX:is_older(1)
+	    + GMAIL.INBOX:is_seen() ) )
 GMAIL.INBOX:move_messages(GMAIL['MusicBrainz'], mbrainz)
 
 -- O'ists
@@ -202,20 +202,20 @@ PiA = GMAIL.INBOX:match_from('.*@philosophyinaction.com') *
 GMAIL.INBOX:move_messages(GMAIL['PiA'], PiA)
 
 epstein = ( GMAIL.INBOX:match_from('.*@industrialprogress.net')
-          + GMAIL.INBOX:match_from('.*@alexepstein.com') )
-          * GMAIL.INBOX:is_seen()
+	  + GMAIL.INBOX:match_from('.*@alexepstein.com') )
+	  * GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Epstein'], epstein)
 
 -- Queen's
 
 qsocial = GMAIL.INBOX:match_to('social@.*cs.queensu.ca') +
-          GMAIL.INBOX:match_cc('social@.*cs.queensu.ca')
+	  GMAIL.INBOX:match_cc('social@.*cs.queensu.ca')
 GMAIL.INBOX:move_messages(GMAIL['Queens' .. folder_sep .. 'social'], qsocial)
 
 qsail = ( GMAIL.INBOX:match_to('sail.*@cs.queensu.ca') +
-          GMAIL.INBOX:match_cc('sail.*@cs.queensu.ca') ) *
-        GMAIL.INBOX:is_seen() +
-        GMAIL.INBOX:match_to('sail4schedule@gmail.com')
+	  GMAIL.INBOX:match_cc('sail.*@cs.queensu.ca') ) *
+	GMAIL.INBOX:is_seen() +
+	GMAIL.INBOX:match_to('sail4schedule@gmail.com')
 GMAIL.INBOX:move_messages(GMAIL['Queens' .. folder_sep .. 'SAIL'], qsail)
 
 -- McGill
@@ -227,16 +227,16 @@ beldev = GMAIL.INBOX:match_to('beluga-dev@cs.mcgill.ca')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'beluga-dev'], beldev)
 
 complogic = GMAIL.INBOX:contain_field('List-Id', 'complogic.CS.McGill.CA') *
-            GMAIL.INBOX:is_older(1)
+	    GMAIL.INBOX:is_older(1)
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'complogic'], complogic)
 
 -- MIT under GMAIL
 
 mitplv = ( GMAIL.INBOX:contain_field('List-Id', 'plv.csail.mit.edu')
-         + GMAIL.INBOX:contain_field('List-Id', 'plv.lists.csail.mit.edu')
-         + GMAIL.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
-         ( GMAIL.INBOX:is_older(1)
-         + GMAIL.INBOX:is_seen() )
+	 + GMAIL.INBOX:contain_field('List-Id', 'plv.lists.csail.mit.edu')
+	 + GMAIL.INBOX:contain_field('List-Id', 'bedrock-group.lists.csail.mit.edu') ) *
+	 ( GMAIL.INBOX:is_older(1)
+	 + GMAIL.INBOX:is_seen() )
 GMAIL.INBOX:move_messages(GMAIL['GMAIL' .. folder_sep .. 'MIT'], mitplv)
 
 -- Academia
@@ -245,33 +245,33 @@ typesann = GMAIL.INBOX:contain_field('List-Id', 'types-announce.lists.seas.upenn
 GMAIL.INBOX:move_messages(GMAIL['Academia' .. folder_sep .. 'types-announce'], typesann)
 
 typeslist = GMAIL.INBOX:contain_field('List-Id', 'types-list.lists.seas.upenn.edu') *
-            GMAIL.INBOX:is_seen()
+	    GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Academia' .. folder_sep .. 'types-list'], typeslist)
 
 categories = GMAIL.INBOX:contain_field('List-Id', 'maths-categories-seminar.lists.cam.ac.uk')
-             * ( GMAIL.INBOX:is_seen()
-               + GMAIL.INBOX:is_older(1) )
+	     * ( GMAIL.INBOX:is_seen()
+	       + GMAIL.INBOX:is_older(1) )
 GMAIL.INBOX:move_messages(GMAIL['Academia'], categories)
 
 
 fields = GMAIL.INBOX:match_from('gensci@fields.utoronto.ca')
        * ( GMAIL.INBOX:is_old()
-         + GMAIL.INBOX:is_seen() )
+	 + GMAIL.INBOX:is_seen() )
 fields = GMAIL.INBOX:move_messages(GMAIL['Academia'], fields)
 
 -- People
 
 bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
-           GMAIL.INBOX:match_cc('PM_EMAIL')
+	   GMAIL.INBOX:match_cc('PM_EMAIL')
 GMAIL.INBOX:move_messages(GMAIL['Bagpipes'], bagpipes)
 
 facebook = GMAIL.INBOX:match_from('.*@facebookmail.com') *
-         ( GMAIL.INBOX:contain_subject('New messages from ') +
-           GMAIL.INBOX:contain_subject('New message from ') +
-           GMAIL.INBOX:contain_subject('sent a message') +
-           GMAIL.INBOX:contain_subject('sent you a message') ) *
-         ( GMAIL.INBOX:is_old()
-         + GMAIL.INBOX:is_seen() )
+	 ( GMAIL.INBOX:contain_subject('New messages from ') +
+	   GMAIL.INBOX:contain_subject('New message from ') +
+	   GMAIL.INBOX:contain_subject('sent a message') +
+	   GMAIL.INBOX:contain_subject('sent you a message') ) *
+	 ( GMAIL.INBOX:is_old()
+	 + GMAIL.INBOX:is_seen() )
 GMAIL.INBOX:move_messages(GMAIL['Friends'], facebook)
 
 -- Misc
@@ -288,7 +288,7 @@ epic = GMAIL.INBOX:contain_field('List-Id', 'Every Pub In Cambridge <epic.einval
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'epic'], epic)
 
 banks = ( GMAIL.INBOX:match_from('pncalerts@pnc.com')
-        + GMAIL.INBOX:match_from('discover@service.discover.com') )
-        * ( GMAIL.INBOX:is_seen()
-          + GMAIL.INBOX:is_older(7) )
+	+ GMAIL.INBOX:match_from('discover@service.discover.com') )
+	* ( GMAIL.INBOX:is_seen()
+	  + GMAIL.INBOX:is_older(7) )
 GMAIL.INBOX:move_messages(GMAIL['banks'], banks)
