@@ -43,9 +43,9 @@ account q {
 account r {
     call clearset
     set from="Ryan Kavanagh <rak@ryanak.ca>"
-    set folder=imaps://rak@hermes.ryanak.ca/
-    set imap-starttls-rak@hermes.ryanak.ca
-    set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
+    set folder=imaps://rak@imap.ryanak.ca/
+    set imap-starttls-rak@imap.ryanak.ca
+    set password-rak@imap.ryanak.ca=RYANAKCA_PASS
     set sendmail=HOMEDIR/bin/msmtp/msmtp-ryanakca
 
     set MBOX=@Read
@@ -77,8 +77,8 @@ account c {
 source ~/.mailx-aliases.rc
 source ~/.mailrc
 
-set password-rak@hermes.ryanak.ca=RYANAKCA_PASS
-set record=imaps://rak@hermes.ryanak.ca/Sent
+set password-rak@imap.ryanak.ca=RYANAKCA_PASS
+set record=imaps://rak@imap.ryanak.ca/Sent
 
 # Don't display X-Brightmail-Tracker header cruft
 ignore "X-Brightmail-Tracker"
