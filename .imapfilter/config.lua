@@ -75,6 +75,18 @@ for list = 1, #tracker do
    GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. tracker[list]], listfilter)
 end
 
+alioth = { 'pkg-kde-commits'
+          , 'pkg-kde-extras'
+          , 'pkg-kde-talk'
+          , 'pkg-multimedia-commits'
+          , 'pkg-multimedia-maintainers'
+          , 'python-apps-team' }
+
+for list = 1, #alioth do
+   listfilter = GMAIL.INBOX:contain_field('List-ID', alioth[list] .. '.lists.alioth.debian.org')
+   GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. alioth[list]], listfilter)
+end
+
 dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org') *
    GMAIL.INBOX:is_seen()
 GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. 'dBugs'], dbugs)
