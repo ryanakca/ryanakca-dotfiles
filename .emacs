@@ -179,7 +179,7 @@
 (elpy-enable)
 
 ;;;; Default dictionary
-(setq ispell-dictionary "british-ise-w_accents")
+(setq ispell-dictionary "en_CA-w_accents")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
