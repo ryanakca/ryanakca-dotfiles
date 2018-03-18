@@ -76,15 +76,22 @@ for list = 1, #tracker do
 end
 
 alioth = { 'pkg-kde-commits'
-          , 'pkg-kde-extras'
-          , 'pkg-kde-talk'
-          , 'pkg-multimedia-commits'
-          , 'pkg-multimedia-maintainers'
-          , 'python-apps-team' }
+	  , 'pkg-kde-extras'
+	  , 'pkg-kde-talk'
+	  , 'pkg-multimedia-commits'
+	  , 'pkg-multimedia-maintainers'
+	  , 'python-apps-team' }
 
 for list = 1, #alioth do
    listfilter = GMAIL.INBOX:contain_field('List-ID', alioth[list] .. '.lists.alioth.debian.org')
    GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. alioth[list]], listfilter)
+end
+
+salsa = { 'cmus' }
+
+for proj = 1, #salsa do
+   listfilter = GMAIL.INBOX:contain_field('X-Gitlab-Project', salsa[proj])
+   GMAIL.INBOX:move_messages(GMAIL['Debian' .. folder_sep .. salsa[proj]], listfilter)
 end
 
 dbugs = GMAIL.INBOX:match_from('.*@bugs.debian.org') *
