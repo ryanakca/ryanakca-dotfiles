@@ -9,3 +9,5 @@ SUBSTS.merged
 .ssh/id_ecdsa
 .ssh/id_rsa.lambda
 emacsen/make-*
+.irssi/_windowlist
+.irssi/certs/*
