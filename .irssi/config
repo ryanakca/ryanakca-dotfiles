@@ -334,8 +334,9 @@ settings = {
     twtopic_min_scroll = "no";
     twtopic_ar_padding = "0";
     twtopic_init_pause = "200";
-    recdep_channels = "Freenode/ OFTC/";
+    recdep_channels = "Freenode/ OFTC/ snoonet/";
     recdep_period = "3600";
+    autoaway_timeout = "300";
   };
   "irc/core" = { alternate_nick = "ryanakca_"; };
 };
@@ -380,7 +381,13 @@ channels = (
     autojoin = "yes";
   },
   { name = "#sml"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#personalfinance"; chatnet = "snoonet"; autojoin = "yes"; }
+  { name = "#personalfinance"; chatnet = "snoonet"; },
+  { name = "#debian-haskell"; chatnet = "OFTC"; autojoin = "yes"; },
+  { name = "#beer"; chatnet = "snoonet"; },
+  { name = "#canada"; chatnet = "snoonet"; },
+  { name = "#news"; chatnet = "snoonet"; autojoin = "yes"; },
+  { name = "#reddit"; chatnet = "snoonet"; autojoin = "yes"; },
+  { name = "#russian"; chatnet = "snoonet"; }
 );
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
