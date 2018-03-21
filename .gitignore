@@ -11,3 +11,5 @@ SUBSTS.merged
 emacsen/make-*
 .irssi/_windowlist
 .irssi/certs/*
+.irssi/away.log
+.irssi/config.autosave
