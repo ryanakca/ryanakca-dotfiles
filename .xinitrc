@@ -30,4 +30,10 @@ synclient TapButton3=2 || true
 synclient CoastingSpeed=5
 synclient CoastingFriction=30
 
+trackball=$(xinput | grep "Kensington Expert Wireless TB" | sed -e 's/.*id=//g;s/ .*//g')
+if [ "x${trackball}" != "x" ]; then
+    xinput set-button-map "${trackball}" 1 2 8 4 5 6 7 3 9 10 11 12 13 14 15 16
+    xinput set-prop "${trackball}" "libinput Accel Speed" 0.25
+fi
+
 exec /usr/bin/xmonad
