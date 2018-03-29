@@ -16,7 +16,7 @@ set pager_context = 1
 set send_charset="utf-8"
 
 set imap_check_subscribed = yes # default: no
-#set imap_list_subscribed = yes # default: no
+set imap_list_subscribed = yes # default: no
 
 # Don't continue to next email when reaching end of current
 set pager_stop = yes
@@ -89,6 +89,7 @@ set sidebar_visible=no
 set sidebar_format="%B%*  %S%?N?(%N)?%?F?[%F]?"
 set sidebar_indent_string=" "
 set sidebar_short_path=yes
+set sidebar_sort_method='alpha'
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
 # color of folders with new mail
