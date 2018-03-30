@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if which neomutt; then
+    neomutt
+else
+    mutt
+fi
