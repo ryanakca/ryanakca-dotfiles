@@ -52,6 +52,7 @@ import Data.Ratio ((%))
 import Data.Maybe
 import Data.List
 import System.IO (hPutStrLn)
+import System.Environment
 
 myMod = mod4Mask -- windows key
 myCtrl = controlMask
@@ -405,6 +406,8 @@ myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
 
 main = do
     dzenpipe <- spawnPipe statusBarCmd
+    path <- getEnv "PATH"
+    setEnv "PATH" ("${HOME}/bin:" ++ path)
     xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "red", "-fg", "yellow", "-x", "1"] } urgencyConfig { remindWhen = Every 30 } --NoUrgencyHook
            $ defaultConfig { -- kde4Config {
       workspaces = myWorkspaces
@@ -452,7 +455,7 @@ main = do
             , ((myMod, xK_F3), spawn "${HOME}/.screenlayout/`hostname`-solo.sh")
             , ((myMod, xK_F4), spawn "sleep 0.5 && xset dpms force suspend")
             , ((myMod, xK_F5), spawn "sleep 0.5 && xset dpms force off")
-            , ((myMod, xK_F6), spawn "sleep 0.5 && ${HOME}/bin/icd")
+            , ((myMod, xK_F6), spawn "sleep 0.5 && ${HOME}/bin/icd && ${HOME}/bin/mice.sh")
             , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
             , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
             , ((myMod, xK_l), spawn "slock")
