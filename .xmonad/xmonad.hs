@@ -407,7 +407,8 @@ myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
 main = do
     dzenpipe <- spawnPipe statusBarCmd
     path <- getEnv "PATH"
-    setEnv "PATH" ("${HOME}/bin:" ++ path)
+    homedir <- getEnv "HOME" -- ${HOME} doesn't get expanded by /bin/sh...
+    setEnv "PATH" (homedir ++ "/bin:" ++ path)
     xmonad $ withUrgencyHookC dzenUrgencyHook { args = ["-bg", "red", "-fg", "yellow", "-x", "1"] } urgencyConfig { remindWhen = Every 30 } --NoUrgencyHook
            $ defaultConfig { -- kde4Config {
       workspaces = myWorkspaces
