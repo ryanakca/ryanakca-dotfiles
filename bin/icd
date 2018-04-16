@@ -29,9 +29,14 @@ SUN_OPTIONS="\
     -option lv3:menu_switch \
     -option myswap:switch_lalt_lsuper"
 
+ERG_OPTIONS="\
+    ${GLOBAL_OPTIONS} \
+    -option caps:escape"
+
 
 LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
 KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
+ERG_USB_ID=$(lsusb | grep -i "feed:1307" | awk '{ print $6 }')
 SUN_USB_ID=$(lsusb | grep -i "Sun Microsystems, Inc. Type 6 Keyboard" | awk '{ print $6 }')
 
 echo "Setting up laptop"
@@ -75,5 +80,19 @@ if [ "x${SUN_USB_ID}" != "x" ]; then
     done
 fi
 
+if [ "x${ERG_USB_ID}" != "x" ]; then
+    echo "Setting up ErgoDox"
+    ERG_XINPUT_ID=$(xinput | grep "ErgoDox EZ" | grep keyboard | sed 's/.*id=\([0-9]\+\).*/\1/g')
+    for XID in $ERG_XINPUT_ID; do
+        echo $XID
+        setxkbmap \
+            -I${XKB_DIR} \
+            -device ${XID} \
+            ${ERG_OPTIONS} \
+            -print > ${HOME}/.xkb/keymap/icd.erg
+        xkbcomp -I${HOME}/.xkb -i ${XID} -synch -w 10 \
+            ${HOME}/.xkb/keymap/icd.erg ${DISPLAY} # 2> /dev/null
+    done
+fi
 
 echo icd > ${HOME}/.xmonad/layout
