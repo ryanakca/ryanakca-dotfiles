@@ -1,0 +1,6 @@
+xkb_keycodes {
+    <LCTL> = 133;
+    <LALT> = 64;
+    <RALT> = 105;
+    <RCTL> = 134;
+};
