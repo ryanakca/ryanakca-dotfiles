@@ -239,10 +239,10 @@ GMAIL.INBOX:move_messages(GMAIL['Queens' .. folder_sep .. 'SAIL'], qsail)
 
 -- McGill
 
-belcom = GMAIL.INBOX:match_to('beluga-commit@cs.mcgill.ca')
+belcom = GMAIL.INBOX:contain_field('List-ID', 'beluga-commit.CS.McGill.CA')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'beluga-commit'], belcom)
 
-beldev = GMAIL.INBOX:match_to('beluga-dev@cs.mcgill.ca')
+beldev = GMAIL.INBOX:contain_field('List-ID', 'beluga-dev.CS.McGill.CA')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'beluga-dev'], beldev)
 
 complogic = GMAIL.INBOX:contain_field('List-Id', 'complogic.CS.McGill.CA') *
