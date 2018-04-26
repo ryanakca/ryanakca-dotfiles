@@ -67,6 +67,7 @@ tracker = { 'rumor'
 	    , 'turses'
 	    , 'frescobaldi'
 	    , 'bzflag'
+            , 'xmonad'
 	    , 'cmus' }
 
 for list = 1, #tracker do
