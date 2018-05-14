@@ -18,3 +18,5 @@
         pushInsteadOf = "git://git.debian.org"
 [rerere]
 	enabled = true
+[url "git@salsa.debian.org:"]
+	pushInsteadOf = https://salsa.debian.org/
