@@ -55,7 +55,6 @@ chatnets = {
     max_whois = "1";
   };
   schmorp = { type = "IRC"; };
-  "chtt-s18.slack.com" = { type = "IRC"; nick = "rkavanagh"; };
   snoonet = { type = "IRC"; nick = "ryanakca"; };
 };
 
@@ -387,7 +386,9 @@ channels = (
   { name = "#canada"; chatnet = "snoonet"; },
   { name = "#news"; chatnet = "snoonet"; autojoin = "yes"; },
   { name = "#reddit"; chatnet = "snoonet"; autojoin = "yes"; },
-  { name = "#russian"; chatnet = "snoonet"; }
+  { name = "#russian"; chatnet = "snoonet"; },
+  { name = "#debian-offtopic"; chatnet = "OFTC"; autojoin = "yes"; },
+  { name = "#debian-games"; chatnet = "OFTC"; autojoin = "yes"; }
 );
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
