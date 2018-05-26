@@ -19,7 +19,6 @@ LAPTOP_OPTIONS="\
 
 KIN_OPTIONS="\
     ${GLOBAL_OPTIONS} \
-    -geometry kinesis
     -option lv3:switch \
     -option caps:swapescape"
 
@@ -54,9 +53,7 @@ if [ "x${KIN_USB_ID}" != "x" ]; then
             -I${XKB_DIR} \
             -device ${XID} \
             ${KIN_OPTIONS} \
-            -print | \
-            sed -e 's@+ctrl(nocaps)@@g;s@bksp)@bksp)+lalt_meta(lalt_meta)@g' | \
-            sed -e '/xkb_keycodes/s/"[[:space:]]/+kinesisfix&/' > ${HOME}/.xkb/keymap/icd.kin
+            -print | sed -e 's@+ctrl(nocaps)@@g;s@bksp)@bksp)+lalt_meta(lalt_meta)@g' > ${HOME}/.xkb/keymap/icd.kin
         xkbcomp -I${HOME}/.xkb -i ${XID} -synch \
             ${HOME}/.xkb/keymap/icd.kin ${DISPLAY} # 2> /dev/null
     done
