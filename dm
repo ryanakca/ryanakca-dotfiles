@@ -2,6 +2,8 @@
 
 set -e
 
+git config core.hooksPath .githooks
+
 if [ ! -f SUBSTS.local ]; then
     echo "Please create the file SUBSTS.local first."
     exit 1;

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ $(git diff -G PASS -i HEAD~1..HEAD | wc -l) != 0 ]; then
+    echo "#######################################################"
+    echo "# You committed something containing the string PASS. #"
+    echo "# Please make sure this is safe before pushing.       #"
+    echo "#######################################################"
+    git diff -G PASS -i HEAD~1..HEAD
+fi
