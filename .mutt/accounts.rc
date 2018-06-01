@@ -57,9 +57,9 @@ unset smtp_url;\
 unset smtp_pass;\
 set sendmail = 'MSMTP_PATH -a ryanakca';\
 set from = 'Ryan Kavanagh <rak@rak.ac>';\
-set pager_format = '-%Z-RYANAK.CA: %C/%m: %-20.20n %s';\
-set compose_format = '-- RYANAK.CA: Compose [Approx. msg size: %l Atts: %a]%>-';\
-set status_format = '-%r-RYANAK.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+set pager_format = '-%Z-RAK.AC: %C/%m: %-20.20n %s';\
+set compose_format = '-- RAK.AC: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-RAK.AC: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
 
 account-hook imaps://rkavanag@andrew.cmu.edu@imap.gmail.com \
 "set imap_user = 'rkavanag@andrew.cmu.edu';\
