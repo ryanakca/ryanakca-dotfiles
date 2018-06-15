@@ -31,6 +31,7 @@ SUN_OPTIONS="\
 
 ERG_OPTIONS="\
     ${GLOBAL_OPTIONS} \
+    -option lv3:switch \
     -option caps:escape"
 
 LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
