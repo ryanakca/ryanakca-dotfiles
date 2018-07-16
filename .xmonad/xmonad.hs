@@ -402,7 +402,7 @@ dk k    | k == xK_grave = xK_dollar
 
 -- myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
 myGSConfig :: HasColorizer a => GSConfig a
-myGSConfig = defaultGSConfig { gs_navigate = navNSearch }
+myGSConfig = (buildDefaultGSConfig defaultColorizer) { gs_navigate = navNSearch }
 
 main = do
     dzenpipe <- spawnPipe statusBarCmd
