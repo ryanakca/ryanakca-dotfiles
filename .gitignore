@@ -5,6 +5,7 @@ SUBSTS.local
 SUBSTS.merged
 .mutt/alias.rc
 .mutt/alias-cmu.rc
+.mutt/savehooks.rc
 .ssh/id_rsa
 .ssh/id_ecdsa
 .ssh/id_rsa.lambda

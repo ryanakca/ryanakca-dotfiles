@@ -118,20 +118,20 @@ unignore X-Label:
 
 set mbox_type=mbox
 
+# folder needs to be set before anything that depends on it
+set folder='imaps://ryanakca@gmail.com@imap.gmail.com/'
+set spoolfile='=INBOX'
+source ~/.mutt/accounts.rc
 source ~/.mutt/alias-cmu.rc
 source ~/.mutt/alias.rc
 source ~/.mutt/mailinglists.rc
 source ~/.mutt/score.rc
 source ~/.mutt/color.rc
-source ~/.mutt/accounts.rc
 source ~/.mutt/savehooks.rc
 source ~/.mutt/gpg.rc
 source ~/.mutt/ssl.rc
 source ~/.mutt/news.rc
 
-set folder='imap://localhost'
-set spoolfile='=INBOX'
- 
 #set folder="/home/ryan/.maildb/GMAIL/"
 #set spoolfile='/home/ryan/.maildb/GMAIL/INBOX'
 #mailboxes ! + `sed -e 's/\(.*\)$/"+.\1"/g' .maildb/GMAIL/subscriptions | tr '\n' ' '`

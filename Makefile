@@ -29,7 +29,8 @@ LOCAL_FILES = \
 # GPG encrypted files
 GPG_FILES = \
     .mutt/alias.rc \
-    .mutt/alias-cmu.rc
+    .mutt/alias-cmu.rc \
+    .mutt/savehooks.rc
 
 # Files that are system independent.
 # IMPORTANT: directories must have trailing slash
@@ -144,6 +145,7 @@ FORCE:
 
 .mutt/alias.rc: gpg/.mutt/alias.rc.gpg
 .mutt/alias-cmu.rc: gpg/.mutt/alias-cmu.rc.gpg
+.mutt/savehooks.rc: gpg/.mutt/savehooks.rc.gpg
 .ssh/id_%: gpg/.ssh/id_%.gpg
 # $(patsubst gpg/,,$(wildcard gpg/.* gpg/*))
 $(GPG_FILES):
