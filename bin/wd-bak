@@ -1,0 +1,14 @@
+#!/bin/sh
+
+wd-mount
+
+if ! mount | grep /media/wd-bak > /dev/null ; then
+    echo "/media/wd-bak not mounted"
+    exit 1
+fi
+
+rsync -avhHP --delete-after /media/wd/* /media/wd-bak
+
+sudo umount /media/wd-bak
+sudo cryptdisks_stop wd-bak
+sudo cryptdisks_stop wd-bak-work
