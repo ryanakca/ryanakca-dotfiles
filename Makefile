@@ -26,7 +26,7 @@ LOCAL_FILES = \
     bin/gpg-wrapper \
     bin/run-mailcheck
 
-# GPG encrypted files
+# GPG encrypted files. Must be included in GLOBAL_FILES
 GPG_FILES = \
     .mutt/alias.rc \
     .mutt/alias-cmu.rc \
@@ -59,6 +59,7 @@ GLOBAL_FILES = \
     .mutt/ \
     .mutt/alias.rc \
     .mutt/alias-cmu.rc \
+    .mutt/savehooks.rc \
     .muttrc \
     .notmuch-config \
     .offlineimap.py \
@@ -152,7 +153,7 @@ $(GPG_FILES):
 	for f in $@ ; do \
 	    touch $$f; \
 	    chmod 600 $$f; \
-	    [ "$(GPG_DISABLED)" = "True" ] || echo $(GPG_BINARY) --decrypt gpg/$$f.gpg > $$f; \
+	    [ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$$f.gpg > $$f; \
 	done
 
 emacsen:
