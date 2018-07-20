@@ -270,7 +270,7 @@ diff: build
 
 aliases:
 	cp -f ../.mutt/alias.rc .mutt && \
-	    gpg -r4A11C97A --encrypt .mutt/alias.rc && \
+	    gpg -r4E469519ED677734268FBD958F7BF8FC4A11C97A --encrypt .mutt/alias.rc && \
 	    mv -f .mutt/alias.rc.gpg gpg/.mutt/alias.rc.gpg
 
 .FORCE:
