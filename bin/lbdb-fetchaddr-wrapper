@@ -1,7 +1,3 @@
 #!/bin/sh
 
-MSG=$(cat /dev/stdin)
-
-echo "$MSG" | lbdb-fetchaddr;
-
-echo "$MSG"
+{ tee /dev/fd/3 | lbdb-fetchaddr >&2; } 3>&1
