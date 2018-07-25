@@ -388,7 +388,8 @@ channels = (
   { name = "#reddit"; chatnet = "snoonet"; autojoin = "yes"; },
   { name = "#russian"; chatnet = "snoonet"; },
   { name = "#debian-offtopic"; chatnet = "OFTC"; autojoin = "yes"; },
-  { name = "#debian-games"; chatnet = "OFTC"; autojoin = "yes"; }
+  { name = "#debian-games"; chatnet = "OFTC"; autojoin = "yes"; },
+  { name = "#neomutt"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
