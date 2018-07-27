@@ -104,38 +104,6 @@ remotepass = LOCAL_PASS
 folderfilter = lambda folder: folder.startswith('CMU.')
 nametrans = lambda folder: re.sub('^CMU.', '', folder)
 
-##### CMU mail
-[Account CMUSCS]
-localrepository = LocalCMUSCS
-remoterepository = RemoteCMUSCS
-autorefresh = 20
-quick = 10
-# presynchook = imapfilter
-foldersort = lamba x, y: cmp(x, y)
-postsynchook = /home/ryan/bin/run-mailcheck && notmuch new
-
-[Repository RemoteCMUSCS]
-foldersort = lambda x, y: mycmp(x, y)
-type = IMAP
-maxconnections = 4
-remoteuser = rkavanag
-remotehost = imap.srv.cs.cmu.edu
-remotepass = CMUSCS_PASS
-remoteport = 993
-spamfolder = Spam
-trashfolder = Bin
-realdelete = no
-sslcacertfile = SSL_CERTS
-nametrans = lambda foldername: 'SCS.' + foldername
-
-[Repository LocalCMUSCS]
-type = IMAP
-remotehost = localhost
-remoteuser = ryan
-remotepass = LOCAL_PASS
-folderfilter = lambda folder: folder.startswith('SCS.')
-nametrans = lambda folder: re.sub('^SCS.', '', folder)
-
 [mbnames]
 enabled = no
 filename = .muttrc.mailboxes
