@@ -1,5 +1,7 @@
 #!/bin/sh
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+if test -f ~/.Xresources; then
+    xrdb -merge -I$HOME ~/.Xresources
+fi
 redshift -m REDSHIFT_MODE  -l 44.22:-76.48 -t 6500:2500 &
 ${HOME}/bin/icd
 # xcompmgr &
