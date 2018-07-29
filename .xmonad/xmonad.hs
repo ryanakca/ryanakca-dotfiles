@@ -18,7 +18,8 @@ import XMonad.Hooks.DynamicLog (dzenColor, dynamicLogWithPP
                                , ppCurrent, ppVisible, ppSep, ppHidden
                                , ppUrgent, ppTitle, ppExtras
                                , ppOrder, ppOutput, trim, wrap)
-import XMonad.Hooks.ManageDocks (docks, ToggleStruts(ToggleStruts))
+import XMonad.Hooks.ManageDocks (docks, docksEventHook
+                                , ToggleStruts(ToggleStruts))
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
 import XMonad.Hooks.UrgencyHook (focusUrgent)
 import XMonad.Layout.Accordion (Accordion(Accordion))
@@ -409,6 +410,7 @@ myConfig dzenPipe = docks $ def {
       , keys               = \x -> (fromList $ mykeys x)
                                    `union` dvorakify (keys def x)
       , logHook            = dynamicLogWithPP $ mPP dzenPipe
+      , handleEventHook    = docksEventHook
       }
 
 main = do
