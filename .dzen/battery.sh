@@ -6,7 +6,7 @@
 # Taken from http://www.webframp.com/2008/08/17/switchdzen/ and modified by Ryan
 # Kavanagh <ryanakca@kubuntu.org> to add support for a missing battery and use
 # /sys instead of /proc/acpi/battery
- 
+
 BG='#000000'  # dzen backgrounad
 FG='#008dd5'  # dzen foreground
 W=114         # width of the dzen bar
@@ -17,42 +17,33 @@ GBG='#333'    # color of gauge background
 X=0           # x position
 Y=0           # y position
 FN='-misc-fixed-medium-r-semicondensed--12-110-75-75-c-60-iso8859-1'     # font
- 
+
 LOWBAT=10        # percentage of battery life marked as low
 LOWCOL='#ff4747' # color when battery is low
 CHGCOL='#60da11' # color when battery is charging
 TIME_INT=2       # time interval in seconds to hold display
 TIME_ITER=5      # no of iterations in which time is displayed
- 
-PREBAR='^i(/home/ryan/.dzen/icons/power-bat.xbm) ' # caption (also icons are possible)
- 
-while true; do
-    PRESENT=`acpi -b`;
-    if [ "${PRESENT}" ]; then
-        STATUS=`echo ${PRESENT} | grep Charging`;
 
-        RPERC=`echo ${PRESENT} | cut -d, -f2 | sed -e 's/[^0-9]//g'`;
-         
-        # draw the bar and pipe everything into dzen
-        if [ $RPERC -le $LOWBAT ]; then
-            GFG=$LOWCOL;
-        fi
-        if [ "${STATUS}" ]; then
-            GFG=$CHGCOL;
-        else
-            GFG='#33ccff';
-        fi
-        eval echo $RPERC | dzen2-gdbar -h $GH -w $GW -fg $GFG -bg $GBG -l $PREBAR
-    else
-        echo -n $PREBAR #uncomment for an icon
-        eval echo 'Missing'
+PREBAR="^i(${HOME}/.dzen/icons/power-bat.xbm) " # caption (also icons are possible)
+
+echo -n $PREBAR #uncomment for an icon
+
+PRESENT=`acpi -b`;
+if [ "${PRESENT}" ]; then
+    STATUS=`echo ${PRESENT} | grep Charging`;
+
+    RPERC=`echo ${PRESENT} | cut -d, -f2 | sed -e 's/[^0-9]//g'`;
+
+    # draw the bar and pipe everything into dzen
+    if [ $RPERC -le $LOWBAT ]; then
+	GFG=$LOWCOL;
     fi
-    sleep $TIME_INT;
-    I=0;
-    while [ ${I} -lt ${TIME_ITER} ]; do
-        DATE=`date +"%X"`;
-        eval echo $DATE;
-        I=$((${I}+1));
-        sleep $TIME_INT;
-    done
-done | dzen2 -ta c -tw $W -y $Y -x $X -fg $FG -bg $BG -fn $FN
+    if [ "${STATUS}" ]; then
+	GFG=$CHGCOL;
+    else
+	GFG='#33ccff';
+    fi
+    echo $RPERC
+else
+    echo '??'
+fi
