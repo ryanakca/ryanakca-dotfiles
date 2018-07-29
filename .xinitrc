@@ -16,5 +16,6 @@ if [ "PULSE" = "True" ]; then
     sh bin/startaudio &
 fi
 ${HOME}/bin/mice.sh
+slack &
 
 exec /usr/bin/xmonad
