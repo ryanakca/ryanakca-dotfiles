@@ -18,7 +18,7 @@ import XMonad.Hooks.DynamicLog (dzenColor, dynamicLogWithPP
                                , ppCurrent, ppVisible, ppSep, ppHidden
                                , ppUrgent, ppTitle, ppExtras
                                , ppOrder, ppOutput, trim, wrap)
-import XMonad.Hooks.ManageDocks (docks, docksEventHook
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, docksEventHook
                                 , ToggleStruts(ToggleStruts))
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
 import XMonad.Hooks.UrgencyHook (focusUrgent)
@@ -295,7 +295,8 @@ myWorkspaces = ["term", "web", "chatter", "reading", "5", "music", "LaTeX"]
                ++ (map show [8..20])
 
 -- smartBorders removes borders when there's no ambiguity
-myLayout = mkToggle (single MIRROR) (smartBorders $ toggleLayouts Full perWS)
+myLayout = mkToggle (single MIRROR) (smartBorders $ toggleLayouts Full
+                                     $ avoidStruts perWS)
   where
     -- Per workspace layout selection.
     perWS = onWorkspace "term"  (myTall ||| customRyan) $
