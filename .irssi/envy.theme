@@ -305,6 +305,7 @@ formats = {
     translation_not_found = "%r:%K:: %rError%K opening translation table file $0: $1";
     translation_file_error = "%r:%K:: %rError%K parsing translation table file $0";
     pubmsg = "{pubmsgnick $2 {pubnick \00311$[0]0}}$1";
+    own_msg = "{ownmsgnick $2 {ownnick $[0]0}}$1";
   };
   "fe-common/irc/dcc" = {
     dcc_list_header = "{line_start_irssi}{dcc DCC connections:}";

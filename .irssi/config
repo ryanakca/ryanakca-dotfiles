@@ -524,9 +524,8 @@ keyboard = (
   { key = "meta-,"; id = "change_window"; data = "12"; },
   { key = "meta-."; id = "change_window"; data = "13"; },
   { key = "meta-y"; id = "change_window"; data = "14"; },
-  { key = "meta-f"; id = "change_window"; data = "15"; },
-  { key = "meta-g"; id = "change_window"; data = "16"; },
-  { key = "meta-c"; id = "change_window"; data = "17"; },
-  { key = "meta-r"; id = "change_window"; data = "18"; },
-  { key = "meta-l"; id = "change_window"; data = "19"; }
+  { key = "meta-g"; id = "change_window"; data = "15"; },
+  { key = "meta-c"; id = "change_window"; data = "16"; },
+  { key = "meta-r"; id = "change_window"; data = "17"; },
+  { key = "meta-l"; id = "change_window"; data = "18"; }
 );
