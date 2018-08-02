@@ -17,5 +17,6 @@ if [ "PULSE" = "True" ]; then
 fi
 ${HOME}/bin/mice.sh
 slack &
+xset dpms 180 300 600
 
 exec /usr/bin/xmonad
