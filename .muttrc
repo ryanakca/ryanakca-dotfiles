@@ -118,6 +118,9 @@ unignore X-Label:
 
 set mbox_type=mbox
 
+# In case it's unset
+set sendmail=MSMTP_PATH
+
 # folder needs to be set before anything that depends on it
 source ~/.mutt/accounts.rc
 source ~/.mutt/alias-cmu.rc
