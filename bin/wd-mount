@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if ! mount | grep /media/wd > /dev/null ; then
+if ! mount | grep -w /media/wd > /dev/null ; then
     if [ -e /dev/disk/by-uuid/71bc8a1f-1942-4341-8ce1-8f8f3bf42d1a ]; then
         sudo cryptdisks_start wd && mount /dev/mapper/wd
     fi
 fi
 
-if ! mount | grep /media/wd-bak > /dev/null ; then
+if ! mount | grep -w /media/wd-bak > /dev/null ; then
     if [ -e /dev/disk/by-uuid/68b52a2b-2be5-4d40-98ba-c8469da50f1f ]; then
         sudo cryptdisks_start wd-bak-work && mount /dev/mapper/wd-bak-work
     elif [ -e /dev/disk/by-uuid/49491f12-45ec-4f3f-9f70-73a94149aaf2 ]; then
