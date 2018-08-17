@@ -394,7 +394,7 @@ myManageHook = composeAll . concat $
   where
     viewShift = doF . liftM2 (.) greedyView shift
     floats    = ["MPlayer"]
-    web       = ["Firefox-esr", "Navigator", "google-chrome", "Google-chrome"]
+    web       = ["Firefox", "Firefox-esr", "Navigator", "google-chrome", "Google-chrome"]
     chatter   = ["slack", "Slack"]
     music     = ["pavucontrol", "Pavucontrol"]
 
