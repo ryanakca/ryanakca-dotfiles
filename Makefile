@@ -79,7 +79,6 @@ GLOBAL_FILES = \
     .tmux-powerlinerc \
     .urxvt/ \
     .vim/ \
-    .vimperatorrc \
     .vimrc \
     .vm \
     .xinitrc \
