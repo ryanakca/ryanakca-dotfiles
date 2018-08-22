@@ -53,6 +53,7 @@ GLOBAL_FILES = \
     .gitconfig \
     .imapfilter/ \
     .inputrc \
+    .lbdbrc \
     .local/share/wallpapers/ \
     .mailcap \
     .mailcheckrc \

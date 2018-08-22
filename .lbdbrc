@@ -1,4 +1,4 @@
 KEEP_DUPES="yes"
 METHODS="m_finger m_inmail m_gpg m_muttalias"
 M_FINGER_HOSTS="andrew.cmu.edu cs.cmu.edu"
-MUTTALIAS_FILES="~/.mutt/aliases.rc"
+MUTTALIAS_FILES="~/.mutt/aliases.rc ~/.mutt/aliases-cmu.rc"
