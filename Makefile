@@ -22,9 +22,7 @@ LOCAL_FILES = \
     .xinitrc \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
-    .zshrc \
-    bin/gpg-wrapper \
-    bin/run-mailcheck
+    .zshrc
 
 # GPG encrypted files. Must be included in GLOBAL_FILES
 GPG_FILES = \
