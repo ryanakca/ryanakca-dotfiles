@@ -23,7 +23,7 @@ else
       port = 993,
       username = 'ryanakca@gmail.com',
       password = 'GMAIL_PASS',
-      ssl = 'tls1',
+      ssl = 'auto'
    }
 end
 
