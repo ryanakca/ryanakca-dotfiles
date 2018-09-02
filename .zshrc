@@ -84,7 +84,6 @@ alias dismuke='mplayer -playlist http://early1900s.org/radiodismuke/radiodismuke
 alias up-theme='rsync -avz --no-p --no-o --no-times -e ssh ~/work/kubuntu-theme-v2/* ryanak.ca:/home/ryan/kubuntu-theme-v2/'
 alias startxkde4='startx -nolisten tcp -- :0 &'
 alias irssi-notify='ssh -f ryanak.ca -L 2227:127.0.0.1:2227 -N && irssi-notifier &'
-alias gpg='gpg-wrapper'
 alias i2e='/usr/bin/i2e-cli'
 alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
