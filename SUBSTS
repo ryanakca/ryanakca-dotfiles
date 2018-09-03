@@ -46,9 +46,6 @@ SCREEN_HOST_COLOUR G
 MUTT_20_SCORE \\"(bob@foo.org\|alice@example.org)\\"
 MUTT_10_SCORE \\"(eve@foo.org)\\"
 
-# redshift mode to use (randr or vidmode)
-REDSHIFT_MODE vidmode
-
 # Grep path
 GREP_PATH /bin/grep
 
