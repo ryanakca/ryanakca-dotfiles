@@ -26,6 +26,7 @@ LOCAL_FILES = \
 
 # GPG encrypted files. Must be included in GLOBAL_FILES
 GPG_FILES = \
+    .config/wpa_supplicant.conf \
     .mutt/alias.rc \
     .mutt/alias-cmu.rc \
     .mutt/savehooks.rc
@@ -42,6 +43,7 @@ GLOBAL_FILES = \
     .config/beets/ \
     .config/fontconfig/ \
     .config/nitrogen/ \
+    .config/wpa_supplicant.conf \
     .config/zathura/ \
     .cmus/ \
     .dput.cf \
