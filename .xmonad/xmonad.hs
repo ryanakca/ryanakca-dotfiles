@@ -73,8 +73,9 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     , ((modMask, button5), (\_ -> moveTo Next NonEmptyWS))
     , ((modMask, button4), (\_ -> moveTo Prev NonEmptyWS ))
-    -- scroll wheel click
+    -- scroll wheel click, bottom right corner on trackball
     , ((modMask, 6), (\w -> focus w >> kill))
+    , ((modMask, 8), (\w -> focus w >> kill))
     ]
 
 mykeys x = [
