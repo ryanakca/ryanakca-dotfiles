@@ -17,6 +17,6 @@ header "X-Debbugs-CC: rak@debian.org"
 smtphost reportbug.debian.org
 # You can add other settings after this line.  See
 # /etc/reportbug.conf for a full listing of options.
-keyid 4A11C97A
+keyid 4E469519ED677734268FBD958F7BF8FC4A11C97A
 sign gpg
 mutt
