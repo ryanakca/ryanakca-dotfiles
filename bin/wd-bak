@@ -7,7 +7,7 @@ if ! mount | grep /media/wd-bak > /dev/null ; then
     exit 1
 fi
 
-rsync -avhHP --delete-after /media/wd/* /media/wd-bak
+rsync -avhHP --delete-after /media/t/* /media/wd-bak
 
 sudo umount /media/wd-bak
 sudo cryptdisks_stop wd-bak

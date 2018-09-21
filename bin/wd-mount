@@ -1,8 +1,10 @@
 #!/bin/sh
 
-if ! mount | grep -w /media/wd > /dev/null ; then
-    if [ -e /dev/disk/by-uuid/71bc8a1f-1942-4341-8ce1-8f8f3bf42d1a ]; then
-        sudo cryptdisks_start wd && mount /dev/mapper/wd
+if ! mount | grep -w /media/t > /dev/null ; then
+    if [ -e /dev/disk/by-uuid/0c5bcd92-bf08-4a21-a117-0ba9c0c31862 ]; then
+        sudo cryptdisks_start tosh && \
+            sudo zpool import ztosh && \
+            sudo mount /var/lib/mpd/music
     fi
 fi
 
