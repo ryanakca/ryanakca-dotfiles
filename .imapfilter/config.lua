@@ -274,7 +274,7 @@ categories = GMAIL.INBOX:contain_field('List-Id', 'maths-categories-seminar.list
 GMAIL.INBOX:move_messages(GMAIL['Academia'], categories)
 
 
-fields = GMAIL.INBOX:match_from('gensci@fields.utoronto.ca')
+fields = GMAIL.INBOX:match_from('.*@fields.utoronto.ca')
        * ( GMAIL.INBOX:is_old()
 	 + GMAIL.INBOX:is_seen() )
 fields = GMAIL.INBOX:move_messages(GMAIL['Academia'], fields)
