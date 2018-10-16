@@ -1,11 +1,11 @@
-directory: /media/wd/music_clean
-library: /media/wd/music_clean/beetsmusic.blb
-plugins: mbsync duplicates fetchart mbcollection badfiles
+directory: /media/t/music_clean
+library: /media/t/music_clean/beetsmusic.blb
+plugins: mbsync duplicates fetchart mbcollection badfiles info smartplaylist
 
 import:
     incremental: true
     quiet_fallback: skip
-    log: /media/wd/music_clean/import_log
+    log: /media/t/music_clean/import_log
     move: true
     write: true
     autotag: true
@@ -24,3 +24,71 @@ match:
     preferred:
         countries: ['CA', 'US']
         media: ['CD']
+
+smartplaylist:
+    relative_to: /media/t/music_clean
+    playlist_dir: /var/lib/mpd/playlists
+    playlists:
+        - name: bagpipesolo.m3u
+          query: [ 'album:"The Piper And The Maker"'
+                 , 'artist:"Alasdair Gillies"'
+                 , 'artist:"Allan MacDonald"'
+                 , 'artist:"Andrew Carlisle"'
+                 , 'artist:"Andrew Pitkeathly"'
+                 , 'artist:"Andrew Wright"'
+                 , 'artist:"Angus MacColl"'
+                 , 'artist:"Angus MacKenzie & Gabe McVarish"'
+                 , 'artist:"Anna Murray"'
+                 , 'artist:"Bill Livingstone"'
+                 , 'artist:"Brian Donaldson"'
+                 , 'artist:"Bruce Gandy"'
+                 , 'artist:"Calum MacPherson"'
+                 , 'artist:"Donald MacLeod"'
+                 , 'artist:"Donald MacPherson"'
+                 , 'artist:"Dr. Angus MacDonald"'
+                 , 'artist:"Dr. Barrie J. MacLachlan Orme"'
+                 , 'artist:"Fin Moore & Simon Bradley"'
+                 , 'artist:"Gary West"'
+                 , 'artist:"Gavin Stoddart"'
+                 , 'artist:"Gordon Duncan"'
+                 , 'artist:"Gordon Walker"'
+                 , 'artist:"Graham Mulholland"'
+                 , 'artist:"Greg Wilson"'
+                 , 'artist:"Hugh MacCallum"'
+                 , 'artist:"Iain MacDonald & Malcolm Stitt"'
+                 , 'artist:"Iain MacFadyen"'
+                 , 'artist:"Iain MacInnes"'
+                 , 'artist:"Iain Macleod"'
+                 , 'artist:"Iain Morrison"'
+                 , 'artist:"Iain Speirs"'
+                 , 'artist:"Ian K. MacDonald"'
+                 , 'artist:"Jakez Pincet"'
+                 , 'artist:"James Campbell"'
+                 , 'artist:"James Murray"'
+                 , 'artist:"John D. Burgess"'
+                 , 'artist:"John Don MacKenzie"'
+                 , 'artist:"John MacDougall of Inverness"'
+                 , 'artist:"John MacDougall"'
+                 , 'artist:"John MacFadyen"'
+                 , 'artist:"John MacLellan"'
+                 , 'artist:"Malcolm Robertson"'
+                 , 'artist:"Malcolm Ross MacPherson"'
+                 , 'artist:"Michael Cusack"'
+                 , 'artist:"Murray Henderson"'
+                 , 'artist:"Niall Matheson"'
+                 , 'artist:"Pipe Major"'
+                 , 'artist:"Robert B. Nicol"'
+                 , 'artist:"Robert Reid"'
+                 , 'artist:"Robert U. Brown"'
+                 , 'artist:"Robert Wallace"'
+                 , 'artist:"Tobar An Dualchais"'
+                 , 'artist:"Tom Speirs"'
+                 , 'artist:"William Barrie"'
+                 , 'artist:"William Boyle"'
+                 , 'artist:"William Livingstone"'
+                 , 'artist:"William M. MacDonald"'
+                 , 'artist:"William Macdonald"'
+                 , 'artist:"William McCallum"'
+                 , 'artist:"Willie McCallum"'
+                 , 'artist:"Willie Connell"'
+                 ]
