@@ -1,2 +1,3 @@
 #!/bin/sh
-start-pulseaudio-x11 && ${HOME}/bin/mpd_others.sh
+start-pulseaudio-x11
+${HOME}/bin/mpd_others.sh
