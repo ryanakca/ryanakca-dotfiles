@@ -92,3 +92,12 @@ smartplaylist:
                  , 'artist:"Willie McCallum"'
                  , 'artist:"Willie Connell"'
                  ]
+        - name: francais.m3u
+          query: [ 'artist:"Cœur de Pirate"'
+                 , 'artist:"Harmonium"'
+                 , 'artist:"Pomme"'
+                 , 'artist:"CANO"'
+                 , 'artist:"Félix Leclerc"'
+                 , 'artist:"Jacques Brel"'
+                 , 'artist:"Stéphane Paquette"'
+                 ]
