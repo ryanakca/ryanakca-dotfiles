@@ -41,8 +41,8 @@ SUN_USB_ID=$(lsusb | grep -i "Sun Microsystems, Inc. Type 6 Keyboard" | awk '{ p
 
 echo "Setting up laptop"
 setxkbmap ${LAPTOP_OPTIONS} -device ${LAPTOP_ID} -print > ${XKB_DIR}/keymap/icd.laptop
-#xkbcomp -I${HOME}/.xkb -synch \
-xkbcomp -I${HOME}/.xkb -i ${LAPTOP_ID} -synch \
+# xkbcomp -I${HOME}/.xkb -i ${LAPTOP_ID} -synch \
+xkbcomp -I${HOME}/.xkb -synch \
     ${HOME}/.xkb/keymap/icd.laptop $DISPLAY # 2> /dev/null
 
 if [ "x${KIN_USB_ID}" != "x" ]; then
