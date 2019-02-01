@@ -389,7 +389,9 @@ channels = (
   { name = "#russian"; chatnet = "snoonet"; },
   { name = "#debian-offtopic"; chatnet = "OFTC"; autojoin = "yes"; },
   { name = "#debian-games"; chatnet = "OFTC"; autojoin = "yes"; },
-  { name = "#neomutt"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#neomutt"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#rspamd"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#dovecot"; chatnet = "freenode"; autojoin = "yes"; }
 );
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
