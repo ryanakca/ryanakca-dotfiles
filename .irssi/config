@@ -47,7 +47,13 @@ chatnets = {
     max_msgs = "4";
     max_whois = "1";
   };
-  OFTC = { type = "IRC"; max_kicks = "1"; max_msgs = "1"; max_whois = "1"; };
+  OFTC = {
+    type = "IRC";
+    autosendcmd = "wait -oftc 2000";
+    max_kicks = "1";
+    max_msgs = "1";
+    max_whois = "1";
+  };
   Undernet = {
     type = "IRC";
     max_kicks = "1";
