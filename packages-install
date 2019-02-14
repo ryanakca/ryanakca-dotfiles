@@ -29,6 +29,7 @@ apt-get install \
     nitrogen \
     notmuch \
     offlineimap \
+    parcimonie \
     pinentry-curses \
     pinentry-qt4 \
     powertop \

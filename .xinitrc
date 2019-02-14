@@ -18,5 +18,6 @@ fi
 ${HOME}/bin/mice.sh
 slack &
 xset dpms 180 300 600
+pgrep -u $(whoami) parcimonie >/dev/null || parcimonie >/dev/null &
 
 exec /usr/bin/xmonad
