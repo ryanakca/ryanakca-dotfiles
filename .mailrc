@@ -1,5 +1,4 @@
 set NAIL_EXTRA_RC=~/.nailrc
-set TMPDIR=~/.mailx/tmp/
 set sendmail=/usr/sbin/sendmail
 set from="Ryan Kavanagh <rak@debian.org>"
 set append save emptystart
