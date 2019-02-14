@@ -247,7 +247,7 @@ beldev = GMAIL.INBOX:contain_field('List-ID', 'beluga-dev.CS.McGill.CA')
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'beluga-dev'], beldev)
 
 complogic = GMAIL.INBOX:contain_field('List-Id', 'complogic.CS.McGill.CA') *
-	    GMAIL.INBOX:is_older(1)
+	    ( GMAIL.INBOX:is_older(1) + GMAIL.INBOX:is_seen() )
 GMAIL.INBOX:move_messages(GMAIL['Internship' .. folder_sep .. 'complogic'], complogic)
 
 -- MIT under GMAIL
