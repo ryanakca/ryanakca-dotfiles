@@ -52,7 +52,7 @@ set folder = 'imaps://imap.ryanak.ca/';\
 set record = '=Sent';\
 set copy = 'yes';\
 set postponed = '=Drafts';\
-set spoolfile = '=';\
+set spoolfile = '=Virtual.INBOX';\
 set mbox = '=RAK';\
 unset smtp_url;\
 unset smtp_pass;\
