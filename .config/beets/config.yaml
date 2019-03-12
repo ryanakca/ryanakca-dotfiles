@@ -77,6 +77,7 @@ smartplaylist:
                  , 'artist:"Michael Cusack"'
                  , 'artist:"Murray Henderson"'
                  , 'artist:"Niall Matheson"'
+                 , 'artist:"Patrick Molard"'
                  , 'artist:"Pipe Major"'
                  , 'artist:"Robert B. Nicol"'
                  , 'artist:"Robert Reid"'
@@ -92,6 +93,8 @@ smartplaylist:
                  , 'artist:"William McCallum"'
                  , 'artist:"Willie McCallum"'
                  , 'artist:"Willie Connell"'
+                 , 'artist:"Willie Connell; Brad Davidson"'
+                 , 'artist:"Willie Connell; Jay Close"'
                  ]
         - name: francais.m3u
           query: [ 'artist:"Cœur de Pirate"'
