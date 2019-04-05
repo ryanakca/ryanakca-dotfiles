@@ -40,11 +40,7 @@ GLOBAL_FILES = \
     .cache/mailx/ \
     .caffrc \
     .calendar/ \
-    .config/beets/ \
-    .config/fontconfig/ \
-    .config/nitrogen/ \
-    .config/wpa_supplicant.conf \
-    .config/zathura/ \
+    .config/ \
     .cmus/ \
     .dput.cf \
     .dzen/ \
@@ -54,7 +50,7 @@ GLOBAL_FILES = \
     .imapfilter/ \
     .inputrc \
     .lbdbrc \
-    .local/share/wallpapers/ \
+    .local/ \
     .mailcap \
     .mailcheckrc \
     .mutt/ \
