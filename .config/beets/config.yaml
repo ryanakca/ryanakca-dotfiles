@@ -20,6 +20,9 @@ musicbrainz:
     pass: MBPASS
     auto: yes
 
+mbcollection:
+   collection: d1764520-a53c-4144-a95d-f3c1b43afa07
+
 match:
     preferred:
         countries: ['CA', 'US']
@@ -47,6 +50,7 @@ smartplaylist:
                  , 'artist:"Donald MacPherson"'
                  , 'artist:"Dr. Angus MacDonald"'
                  , 'artist:"Dr. Barrie J. MacLachlan Orme"'
+                 , 'artist:"Duncan MacFadyen"'
                  , 'artist:"Fin Moore & Simon Bradley"'
                  , 'artist:"Gary West"'
                  , 'artist:"Gavin Stoddart"'
@@ -64,7 +68,9 @@ smartplaylist:
                  , 'artist:"Ian K. MacDonald"'
                  , 'artist:"Jakez Pincet"'
                  , 'artist:"James Campbell"'
+                 , 'artist:"James Haddow McIntosh"'
                  , 'artist:"James Murray"'
+                 , 'artist:"John A. MacLellan"'
                  , 'artist:"John D. Burgess"'
                  , 'artist:"John Don MacKenzie"'
                  , 'artist:"John MacDougall of Inverness"'
@@ -83,6 +89,8 @@ smartplaylist:
                  , 'artist:"Robert Reid"'
                  , 'artist:"Robert U. Brown"'
                  , 'artist:"Robert Wallace"'
+                 , 'artist:"Roderick MacDonald"'
+                 , 'artist:"Ronnie Lawrie"'
                  , 'artist:"Tobar An Dualchais"'
                  , 'artist:"Tom Speirs"'
                  , 'artist:"William Barrie"'
@@ -91,10 +99,10 @@ smartplaylist:
                  , 'artist:"William M. MacDonald"'
                  , 'artist:"William Macdonald"'
                  , 'artist:"William McCallum"'
-                 , 'artist:"Willie McCallum"'
                  , 'artist:"Willie Connell"'
                  , 'artist:"Willie Connell; Brad Davidson"'
                  , 'artist:"Willie Connell; Jay Close"'
+                 , 'artist:"Willie McCallum"'
                  ]
         - name: francais.m3u
           query: [ 'artist:"Cœur de Pirate"'
