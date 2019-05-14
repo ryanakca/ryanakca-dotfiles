@@ -195,7 +195,7 @@
 ;;; (load-theme 'ryanakca t)
 ;;; (load-theme 'paganini t)
 (moe-dark)
-(moe-theme-set-color blue)
+(moe-theme-set-color 'blue)
 (powerline-moe-theme)
 
 ;;;; TRAMP, bundled with emacs for editing remote files
