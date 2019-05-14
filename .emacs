@@ -24,6 +24,8 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
   (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook
 	    (lambda ()
 	      (LaTeX-add-environments
@@ -121,13 +123,43 @@
   :ensure t
   :config
   (setq elpy-rpc-python-command "python3"))
+(use-package outline-magic
+  :ensure t
+  :config
+  (add-hook 'outline-mode-hook
+	    (lambda ()
+	      (require 'outline-cycle)))
+
+  (add-hook 'outline-minor-mode-hook
+	    (lambda ()
+	      (require 'outline-magic)
+	      (define-key outline-minor-mode-map [(f10)] 'outline-cycle)))
+  )
+(use-package magit
+  :ensure t)
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config))
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+(use-package moe-theme
+  :ensure t)
 
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+;;;; Highlight matching parentheses
+(show-paren-mode t)
+(setq show-paren-style 'expression) ; Highlight entire expression when
+				    ; on delimiters
+
 ;;;; AUTO FILL
-					; We want auto-fill enabled for all text modes
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'turn-on-auto-fill) ; We want auto-fill
+					      ; enabled for all text
+					      ; modes
 
 ;;;; AUTO INDENT
 (auto-indent-global-mode)
@@ -160,7 +192,11 @@
 (setq TeX-PDF-mode t)
 
 ;;; THEME
-(load-theme 'ryanakca t)
+;;; (load-theme 'ryanakca t)
+;;; (load-theme 'paganini t)
+(moe-dark)
+(moe-theme-set-color blue)
+(powerline-moe-theme)
 
 ;;;; TRAMP, bundled with emacs for editing remote files
 (require 'tramp)
@@ -198,7 +234,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (airline-themes csv-mode mingus yaml-mode wc-mode use-package tuareg sml-mode sass-mode rainbow-mode py-autopep8 ocp-indent merlin markdown-mode lua-mode haskell-mode fill-column-indicator ess elpy dtrt-indent auto-indent-mode auto-complete auctex)))
+    (moe-theme color-theme-sanityinc-tomorrow rainbow-delimiters spaceline nimbus-theme csv-mode mingus yaml-mode wc-mode use-package tuareg sml-mode sass-mode rainbow-mode py-autopep8 ocp-indent merlin markdown-mode lua-mode haskell-mode fill-column-indicator ess elpy dtrt-indent auto-indent-mode auto-complete auctex)))
  '(proof-disappearing-proofs t)
  '(proof-electric-terminator-enable t)
  '(python-indent-guess-indent-offset nil)
