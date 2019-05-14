@@ -1,3 +1,4 @@
 #!/bin/sh
 
-sudo ipsec up $1 && sleep 1 && sudo xl2tpd-control connect $1
+#sudo ipsec up $1 && sleep 1 && sudo xl2tpd-control connect $1
+sudo xl2tpd-control connect $1

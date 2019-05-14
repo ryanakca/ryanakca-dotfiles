@@ -1,3 +1,4 @@
 #!/bin/sh
 
-sudo xl2tpd-control disconnect $1 && sudo ipsec down $1 
+# sudo xl2tpd-control disconnect $1 && sudo ipsec down $1
+sudo xl2tpd-control disconnect $1
