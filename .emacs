@@ -43,7 +43,16 @@
 		  " %o")
 		 "zathura"))
   (add-to-list 'TeX-view-program-selection
-			    '(output-pdf "Zathura"))
+	       '(output-pdf "Zathura"))
+  (add-hook 'LaTeX-mode-hook
+	    (lambda ()
+	      (add-to-list 'LaTeX-label-alist '("axiom" . "ax:"))
+	      (add-to-list 'LaTeX-label-alist '("conjecture" . "conj:"))
+	      (add-to-list 'LaTeX-label-alist '("corollary" . "cor:"))
+	      (add-to-list 'LaTeX-label-alist '("definition" . "def:"))
+	      (add-to-list 'LaTeX-label-alist '("proposition" . "prop:"))
+	      (add-to-list 'LaTeX-label-alist '("theorem" . "theorem:"))
+	      (add-to-list 'LaTeX-label-alist '("lemma" . "conj:"))))
   (progn
     (setq TeX-parse-self t              ; Parse documents to provide completion
 					; for packages, etc.
@@ -55,21 +64,20 @@
 	  TeX-source-correlate-method 'synctex
 	  ;; use reftex to get ToC: C-c = to explore structure of TeX doc
 	  reftex-plug-into-AUCTeX t
-	  reftex-label-alist '(("axiom"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
-			       ("theorem" ?h "theorem:" "~\\ref{%s}" t   ("theorem" "th.") -3)
-			       ("proposition" ?p "prop:" "~\\ref{%s}" t   ("proposition" "prop.") -3)
-			       ("definition" ?d "def:" "~\\ref{%s}" t   ("definition" "def.") -3)
-			       ("corollary" ?c "cor:" "~\\ref{%s}" t   ("corollary" "cor.") -3)
-			       ("lemma" ?l "lemma:" "~\\ref{%s}" t   ("lemma" "lem.") -3)
-			       ("conjecture" ?j "conj:" "~\\ref{%s}" t   ("conjecture" "conj.") -3)
-			       ("ax"   ?a "ax:"  "~\\ref{%s}" nil ("axiom"   "ax.") -3)
-			       ("thm" ?h "theorem:" "~\\ref{%s}" t   ("theorem" "th.") -3)
-			       ("prop" ?p "prop:" "~\\ref{%s}" t   ("proposition" "prop.") -3)
-			       ("defi" ?d "def:" "~\\ref{%s}" t   ("definition" "def.") -3)
-			       ("cor" ?c "cor:" "~\\ref{%s}" t   ("corollary" "cor.") -3)
-			       ("lem" ?l "lemma:" "~\\ref{%s}" t   ("lemma" "lem.") -3)
-			       ("conj" ?j "conj:" "~\\ref{%s}" t   ("conjecture" "conj.") -3)
-
+	  reftex-label-alist '(("axiom" ?a "ax:" "~\\ref{%s}" nil ("axiom" "ax.") -3)
+			       ("theorem" ?h "theorem:" "~\\ref{%s}" t ("theorem" "th.") -3)
+			       ("proposition" ?p "prop:" "~\\ref{%s}" t ("proposition" "prop.") -3)
+			       ("definition" ?d "def:" "~\\ref{%s}" t ("definition" "def.") -3)
+			       ("corollary" ?c "cor:" "~\\ref{%s}" t ("corollary" "cor.") -3)
+			       ("lemma" ?l "lemma:" "~\\ref{%s}" t ("lemma" "lem.") -3)
+			       ("conjecture" ?j "conj:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
+			       ("ax" ?a "ax:" "~\\ref{%s}" nil ("axiom" "ax.") -3)
+			       ("thm" ?h "theorem:" "~\\ref{%s}" t ("theorem" "th.") -3)
+			       ("prop" ?p "prop:" "~\\ref{%s}" t ("proposition" "prop.") -3)
+			       ("defi" ?d "def:" "~\\ref{%s}" t ("definition" "def.") -3)
+			       ("cor" ?c "cor:" "~\\ref{%s}" t ("corollary" "cor.") -3)
+			       ("lem" ?l "lemma:" "~\\ref{%s}" t ("lemma" "lem.") -3)
+			       ("conj" ?j "conj:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
 			       )
 	  )))
 
