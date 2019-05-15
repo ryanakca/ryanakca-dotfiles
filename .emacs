@@ -27,6 +27,7 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
   (add-hook 'LaTeX-mode-hook
 	    (lambda ()
 	      (LaTeX-add-environments
