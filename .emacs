@@ -1,4 +1,5 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(setq custom-file "~/.emacs.d/local.conf")
 
 (require 'package)
 (setq package-enable-at-startup nil)
