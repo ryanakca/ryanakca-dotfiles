@@ -140,7 +140,9 @@
 	      (define-key outline-minor-mode-map [(f10)] 'outline-cycle)))
   )
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (put 'magit-clean 'disabled nil))
 (use-package spaceline
   :ensure t
   :config
