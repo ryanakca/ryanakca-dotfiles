@@ -240,7 +240,34 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (moe-theme color-theme-sanityinc-tomorrow rainbow-delimiters spaceline nimbus-theme csv-mode mingus yaml-mode wc-mode use-package tuareg sml-mode sass-mode rainbow-mode py-autopep8 ocp-indent merlin markdown-mode lua-mode haskell-mode fill-column-indicator ess elpy dtrt-indent auto-indent-mode auto-complete auctex)))
+    (auto-complete auctex
+     auto-indent-mode
+     csv-mode
+     dtrt-indent
+     elpy
+     ess
+     fill-column-indicator
+     haskell-mode
+     lua-mode
+     magit
+     markdown-mode
+     merlin
+     mingus
+     moe-theme
+     nimbus-theme
+     ocp-indent
+     org-ref
+     outline-magic
+     py-autopep8
+     rainbow-delimiters
+     rainbow-mode
+     sass-mode
+     sml-mode
+     spaceline
+     tuareg
+     use-package
+     wc-mode
+     yaml-mode)))
  '(proof-disappearing-proofs t)
  '(proof-electric-terminator-enable t)
  '(python-indent-guess-indent-offset nil)
