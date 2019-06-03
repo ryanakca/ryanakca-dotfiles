@@ -248,9 +248,8 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package outline-magic
   :ensure t
-  :hook ((outline-mode . (lambda () (require 'outline-cycle))))
-  :bind (:map outline-minor-mode-map
-	      ([f10] . outline-cycle)))
+  :after outline
+  :bind (:map outline-minor-mode-map ([f10] . outline-cycle)))
 
 (use-package paren
   :ensure t
