@@ -54,21 +54,72 @@
 ;; 	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
 ;;     latex-help-cmd-alist))
 
+(use-package auto-complete
+  :ensure t
+  :config
+  (ac-config-default)
+  (ac-set-trigger-key "TAB")
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+  :hook
+  ((Coq-mode LaTeX-mode sml-mode) . auto-complete-mode))
+
+(use-package auto-indent-mode
+  :ensure t
+  :config
+  (auto-indent-global-mode)
+  :custom
+  (auto-indent-next-pair-timer-interval
+   (quote ((css-mode 1.5)
+	   (haskell-mode 1.5)
+	   (python-mode 1.5)
+	   (latex-mode 1.5)
+	   (coq-mode 1.5)
+	   (default 0.0005)))))
+
+(use-package cc-mode
+  :custom
+  (c-default-style "bsd"))
+
+(use-package cus-edit
+  :custom
+  (custom-file null-device "Don't store customizations"))
+
+(use-package dictem
+  :load-path "~/.emacs.d/dictem/")
+
+(use-package dtrt-indent
+  :ensure t)
+
+(use-package elpy
+  :ensure t
+  :after python
+  :config (elpy-enable)
+  :custom
+  (elpy-rpc-python-command "python3"))
+
+(use-package ess
+  :ensure t)
+
+(use-package fill-column-indicator
+  :ensure t)
+
+(use-package gnus
+  :custom
+  gnus-select-method '(nntp "news.club.cc.cmu.edu"))
+
+(use-package haskell-mode
+  :ensure t
+  :hook ((haskell-mode . turn-on-haskell-doc-mode)
+	 (haskell-mode . turn-on-haskell-indentation)))
+
 (use-package info-look
   :ensure t)
 
-(use-package tex
-  :ensure auctex
+(use-package ispell
+  :ensure t
+  :defer t
   :custom
-  (reftex-plug-into-AUCTeX t)
-  (TeX-parse-self t) ; Parse documents to provide completion for packages, etc.
-  (TeX-auto-save t) ; Automatically save style information
-  (TeX-clean-confirm nil) ; Don't ask for confirmation when cleaning
-  (TeX-source-correlate-mode t) ; Provide forward and inverse search with SyncTeX
-  (TeX-source-correlate-method 'synctex)
-  (TeX-PDF-mode t) ; use pdftex by default
-  :config
-  (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura")))
+  (ispell-dictionary "en_CA-w_accents"))
 
 (use-package latex
   :ensure auctex
@@ -138,70 +189,6 @@ Otherwise split the current paragraph into one sentence per line."
   :bind
   (:map LaTeX-mode-map
 	("M-q" . ales/fill-paragraph)))
-
-(use-package auto-complete
-  :ensure t
-  :config
-  (ac-config-default)
-  (ac-set-trigger-key "TAB")
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-  :hook
-  ((Coq-mode LaTeX-mode sml-mode) . auto-complete-mode))
-
-(use-package auto-indent-mode
-  :ensure t
-  :config
-  (auto-indent-global-mode)
-  :custom
-  (auto-indent-next-pair-timer-interval
-   (quote ((css-mode 1.5)
-	   (haskell-mode 1.5)
-	   (python-mode 1.5)
-	   (latex-mode 1.5)
-	   (coq-mode 1.5)
-	   (default 0.0005)))))
-
-(use-package cc-mode
-  :custom
-  (c-default-style "bsd"))
-
-(use-package cus-edit
-  :custom
-  (custom-file null-device "Don't store customizations"))
-
-(use-package dictem
-  :load-path "~/.emacs.d/dictem/")
-
-(use-package dtrt-indent
-  :ensure t)
-
-(use-package elpy
-  :ensure t
-  :after python
-  :config (elpy-enable)
-  :custom
-  (elpy-rpc-python-command "python3"))
-
-(use-package ess
-  :ensure t)
-
-(use-package fill-column-indicator
-  :ensure t)
-
-(use-package gnus
-  :custom
-  gnus-select-method '(nntp "news.club.cc.cmu.edu"))
-
-(use-package haskell-mode
-  :ensure t
-  :hook ((haskell-mode . turn-on-haskell-doc-mode)
-	 (haskell-mode . turn-on-haskell-indentation)))
-
-(use-package ispell
-  :ensure t
-  :defer t
-  :custom
-  (ispell-dictionary "en_CA-w_accents"))
 
 (use-package magit
   :ensure t
@@ -343,6 +330,19 @@ Otherwise split the current paragraph into one sentence per line."
 (use-package sml-mode
   :ensure t
   :mode ("\\.sml\\'" . sml-mode))
+
+(use-package tex
+  :ensure auctex
+  :custom
+  (reftex-plug-into-AUCTeX t)
+  (TeX-parse-self t) ; Parse documents to provide completion for packages, etc.
+  (TeX-auto-save t) ; Automatically save style information
+  (TeX-clean-confirm nil) ; Don't ask for confirmation when cleaning
+  (TeX-source-correlate-mode t) ; Provide forward and inverse search with SyncTeX
+  (TeX-source-correlate-method 'synctex)
+  (TeX-PDF-mode t) ; use pdftex by default
+  :config
+  (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura")))
 
 (use-package tool-bar
   :config
