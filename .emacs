@@ -105,7 +105,16 @@
 
 (use-package gnus
   :custom
-  gnus-select-method '(nntp "news.club.cc.cmu.edu"))
+  (gnus-select-method
+   '(nntp "news.club.cc.cmu.edu"
+	  (nntp-address "news.club.cc.cmu.edu")
+	  (nntp-via-address "linux.gp.cs.cmu.edu")
+	  (nntp-via-rlogin-command "ssh")
+	  (nntp-via-rlogin-command-switches ("-C"))
+	  (nntp-open-connection-function nntp-open-via-rlogin-and-netcat)))
+  :config
+  (add-to-list gnus-secondary-select-methods
+	       '(nntp "news.gmane.org")))
 
 (use-package haskell-mode
   :ensure t
