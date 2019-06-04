@@ -188,6 +188,10 @@ Otherwise split the current paragraph into one sentence per line."
 (use-package fill-column-indicator
   :ensure t)
 
+(use-package gnus
+  :custom
+  gnus-select-method '(nntp "news.club.cc.cmu.edu"))
+
 (use-package haskell-mode
   :ensure t
   :hook ((haskell-mode . turn-on-haskell-doc-mode)
