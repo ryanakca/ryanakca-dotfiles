@@ -121,6 +121,13 @@
   :hook ((haskell-mode . turn-on-haskell-doc-mode)
 	 (haskell-mode . turn-on-haskell-indentation)))
 
+(use-package helm
+  :ensure t
+  :bind (("M-x"     . helm-M-x)
+	 ("C-x C-f" . helm-find-files))
+  :config
+  (helm-mode 1))
+
 (use-package info-look
   :ensure t)
 
