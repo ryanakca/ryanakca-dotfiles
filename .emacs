@@ -115,9 +115,22 @@
 	  (nntp-via-rlogin-command "ssh")
 	  (nntp-via-rlogin-command-switches ("-C"))
 	  (nntp-open-connection-function nntp-open-via-rlogin-and-netcat)))
-  :config
-  (add-to-list gnus-secondary-select-methods
-	       '(nntp "news.gmane.org")))
+  (gnus-home-score-file "gnus.SCORE")
+  (gnus-secondary-select-methods
+   '((nntp "news.gmane.org")
+     (nntp "news.eternal-september.org")
+     (nntp "nntp.olduse.net")))
+  (message-citation-line-function 'message-insert-formatted-citation-line)
+  (gnus-update-message-archive-method t)
+  (gnus-message-archive-method
+	'(nnfolder "archive" ; this gets included in the server buffer
+	       (nnfolder-inhibit-expiry t)
+	       (nnfolder-get-new-mail nil)
+	       (nnfolder-active-file "~/News/sent/active")
+	       (nnfolder-directory   "~/News/sent")))
+  (gnus-check-new-newsgroups nil)
+  :hook
+  (message-send . gnus-score-followup-article))
 
 (use-package haskell-mode
   :ensure t
