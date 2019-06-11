@@ -90,6 +90,9 @@
 (use-package dtrt-indent
   :ensure t)
 
+(use-package elpher
+  :ensure t)
+
 (use-package elpy
   :ensure t
   :after python
