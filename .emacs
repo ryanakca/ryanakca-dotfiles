@@ -391,6 +391,13 @@ Otherwise split the current paragraph into one sentence per line."
   :config
   (add-hook 'tuareg-mode-hook 'merlin-mode t))
 
+(use-package twittering-mode
+  :ensure t
+  :custom
+  (twittering-icon-mode t)
+  (twittering-icon-storage-file "~/.emacs.d/storage/twittering-mode-icons.gz")
+  (twittering-use-icon-storage t))
+
 (use-package vc-git
   :requires vc
   :config
