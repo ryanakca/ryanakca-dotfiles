@@ -1,4 +1,4 @@
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
