@@ -76,6 +76,77 @@
 	   (coq-mode 1.5)
 	   (default 0.0005)))))
 
+(use-package bibtex
+  :mode ("\\.bib\'" . bibtex-mode)
+  :custom
+  (bibtex-dialect 'biblatex)
+  (bibtex-maintain-sorted-entries 'crossref)
+  ;; Use only the first author name if there are more than 2 authors
+  (bibtex-autokey-names 1)
+  ;; Otherwise use both names
+  (bibtex-autokey-names-stretch 1)
+  (bibtex-autokey-name-separator "_")
+  (bibtex-autokey-name-year-separator "_")
+  (bibtex-autokey-year-length 4)
+  (bibtex-autokey-year-title-separator ":_")
+  (bibtex-autokey-titleword-length 5)
+  (bibtex-autokey-titlewords 3)
+  ;; Make all title words lowercase
+  (bibtex-autokey-preserve-case 1)
+  :config
+  ;; Until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=36252 gets fixed
+  (defun bibtex-autokey-get-year ()
+    "Return year field contents as a string obeying `bibtex-autokey-year-length'.
+If the year field is absent, extract the year from a valid ISO8601-2
+Extended Format date in the date field and return it as a string obeing
+`bibtex-autokey-year-length'."
+    (let ((yearfield (bibtex-autokey-get-field "year"))
+	  (datefield (bibtex-autokey-get-field "date"))
+	  (shortener (lambda (year)
+		       (substring year (max 0 (- (length year)
+						 bibtex-autokey-year-length))))))
+      (if (string= "" yearfield)
+	  (cond ((string-match "[./]*\\(-?[[:digit:]]+X*\\)\\([-/.[:digit:]:T~?%X]*\\)"
+			       datefield)
+		 ;; Matches ISO8601-2 Extended Format specification level 1
+		 ;; examples listed in tables 3, 4, and 5 on pp. 38-40 of the
+		 ;; biblatex package manual, version 3.12
+		 (funcall shortener (match-string 1 datefield)))
+		(t (error "Date field `%s' is incorrectly formed" datefield)))
+	(funcall shortener yearfield))))
+  ;; Don't have accented characters in keys
+  (let ((charMap '(;; This list based on Xah Lee's http://ergoemacs.org/emacs/emacs_zap_gremlins.html
+		   ("ß" . "ss")
+		   ("á\\|à\\|â\\|ä\\|ā\\|ǎ\\|ã\\|å\\|ą\\|ă\\|ạ\\|ả\\|ả\\|ấ\\|ầ\\|ẩ\\|ẫ\\|ậ\\|ắ\\|ằ\\|ẳ\\|ặ" . "a")
+		   ("æ" . "ae")
+		   ("ç\\|č\\|ć" . "c")
+		   ("é\\|è\\|ê\\|ë\\|ē\\|ě\\|ę\\|ẹ\\|ẻ\\|ẽ\\|ế\\|ề\\|ể\\|ễ\\|ệ" . "e")
+		   ("í\\|ì\\|î\\|ï\\|ī\\|ǐ\\|ỉ\\|ị" . "i")
+		   ("ñ\\|ň\\|ń" . "n")
+		   ("ó\\|ò\\|ô\\|ö\\|õ\\|ǒ\\|ø\\|ō\\|ồ\\|ơ\\|ọ\\|ỏ\\|ố\\|ổ\\|ỗ\\|ộ\\|ớ\\|ờ\\|ở\\|ợ" . "o")
+		   ("ú\\|ù\\|û\\|ü\\|ū\\|ũ\\|ư\\|ụ\\|ủ\\|ứ\\|ừ\\|ử\\|ữ\\|ự" . "u")
+		   ("ý\\|ÿ\\|ỳ\\|ỷ\\|ỹ" . "y")
+		   ("þ" . "th")
+		   ("ď\\|ð\\|đ" . "d")
+		   ("ĩ" . "i")
+		   ("ľ\\|ĺ\\|ł" . "l")
+		   ("ř\\|ŕ" . "r")
+		   ("š\\|ś" . "s")
+		   ("ť" . "t")
+		   ("ž\\|ź\\|ż" . "z")
+		   ("œ" . "oe")
+		   (" " . " ") ; thin space etc
+		   ("–" . "-")
+		   ("—\\|一" . "--"))))
+    ;; For some reason, *-name-* and *-titleword-* get clobbered, even
+    ;; though the original value in decribe-variable clearly shows
+    ;; them having been based on the extended
+    ;; bibtex-autokey-transcriptions. Force them to be the right
+    ;; thing.
+    (progn (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-transcriptions pair)) charMap)
+	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-name-change-strings pair)) charMap)
+	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-titleword-change-strings pair)) charMap))))
+
 (use-package cc-mode
   :custom
   (c-default-style "bsd"))
