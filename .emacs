@@ -341,6 +341,84 @@ Otherwise split the current paragraph into one sentence per line."
 (use-package octave
   :mode ("\\.m\'" . octave-mode))
 
+(use-package org
+  :ensure t
+  :custom
+  (org-agenda-files '("~/org/cmu.org"
+		      "~/org/foss.org"
+		      "~/org/home.org"))
+  (org-agenda-include-diary t))
+
+(use-package org-ref
+  :init
+  (defun rak-xah-asciify-string (string)
+    "Remove accents in some letters and some Change European
+language characters into equivalent ASCII ones, e.g. 'café' =>
+'cafe'.  When called interactively, work on current line or text
+selection.
+
+Based off of xah-asciify-text, version 2018-11-12, from
+URL `http://ergoemacs.org/emacs/emacs_zap_gremlins.html'."
+    (interactive)
+    (let ((charMap
+	   [
+	    ["ß" "ss"]
+	    ["á\\|à\\|â\\|ä\\|ā\\|ǎ\\|ã\\|å\\|ą\\|ă\\|ạ\\|ả\\|ả\\|ấ\\|ầ\\|ẩ\\|ẫ\\|ậ\\|ắ\\|ằ\\|ẳ\\|ặ" "a"]
+	    ["æ" "ae"]
+	    ["ç\\|č\\|ć" "c"]
+	    ["é\\|è\\|ê\\|ë\\|ē\\|ě\\|ę\\|ẹ\\|ẻ\\|ẽ\\|ế\\|ề\\|ể\\|ễ\\|ệ" "e"]
+	    ["í\\|ì\\|î\\|ï\\|ī\\|ǐ\\|ỉ\\|ị" "i"]
+	    ["ñ\\|ň\\|ń" "n"]
+	    ["ó\\|ò\\|ô\\|ö\\|õ\\|ǒ\\|ø\\|ō\\|ồ\\|ơ\\|ọ\\|ỏ\\|ố\\|ổ\\|ỗ\\|ộ\\|ớ\\|ờ\\|ở\\|ợ" "o"]
+	    ["ú\\|ù\\|û\\|ü\\|ū\\|ũ\\|ư\\|ụ\\|ủ\\|ứ\\|ừ\\|ử\\|ữ\\|ự" "u"]
+	    ["ý\\|ÿ\\|ỳ\\|ỷ\\|ỹ" "y"]
+	    ["þ" "th"]
+	    ["ď\\|ð\\|đ" "d"]
+	    ["ĩ" "i"]
+	    ["ľ\\|ĺ\\|ł" "l"]
+	    ["ř\\|ŕ" "r"]
+	    ["š\\|ś" "s"]
+	    ["ť" "t"]
+	    ["ž\\|ź\\|ż" "z"]
+	    ["œ" "oe"]
+	    [" " " "]       ; thin space etc
+	    ["–" "-"]       ; dash
+	    ["—\\|一" "--"] ; em dash etc
+	    ])
+	  (case-fold-search t))
+      (reduce (lambda (string pair)
+		(replace-regexp-in-string (elt pair 0) (elt pair 1) string))
+	      charMap
+	      :initial-value string)))
+  :custom
+  (org-ref-default-bibliography '("~/Documents/papers/library.bib"))
+  (org-ref-bibliography-notes "~/Documents/papers/notes.org")
+  (org-ref-pdf-directory "~/Documents/papers/pdfs/")
+  ;; don't fudge with the output of bibtex-generate-autokey
+  (org-ref-clean-bibtex-key-function 'rak-xah-asciify-string))
+
+(use-package org-ref-arxiv
+  :ensure org-ref)
+
+(use-package org-ref-bibtex
+  :ensure org-ref
+  :config
+  (defun org-ref-bibtex-format-url-if-doi ()
+    "Override built-in function. Originally, this reformatted
+the url to point to DOI. I would rather kill the URL field
+entirely if it contains the DOI."
+    (interactive)
+    (unless (eq (org-ref-bibtex-entry-doi) "")
+      (when (string-match-p (regexp-quote (org-ref-bibtex-entry-doi))
+			  (bibtex-autokey-get-field "url"))
+	(bibtex-kill-field "url")))))
+
+(use-package org-ref-isbn
+  :ensure org-ref)
+
+(use-package org-ref-pdf
+  :ensure org-ref)
+
 (use-package outline
   :ensure t
   :hook (LaTeX-mode . outline-minor-mode))
