@@ -158,6 +158,10 @@ Extended Format date in the date field and return it as a string obeing
 (use-package dictem
   :load-path "~/.emacs.d/dictem/")
 
+(use-package doi-utils
+  ;; provided by org-ref
+  :ensure org-ref)
+
 (use-package dtrt-indent
   :ensure t)
 
@@ -335,7 +339,7 @@ Otherwise split the current paragraph into one sentence per line."
   :ensure t)
 
 (use-package octave
-  :mode ("\\.m$" . octave-mode))
+  :mode ("\\.m\'" . octave-mode))
 
 (use-package outline
   :ensure t
