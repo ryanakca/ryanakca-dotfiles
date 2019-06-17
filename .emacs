@@ -43,15 +43,15 @@
 ;;    The values are saved in `latex-help-cmd-alist' for speed."
 ;;     ;; mm, does it contain any cached entries
 ;;     (if (not (assoc "\\begin" latex-help-cmd-alist))
-;; 	(save-window-excursion
-;; 	  (setq latex-help-cmd-alist nil)
-;; 	  (Info-goto-node (concat latex-help-file "Command Index"))
-;; 	  (goto-char (point-max))
-;; 	  (while (re-search-backward "^\\* \\(.+\\): *\\(.+\\)\\." nil t)
-;; 	    (let ((key (buffer-substring (match-beginning 1) (match-end 1)))
-;; 		  (value (buffer-substring (match-beginning 2)
-;; 					   (match-end 2))))
-;; 	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
+;;	(save-window-excursion
+;;	  (setq latex-help-cmd-alist nil)
+;;	  (Info-goto-node (concat latex-help-file "Command Index"))
+;;	  (goto-char (point-max))
+;;	  (while (re-search-backward "^\\* \\(.+\\): *\\(.+\\)\\." nil t)
+;;	    (let ((key (buffer-substring (match-beginning 1) (match-end 1)))
+;;		  (value (buffer-substring (match-beginning 2)
+;;					   (match-end 2))))
+;;	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
 ;;     latex-help-cmd-alist))
 
 (use-package auto-complete
