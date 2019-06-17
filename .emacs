@@ -477,6 +477,7 @@ entirely if it contains the DOI."
   :after latex
   :hook (LaTeX-mode . reftex-mode)
   :custom
+  (reftex-default-bibliography '("~/Documents/papers/library.bib"))
   (reftex-label-alist '(("axiom" ?a "ax:" "~\\ref{%s}" nil ("axiom" "ax.") -3)
 			("theorem" ?h "theorem:" "~\\ref{%s}" t ("theorem" "th.") -3)
 			("proposition" ?p "prop:" "~\\ref{%s}" t ("proposition" "prop.") -3)
