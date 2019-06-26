@@ -357,6 +357,10 @@ Otherwise split the current paragraph into one sentence per line."
   ;; ocaml assistant
   :ensure t)
 
+(use-package mingus
+  ;; mpd client
+  :ensure t)
+
 (use-package minibuffer
   :config
   (add-to-list 'completion-styles 'substring)
