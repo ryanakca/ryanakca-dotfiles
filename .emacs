@@ -511,13 +511,13 @@ entirely if it contains the DOI."
   :custom
   (column-mode-number t))
 
-(use-package spaceline
-  :ensure t
-  :requires spaceline-config)
-
 (use-package sml-mode
   :ensure t
   :mode ("\\.sml\\'" . sml-mode))
+
+(use-package spaceline
+  :ensure t
+  :requires spaceline-config)
 
 (use-package tex
   :ensure auctex
