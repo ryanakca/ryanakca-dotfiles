@@ -379,11 +379,108 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package org
   :ensure t
+  :bind
+  (("C-c l" . 'org-store-link)
+   ("C-c a" . 'org-agenda)
+   ("C-c c" . 'org-capture))
   :custom
-  (org-agenda-files '("~/org/cmu.org"
-		      "~/org/foss.org"
-		      "~/org/home.org"))
-  (org-agenda-include-diary t))
+  (org-agenda-files '("~/org/"))
+  (org-default-notes-file "~/org/notes.org")
+  (org-agenda-include-diary t)
+  ;; Define the custum capture templates
+  ;; Courtesy of Gregory J. Stein,
+  ;; http://cachestocaches.com/2016/9/my-workflow-org-agenda/
+  (org-capture-templates
+   '(("t" "todo" entry (file "~/org/todo.org")
+      "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+     ("m" "Meeting" entry (file org-default-notes-file)
+      "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+     ("d" "Diary" entry (file+olp+datetree "~/org/diary.org")
+      "* %?\n%U\n" :clock-in t :clock-resume t)
+     ("i" "Idea" entry (file org-default-notes-file)
+      "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+     ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
+      "** NEXT %? \nDEADLINE: %t")))
+  ;; Include org-agenda-files in the list of refile targets
+  (org-refile-targets (quote ((nil :maxlevel . 9)
+			      (org-agenda-files :maxlevel . 9))))
+  (org-columns-default-format "%25ITEM %TODO %3PRIORITY %10CLOCKSUM %16TIMESTAMP_IA %TAGS")
+  ;; Tags with fast selection keys
+  (org-tag-alist (quote ((:startgroup)
+			 ("@errand" . ?e)
+			 ("@cmu" . ?c)
+			 ("@home" . ?h)
+			 (:endgroup)
+			 ("WAITING" . ?W)
+			 ("HOLD" . ?H)
+			 ("WORK" . ?w)
+			 ("PERSONAL" . ?p)
+			 ("CANCELLED" . ?c)
+			 ("NOTE" . ?n)
+			 ("IDEA" . ?i)
+			 ("FLAGGED" . ??))))
+  ;;;; TODO states and shortcuts
+  (org-todo-keywords
+   (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+	   ;; c   : shortcut for org-use-fast-todo-selection
+	   ;; @   : add a note (with time)
+	   ;; !   : record only the time of the state change
+	   ;; x/y : use x when entering & y when leaving iff target does not define x
+	   (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+  (org-todo-keyword-faces
+   (quote (("TODO" :foreground "red" :weight bold)
+	   ("NEXT" :foreground "blue" :weight bold)
+	   ("DONE" :foreground "forest green" :weight bold)
+	   ("WAITING" :foreground "orange" :weight bold)
+	   ("HOLD" :foreground "magenta" :weight bold)
+	   ("CANCELLED" :foreground "forest green" :weight bold)
+	   ("MEETING" :foreground "forest green" :weight bold)
+	   ("PHONE" :foreground "forest green" :weight bold))))
+  ;; add/remove the following tags
+  (setq org-todo-state-tags-triggers
+	(quote (("CANCELLED" ("CANCELLED" . t))
+		("WAITING" ("WAITING" . t))
+		("HOLD" ("WAITING") ("HOLD" . t))
+		(done ("WAITING") ("HOLD"))
+		("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+		("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+		("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+  (org-use-fast-todo-selection t)
+  ;; Don't update timestamps/notes when going S-left/S-right
+  (org-treat-S-cursor-todo-selection-as-state-change nil)
+  ;;;; customize the agenda view
+  ;; Compact view
+  (org-agenda-compact-blocks t)
+  ;; Custom ordering
+  (org-agenda-custom-commands
+   ;; each entry is of the form (key desc type match settings files)
+   ;; this is based off of http://doc.norang.ca/org-mode.html#CustomAgendaViews
+   ;; and should be finished at some point.
+   (quote ((" " "Agenda"
+	    ((agenda "")
+	     (tags-todo "REFILE"
+			((org-agenda-overriding-header "Tasks to Refile")
+			 (org-tags-match-list-sublevels nil)))
+	     (tags-todo "-CANCELLED/!NEXT"
+			((org-agenda-overriding-header "Next Tasks")
+			 (org-agenda-sorting-strategy
+			  '(todo-state-down effort-up category-keep))))
+	     (tags-todo "-CANCELLED+WAITING|HOLD/!"
+			((org-agenda-overriding-header "Waiting & Postponed Tasks")))
+	     (tags-todo "-REFILE-CANCELLED-WAITING-HOLD/!"
+			((org-agenda-overriding-header "Standalone tasks")
+			 (org-agenda-sorting-strategy '(category-keep))))
+	     (tags "-REFILE/"
+		   ((org-agenda-overriding-header "Tasks to Archive")))))
+	   ("e" "Everything" ((agenda "") (alltodo ""))))))
+  :config
+  (add-to-list 'org-modules 'org-habit))
+
+(use-package org-noter
+  :ensure t
+  :custom
+  ;; Surely there's an easier way of setting this?
+  (org-noter-default-notes-file-names "~/Documents/papers/notes.org"))
 
 (use-package org-ref
   :custom
