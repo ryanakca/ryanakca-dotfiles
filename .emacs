@@ -354,6 +354,7 @@ Otherwise split the current paragraph into one sentence per line."
   ([S-f10] . menu-bar-mode))
 
 (use-package merlin
+  ;; ocaml assistant
   :ensure t)
 
 (use-package minibuffer
