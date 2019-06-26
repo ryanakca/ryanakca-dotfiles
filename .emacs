@@ -170,6 +170,13 @@ Extended Format date in the date field and return it as a string obeing
 	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-name-change-strings pair)) charMap)
 	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-titleword-change-strings pair)) charMap))))
 
+(use-package bibtex-completion
+  :ensure helm-bibtex
+  :custom
+  (bibtex-completion-bibliography "~/Documents/papers/library.bib")
+  (bibtex-completion-library-path "~/Documents/papers/pdfs/")
+  (bibtex-completion-notes-path   "~/Documents/papers/notes.org"))
+
 (use-package cc-mode
   :custom
   (c-default-style "bsd"))
