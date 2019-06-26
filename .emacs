@@ -515,6 +515,15 @@ entirely if it contains the DOI."
   :ensure t
   :mode ("\\.sml\\'" . sml-mode))
 
+(use-package solar
+  :custom
+  ;; Use 24 hour time in diary, calendar, etc.
+  (calendar-time-display-form
+   '(24-hours ":" minutes (if time-zone " (") time-zone (if time-zone ")")))
+  (calendar-latitude 40.4)
+  (calendar-longitude -79.9)
+  (calendar-location-name "Pittsburgh, PA"))
+
 (use-package spaceline
   :ensure t
   :requires spaceline-config)
