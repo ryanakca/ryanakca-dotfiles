@@ -54,6 +54,29 @@
 ;;	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
 ;;     latex-help-cmd-alist))
 
+(use-package ace-window
+  :ensure t
+  :custom
+  ;; home row keys
+  (aw-keys '(?h ?t ?n ?s ?a ?o ?e ?u ?i ?d))
+  :bind (("M-o" . ace-window))
+  :config
+  ;; need to redefine a few of these because the defaults
+  ;; overlap with customized aw-keys
+  (setq aw-dispatch-alist
+    '((?x aw-delete-window "Delete Window")
+      (?m aw-swap-window "Swap Windows")
+      (?M aw-move-window "Move Window")
+      (?c aw-copy-window "Copy Window")
+      (?j aw-switch-buffer-in-window "Select Buffer")
+      (?f aw-flip-window)
+      (?p aw-switch-buffer-other-window "Switch Buffer Other Window")
+      (?c aw-split-window-fair "Split Fair Window")
+      (?v aw-split-window-vert "Split Vert Window")
+      (?b aw-split-window-horz "Split Horz Window")
+      (?1 delete-other-windows "Delete Other Windows")
+      (?? aw-show-dispatch-help))))
+
 (use-package auto-complete
   :ensure t
   :config
