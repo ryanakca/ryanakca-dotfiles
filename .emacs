@@ -432,6 +432,11 @@ entirely if it contains the DOI."
   ;; highlight entire expression when on delimiters
   (show-paren-style 'expression))
 
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
+
 (use-package powerline
   :ensure t)
 
