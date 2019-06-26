@@ -37,6 +37,14 @@ servers = (
     tls_cert = "~/.irssi/certs/snoonet.pem";
     tls_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.choopa.net";
+    chatnet = "EFNet";
+    port = "6667";
+    use_tls = "no";
+    tls_verify = "no";
+    autoconnect = "yes";
   }
 );
 
@@ -62,6 +70,11 @@ chatnets = {
   };
   schmorp = { type = "IRC"; };
   snoonet = { type = "IRC"; nick = "ryanakca"; };
+  EFNet = {
+    type = "IRC";
+    nick = "ryanakca";
+    alternate_nick = "ryanakca_";
+  };
 };
 
 aliases = {
@@ -397,116 +410,17 @@ channels = (
   { name = "#debian-games"; chatnet = "OFTC"; autojoin = "yes"; },
   { name = "#neomutt"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#rspamd"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#dovecot"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#dovecot"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#debian-til"; chatnet = "OFTC"; autojoin = "yes"; },
+  {
+    name = "#casualconversation";
+    chatnet = "snoonet";
+    autojoin = "yes";
+  },
+  { name = "#math"; chatnet = "snoonet"; autojoin = "yes"; },
+  { name = "#talk"; chatnet = "snoonet"; autojoin = "yes"; },
+  { name = "#org-mode"; chatnet = "freenode"; autojoin = "yes"; }
 );
-windows = {
-  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
-  2 = { name = "hilight"; sticky = "yes"; };
-  3 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#kubuntu-devel";
-        tag = "Freenode";
-      }
-    );
-  };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#opensmtpd";
-        tag = "Freenode";
-      }
-    );
-  };
-  5 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#rxvt-unicode";
-        tag = "Freenode";
-      }
-    );
-  };
-  6 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#ubuntu";
-        tag = "Freenode";
-      }
-    );
-  };
-  7 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#debian";
-        tag = "OFTC";
-      }
-    );
-  };
-  8 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#debian-devel";
-        tag = "OFTC";
-      }
-    );
-  };
-  9 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#debian-mentors";
-        tag = "OFTC";
-      }
-    );
-  };
-  10 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#debian-multimedia";
-        tag = "OFTC";
-      }
-    );
-  };
-  11 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#debian-private";
-        tag = "OFTC";
-      }
-    );
-  };
-  12 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#schmorpforge";
-        tag = "schmorp";
-      }
-    );
-  };
-};
-mainwindows = {
-  1 = { first_line = "8"; lines = "45"; };
-  2 = { first_line = "1"; lines = "7"; };
-};
 keyboard = (
   { key = "meta-1"; id = "change_window"; data = "1"; },
   { key = "meta-2"; id = "change_window"; data = "2"; },
@@ -537,3 +451,271 @@ keyboard = (
   { key = "meta-r"; id = "change_window"; data = "17"; },
   { key = "meta-l"; id = "change_window"; data = "18"; }
 );
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = { name = "hilight"; sticky = "yes"; };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##categorytheory";
+        tag = "Freenode";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##cclub";
+        tag = "Freenode";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##computerscience";
+        tag = "Freenode";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##dependent";
+        tag = "Freenode";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##logic";
+        tag = "Freenode";
+      }
+    );
+  };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##math";
+        tag = "Freenode";
+      }
+    );
+  };
+  9 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##russian";
+        tag = "Freenode";
+      }
+    );
+  };
+  10 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##typetheory";
+        tag = "Freenode";
+      }
+    );
+  };
+  11 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#dovecot";
+        tag = "Freenode";
+      }
+    );
+  };
+  12 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#kubuntu-devel";
+        tag = "Freenode";
+      }
+    );
+  };
+  13 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#neomutt";
+        tag = "Freenode";
+      }
+    );
+  };
+  14 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#openbsd";
+        tag = "Freenode";
+      }
+    );
+  };
+  15 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#opensmtpd";
+        tag = "Freenode";
+      }
+    );
+  };
+  16 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#rspamd";
+        tag = "Freenode";
+      }
+    );
+  };
+  17 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#rxvt-unicode";
+        tag = "Freenode";
+      }
+    );
+  };
+  18 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#sml";
+        tag = "Freenode";
+      }
+    );
+  };
+  19 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-devel";
+        tag = "OFTC";
+      }
+    );
+  };
+  20 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-devel-changes";
+        tag = "OFTC";
+      }
+    );
+  };
+  21 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-games";
+        tag = "OFTC";
+      }
+    );
+  };
+  22 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-haskell";
+        tag = "OFTC";
+      }
+    );
+  };
+  23 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-multimedia";
+        tag = "OFTC";
+      }
+    );
+  };
+  24 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-offtopic";
+        tag = "OFTC";
+      }
+    );
+  };
+  25 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-private";
+        tag = "OFTC";
+      }
+    );
+  };
+  26 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian-quebec";
+        tag = "OFTC";
+      }
+    );
+  };
+  27 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#news";
+        tag = "snoonet";
+      }
+    );
+  };
+  28 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#reddit";
+        tag = "snoonet";
+      }
+    );
+  };
+};
+mainwindows = {
+  21 = { first_line = "12"; lines = "74"; };
+  2 = { first_line = "1"; lines = "11"; };
+};
