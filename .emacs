@@ -175,7 +175,8 @@ Extended Format date in the date field and return it as a string obeing
   :custom
   (bibtex-completion-bibliography "~/Documents/papers/library.bib")
   (bibtex-completion-library-path "~/Documents/papers/pdfs/")
-  (bibtex-completion-notes-path   "~/Documents/papers/notes.org"))
+  (bibtex-completion-notes-path   "~/Documents/papers/notes/")
+  (bibtex-completion-notes-extension ".org"))
 
 (use-package cc-mode
   :custom
@@ -485,15 +486,22 @@ Otherwise split the current paragraph into one sentence per line."
   :ensure t
   :custom
   ;; Surely there's an easier way of setting this?
-  (org-noter-default-notes-file-names "~/Documents/papers/notes.org"))
+  (org-noter-notes-search-path '("~/Documents/papers/notes/")))
 
 (use-package org-ref
+  :requires helm-bibtex
   :custom
   (org-ref-default-bibliography '("~/Documents/papers/library.bib"))
   (org-ref-bibliography-notes "~/Documents/papers/notes.org")
   (org-ref-pdf-directory "~/Documents/papers/pdfs/")
   ;; don't fudge with the output of bibtex-generate-autokey
-  (org-ref-clean-bibtex-key-function 'identity))
+  (org-ref-clean-bibtex-key-function 'identity)
+  ;; let helm-bibtex find the notes file for an entry
+  (org-ref-notes-function
+   (lambda (thekey)
+     (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
+       (bibtex-completion-edit-notes
+	(list (car (org-ref-get-bibtex-key-and-file thekey))))))))
 
 (use-package org-ref-arxiv
   :ensure org-ref)
