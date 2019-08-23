@@ -501,7 +501,8 @@ Otherwise split the current paragraph into one sentence per line."
    (lambda (thekey)
      (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
        (bibtex-completion-edit-notes
-	(list (car (org-ref-get-bibtex-key-and-file thekey))))))))
+	(list (car (org-ref-get-bibtex-key-and-file thekey)))))))
+  :bind (("C-c b" . helm-bibtex)))
 
 (use-package org-ref-arxiv
   :ensure org-ref)
