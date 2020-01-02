@@ -312,3 +312,8 @@ banks = ( GMAIL.INBOX:match_from('pncalerts@pnc.com')
 	* ( GMAIL.INBOX:is_seen()
 	  + GMAIL.INBOX:is_older(7) )
 GMAIL.INBOX:move_messages(GMAIL['banks'], banks)
+
+splitwise = GMAIL.INBOX:match_from('hello@splitwise.com')
+	    * ( GMAIL.INBOX:is_seen()
+	      + GMAIL.INBOX:is_older(1) )
+GMAIL.INBOX:move_messages(GMAIL['receipts'], splitwise)
