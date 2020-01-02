@@ -26,4 +26,7 @@ http://listenlive.vistaradio.ca/CFSF
 
 #EXTINF:-1,99.6 Радио Русский Хит
 ${RUHIT}
+
+#EXTINF:-1,WYEP 91.3 (Pittsburgh)
+http://playerservices.streamtheworld.com/api/livestream-redirect/WYEPFMAAC.m3u8
 EOF
