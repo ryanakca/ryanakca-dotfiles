@@ -64,6 +64,6 @@ let g:Tex_ItemStyle_inparaenum = '\item'
 
 let g:po_translator = 'Ryan Kavanagh <rak@debian.org>'
 
-au BufEnter ~/.mutt/tmp/mutt-* set textwidth=72 | set lcs=trail:-,nbsp:%
-au BufEnter ~/.mutt/tmp/neomutt-* set textwidth=72 | set lcs=trail:-,nbsp:%
+au BufEnter ~/.mutt/tmp/mutt-* set textwidth=72 | set list lcs=trail:-,nbsp:%
+au BufEnter ~/.mutt/tmp/neomutt-* set textwidth=72 | set list lcs=trail:-,nbsp:%
 au BufEnter */gophermap set list lcs=trail:-,nbsp:%,tab:»·,space:·
