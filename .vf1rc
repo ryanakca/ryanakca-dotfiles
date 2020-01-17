@@ -1,0 +1,2 @@
+handler image/* display %s
+g gopher://republic.circumlunar.space:70/1/~rak/

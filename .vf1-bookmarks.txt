@@ -1,0 +1,3 @@
+1rak	/~rak/	republic.circumlunar.space	70
+1tomasino's moku-pona	/moku-pona	gopher.black	70
+1floodgap		gopher.floodgap.com	70
