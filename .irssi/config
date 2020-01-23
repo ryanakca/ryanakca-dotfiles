@@ -45,6 +45,15 @@ servers = (
     use_tls = "no";
     tls_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.tilde.chat";
+    chatnet = "tilde";
+    port = "6697";
+    use_tls = "yes";
+    tls_cert = "~/.irssi/certs/tilde.pem";
+    tls_verify = "yes";
+    autoconnect = "yes";
   }
 );
 
@@ -57,7 +66,9 @@ chatnets = {
   };
   OFTC = {
     type = "IRC";
+    nick = "rak";
     autosendcmd = "wait -oftc 2000";
+    alternate_nick = "ryanakca";
     max_kicks = "1";
     max_msgs = "1";
     max_whois = "1";
@@ -75,6 +86,7 @@ chatnets = {
     nick = "ryanakca";
     alternate_nick = "ryanakca_";
   };
+  tilde = { type = "IRC"; nick = "rak_"; alternate_nick = "rak__"; };
 };
 
 aliases = {
@@ -356,7 +368,7 @@ settings = {
     recdep_period = "3600";
     autoaway_timeout = "300";
   };
-  "irc/core" = { alternate_nick = "ryanakca_"; };
+  "irc/core" = { alternate_nick = "rak"; };
 };
 logs = { };
 hilights = (
@@ -419,7 +431,9 @@ channels = (
   },
   { name = "#math"; chatnet = "snoonet"; autojoin = "yes"; },
   { name = "#talk"; chatnet = "snoonet"; autojoin = "yes"; },
-  { name = "#org-mode"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#org-mode"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#team"; chatnet = "tilde"; autojoin = "yes"; },
+  { name = "#meta"; chatnet = "tilde"; autojoin = "yes"; }
 );
 keyboard = (
   { key = "meta-1"; id = "change_window"; data = "1"; },
