@@ -139,6 +139,8 @@ Extended Format date in the date field and return it as a string obeing
 	(funcall shortener yearfield))))
   ;; Don't have accented characters in keys
   (let ((charMap '(;; This list based on Xah Lee's http://ergoemacs.org/emacs/emacs_zap_gremlins.html
+		   ;; Case-sensitivity (see bibtex-autokey-name-change-strings) requires us to
+		   ;; duplicate everything
 		   ("ß" . "ss")
 		   ("á\\|à\\|â\\|ä\\|ā\\|ǎ\\|ã\\|å\\|ą\\|ă\\|ạ\\|ả\\|ả\\|ấ\\|ầ\\|ẩ\\|ẫ\\|ậ\\|ắ\\|ằ\\|ẳ\\|ặ" . "a")
 		   ("æ" . "ae")
