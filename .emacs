@@ -496,7 +496,68 @@ Otherwise split the current paragraph into one sentence per line."
   (org-noter-notes-search-path '("~/Documents/papers/notes/")))
 
 (use-package org-ref
+  :ensure t
+  :requires helm-bibtex)
+
+(use-package org-ref-arxiv
+  :ensure org-ref)
+
+(use-package org-ref-bibtex
+  :ensure org-ref
+  :config
+  (defun org-ref-rak-bibtex-format-url-if-doi ()
+    "Override built-in function. Originally, this reformatted
+the url to point to DOI. I would rather kill the URL field
+entirely if it contains the DOI. bibtex-clean-entry will then
+delete the field."
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (let ((doi (bibtex-autokey-get-field "doi")))
+	(unless (null doi)
+	  (when (string-match-p (regexp-quote (org-ref-bibtex-entry-doi))
+				(bibtex-autokey-get-field "url"))
+	    (bibtex-set-field "url" ""))))))
+  (defun orcb-rak-check-journal ()
+    "Check entry at point to see if journal exists in `org-ref-bibtex-journal-abbreviations'.
+If not, issue a warning."
+    (interactive)
+    (when
+	(string= "article"
+		 (downcase
+		  (cdr (assoc "=type=" (bibtex-parse-entry)))))
+      (save-excursion
+	(bibtex-beginning-of-entry)
+	(let* ((entry (bibtex-parse-entry t))
+	       (journal (replace-regexp-in-string "[[:space:]\n]+" " " (reftex-get-bib-field "journaltitle" entry))))
+	  (when (null journal)
+	    (error "Unable to get journal for this entry."))
+	  (unless (member journal (-flatten org-ref-bibtex-journal-abbreviations))
+	    (message "Journal \"%s\" not found in org-ref-bibtex-journal-abbreviations." journal))))))
+  :custom
+  (org-ref-title-case-types '("article" "book" "inproceedings" "proceedings" "report"))
+  (org-ref-bibtex-journal-abbreviations
+   '(("Journal of Computer Security")
+     ("International Journal of Foundations of Computer Science" "Int. J. Found. Comput. Sci.")
+     ("LCNS" "Lecture Notes in Computer Science" "Lect. Notes Comput. Sc.")
+     ("LMCS" "Logical Methods in Computer Science")
+     ("MSCS" "Mathematical Structures in Computer Science" "Math. Struct. Comp. Sci.")
+     ("PACMPL" "Proceedings of the ACM on Programming Languages" "Proc. ACM Program. Lang.")
+     ("Journal of Logic and Computation" "J. Logic Computat.")
+     ("Publications of the Research Institute for Mathematical Sciences" "Publ. RIMS"))))
+
+(use-package org-ref-core
+  :ensure org-ref
   :requires helm-bibtex
+  :config
+  (defun org-ref-rak-title-case-english ()
+    "Call org-ref-title-case only if the language field is set
+       to `english' or is missing. This will avoid having foreign-
+       language titles re-cased."
+    (interactive)
+    (let ((langfield (bibtex-autokey-get-field "language")))
+      (if (= (length langfield) 0)
+	  (org-ref-title-case))))
   :custom
   (org-ref-default-bibliography '("~/Documents/papers/library.bib"))
   (org-ref-bibliography-notes "~/Documents/papers/notes.org")
@@ -508,23 +569,22 @@ Otherwise split the current paragraph into one sentence per line."
    (lambda (thekey)
      (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
        (bibtex-completion-edit-notes
-	(list (car (org-ref-get-bibtex-key-and-file thekey))))))))
-
-(use-package org-ref-arxiv
-  :ensure org-ref)
-
-(use-package org-ref-bibtex
-  :ensure org-ref
-  :config
-  (defun org-ref-bibtex-format-url-if-doi ()
-    "Override built-in function. Originally, this reformatted
-the url to point to DOI. I would rather kill the URL field
-entirely if it contains the DOI."
-    (interactive)
-    (unless (eq (org-ref-bibtex-entry-doi) "")
-      (when (string-match-p (regexp-quote (org-ref-bibtex-entry-doi))
-			  (bibtex-autokey-get-field "url"))
-	(bibtex-kill-field "url")))))
+	(list (car (org-ref-get-bibtex-key-and-file thekey)))))))
+  (org-ref-clean-bibtex-entry-hook
+   '(org-ref-rak-bibtex-format-url-if-doi
+     orcb-key-comma
+     org-ref-replace-nonascii
+     orcb-&
+     orcb-%
+     org-ref-rak-title-case-english ;; all entries, -article does only articles
+     orcb-clean-year
+     orcb-key
+     orcb-clean-doi
+     orcb-clean-pages
+     orcb-rak-check-journal
+     org-ref-sort-bibtex-entry
+     orcb-fix-spacing
+     orcb-clean-nil-opinionated)))
 
 (use-package org-ref-isbn
   :ensure org-ref)
