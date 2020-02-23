@@ -117,6 +117,41 @@
   ;; Make all title words lowercase
   (bibtex-autokey-preserve-case 1)
   :config
+  ;; stolen from bibtex.el and modified to handle "Mac Lane"
+  (defun bibtex-autokey-demangle-name (fullname)
+    "Get the last part from a well-formed FULLNAME and perform abbreviations."
+    (let* (case-fold-search
+	   (name (cond ((string-match "\\(Ma?c +[[:upper:]][^, ]*\\)[^,]*," fullname)
+			;; Name is of the form "Mac Last, First" or
+			;; "Mac Last, Jr, First" or "Mc Last, First" or
+			;; "Mc Last, Jr, First"
+			;; --> Take Mac Last or Mc Last, as appropriate
+			;;     and replace spaces by concatenation
+			(let ((mclast (match-string 1 fullname)))
+			  (when (string-match split-string-default-separators mclast)
+			    (replace-match "" nil nil mclast)))
+		       ((string-match "\\([[:upper:]][^, ]*\\)[^,]*," fullname)
+			;; Name is of the form "von Last, First" or
+			;; "von Last, Jr, First"
+			;; --> Take the first capital part before the comma
+			(match-string 1 fullname))
+		       ((string-match "\\([^, ]*\\)," fullname)
+			;; Strange name: we have a comma, but nothing capital
+			;; So we accept even lowercase names
+			(match-string 1 fullname))
+		       ((string-match "\\(\\<[[:lower:]][^ ]* +\\)+\\([[:upper:]][^ ]*\\)"
+				      fullname)
+			;; name is of the form "First von Last", "von Last",
+			;; "First von von Last", or "d'Last"
+			;; --> take the first capital part after the "von" parts
+			(match-string 2 fullname))
+		       ((string-match "\\([^ ]+\\) *\\'" fullname)
+			;; name is of the form "First Middle Last" or "Last"
+			;; --> take the last token
+			(match-string 1 fullname))
+		       (t (error "Name `%s' is incorrectly formed" fullname)))))
+      (funcall bibtex-autokey-name-case-convert-function
+	       (bibtex-autokey-abbrev name bibtex-autokey-name-length)))))
   ;; Until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=36252 gets fixed
   (defun bibtex-autokey-get-year ()
     "Return year field contents as a string obeying `bibtex-autokey-year-length'.
