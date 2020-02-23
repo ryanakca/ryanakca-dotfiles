@@ -538,7 +538,7 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package org-ref
   :ensure t
-  :requires helm-bibtex)
+  :after helm-bibtex)
 
 (use-package org-ref-arxiv
   :ensure org-ref)
@@ -589,7 +589,7 @@ If not, issue a warning."
 
 (use-package org-ref-core
   :ensure org-ref
-  :requires helm-bibtex
+  :after helm-bibtex
   :config
   (defun org-ref-rak-title-case-english ()
     "Call org-ref-title-case only if the language field is set
