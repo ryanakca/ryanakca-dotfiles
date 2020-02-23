@@ -1,0 +1,34 @@
+#!/bin/sh
+# https://www.pseudorandom.co.uk/2007/sbuild/
+# /etc/schroot/setup.d/60append-apt-sources
+
+AUTH_VERBOSITY="verbose"
+
+if [ $1 = "setup-start" ] || [ $1 = "setup-recover" ]; then
+
+  NAME=$(echo "${CHROOT_NAME}" | sed -e 's/-[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]//g')
+
+  EXTRA_APT_SOURCES="/etc/schroot/sources.list.d/${NAME}.sources.list"
+  APT_PREFS="/etc/schroot/sources.list.d/${NAME}.preferences"
+
+  if [ "$AUTH_VERBOSITY" = "verbose" ]; then
+    echo "Checking for auxiliary apt sources in $EXTRA_APT_SOURCES" >&2
+  fi
+  if [ -e "$EXTRA_APT_SOURCES" ]; then
+    if [ "$AUTH_VERBOSITY" = "verbose" ]; then
+      echo "... extra apt sources found" >&2
+    fi
+    cat "$EXTRA_APT_SOURCES" >> "${CHROOT_PATH}/etc/apt/sources.list"
+  fi
+
+  if [ "$AUTH_VERBOSITY" = "verbose" ]; then
+    echo "Checking for apt preferences in $APT_PREFS" >&2
+  fi
+  if [ -e "$APT_PREFS" ]; then
+    if [ "$AUTH_VERBOSITY" = "verbose" ]; then
+      echo "... apt preferences found" >&2
+    fi
+    install -m644 "$APT_PREFS" "${CHROOT_PATH}/etc/apt/preferences"
+  fi
+
+fi

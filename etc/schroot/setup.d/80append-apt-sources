@@ -1,0 +1,13 @@
+#!/bin/sh
+# /etc/schroot/setup.d/80apt-get-update
+
+EXTRA_APT_SOURCES="/etc/schroot/sources.list.d/${CHROOT_NAME}.sources.list"
+APT_PREFS="/etc/schroot/sources.list.d/${CHROOT_NAME}.preferences"
+
+if [ -f "EXTRA_APT_SOURCES" -a $1 = "setup-start" ]; then
+    if : || [ "$AUTH_VERBOSITY" = "verbose" ]; then
+	chroot "${CHROOT_PATH}" apt-get update >&2 || true
+    else
+	chroot "${CHROOT_PATH}" apt-get update >/dev/null || true
+    fi
+fi
