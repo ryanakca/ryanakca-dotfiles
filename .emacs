@@ -188,6 +188,7 @@ Extended Format date in the date field and return it as a string obeing
   (custom-file null-device "Don't store customizations"))
 
 (use-package diary
+  :ensure diary-lib
   :custom
   (diary-display-function 'diary-fancy-display)
   :hook ((diary-list-entries . diary-include-other-diary-files)
