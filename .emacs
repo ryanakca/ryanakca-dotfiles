@@ -223,6 +223,8 @@ Extended Format date in the date field and return it as a string obeing
   :ensure t)
 
 (use-package gnus
+  :ensure t
+  :defer t
   :custom
   (gnus-select-method
    '(nntp "news.club.cc.cmu.edu"
