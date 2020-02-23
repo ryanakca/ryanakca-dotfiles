@@ -18,7 +18,6 @@ LOCAL_FILES = \
     .nailrc \
     .netrc \
     .offlineimaprc \
-    .screenrc \
     .xinitrc \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
@@ -67,7 +66,6 @@ GLOBAL_FILES = \
     .rlwrap/mail_filter \
     .sbuildrc \
     .screenlayout/ \
-    .screenrc-mail \
     .signature \
     .ssh/ \
     .tmux/ \

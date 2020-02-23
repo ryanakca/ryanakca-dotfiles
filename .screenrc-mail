@@ -1,3 +1,0 @@
-source ~/.screenrc
-sessionname mail
-screen -t mutt 0 mutt
