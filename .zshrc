@@ -186,6 +186,9 @@ autoload -U compinit; compinit
 
 compdef _quilt dquilt=quilt  # Quilt tab completion for dquilt
 
+# pattern history search
+bindkey '^R' history-incremental-pattern-search-backward
+
 # Very powerful version of mv implemented in zsh. The main feature I
 # know of it that seperates it from the standard mv is that it saves you
 # time by being able to use patterns which are expanded into positional
