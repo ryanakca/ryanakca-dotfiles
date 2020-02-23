@@ -249,8 +249,10 @@ Extended Format date in the date field and return it as a string obeing
 	       (nnfolder-active-file "~/News/sent/active")
 	       (nnfolder-directory   "~/News/sent")))
   (gnus-check-new-newsgroups nil)
+  (gnus-group-line-format "%M%S%p%P%5y:%B%(%G%) %z\n")
   :hook
-  (message-send . gnus-score-followup-article))
+  (message-send . gnus-score-followup-article)
+  (gnus-group-mode . gnus-topic-mode))
 
 (use-package haskell-mode
   :ensure t
