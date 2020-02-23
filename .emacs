@@ -129,7 +129,7 @@
 			;;     and replace spaces by concatenation
 			(let ((mclast (match-string 1 fullname)))
 			  (when (string-match split-string-default-separators mclast)
-			    (replace-match "" nil nil mclast)))
+			    (replace-match "" nil nil mclast))))
 		       ((string-match "\\([[:upper:]][^, ]*\\)[^,]*," fullname)
 			;; Name is of the form "von Last, First" or
 			;; "von Last, Jr, First"
@@ -151,7 +151,7 @@
 			(match-string 1 fullname))
 		       (t (error "Name `%s' is incorrectly formed" fullname)))))
       (funcall bibtex-autokey-name-case-convert-function
-	       (bibtex-autokey-abbrev name bibtex-autokey-name-length)))))
+	       (bibtex-autokey-abbrev name bibtex-autokey-name-length))))
   ;; Until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=36252 gets fixed
   (defun bibtex-autokey-get-year ()
     "Return year field contents as a string obeying `bibtex-autokey-year-length'.
