@@ -233,7 +233,13 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-secondary-select-methods
    '((nntp "news.gmane.io")
      (nntp "news.eternal-september.org")
-     (nntp "nntp.olduse.net")))
+     ; (nntp "nntp.olduse.net")
+     (nntp "tilde.team"
+	   (nntp-address "localhost")
+	   (nntp-via-address "tilde.team")
+	   (nntp-via-rlogin-command "ssh")
+	   (nntp-via-rlogin-command-switches ("-C"))
+	   (nntp-open-connection-function nntp-open-via-rlogin-and-netcat))))
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (gnus-update-message-archive-method t)
   (gnus-message-archive-method
