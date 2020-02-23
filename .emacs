@@ -304,7 +304,6 @@ Otherwise split the current paragraph into one sentence per line."
 		))))
       ;; otherwise do ordinary fill paragraph
       (fill-paragraph P)))
-
   :hook
   ((LaTeX-mode . turn-on-reftex)
    (LaTeX-mode . turn-off-auto-fill)
@@ -333,14 +332,12 @@ Otherwise split the current paragraph into one sentence per line."
 		   (add-to-list 'LaTeX-label-alist '("theorem" . "theorem:"))
 		   (add-to-list 'LaTeX-label-alist '("example" . "ex:"))
 		   (add-to-list 'LaTeX-label-alist '("lemma" . "lemma:")))))
-
   :config
   (info-lookup-add-help :mode 'LaTeX-mode
 			:regexp ".*"
 			:parse-rule "\\\\?[a-zA-Z]+\\|\\\\[^a-zA-Z]"
 			:doc-spec '(("(latex2e)Concept Index")
 				    ("(latex2e)Command Index")))
-
   :bind
   (:map LaTeX-mode-map
 	("M-q" . ales/fill-paragraph)))
