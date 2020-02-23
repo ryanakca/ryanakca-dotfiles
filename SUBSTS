@@ -24,8 +24,6 @@ XMONAD_DZEN_X 114
 XMONAD_DZEN_Y 0
 # screen dimensions / arandr
 SCREENLAYOUT epsilon-SAIL
-# Pipe major's email
-PM_EMAIL pipemajor@example.org
 # Locale
 LOCALE es_ES.UTF-8
 

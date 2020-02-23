@@ -281,10 +281,6 @@ fields = GMAIL.INBOX:move_messages(GMAIL['Academia'], fields)
 
 -- People
 
-bagpipes = GMAIL.INBOX:match_from('PM_EMAIL') +
-	   GMAIL.INBOX:match_cc('PM_EMAIL')
-GMAIL.INBOX:move_messages(GMAIL['Bagpipes'], bagpipes)
-
 facebook = GMAIL.INBOX:match_from('.*@facebookmail.com') *
 	 ( GMAIL.INBOX:contain_subject('New messages from ') +
 	   GMAIL.INBOX:contain_subject('New message from ') +
