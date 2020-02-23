@@ -4,7 +4,7 @@ key value
 # /usr/bin/sha256sum on Kubuntu/Debian
 # /sbin/sha256 on FreeBSD
 # /bin/sha256 on OpenBSD
-SHA256 /sbin/sha256
+SHA256 /usr/sbin/sha256
 # Disable GPG decryption of sensitive files. Must be True to disable, enabled
 # for all other values
 GPG_DISABLED False
@@ -17,21 +17,17 @@ QUEENSU_PASS secret
 LOCAL_PASS secret
 RYANAKCA_PASS secret
 CMU_PASS secret
-CMUSCS_PASS secret
 # xmonad
 XMONAD_DZEN_W 808
 XMONAD_DZEN_X 114
 XMONAD_DZEN_Y 0
 # screen dimensions / arandr
-SCREENLAYOUT epsilon-SAIL
+SCREENLAYOUT zeta-home
 # Locale
-LOCALE es_ES.UTF-8
+LOCALE en_CA.UTF-8
 
 # path to msmtp
 MSMTP_PATH /usr/bin/msmtp
-
-# path to zsh
-ZSH_PATH /bin/zsh
 
 # colour of hostname in zsh prompt
 ZSH_HOST_COLOUR Green
@@ -40,16 +36,6 @@ ZSH_HOST_COLOUR Green
 # See https://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
 SCREEN_HOST_COLOUR G
 
-# Emails that get a score of 10/20. Escape |.
-MUTT_20_SCORE \\"(bob@foo.org\|alice@example.org)\\"
-MUTT_10_SCORE \\"(eve@foo.org)\\"
-
-# Grep path
-GREP_PATH /bin/grep
-
-# path to gnome-settings-daemon
-GSD_PATH /usr/local/libexec/gnome-settings-daemon
-
 # Enable keychain? If so, set to secret key names, e.g., id_rsa id_ecdsa
 # Otherwise, delete everything after N
 KEYCHAIN id_rsa
@@ -57,15 +43,12 @@ KEYCHAIN id_rsa
 # Path to SSL certs for mail, etc.
 # /etc/ssl/cert.pem on OpenBSD
 # /etc/ssl/certs/ca-certificates.crt on Debian
-SSL_CERTS /etc/ssl/cert.pem
+SSL_CERTS /etc/ssl/certs/ca-certificates.crt
 
-LOCALHOST epsilon.ryanak.ca
+LOCALHOST zeta.rak.ac
 
 # REMOTE_GMAIL or LOCAL_GMAIL
 IMAPFILTER_LOCAL False
-
-# gpg or gpg2
-GPG_BINARY gpg2
 
 # pgpewrap
 # /usr/local/bin/pgpewrap on OpenBSD

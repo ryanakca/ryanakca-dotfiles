@@ -12,7 +12,6 @@ LOCAL_FILES = \
     .msmtprc \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
-    .mutt/score.rc \
     .mutt/ssl.rc \
     .muttrc \
     .nailrc \
@@ -92,11 +91,10 @@ CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
 
 SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
-GPG_BINARY    = $(call get-val,GPG_BINARY)
 EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 BUILD_FONTS   = $(call get-val,BUILD_FONTS)
 
-MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS CMUSCS_PASS
+MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS
 
 VARS_.config/beets/config.yaml = MBUSER MBPASS
 VARS_.config/nitrogen/nitrogen.cfg = HOMEDIR
@@ -105,20 +103,16 @@ VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP_FOLDER_SEP IMAPFILTER_LOCAL
 VARS_.msmtprc           = $(MAIL_PASS) LOCALHOST SSL_CERTS
 VARS_.mutt/accounts.rc  = $(MAIL_PASS) MSMTP_PATH
-VARS_.mutt/gpg.rc       = GPG_BINARY PGPEWRAP_BINARY
-VARS_.mutt/score.rc     = MUTT_10_SCORE MUTT_20_SCORE
+VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS
 VARS_.muttrc            = MSMTP_PATH
 VARS_.nailrc		= $(MAIL_PASS) HOMEDIR GMAIL_mailx_PASS
 VARS_.netrc             = LOCAL_PASS GMAIL_PASS
 VARS_.offlineimaprc     = $(MAIL_PASS) SSL_CERTS
-VARS_.screenrc          = ZSH_PATH SCREEN_HOST_COLOUR
-VARS_.xinitrc           = SCREENLAYOUT GSD_PATH PULSE
+VARS_.xinitrc           = SCREENLAYOUT PULSE
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
 VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH KEYCHAIN
-VARS_bin/gpg-wrapper    = GPG_BINARY
-VARS_bin/run-mailcheck  = ZSH_PATH GREP_PATH
 
 all: clean build
 
@@ -147,7 +141,7 @@ $(GPG_FILES):
 	for f in $@ ; do \
 	    touch $$f; \
 	    chmod 600 $$f; \
-	    [ "$(GPG_DISABLED)" = "True" ] || $(GPG_BINARY) --decrypt gpg/$$f.gpg > $$f; \
+	    [ "$(GPG_DISABLED)" = "True" ] || gpg --decrypt gpg/$$f.gpg > $$f; \
 	done
 
 emacsen:
@@ -194,7 +188,7 @@ sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
 
 sha256sums.asc: sha256sums
 	rm -f $@
-	$(GPG_BINARY) --armor --detach-sign $<
+	gpg --armor --detach-sign $<
 
 merge: SUBSTS $(SUBSTS_FILE)
 	# sdiff has exit status 1 if files are different. Ignore
@@ -243,7 +237,7 @@ verify:
 	    } END { \
 		print match_count, "matches, ", mismatch_count, "mismatches." \
 	}' sha256sums
-	$(GPG_BINARY) --verify sha256sums.asc
+	gpg --verify sha256sums.asc
 
 udh: udh-master
 
