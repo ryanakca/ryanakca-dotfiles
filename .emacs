@@ -116,6 +116,7 @@
   (bibtex-autokey-titlewords 3)
   ;; Make all title words lowercase
   (bibtex-autokey-preserve-case 1)
+  :bind (("C-c C-c" . org-ref-clean-bibtex-entry))
   :config
   ;; stolen from bibtex.el and modified to handle "Mac Lane"
   (defun bibtex-autokey-demangle-name (fullname)
@@ -590,6 +591,7 @@ If not, issue a warning."
 (use-package org-ref-core
   :ensure org-ref
   :after helm-bibtex
+  :bind (("C-c C-c" . org-ref-clean-bibtex-entry))
   :config
   (defun org-ref-rak-title-case-english ()
     "Call org-ref-title-case only if the language field is set
