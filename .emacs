@@ -231,7 +231,7 @@ Extended Format date in the date field and return it as a string obeing
 	  (nntp-open-connection-function nntp-open-via-rlogin-and-netcat)))
   (gnus-home-score-file "gnus.SCORE")
   (gnus-secondary-select-methods
-   '((nntp "news.gmane.org")
+   '((nntp "news.gmane.io")
      (nntp "news.eternal-september.org")
      (nntp "nntp.olduse.net")))
   (message-citation-line-function 'message-insert-formatted-citation-line)
