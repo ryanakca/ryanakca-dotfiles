@@ -318,6 +318,7 @@ Otherwise split the current paragraph into one sentence per line."
 		    '("definition" LaTeX-env-label)
 		    '("corollary" LaTeX-env-label)
 		    '("lemma" LaTeX-env-label)
+		    '("example" LaTeX-env-label)
 		    '("conjecture" LaTeX-env-label))))
    (LaTeX-mode . (lambda ()
 		   ;; This must be a hook. Trying to set it in :config
@@ -330,6 +331,7 @@ Otherwise split the current paragraph into one sentence per line."
 		   (add-to-list 'LaTeX-label-alist '("definition" . "def:"))
 		   (add-to-list 'LaTeX-label-alist '("proposition" . "prop:"))
 		   (add-to-list 'LaTeX-label-alist '("theorem" . "theorem:"))
+		   (add-to-list 'LaTeX-label-alist '("example" . "ex:"))
 		   (add-to-list 'LaTeX-label-alist '("lemma" . "lemma:")))))
 
   :config
