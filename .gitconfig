@@ -1,15 +1,13 @@
 [user]
 	name = Ryan Kavanagh
-	email = rak@debian.org
+	email = rak@rak.ac
 [color]
 	ui = auto
 [sendemail]
-	smtpserver = MSMTP_PATH
+	smtpserver = /usr/bin/msmtp
 [alias]
 	wdiff = diff --color-words
         pusha = push origin :
-[color]
-	ui = auto
 [push]
 	default = simple
 [url "git://anonscm.debian.org"]
@@ -22,3 +20,5 @@
 	pushInsteadOf = https://salsa.debian.org/
 [core]
 	quotePath = false
+[includeIf "gitdir:/media/t/work/packaging/"]
+	path = ~/.gitconfig-debian
