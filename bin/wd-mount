@@ -5,6 +5,8 @@ if ! mount | grep -w /media/t > /dev/null ; then
         sudo cryptdisks_start tosh && \
             sudo zpool import ztosh && \
             sudo mount /var/lib/mpd/music
+        sudo vgimport tosh
+        sudo vgchange -ay tosh
     fi
 fi
 

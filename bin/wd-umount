@@ -1,0 +1,7 @@
+#!/bin/sh
+
+sudo umount --lazy -f /var/lib/mpd/music
+sudo zpool export -f ztosh
+sudo cryptdisks_stop tosh
+sudo vgchange -an tosh
+sudo vgexport tosh
