@@ -85,11 +85,15 @@ set ispell="aspell -e -c"
 
 # set up the sidebar, default not visible
 set mail_check_stats=yes
-set sidebar_visible=no
-set sidebar_format="%B%*  %S%?N?(%N)?%?F?[%F]?"
-set sidebar_indent_string=" "
-set sidebar_short_path=yes
-set sidebar_sort_method='alpha'
+set sidebar_visible = yes
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
+set sidebar_width = 25
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_divider_char = "┃"
+set sidebar_delim_chars = "/."
+set sidebar_non_empty_mailbox_only = yes
+set sidebar_sort_method = alpha
 # which # mailboxes to list in the sidebar
 # mailboxes =inbox =ml
 # color of folders with new mail
