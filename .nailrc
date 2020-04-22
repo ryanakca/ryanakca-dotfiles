@@ -6,7 +6,7 @@ define clearset {
 
 account l {
     call clearset
-    set from="rak@ryanak.ca (Ryan Kavanagh)"
+    set from="rak@rak.ac (Ryan Kavanagh)"
 }
 
 account d {
@@ -42,11 +42,11 @@ account q {
 
 account r {
     call clearset
-    set from="Ryan Kavanagh <rak@ryanak.ca>"
-    set folder=imaps://rak@imap.ryanak.ca/
-    set imap-starttls-rak@imap.ryanak.ca
-    set password-rak@imap.ryanak.ca=RYANAKCA_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-ryanakca
+    set from="Ryan Kavanagh <rak@rak.ac>"
+    set folder=imaps://rak@imap.rak.ac/
+    set imap-starttls-rak@imap.rak.ac
+    set password-rak@imap.rak.ac=RYANAKCA_PASS
+    set sendmail=/usr/sbin/sendmail
 
     set MBOX=@Read
     set record=@Sent
@@ -65,8 +65,8 @@ account c {
 source ~/.mailx-aliases.rc
 source ~/.mailrc
 
-set password-rak@imap.ryanak.ca=RYANAKCA_PASS
-set record=imaps://rak@imap.ryanak.ca/Sent
+set password-rak@imap.rak.ac=RYANAKCA_PASS
+set record=imaps://rak@imap.rak.ac/Sent
 
 # Don't display X-Brightmail-Tracker header cruft
 ignore "X-Brightmail-Tracker"
@@ -107,7 +107,7 @@ set indentprefix="> "
 # Don't strip names/comments when replying
 set fullnames
 # My other addresses
-set alternates="ryanakca@gmail.com,rak@debian.org,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
+set alternates="ryanakca@gmail.com,rak@debian.org,rak@rak.ac,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
 # Give header when replying
 set quote
 

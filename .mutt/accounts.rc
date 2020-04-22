@@ -45,10 +45,10 @@ set pager_format = '-%Z-QUEENSU: %C/%m: %-20.20n %s';\
 set compose_format = '-- QUEENSU: Compose [Approx. msg size: %l Atts: %a]%>-';\
 set status_format = '-%r-QUEENSU: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
 
-account-hook imaps://imap.ryanak.ca \
+account-hook imaps://imap.rak.ac \
 "set imap_user = 'rak';\
 set imap_pass = 'RYANAKCA_PASS';\
-set folder = 'imaps://imap.ryanak.ca/';\
+set folder = 'imaps://imap.rak.ac/';\
 set record = '=Sent';\
 set copy = 'yes';\
 set postponed = '=Drafts';\
@@ -56,7 +56,7 @@ set spoolfile = '=Virtual.INBOX';\
 set mbox = '=RAK';\
 unset smtp_url;\
 unset smtp_pass;\
-set sendmail = 'MSMTP_PATH -a ryanakca';\
+set sendmail = '/usr/sbin/sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <rak@rak.ac>';\
 set pager_format = '-%Z-RAK.AC: %C/%m: %-20.20n %s';\
 set compose_format = '-- RAK.AC: Compose [Approx. msg size: %l Atts: %a]%>-';\
@@ -130,21 +130,21 @@ macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@i
 <edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter>' \
 "Send mail from cs.queensu.ca"
 
-macro compose <F5> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
-<edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH"<enter>\
+macro compose <F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
+<edit-fcc><kill-line>=Sent<enter>\
+<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter>' \
 "Send mail from Debian account"
 
-macro compose <Esc><F6> '<enter-command>set folder="imaps://imap.ryanak.ca/"<enter>\
+macro compose <Esc><F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="MSMTP_PATH -a ryanakca"<enter>\
+<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@ryanak.ca><enter>' \
 "Send mail from ryanak.ca"
 
-macro compose <F6> '<enter-command>set folder="imaps://imap.ryanak.ca/"<enter>\
+macro compose <F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="MSMTP_PATH -a rakac"<enter>\
+<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
 "Send mail from rak.ac"
 
