@@ -3,7 +3,7 @@
 # Updates the internet radio playlist for MPD
 # Best run from a cronjob
 
-RUHIT=$(curl -s http://ruhit.fm/player.htm | grep ruhit_56 \
+RUHIT=$(curl -s http://ruhit.fm/player.htm | grep ruhit_64 \
        | sed -e 's/.*="//g;s/".*//g')
 
 cat <<EOF > /var/lib/mpd/playlists/Internet.m3u
