@@ -12,13 +12,13 @@
 //
 //  SHIFT:     ~   %   7   5   3   1   9   0   2   4   6   8   `   BCKSP
 // NORMAL:     $   &   [   {   }   (   =   *   )   +   ]   !   #   BCKSP
-//  AltGr:     d~  ø   €   £   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   d˚  BCKSP
-// SFT-AG:     ¢   Ø   ¥   ¤                                   d˳  BCKSP
+//  AltGr:     ¢   ¤   €   £   d˘  d¨  d¸  d`` d`  d´  d˝  ¡   d˚  BCKSP
+// SFT-AG:     d~  ₽   ¥                                       d˳  BCKSP
 //
 //        TAB  :   <   >   P   Y   F   G   C   R   L   ?   ^   |
 //        TAB  ;   ,   .   p   y   f   g   c   r   l   /   @   \
-//        TAB  ä   «   »   ö   ë   ü   ï   ç   œ   þ   ¿   dˆ  d'
-//        TAB  Ä   °   ·   Ö   Ë   Ü   Ï   Ç   Œ   Þ       dˇ  d.
+//        TAB  ä   «   »   ü   í           ç       þ   ¿   dˆ  d'
+//        TAB  Ä   °   ·   Ü   Í           Ç       Þ       dˇ  d.
 //
 //       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
@@ -27,8 +27,8 @@
 //
 //      SHIFT  "   Q   J   K   X   B   M   W   V   Z   SHIFT
 //      SHIFT  '   q   j   k   x   b   m   w   v   z   SHIFT
-//      SHIFT  â   ô   è   ù   ï   â   ê   ¶   v   z   SHIFT
-//      SHIFT  Â   Ô   È   Ù   Ï   Â   Ê   §   V   Z
+//      SHIFT  â   ô   è   ù   ï       ê   ¶           SHIFT
+//      SHIFT  Â   Ô   È   Ù   Ï       Ê   §
 //
 // Legend: dX -> dead_X
 //
@@ -46,10 +46,10 @@ xkb_symbols "icd" {
 
     //             Unmodified       Shift           AltGr            Shift+AltGr
     // symbols row, left side
-    key <TLDE> { [ dollar,          asciitilde,     dead_tilde,      cent       ] };
-    key <AE01> { [ ampersand,       percent,        oslash,          Ooblique   ] };
+    key <TLDE> { [ dollar,          asciitilde,     cent,            dead_tilde ] };
+    key <AE01> { [ ampersand,       percent,        currency,        U20BD      ] };
     key <AE02> { [ bracketleft,     7,              EuroSign,        yen        ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
-    key <AE03> { [ braceleft,       5,              sterling,        currency   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE03> { [ braceleft,       5,              sterling                    ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE04> { [ braceright,      3,              dead_hook                   ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE05> { [ parenleft,       1,              dead_diaeresis              ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
     key <AE06> { [ equal,           9,              dead_cedilla                ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
@@ -67,14 +67,14 @@ xkb_symbols "icd" {
     key <AD01> { [ semicolon,       colon,          adiaeresis,      Adiaeresis ] };
     key <AD02> { [ comma,           less,           guillemotleft,   degree     ] };
     key <AD03> { [ period,          greater,        guillemotright,  periodcentered ] };
-    key <AD04> { [ p,               P,              odiaeresis,      Odiaeresis ] };
-    key <AD05> { [ y,               Y,              ediaeresis,      Ediaeresis ] };
+    key <AD04> { [ p,               P,              udiaeresis,      Udiaeresis ] };
+    key <AD05> { [ y,               Y,              iacute,          Iacute     ] };
 
     // upper row, right side
     key <AD06> { [ f,               F,              udiaeresis,      Udiaeresis ] };
-    key <AD07> { [ g,               G,              idiaeresis,      Idiaeresis ] };
+    key <AD07> { [ g,               G                                           ] };
     key <AD08> { [ c,               C,              ccedilla,        Ccedilla   ] };
-    key <AD09> { [ r,               R,              oe,              OE         ] };
+    key <AD09> { [ r,               R                                           ] };
     key <AD10> { [ l,               L,              thorn,           THORN      ] };
     key <AD11> { [ slash,           question,       questiondown                ] };
     key <AD12> { [ at,              asciicircum,    dead_circumflex, dead_caron ] };
@@ -103,7 +103,7 @@ xkb_symbols "icd" {
     key <AB05> { [ x,               X,              idiaeresis,      Idiaeresis ] };
 
     // lower row, right side
-    key <AB06> { [ b,               B,              acircumflex,     Acircumflex] };
+    key <AB06> { [ b,               B                                           ] };
     key <AB07> { [ m,               M,              ecircumflex,     Ecircumflex] };
     key <AB08> { [ w,               W,              paragraph,       section    ] };
     key <AB11> { [ Shift_R,         Shift_R,        Shift_R,         Shift_R    ] };
