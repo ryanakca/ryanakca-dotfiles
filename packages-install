@@ -15,7 +15,6 @@ apt-get install \
     gnupg-agent \
     graphviz \
     htop \
-    iceweasel \
     imapfilter \
     keychain \
     latex-mk \
@@ -37,7 +36,6 @@ apt-get install \
     redshift \
     rxvt-unicode \
     sbuild \
-    screen \
     subversion \
     texlive-full \
     trayer \
