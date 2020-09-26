@@ -10,6 +10,7 @@ apt-get install \
     dzen2 \
     encfs \
     evince \
+    fonts-spleen \
     git-buildpackage \
     git-core \
     gnupg-agent \
