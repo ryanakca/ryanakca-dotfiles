@@ -16,7 +16,6 @@ if [ "PULSE" = "True" ]; then
     sh bin/startaudio &
 fi
 ${HOME}/bin/mice.sh
-slack &
 xset dpms 180 300 600
 pgrep -u $(whoami) parcimonie >/dev/null || parcimonie >/dev/null &
 
