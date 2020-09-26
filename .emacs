@@ -116,7 +116,7 @@
   (bibtex-autokey-titlewords 3)
   ;; Make all title words lowercase
   (bibtex-autokey-preserve-case 1)
-  :bind (("C-c C-c" . org-ref-clean-bibtex-entry))
+  :bind (:map bibtex-mode-map ("C-c C-c" . org-ref-clean-bibtex-entry))
   :config
   ;; stolen from bibtex.el and modified to handle "Mac Lane"
   (defun bibtex-autokey-demangle-name (fullname)
@@ -215,6 +215,7 @@ Extended Format date in the date field and return it as a string obeing
   (bibtex-completion-library-path "~/Documents/papers/pdfs/")
   (bibtex-completion-notes-path   "~/Documents/papers/notes/")
   (bibtex-completion-notes-extension ".org")
+  (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt"))
   :bind (("C-c b" . helm-bibtex)))
 
 (use-package cc-mode
@@ -360,7 +361,8 @@ Otherwise split the current paragraph into one sentence per line."
 		    '("corollary" LaTeX-env-label)
 		    '("lemma" LaTeX-env-label)
 		    '("example" LaTeX-env-label)
-		    '("conjecture" LaTeX-env-label))))
+		    '("conjecture" LaTeX-env-label)
+		    '("figure" LaTeX-env-label))))
    (LaTeX-mode . (lambda ()
 		   ;; This must be a hook. Trying to set it in :config
 		   ;; causes the variable to become buffer-local, so
@@ -373,7 +375,8 @@ Otherwise split the current paragraph into one sentence per line."
 		   (add-to-list 'LaTeX-label-alist '("proposition" . "prop:"))
 		   (add-to-list 'LaTeX-label-alist '("theorem" . "theorem:"))
 		   (add-to-list 'LaTeX-label-alist '("example" . "ex:"))
-		   (add-to-list 'LaTeX-label-alist '("lemma" . "lemma:")))))
+		   (add-to-list 'LaTeX-label-alist '("lemma" . "lemma:"))
+		   (add-to-list 'LaTeX-label-alist '("figure" . "fig:")))))
   :config
   (info-lookup-add-help :mode 'LaTeX-mode
 			:regexp ".*"
@@ -556,10 +559,22 @@ delete the field."
     (save-excursion
       (bibtex-beginning-of-entry)
       (let ((doi (bibtex-autokey-get-field "doi")))
-	(unless (null doi)
+	(unless (string-empty-p doi)
 	  (when (string-match-p (regexp-quote (org-ref-bibtex-entry-doi))
 				(bibtex-autokey-get-field "url"))
 	    (bibtex-set-field "url" ""))))))
+  (defun org-ref-rak-biblatex-journaltitle ()
+    "Rename journal to journaltitle"
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (let ((journal (bibtex-autokey-get-field "journal"))
+	    (journaltitle (bibtex-autokey-get-field "journaltitle")))
+	(when (and (string-empty-p journaltitle)
+		   (not (string-empty-p journal)))
+	  (bibtex-beginning-of-entry)
+	  (bibtex-set-field "journal" "")
+	  (bibtex-set-field "journaltitle" journal)))))
   (defun orcb-rak-check-journal ()
     "Check entry at point to see if journal exists in `org-ref-bibtex-journal-abbreviations'.
 If not, issue a warning."
@@ -624,6 +639,18 @@ If not, issue a warning."
     (let ((langfield (bibtex-autokey-get-field "language")))
       (if (= (length langfield) 0)
 	  (org-ref-title-case))))
+  ;; taken from org-ref-bibtex.el and extended
+  (setq org-ref-nonascii-latex-replacements
+	(append '(("ﬁ" . "fi")
+		  ("ı́" . "{\\\\'i}")
+		  ("ω" . "$\\\\omega$")
+		  ("‘" . "`")
+		  ("’" . "'")
+		  ("’" . "'")
+		  ("“" . "``")
+		  ("’" . "'")
+		  ("”" . "''"))
+		org-ref-nonascii-latex-replacements))
   :custom
   (org-ref-default-bibliography '("~/Documents/papers/library.bib"))
   (org-ref-bibliography-notes "~/Documents/papers/notes.org")
@@ -637,16 +664,18 @@ If not, issue a warning."
        (bibtex-completion-edit-notes
 	(list (car (org-ref-get-bibtex-key-and-file thekey)))))))
   (org-ref-clean-bibtex-entry-hook
-   '(org-ref-rak-bibtex-format-url-if-doi
+   '(org-ref-rak-biblatex-journaltitle
+     bibtex-clean-entry
+     org-ref-rak-bibtex-format-url-if-doi
      orcb-key-comma
      org-ref-replace-nonascii
      orcb-&
      orcb-%
      org-ref-rak-title-case-english ;; all entries, -article does only articles
+     org-ref-rak-biblatex-journaltitle
      orcb-clean-year
      orcb-key
      orcb-clean-doi
-     orcb-clean-pages
      orcb-rak-check-journal
      org-ref-sort-bibtex-entry
      orcb-fix-spacing
@@ -722,25 +751,26 @@ If not, issue a warning."
   :hook (LaTeX-mode . reftex-mode)
   :custom
   (reftex-default-bibliography '("~/Documents/papers/library.bib"))
-  (reftex-label-alist '(("axiom" ?a "ax:%m:" "~\\ref{%s}" nil ("axiom" "ax.") -3)
-			("theorem" ?h "theorem:%m:" "~\\ref{%s}" t ("theorem" "th.") -3)
-			("proposition" ?p "prop:%m:" "~\\ref{%s}" t ("proposition" "prop.") -3)
-			("definition" ?d "def:%m:" "~\\ref{%s}" t ("definition" "def.") -3)
-			("corollary" ?c "cor:%m:" "~\\ref{%s}" t ("corollary" "cor.") -3)
-			("lemma" ?l "lemma:%m:" "~\\ref{%s}" t ("lemma" "lem.") -3)
-			("conjecture" ?j "conj:%m:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
-			("example" ?j "ex:%m:" "~\\ref{%s}" t ("example" "ex.") -3)
-			("ax" ?a "ax:%m:" "~\\ref{%s}" nil ("axiom" "ax.") -3)
-			("thm" ?h "theorem:%m:" "~\\ref{%s}" t ("theorem" "th.") -3)
-			("prop" ?p "prop:%m:" "~\\ref{%s}" t ("proposition" "prop.") -3)
-			("defi" ?d "def:%m:" "~\\ref{%s}" t ("definition" "def.") -3)
-			("cor" ?c "cor:%m:" "~\\ref{%s}" t ("corollary" "cor.") -3)
-			("lem" ?l "lemma:%m:" "~\\ref{%s}" t ("lemma" "lem.") -3)
-			("conj" ?j "conj:%m:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
-			("enumerate" 105 "item:%m:" "~\\ref{%s}" item (regexp "items?" "Punkte?"))
-			("equation" 101 "eq:%m:" "~\\eqref{%s}" t
+  (reftex-label-alist '(("axiom" ?a "ax:%f:" "~\\ref{%s}" t ("axiom" "ax.") -3)
+			("theorem" ?h "theorem:%F:" "~\\ref{%s}" t ("theorem" "th.") -3)
+			("proposition" ?p "prop:%F:" "~\\ref{%s}" t ("proposition" "prop.") -3)
+			("definition" ?d "def:%F:" "~\\ref{%s}" t ("definition" "def.") -3)
+			("corollary" ?c "cor:%F:" "~\\ref{%s}" t ("corollary" "cor.") -3)
+			("lemma" ?l "lemma:%F:" "~\\ref{%s}" t ("lemma" "lem.") -3)
+			("conjecture" ?j "conj:%F:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
+			("example" ?e "ex:%F:" "~\\ref{%s}" t ("example" "ex.") -3)
+			("figure" ?F "fig:%F:" "~\\ref{%s}" t ("figure" "fig.") -3)
+			("ax" ?a "ax:%F:" "~\\ref{%s}" t ("axiom" "ax.") -3)
+			("thm" ?h "theorem:%F:" "~\\ref{%s}" t ("theorem" "th.") -3)
+			("prop" ?p "prop:%F:" "~\\ref{%s}" t ("proposition" "prop.") -3)
+			("defi" ?d "def:%F:" "~\\ref{%s}" t ("definition" "def.") -3)
+			("cor" ?c "cor:%F:" "~\\ref{%s}" t ("corollary" "cor.") -3)
+			("lem" ?l "lemma:%F:" "~\\ref{%s}" t ("lemma" "lem.") -3)
+			("conj" ?j "conj:%F:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
+			("enumerate" 105 "item:%F:" "~\\ref{%s}" item (regexp "items?" "Punkte?"))
+			("equation" 101 "eq:%F:" "~\\eqref{%s}" t
 			 (regexp "equations?" "eqs?\\." "eqn\\." "Gleichung\\(en\\)?" "Gl\\."))
-			("eqnarray" 101 "eq:%m:" nil eqnarray-like))))
+			("eqnarray" 101 "eq:%F:" nil eqnarray-like))))
 
 (use-package sass-mode
   :ensure t)
