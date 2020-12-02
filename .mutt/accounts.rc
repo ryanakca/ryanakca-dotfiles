@@ -56,7 +56,7 @@ set spoolfile = '=Virtual.INBOX';\
 set mbox = '=RAK';\
 unset smtp_url;\
 unset smtp_pass;\
-set sendmail = '/usr/sbin/sendmail -oem -oi';\
+set sendmail = 'sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <rak@rak.ac>';\
 set pager_format = '-%Z-RAK.AC: %C/%m: %-20.20n %s';\
 set compose_format = '-- RAK.AC: Compose [Approx. msg size: %l Atts: %a]%>-';\
@@ -132,19 +132,19 @@ macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@i
 
 macro compose <F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter>' \
 "Send mail from Debian account"
 
 macro compose <Esc><F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@ryanak.ca><enter>' \
 "Send mail from ryanak.ca"
 
 macro compose <F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="/usr/sbin/sendmail -oem -oi"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
 "Send mail from rak.ac"
 
