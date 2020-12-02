@@ -30,7 +30,15 @@ shift `expr $OPTIND - 1`
 
 FILE="$@"
 
-PAD=$(md5sum "${FILE}" | cut -f1 -d' ')
+if command -v md5sum >/dev/null; then
+    MD5=md5sum;
+elif command -v md5 >/dev/null; then
+    MD5="md5 -r";
+else
+    echo "No md5 found";
+fi
+
+PAD=$(${MD5} "${FILE}" | cut -f1 -d' ')
 BASE=$(basename "${FILE}")
 
 DEST_NAME="${PAD}.${BASE}${OPT_SUFFIX}"
