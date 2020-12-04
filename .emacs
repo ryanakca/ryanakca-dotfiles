@@ -758,7 +758,7 @@ If not, issue a warning."
 			("corollary" ?c "cor:%F:" "~\\ref{%s}" t ("corollary" "cor.") -3)
 			("lemma" ?l "lemma:%F:" "~\\ref{%s}" t ("lemma" "lem.") -3)
 			("conjecture" ?j "conj:%F:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
-			("example" ?e "ex:%F:" "~\\ref{%s}" t ("example" "ex.") -3)
+			("example" ?X "ex:%F:" "~\\ref{%s}" t ("example" "ex.") -3)
 			("figure" ?F "fig:%F:" "~\\ref{%s}" t ("figure" "fig.") -3)
 			("ax" ?a "ax:%F:" "~\\ref{%s}" t ("axiom" "ax.") -3)
 			("thm" ?h "theorem:%F:" "~\\ref{%s}" t ("theorem" "th.") -3)
