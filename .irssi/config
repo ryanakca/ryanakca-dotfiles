@@ -338,13 +338,20 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
   core = {
     real_name = "Ryan Kavanagh";
     user_name = "rak";
-    nick = "ryanakca";
+    nick = "rak";
     timestamp_format = "%H:%M";
     quit_message = "";
   };
@@ -368,12 +375,19 @@ settings = {
     recdep_period = "3600";
     autoaway_timeout = "300";
   };
-  "irc/core" = { alternate_nick = "rak"; };
+  "irc/core" = { alternate_nick = "ryanakca"; };
 };
 logs = { };
 hilights = (
   { text = "*ryanakca*"; nick = "no"; word = "yes"; },
-  { text = "Ryan Kavanagh"; nick = "no"; word = "yes"; }
+  { text = "Ryan Kavanagh"; nick = "no"; word = "yes"; },
+  { text = "ryanakca -word"; nick = "yes"; word = "yes"; },
+  { 
+    text = "[ ]rak[ :,.;@']";
+    nick = "no";
+    word = "yes";
+    regexp = "yes";
+  }
 );
 channels = (
   { name = "#rxvt-unicode"; chatnet = "Freenode"; autojoin = "yes"; },
@@ -433,7 +447,8 @@ channels = (
   { name = "#talk"; chatnet = "snoonet"; autojoin = "yes"; },
   { name = "#org-mode"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#team"; chatnet = "tilde"; autojoin = "yes"; },
-  { name = "#meta"; chatnet = "tilde"; autojoin = "yes"; }
+  { name = "#meta"; chatnet = "tilde"; autojoin = "yes"; },
+  { name = "#gophernicus"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 keyboard = (
   { key = "meta-1"; id = "change_window"; data = "1"; },
