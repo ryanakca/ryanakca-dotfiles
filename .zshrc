@@ -56,6 +56,7 @@ export BTS_SENDMAIL_COMMAND="msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export PDFVIEWER=evince
+export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache

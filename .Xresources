@@ -18,8 +18,7 @@ URxvt.mapAlert: true
 URxvt.font: xft:Inconsolata:size=7,xft:Input Mono Medium:size=7,xft:DejaVu Sans Mono:size=7,xft:Liberation Mono:size=7
 URxvt.perl-lib: /home/ryan/.urxvt
 URxvt.perl-ext-common: default,matcher,font-size,-searchable-scrollback
-//URxvt*bellCommand: zenity --info --text="Bell in URxvt"
-URxvt*urlLauncher: firefox
+URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
 URxvt.visualBell: false
 URxvt.urgentOnBell: true
