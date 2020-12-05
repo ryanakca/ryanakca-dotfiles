@@ -62,7 +62,6 @@ GLOBAL_FILES = \
     .pythonrc.py \
     .quiltrc-dpkg \
     .reportbugrc \
-    .rlwrap/mail_filter \
     .sbuildrc \
     .screenlayout/ \
     .signature \
