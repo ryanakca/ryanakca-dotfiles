@@ -45,6 +45,7 @@ GLOBAL_FILES = \
     .emacs \
     .emacs.d \
     .gitconfig \
+    .gitconfig-debian \
     .imapfilter/ \
     .inputrc \
     .lbdbrc \
