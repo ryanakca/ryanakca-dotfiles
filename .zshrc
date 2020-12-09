@@ -47,12 +47,16 @@ export GIT_AUTHOR_NAME=$NAME
 export DARCS_EMAIL="$NAME <$EMAIL>"
 export QUILT_PATCHES=debian/patches
 export GEM_BIN="$(gem environment gempath | cut -d':' -f1)/bin"
-export PATH=${HOME}/bin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
+if [[ `hostname` = "demeter.rak.ac" ]]; then
+    export PATH=${HOME}/bin:/opt/local/bin:/opt/local/sbin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
+    export MANPATH=/opt/local/share/man:$MANPATH
+else
+    export PATH=${HOME}/bin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
+fi
 export CCACHE_DIR=/ccache
 #export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
 export MANOPT="-L en"
-export BTS_SENDMAIL_COMMAND="msmtp"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export PDFVIEWER=evince
