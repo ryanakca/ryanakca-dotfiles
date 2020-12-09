@@ -7,7 +7,7 @@ set imap_passive = 'no';\
 set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com';\
 set postponed = '=[Google Mail]/Drafts';\
 set spoolfile = '=INBOX';\
-set from = 'Ryan Kavanagh <rak@debian.org>';\
+set from = 'Ryan Kavanagh <ryanakca@gmail.com>';\
 set sendmail = 'sendmail -oem -oi';\
 set record = '=[Google Mail]/Sent Mail';\
 set copy = 'no';\
