@@ -8,7 +8,7 @@ set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com';\
 set postponed = '=[Google Mail]/Drafts';\
 set spoolfile = '=INBOX';\
 set from = 'Ryan Kavanagh <rak@debian.org>';\
-set sendmail='MSMTP_PATH';\
+set sendmail = 'sendmail -oem -oi';\
 set record = '=[Google Mail]/Sent Mail';\
 set copy = 'no';\
 unset smtp_url;\
@@ -39,7 +39,7 @@ set imap_passive = 'no';\
 set mbox = '=Read';\
 unset smtp_url;\
 unset smtp_pass;\
-set sendmail = 'MSMTP_PATH -a queensu';\
+set sendmail = 'sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <ryan.kavanagh@queensu.ca>';\
 set pager_format = '-%Z-QUEENSU: %C/%m: %-20.20n %s';\
 set compose_format = '-- QUEENSU: Compose [Approx. msg size: %l Atts: %a]%>-';\
@@ -69,7 +69,7 @@ set imap_passive = 'no';\
 set imap_keepalive = 60;\
 set folder = 'imaps://rkavanag@andrew.cmu.edu@imap.gmail.com';\
 set spoolfile = '=INBOX';\
-set sendmail='MSMTP_PATH -a cmuscs';\
+set sendmail='sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <rkavanagh@cs.cmu.edu>';\
 set mbox = '=Read';\
 set record = '=[Gmail]/Sent Mail';\
@@ -97,25 +97,25 @@ macro index <F10> "cimaps://outlook.office365.com/<enter>"
 
 macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH -a ubuntu"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryanakca@ubuntu.com><enter>' \
 "Send mail from Ubuntu account"
 
 macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH -a kubuntu"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter>' \
 "Send mail from Kubuntu account"
 
 macro compose <F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH -a cmu"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanag@andrew.cmu.edu><enter>' \
 "Send mail from CMU account"
 
 macro compose <Esc><F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH -a cmuscs"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.cmu.edu><enter>' \
 "Send mail from CMU SCS account"
 
@@ -126,7 +126,7 @@ macro compose <F4> '<enter-command>set folder="imaps://outlook.office365.com"<en
 
 macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<enter-command>set sendmail="MSMTP_PATH -a queensucs"<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter>' \
 "Send mail from cs.queensu.ca"
 

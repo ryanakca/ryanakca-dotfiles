@@ -6,14 +6,10 @@ SUBSTS_FILE=SUBSTS.local
 LOCAL_FILES = \
     .config/beets/config.yaml \
     .config/nitrogen/nitrogen.cfg \
-    .devscripts \
-    .gitconfig \
     .imapfilter/config.lua \
-    .msmtprc \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
     .mutt/ssl.rc \
-    .muttrc \
     .nailrc \
     .netrc \
     .offlineimaprc \
@@ -98,21 +94,17 @@ MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS
 
 VARS_.config/beets/config.yaml = MBUSER MBPASS
 VARS_.config/nitrogen/nitrogen.cfg = HOMEDIR
-VARS_.devscripts        = MSMTP_PATH
-VARS_.gitconfig         = MSMTP_PATH
 VARS_.imapfilter/config.lua = LOCAL_PASS IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP_FOLDER_SEP IMAPFILTER_LOCAL
-VARS_.msmtprc           = $(MAIL_PASS) LOCALHOST SSL_CERTS
-VARS_.mutt/accounts.rc  = $(MAIL_PASS) MSMTP_PATH
+VARS_.mutt/accounts.rc  = $(MAIL_PASS)
 VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS
-VARS_.muttrc            = MSMTP_PATH
 VARS_.nailrc		= $(MAIL_PASS) HOMEDIR GMAIL_mailx_PASS
 VARS_.netrc             = LOCAL_PASS GMAIL_PASS
 VARS_.offlineimaprc     = $(MAIL_PASS) SSL_CERTS
 VARS_.xinitrc           = SCREENLAYOUT PULSE
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
-VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS MSMTP_PATH KEYCHAIN
+VARS_.zshrc             = LOCALE SUBSTS_RM SUBSTS_LS KEYCHAIN
 
 all: clean build
 
@@ -121,7 +113,7 @@ all: clean build
 BUILD = $(patsubst %,build/%,$(GLOBAL_FILES) $(LOCAL_FILES) $(GPG_FILES))
 LOCALS = $(patsubst %,build/%,$(LOCAL_FILES))
 
-build: $(BUILD) fonts build/bin/msmtp/msmtp-default
+build: $(BUILD) fonts
 
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
@@ -151,11 +143,6 @@ emacsen:
 fonts:
 	[ "$(BUILD_FONTS)" != "True" ] || $(MAKE) -C .fonts install
 
-build/bin/msmtp/msmtp-default: build/.msmtprc
-	-mkdir -p $(dir $@)
-	awk '/account/ { FNAME =  "$(dir $@)/msmtp-"$$2; print "#!/bin/sh" > FNAME ; print "$(call get-val,MSMTP_PATH) -a " $$2 " \"$$@\"" >> FNAME }' $<
-	chmod 755 build/bin/msmtp/*
-
 $(LOCALS): .FORCE
 build/%: % $(SUBSTS_FILE)
 	@[ -d $(dir $@) ] || mkdir -p $(dir $@)
@@ -171,7 +158,7 @@ build/%: % $(SUBSTS_FILE)
 install: build
 	-diff -u ~/.mutt/alias.rc build/.mutt/alias.rc
 	rsync -a build/ ~
-	chmod 600 ~/.msmtprc ~/.netrc ~/.ssh/id_*
+	chmod 600 ~/.netrc ~/.ssh/id_*
 	chmod 700 ~/.ssh
 	-[ "$(BUILD_FONTS)" != "True" ] || fc-cache ~/.fonts
 

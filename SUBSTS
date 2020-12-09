@@ -26,9 +26,6 @@ SCREENLAYOUT zeta-home
 # Locale
 LOCALE en_CA.UTF-8
 
-# path to msmtp
-MSMTP_PATH /usr/bin/msmtp
-
 # colour of hostname in zsh prompt
 ZSH_HOST_COLOUR Green
 

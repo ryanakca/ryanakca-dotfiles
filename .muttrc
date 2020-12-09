@@ -123,7 +123,7 @@ unignore X-Label:
 set mbox_type=mbox
 
 # In case it's unset
-set sendmail=MSMTP_PATH
+set sendmail="sendmail -oem -oi"
 
 # For the -f option to work properly with account-hooks, it looks like I need
 # to unset the folder option

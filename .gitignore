@@ -14,5 +14,4 @@ emacsen/make-*
 .irssi/certs/*
 .irssi/away.log
 .irssi/config.autosave
-bin/msmtp
 .config/wpa_supplicant.conf

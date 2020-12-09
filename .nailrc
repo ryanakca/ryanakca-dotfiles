@@ -1,5 +1,5 @@
 define clearset {
-    unset folder from sendmail record smtp password
+    unset folder from record smtp password
     unset smime-sign smime-sign-cert smime-sign-nickname
     unset hold
 }
@@ -12,7 +12,6 @@ account l {
 account d {
     call clearset
     set folder=imap://ryan@localhost/
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set from="Ryan Kavanagh <rak@debian.org>"
 }
 
@@ -21,7 +20,6 @@ account g {
     set from="Ryan Kavanagh <rak@debian.org>"
     set folder=imaps://ryanakca%40gmail.com@imap.gmail.com/
     set password-ryanakca%40gmail.com@imap.gmail.com=GMAIL_mailx_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-default
     set imap-keepalive=30
     set hold
     unset MBOX
@@ -34,7 +32,6 @@ account q {
     set folder=imaps://9rak%40queensu.ca@pod51018.outlook.com/
     set imap-starttls-9rak%40queensu.ca@pod51018.outlook.com
     set password-9rak%40queensu.ca@pod51018.outlook.com=QUEENSU_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-queensu
 
     set MBOX=@Read
     set record=@"Sent Items"
@@ -46,7 +43,6 @@ account r {
     set folder=imaps://rak@imap.rak.ac/
     set imap-starttls-rak@imap.rak.ac
     set password-rak@imap.rak.ac=RYANAKCA_PASS
-    set sendmail=/usr/sbin/sendmail
 
     set MBOX=@Read
     set record=@Sent
@@ -57,7 +53,6 @@ account c {
     set from="Ryan Kavanagh <rkavanag@andrew.cmu.edu>"
     set folder=imaps://rkavanag%40andrew.cmu.edu@imap.gmail.com/
     set password-rkavanag%40andrew.cmu.edu@imap.gmail.com=CMU_PASS
-    set sendmail=HOMEDIR/bin/msmtp/msmtp-cmu
 
     set MBOX=@Read
 }
@@ -92,6 +87,8 @@ set bsdcompat
 set MBOX=~/mbox
 
 set quote="headers"
+
+set sendmail=sendmail
 
 shortcut mitm imaps://rakavan@imap.exchange.mit.edu:993/
 shortcut lh imap://ryan@localhost/

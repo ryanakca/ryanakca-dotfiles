@@ -17,7 +17,7 @@ $CONFIG{'keyid'}       = [ qw{8F7BF8FC4A11C97A} ];
 $CONFIG{'also-encrypt-to'} = [ qw{8F7BF8FC4A11C97A} ];
 $CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
 
-$ENV{'PERL_MAILERS'} = 'sendmail:'.$ENV{'HOME'}.'/bin/msmtp/msmtp-default';
+$ENV{'PERL_MAILERS'} = [ 'sendmail', '-oem', '-oi' ];
 $CONFIG{'mailer-send'} = [ 'sendmail' ];
 
 # The options below need not be changed for normal operation.

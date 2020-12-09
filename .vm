@@ -68,29 +68,24 @@
 (setq vmpc-actions
       '( ("From Queens"
 	  (vmpc-composition-buffer
-	    (setq user-mail-address "ryan.kavanagh@queensu.ca")
-            (setq sendmail-program "~/bin/msmtp/msmtp-queensu") )
+	    (setq user-mail-address "ryan.kavanagh@queensu.ca") )
 	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryan.kavanagh@queensu.ca>")
 	  (vmpc-substitute-header "IMAP-FCC" "local:QueensU.Sent Items") )
 	 ("From Queens CS"
           (vmpc-composition-buffer
-	   (setq user-mail-address "ryan@cs.queensu.ca")
-           (setq sendmail-program "~/bin/msmtp/msmtp-queensucs") )
+	   (setq user-mail-address "ryan@cs.queensu.ca") )
 	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryan@cs.queensu.ca>") )
 	 ("From Debian"
           (vmpc-composition-buffer
-            (setq user-mail-address "rak@debian.org")
-	    (setq sendmail-program "~/bin/msmtp/msmtp-default") )
+            (setq user-mail-address "rak@debian.org") )
 	  (vmpc-substitute-header "From" "Ryan Kavanagh <rak@debian.org>") )
 	 ("From Ubuntu"
 	  (vmpc-composition-buffer
-	   (setq user-mail-address "ryanakca@ubuntu.com")
-	   (setq sendmail-program "~/bin/msmtp/msmtp-ubuntu") )
+	   (setq user-mail-address "ryanakca@ubuntu.com") )
 	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryanakca@ubuntu.com") )
          ("From Kubuntu"
           (vmpc-composition-buffer
-           (setq user-mail-address "ryanakca@kubuntu.org")
-           (setq sendmail-program "~/bin/msmtp/msmtp-kubuntu") )
+           (setq user-mail-address "ryanakca@kubuntu.org") )
 	  (vmpc-substitute-header "From" "Ryan Kavanagh <ryanakca@kubuntu.org") )
          ("prompt"
 	  (vmpc-prompt-for-profile) )
