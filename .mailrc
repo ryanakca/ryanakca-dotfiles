@@ -1,12 +1,6 @@
-set NAIL_EXTRA_RC=~/.nailrc
-set sendmail=/usr/sbin/sendmail
-set from="Ryan Kavanagh <rak@debian.org>"
-set append save emptystart
-
-retain Date From Sender To CC Subject
-
-# from /etc/mailrc
-set ask askcc append dot save crt
-ignore Received Message-Id Resent-Message-Id Status Mail-From Return-Path Via Delivered-To
-
+set ask
+set crt
 set editheaders
+ignore message-id received date fcc status resent-date resent-message-id resent-from in-reply-to
+
+set mailx-extra-rc=~/.s-nail.rc

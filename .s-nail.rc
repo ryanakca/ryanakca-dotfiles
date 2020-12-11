@@ -1,0 +1,149 @@
+# vim: set commentstring=#%s:
+
+# This example assumes v15.0 compatibility mode
+set v15-compat
+
+# Request strict TLL transport layer security checks
+set tls-verify=strict
+
+# Do not load the default CA locations that are built into the used to TLS
+# library to verify TLS server certificates.
+set tls-ca-no-defaults
+set tls-ca-file=SSL_CERTS
+
+# Send mail in utf-8, unless the original poster used a different charset
+set sendcharsets=utf-8
+set reply-in-same-charset
+
+# When replying, do not merge From: and To: of the original message into To:.
+# Instead old From: -> new To:, old To: -> merge Cc:.
+set recipients-in-cc
+
+# Wait on the MTA for errors reported through exit status (including the
+# built-in SMTP one)!
+set sendwait=mta
+
+# Don't move read messages to MBOX
+set hold
+
+# cache imap
+set imap-cache=~/.cache/mailx
+
+# make sure less displays colours
+set PAGER="less -FXQR"
+
+# always use the pager when needed
+set crt
+
+# set colour display
+set colour-pager
+
+# set colours
+if terminal && "$features" =% +colour
+    colour 256 view-header  fg=brown  "date,from,to,cc,bcc"
+    colour 256 view-header  fg=green  "subject"
+    colour 256 view-msginfo fg=white,bg=blue
+
+    colour 256 sum-dotmark ft=bold,fg=cyan dot
+    colour 256 sum-header  fg=magenta older
+    colour 256 sum-thread  bg=red     dot
+    colour 256 sum-thread  fg=cyan
+endif
+
+# Default to a threaded display
+set autosort=thread
+# Don't automatically collapse threads
+unset autocollapse
+
+# automatically launch visual editor when typing messages
+set editalong=v
+
+# Only include the selected header fields when typing messages
+headerpick type retain from_ date from to cc bcc subject \
+	message-id mail-followup-to reply-to
+
+# keep names when replying to messages
+set fullnames
+
+# Add my signature
+# Requires me to manually add the leading '-- '
+define ocs_signature {
+    read version
+    echo ''
+    echo '-- '
+    echo '~< ~/.signature'
+}
+set on-compose-splice=ocs_signature
+
+# When replying, quote message
+set quote
+# and prefix them with "> "
+set indentprefix="> "
+# and wrap lines to 72 characters
+set quote-fold=72
+# with the header
+set quote-inject-head="On %d, %f wrote:"
+
+# Be nice with mailing lists.
+set followup-to followup-to-honour=ask-yes reply-to-honour=ask-yes
+
+# use the system sendmail for sending mail
+set mta=SENDMAIL
+
+# and lookup passwords in netrc
+set netrc-lookup
+
+#############
+# ACCOUNTS #
+############
+
+set alternates="ryanakca@gmail.com,rak@debian.org,ryanakca@ubuntu.com,ryanakca@kubuntu.org,rak@rak.ac,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
+
+define gmail {
+    set from="Ryan Kavanagh <ryanakca@gmail.com>"
+    set folder=imaps://ryanakca%40gmail.com@imap.gmail.com/
+    unset MBOX
+    set record=+"[Google Mail]/Sent Items"
+}
+
+define queensu {
+    set from="Ryan Kavanagh <ryan.kavanagh@queensu.ca>"
+    set folder=imaps://9rak%40queensu.ca@pod51018.outlook.com/
+    set MBOX=+Read
+    set record=+"Sent Items"
+}
+
+define rak {
+    set from="Ryan Kavanagh <rak@rak.ac>"
+    set folder=imaps://rak@imap.rak.ac/
+    set MBOX=+RAK
+    set record=+Sent
+}
+
+define cmu {
+    set from="Ryan Kavanagh <rkavanagh@cs.cmu.edu>"
+    set folder=imaps://rkavanag%40andrew.cmu.edu@imap.gmail.com/
+    set MBOX=+Read
+    set record=+"[Gmail]/Sent Items"
+}
+
+# rak is the default account
+call rak
+set inbox=+INBOX
+
+account g {
+    call gmail
+}
+
+account q {
+    call queensu
+}
+
+account r {
+    call rak
+}
+
+account c {
+    call cmu
+}
+

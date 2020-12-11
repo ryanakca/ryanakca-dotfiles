@@ -10,7 +10,7 @@ LOCAL_FILES = \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
     .mutt/ssl.rc \
-    .nailrc \
+    .s-nail.rc \
     .netrc \
     .offlineimaprc \
     .xinitrc \
@@ -48,6 +48,7 @@ GLOBAL_FILES = \
     .local/ \
     .mailcap \
     .mailcheckrc \
+    .mailrc \
     .mutt/ \
     .mutt/alias.rc \
     .mutt/alias-cmu.rc \
@@ -99,8 +100,8 @@ VARS_.imapfilter/config.lua = LOCAL_PASS IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP
 VARS_.mutt/accounts.rc  = $(MAIL_PASS)
 VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS
-VARS_.nailrc		= $(MAIL_PASS) HOMEDIR GMAIL_mailx_PASS
-VARS_.netrc             = LOCAL_PASS GMAIL_PASS
+VARS_.s-nail.rc		= SENDMAIL SSL_CERTS
+VARS_.netrc             = $(MAIL_PASS)
 VARS_.offlineimaprc     = $(MAIL_PASS) SSL_CERTS
 VARS_.xinitrc           = SCREENLAYOUT PULSE
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y

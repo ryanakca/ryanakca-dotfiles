@@ -104,7 +104,6 @@ alias vi='vim'
 alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
 alias remote_3051='ssh -f -N -q -L 6301:192.168.1.207:631 ryan@ryanak.ca'
 alias sshfw='ssh -oForwardAgent=yes'
-alias mail="s-nail"
 alias kinits="kinit -r 200h -f rkavanag@CS.CMU.EDU && kinit -r 200h -f rkavanag@ANDREW.CMU.EDU"
 alias slpr="lpr -P scs_public -o Staple=1Staple\(Left\) -o KMDuplex=True"
 
