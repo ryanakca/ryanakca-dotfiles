@@ -80,7 +80,7 @@ GLOBAL_FILES = \
     .zlogout \
     bin/ \
 
-get-val = $(shell egrep '^$1' $(SUBSTS_FILE) | cut -f2- -d' ')
+get-val = $(if $(C_$1),$(C_$1),$(shell egrep '^$1' $(SUBSTS_FILE) | cut -f2- -d' '))
 get-sed-args = $(foreach var,$($(1)),-e 's|$(var)|$(call get-val,$(var))|g')
 
 CURRENT_BRANCH = $(shell git branch --no-color | colrm 1 2)
@@ -89,6 +89,7 @@ SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
 EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 BUILD_FONTS   = $(call get-val,BUILD_FONTS)
+C_SENDMAIL      = $(shell which sendmail)
 
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS
 
