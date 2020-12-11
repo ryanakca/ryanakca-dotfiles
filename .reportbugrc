@@ -11,9 +11,7 @@ ui urwid
 # name and email setting (if non-default)
 realname "Ryan Kavanagh"
 email "rak@debian.org"
-# Disable fallback mode by commenting out the following:
-no-cc
-header "X-Debbugs-CC: rak@debian.org"
+list-cc-me
 smtphost reportbug.debian.org
 # You can add other settings after this line.  See
 # /etc/reportbug.conf for a full listing of options.
