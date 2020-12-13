@@ -164,69 +164,12 @@ install: build
 	chmod 700 ~/.ssh
 	-[ "$(BUILD_FONTS)" != "True" ] || fc-cache ~/.fonts
 
-sha256sums: .git/refs/heads/$(CURRENT_BRANCH)
-	$(SHA256) `git ls-files | grep -v $@` > $@
-	[ $(SHA256) = 'sha256' ] || awk '{ \
-	    sum = $$1; \
-	    $$1 = ""; \
-	    # We want (filename), not ( filename). \
-	    gsub(/^ /,""); \
-	    print "SHA256 (" $$0 ") = " sum; \
-	    }' $@ > $@.temp
-	mv $@.temp $@
-
-sha256sums.asc: sha256sums
-	rm -f $@
-	gpg --armor --detach-sign $<
-
 merge: SUBSTS $(SUBSTS_FILE)
 	# sdiff has exit status 1 if files are different. Ignore
 	- sdiff -o SUBSTS.merged $^
 	@echo ""
 	@echo "Please review SUBSTS.merged, then run"
 	@echo "mv SUBSTS.merged $(SUBSTS_FILE)"
-
-verify:
-	# BSD sha256 sum command doesn't have a -c option.
-	# BSD and coreutils sha256 commands have different outputs, however, the
-	# file is always in field two. The sum's location varies.
-	awk --posix 'BEGIN {\
-		mismatch_count = 0; \
-		match_count = 0; \
-	    } { \
-		# The file associated with the sum we`re checking \
-		# Appears to be field 2 in BSD and coreutils sum \
-		file = $$2; \
-		# We want `filename`, not `(filename)` \
-		sub(/^\(/, "", file); \
-		sub(/\)$$/, "", file); \
-		# Generate the sum to compare with \
-		cmd = "$(SHA256) " file; \
-		cmd | getline gensum; \
-		close(cmd); \
-		split(gensum, gensum_fields); \
-		gensum = ""; \
-		for (field in gensum_fields) { \
-		    if (gensum_fields[field] ~ /[[:xdigit:]]{64}/) { \
-			gensum = gensum_fields[field]; \
-		    } \
-		} \
-		for (i = 1; i <= NF; i++) { \
-		    if ($$i ~ /[[:xdigit:]]{64}/) { \
-			filesum = $$i; \
-		    } \
-		} \
-		if (filesum == gensum) { \
-		    print "Match: " file; \
-		    match_count += 1; \
-		} else { \
-		    print "Mismatch: " file; \
-		    mismatch_count += 1; \
-		} \
-	    } END { \
-		print match_count, "matches, ", mismatch_count, "mismatches." \
-	}' sha256sums
-	gpg --verify sha256sums.asc
 
 udh: udh-master
 
