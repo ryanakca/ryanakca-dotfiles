@@ -36,3 +36,5 @@
 [diff]
 	mnemonicPrefix = true
 	algorithm = histogram
+[diff "gpg"]
+	textconv = gpg --no-tty --decrypt
