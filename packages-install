@@ -24,7 +24,6 @@ apt-get install \
     lintex \
     mailcheck \
     mplayer \
-    msmtp \
     mutt-patched \
     nitrogen \
     notmuch \
