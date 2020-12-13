@@ -129,6 +129,9 @@ set sendmail="sendmail -oem -oi"
 # to unset the folder option
 unset folder
 source ~/.mutt/accounts.rc
+# load alias-cmu.rc before alias.rc so that alias.rc overrides any aliases
+# in all accounts apart from SCS. The SCS account hook reloads alias-cmu.rc
+# afterwards
 source ~/.mutt/alias-cmu.rc
 source ~/.mutt/alias.rc
 source ~/.mutt/mailinglists.rc
