@@ -14,18 +14,10 @@ set copy = 'no';\
 unset smtp_url;\
 unset smtp_pass;\
 unset mbox;\
-macro index .s '<tag-prefix><copy-message>=Debian.archive<enter>' 'Saves Deb packaging email to Debian.archive';\
 source "~/.mutt/savehooks.rc";\
 set pager_format = '-%Z-GMAIL: %C/%m: %-20.20n %s';\
 set compose_format = '-- GMAIL: Compose [Approx. msg size: %l Atts: %a]%>-';\
 set status_format = '-%r-GMAIL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
-
-account-hook imap://localhost \
-"set imap_user = 'ryan';\
-set imap_pass = 'LOCAL_PASS';\
-set imap_passive = 'no';\
-set folder = 'imap://localhost';\
-set spoolfile = '=INBOX'"
 
 account-hook imaps://outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
@@ -79,21 +71,6 @@ unset smtp_pass;\
 set pager_format = '-%Z-CMU: %C/%m: %-20.20n %s';\
 set compose_format = '-- CMU: Compose [Approx. msg size: %l Atts: %a]%>-';\
 set status_format = '-%r-CMU: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
-
-folder-hook /var/mail/ryan \
-"set mbox_type = Maildir;\
-set folder = /var/mail/ryan;\
-set spoolfile = /var/mail/ryan;\
-set postponed = $HOME/.maildb/GMAIL/Drafts;\
-macro index,pager <ESC>a '<save-message>$HOME/.maildb/GMAIL/[Google Mail]/All Mail<enter><enter>' 'Archive';\
-set pager_format = '-%Z-LOCAL: %C/%m: %-20.20n %s';\
-set compose_format = '-- LOCAL: Compose [Approx. msg size: %l Atts: %a]%>-';\
-set status_format = '-%r-LOCAL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
-
-
-macro index <F12> "cimaps://ryanakca@gmail.com@imap.gmail.com/INBOX<enter>"
-macro index <F11> "cimap://localhost/INBOX<enter>"
-macro index <F10> "cimaps://outlook.office365.com/<enter>"
 
 macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
