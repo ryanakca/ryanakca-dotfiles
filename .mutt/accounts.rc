@@ -147,5 +147,3 @@ macro compose <F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
 "Send mail from rak.ac"
-
-set certificate_file = '~/.mutt/certs/certificates'

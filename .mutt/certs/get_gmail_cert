@@ -1,1 +1,0 @@
-openssl s_client -connect gmail.com:443 -verify 3 -CAfile Equifax_Secure_CA.pem -state
