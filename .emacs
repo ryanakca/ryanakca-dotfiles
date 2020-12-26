@@ -426,7 +426,6 @@ Otherwise split the current paragraph into one sentence per line."
   :after powerline ; must be loaded after for powerline-moe-theme to work
   :config
   (moe-dark)
-  (moe-theme-set-color 'blue)
   (powerline-moe-theme))
 
 (use-package ocp-indent
