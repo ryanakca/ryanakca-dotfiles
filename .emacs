@@ -816,6 +816,14 @@ If not, issue a warning."
   (TeX-source-correlate-method 'synctex)
   (TeX-PDF-mode t) ; use pdftex by default
   :config
+  (cond
+   ((eq system-type 'darwin)
+    (add-to-list 'TeX-view-program-list
+		 '("Zathura"
+		   ("zathura "
+		    (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\" ")
+		    " %o")
+		   "zathura"))))
   (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura")))
 
 (use-package tool-bar
