@@ -44,6 +44,7 @@ GLOBAL_FILES = \
     .gitconfig-debian \
     .imapfilter/ \
     .inputrc \
+    .latexmkrc \
     .lbdbrc \
     .local/ \
     .mailcap \
