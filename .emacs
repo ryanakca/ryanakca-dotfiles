@@ -230,6 +230,10 @@ Extended Format date in the date field and return it as a string obeing
   :hook
   (bibtex-mode . (lambda () (add-to-list 'company-backends 'company-bibtex))))
 
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
 (use-package company-coq
   :ensure t
   :hook (coq-mode . company-coq-mode))
