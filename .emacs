@@ -77,15 +77,6 @@
       (?1 delete-other-windows "Delete Other Windows")
       (?? aw-show-dispatch-help))))
 
-(use-package auto-complete
-  :ensure t
-  :config
-  (ac-config-default)
-  (ac-set-trigger-key "TAB")
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-  :hook
-  ((Coq-mode LaTeX-mode sml-mode) . auto-complete-mode))
-
 (use-package auto-indent-mode
   :ensure t
   :config
@@ -221,6 +212,31 @@ Extended Format date in the date field and return it as a string obeing
 (use-package cc-mode
   :custom
   (c-default-style "bsd"))
+
+(use-package company
+  :ensure t
+  :hook
+  (after-init . global-company-mode))
+
+(use-package company-auctex
+  :after latex
+  :config
+  (company-auctex-init))
+
+(use-package company-bibtex
+  :ensure t
+  :hook
+  (bibtex-mode . (lambda () (add-to-list 'company-backends 'company-bibtex))))
+
+(use-package company-coq
+  :ensure t
+  :hook (coq-mode . company-coq-mode))
+
+(use-package company-math
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-math-symbols-unicode)
+  (add-to-list 'company-backends 'company-latex-commands))
 
 (use-package cus-edit
   :custom
