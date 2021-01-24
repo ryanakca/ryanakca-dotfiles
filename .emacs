@@ -215,6 +215,8 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package company
   :ensure t
+  :bind
+  ("<tab>" . company-indent-or-complete-common)
   :hook
   (after-init . global-company-mode))
 
@@ -320,7 +322,9 @@ Extended Format date in the date field and return it as a string obeing
   :ensure t
   :bind (("M-x"     . helm-M-x)
 	 ("C-x C-f" . helm-find-files)
-	 ("C-x C-b" . helm-mini))
+	 ("C-x C-b" . helm-mini)
+	 :map helm-map
+	 ("<tab>"   . helm-select-action))
   :config
   (helm-mode 1))
 
