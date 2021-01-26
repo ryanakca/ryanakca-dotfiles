@@ -516,9 +516,14 @@ If not, issue a warning."
 	  (unless (member journal (-flatten org-ref-bibtex-journal-abbreviations))
 	    (message "Journal \"%s\" not found in org-ref-bibtex-journal-abbreviations." journal))))))
   :custom
-  (org-ref-title-case-types '("article" "book" "inproceedings" "proceedings" "report"))
+  (org-ref-title-case-types '(("article" "title")
+			      ("book" "booktitle" "title")
+			      ("inproceedings" "booktitle" "title")
+			      ("proceedings" "title")
+			      ("report" "title")))
   (org-ref-bibtex-journal-abbreviations
    '(("CACM" "Communications of the ACM" "Comm. ACM")
+     ("Discourse \\& Society")
      ("ENTCS" "Electronic Notes in Theoretical Computer Science")
      ("Information and Computation")
      ("International Journal of Foundations of Computer Science" "Int. J. Found. Comput. Sci.")
