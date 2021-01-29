@@ -107,7 +107,9 @@
   (bibtex-autokey-titlewords 3)
   ;; Make all title words lowercase
   (bibtex-autokey-preserve-case 1)
-  :bind (:map bibtex-mode-map ("C-c C-c" . org-ref-clean-bibtex-entry))
+  :bind (:map bibtex-mode-map
+	      ("C-c C-c" . org-ref-clean-bibtex-entry)
+	      ("C-c s" . bibtex-sort-buffer))
   :config
   ;; stolen from bibtex.el and modified to handle "Mac Lane"
   (defun bibtex-autokey-demangle-name (fullname)
