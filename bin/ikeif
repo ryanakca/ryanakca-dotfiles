@@ -1,0 +1,17 @@
+#!/usr/bin/sudo /bin/sh
+
+for x in 1 3; do
+    if ! ip link show dummy$x >/dev/null 2>&1; then
+        ip link add dummy$x type dummy && ip link set dummy$x up
+    fi
+    SUBNET=$(sudo ikectl show sa | grep -Poh "10.0.$x.\d+/32" | sort -u | sed -e 's@/32@/24@g')
+    CURR=$(ip addr show dev dummy$x label dummy$x:ikeif | grep -Po 'inet \K[\d./]+')
+    if test "x${SUBNET}" != "x${CURR}"; then
+        ip addr add ${SUBNET} label dummy$x:ikeif dev dummy$x
+        if test "x${CURR}" != "x"; then
+            ip addr del "${CURR}" dev dummy$x
+        fi
+    fi
+done
+
+#vim: set ft=sh:
