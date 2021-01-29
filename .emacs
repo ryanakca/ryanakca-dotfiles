@@ -469,7 +469,50 @@ Otherwise split the current paragraph into one sentence per line."
   :after helm-bibtex)
 
 (use-package org-ref-arxiv
-  :ensure org-ref)
+  :ensure org-ref
+  :custom
+  (arxiv-entry-format-string "@Misc{%s,
+title = {%s},
+author = {%s},
+eprinttype = {arxiv},
+date = {%s},
+eprint = {%s},
+eprintclass = {%s},
+abstract = {%s},
+_checked = {NOT CHECKED},
+_source = {ev},
+}")
+  ;; redefine it to use a sensible date and stuff.
+  ;; my version of arxiv-get-bibtex-entry-via-arxiv-api
+  :config
+  (defun my/arxiv-get-bibtex-entry-via-arxiv-api (arxiv-number)
+    "Retrieve meta data for ARXIV-NUMBER.
+Returns a formatted BibTeX entry."
+    (with-current-buffer
+	(url-retrieve-synchronously (format "http://export.arxiv.org/api/query?id_list=%s" arxiv-number) t)
+      (let* ((parse-tree (libxml-parse-xml-region
+			  (progn (goto-char 0)
+				 (search-forward "<?xml ")
+				 (match-beginning 0))
+			  (point-max)))
+	     (entry (assq 'entry parse-tree))
+	     (authors (--map (nth 2 (nth 2 it))
+			     (--filter (and (listp it) (eq (car it) 'author)) entry)))
+	     (date (nth 2 (assq 'published entry)))
+	     (title (nth 2 (assq 'title entry)))
+	     (names (arxiv-bibtexify-authors authors))
+	     (category (cdar (nth 1 (assq 'primary_category entry))))
+	     (abstract (s-trim (nth 2 (assq 'summary entry))))
+	     (url (nth 2 (assq 'id entry)))
+	     (temp-bibtex (format arxiv-entry-format-string "" title names date arxiv-number category abstract url))
+	     (key (with-temp-buffer
+		    (insert temp-bibtex)
+		    (bibtex-mode)
+		    (bibtex-set-dialect (parsebib-find-bibtex-dialect) t)
+		    (org-ref-replace-nonascii)
+		    (bibtex-generate-autokey))))
+	(format arxiv-entry-format-string key title names date arxiv-number category abstract url))))
+  (advice-add 'arxiv-get-bibtex-entry-via-arxiv-api :override 'my/arxiv-get-bibtex-entry-via-arxiv-api))
 
 (use-package org-ref-bibtex
   :ensure org-ref
