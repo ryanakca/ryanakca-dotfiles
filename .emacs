@@ -562,6 +562,7 @@ If not, issue a warning."
   (org-ref-title-case-types '(("article" "title")
 			      ("book" "booktitle" "title")
 			      ("inproceedings" "booktitle" "title")
+			      ("misc" "title")
 			      ("proceedings" "title")
 			      ("report" "title")))
   (org-ref-bibtex-journal-abbreviations
