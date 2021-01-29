@@ -517,7 +517,7 @@ Returns a formatted BibTeX entry."
 (use-package org-ref-bibtex
   :ensure org-ref
   :config
-  (defun org-ref-rak-bibtex-format-url-if-doi ()
+  (defun my/org-ref-format-url-if-doi ()
     "Override built-in function. Originally, this reformatted
 the url to point to DOI. I would rather kill the URL field
 entirely if it contains the DOI. bibtex-clean-entry will then
@@ -530,7 +530,7 @@ delete the field."
 	  (when (string-match-p (regexp-quote (org-ref-bibtex-entry-doi))
 				(bibtex-autokey-get-field "url"))
 	    (bibtex-set-field "url" ""))))))
-  (defun org-ref-rak-biblatex-journaltitle ()
+  (defun my/org-ref-biblatex-journaltitle ()
     "Rename journal to journaltitle"
     (interactive)
     (save-excursion
@@ -542,7 +542,7 @@ delete the field."
 	  (bibtex-beginning-of-entry)
 	  (bibtex-set-field "journal" "")
 	  (bibtex-set-field "journaltitle" journal)))))
-  (defun orcb-rak-check-journal ()
+  (defun my/orcb-check-journal ()
     "Check entry at point to see if journal exists in `org-ref-bibtex-journal-abbreviations'.
 If not, issue a warning."
     (interactive)
@@ -605,7 +605,7 @@ If not, issue a warning."
 	      ("C-c C-c" . org-ref-clean-bibtex-entry)
 	      ("C-c d"   . my/set-checked-date))
   :config
-  (defun org-ref-rak-title-case-english ()
+  (defun my/org-ref-title-case-english ()
     "Call org-ref-title-case only if the language field is set
        to `english' or is missing. This will avoid having foreign-
        language titles re-cased."
@@ -644,19 +644,19 @@ If not, issue a warning."
        (bibtex-completion-edit-notes
 	(list (car (org-ref-get-bibtex-key-and-file thekey)))))))
   (org-ref-clean-bibtex-entry-hook
-   '(org-ref-rak-biblatex-journaltitle
+   '(my/org-ref-biblatex-journaltitle
      bibtex-clean-entry
-     org-ref-rak-bibtex-format-url-if-doi
+     my/org-ref-format-url-if-doi
      orcb-key-comma
      org-ref-replace-nonascii
      orcb-&
      orcb-%
-     org-ref-rak-title-case-english ;; all entries, -article does only articles
-     org-ref-rak-biblatex-journaltitle
+     my/org-ref-title-case-english ;; all entries, -article does only articles
+     my/org-ref-biblatex-journaltitle
      orcb-clean-year
      orcb-key
      orcb-clean-doi
-     orcb-rak-check-journal
+     my/orcb-check-journal
      org-ref-sort-bibtex-entry
      orcb-fix-spacing
      orcb-clean-nil-opinionated)))
