@@ -601,7 +601,9 @@ If not, issue a warning."
 (use-package org-ref-core
   :ensure org-ref
   :after helm-bibtex
-  :bind (("C-c C-c" . org-ref-clean-bibtex-entry))
+  :bind (:map bibtex-mode-map
+	      ("C-c C-c" . org-ref-clean-bibtex-entry)
+	      ("C-c d"   . my/set-checked-date))
   :config
   (defun org-ref-rak-title-case-english ()
     "Call org-ref-title-case only if the language field is set
@@ -611,6 +613,12 @@ If not, issue a warning."
     (let ((langfield (bibtex-autokey-get-field "language")))
       (if (= (length langfield) 0)
 	  (org-ref-title-case))))
+  (defun my/set-checked-date ()
+    "Set the _checked field of a bibtex entry to the current date."
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (bibtex-set-field "_checked" (format-time-string "%Y-%m-%d"))))
   ;; taken from org-ref-bibtex.el and extended
   (setq org-ref-nonascii-latex-replacements
 	(append '(("ﬁ" . "fi")
