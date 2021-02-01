@@ -65,6 +65,8 @@ export TEXMFHOME=${HOME}/.texmf
 export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 
+export GPG_TTY=$(tty) # for gpg-agent to work
+
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias emacs='emacs -nw'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
