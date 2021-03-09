@@ -488,6 +488,7 @@ date = {%s},
 eprint = {%s},
 eprintclass = {%s},
 abstract = {%s},
+pagetotal = {MISSING},
 _checked = {NOT CHECKED},
 _source = {ev},
 }")
@@ -570,6 +571,7 @@ If not, issue a warning."
   :custom
   (org-ref-title-case-types '(("article" "title")
 			      ("book" "booktitle" "title")
+			      ("incollection" "booktitle" "title")
 			      ("inproceedings" "booktitle" "title")
 			      ("misc" "title")
 			      ("proceedings" "title")
