@@ -334,6 +334,9 @@ Extended Format date in the date field and return it as a string obeing
   :config
   (helm-mode 1))
 
+(use-package helm-org
+  :ensure t)
+
 (use-package info-look
   :ensure t)
 
@@ -459,6 +462,10 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package octave
   :mode ("\\.m\'" . octave-mode))
+
+(use-package org
+  :custom
+  (org-link-file-path-type 'relative))
 
 (use-package org-noter
   :ensure t
@@ -771,6 +778,10 @@ If not, issue a warning."
 (use-package simple
   :custom
   (column-mode-number t))
+
+(use-package smerge-mode
+  :custom
+  (smerge-command-prefix (kbd "C-c v")))
 
 (use-package sml-mode
   :ensure t
