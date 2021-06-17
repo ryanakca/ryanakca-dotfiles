@@ -15,7 +15,7 @@ URxvt*color12: #0088FF
 URxvt.underlineColor: yellow
 URxvt.saveLines: 8192
 URxvt.mapAlert: true
-URxvt.font: xft:Inconsolata:size=7,xft:Input Mono Medium:size=7,xft:DejaVu Sans Mono:size=7,xft:Liberation Mono:size=7
+URxvt.font: xft:Inconsolata:size=7,xft:Input Mono Medium:size=7,xft:DejaVu Sans Mono:size=7,xft:Liberation Mono:size=7,xft:symbola:size=10:minspace=False
 URxvt.perl-lib: /home/ryan/.urxvt
 URxvt.perl-ext-common: default,matcher,font-size,-searchable-scrollback
 URxvt.url-launcher: firefox
