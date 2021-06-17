@@ -6,13 +6,9 @@ reportbug_version "4.12.6"
 mode expert
 # default user interface
 ui urwid
-# offline setting - comment out to be online
-#offline
 # name and email setting (if non-default)
 realname "Ryan Kavanagh"
 email "rak@debian.org"
-list-cc-me
-smtphost reportbug.debian.org
 # You can add other settings after this line.  See
 # /etc/reportbug.conf for a full listing of options.
 keyid 4E469519ED677734268FBD958F7BF8FC4A11C97A
