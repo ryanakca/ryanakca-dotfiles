@@ -19,7 +19,7 @@ http://rubix.wavestreamer.com:8015/stream/1/
 http://stream03.ustream.ca:8000/cjfofm128.mp3
 
 #EXTINF:-1,CINN-FM 99.1 (Hearst)
-http://stream03.ustream.ca/cinn128.mp3
+http://stream2.statsradio.com:8050/stream
 
 #EXTINF:-1,CFSF-FM 99.3 (Sturgeon Falls)
 http://listenlive.vistaradio.ca/CFSF
