@@ -112,10 +112,10 @@
 	      ("C-c s" . bibtex-sort-buffer))
   :config
   ;; stolen from bibtex.el and modified to handle "Mac Lane"
-  (defun bibtex-autokey-demangle-name (fullname)
+  (defun my/bibtex-autokey-demangle-name (fullname)
     "Get the last part from a well-formed FULLNAME and perform abbreviations."
     (let* (case-fold-search
-	   (name (cond ((string-match "\\(Ma?c +[[:upper:]][^, ]*\\)[^,]*," fullname)
+	   (name (cond ((string-match "\\(\\(Ma?c\\|De\\) +[[:upper:]][^, ]*\\)[^,]*," fullname)
 			;; Name is of the form "Mac Last, First" or
 			;; "Mac Last, Jr, First" or "Mc Last, First" or
 			;; "Mc Last, Jr, First"
@@ -146,6 +146,7 @@
 		       (t (error "Name `%s' is incorrectly formed" fullname)))))
       (funcall bibtex-autokey-name-case-convert-function
 	       (bibtex-autokey-abbrev name bibtex-autokey-name-length))))
+  (advice-add 'bibtex-autokey-demangle-name :override 'my/bibtex-autokey-demangle-name)
   ;; Until https://debbugs.gnu.org/cgi/bugreport.cgi?bug=36252 gets fixed
   (defun bibtex-autokey-get-year ()
     "Return year field contents as a string obeying `bibtex-autokey-year-length'.
@@ -381,6 +382,8 @@ Otherwise split the current paragraph into one sentence per line."
    (LaTeX-mode . turn-off-auto-fill)
    (LaTeX-mode . turn-on-flyspell)
    (LaTeX-mode . LaTeX-math-mode)
+   (LaTeX-mode . (lambda () (set (make-local-variable 'TeX-electric-math)
+			     (cons "\\(" "\\)"))))
    (LaTeX-mode . (lambda ()
 		   (LaTeX-add-environments
 		    '("axiom" LaTeX-env-label)
@@ -552,6 +555,36 @@ delete the field."
 	  (bibtex-beginning-of-entry)
 	  (bibtex-set-field "journal" "")
 	  (bibtex-set-field "journaltitle" journal)))))
+  (defun my/biblatex-date ()
+    "Convert 'year' + 'month' fields to 'date' field"
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (let* ((year (bibtex-autokey-get-field "year"))
+	     (month (downcase (bibtex-autokey-get-field "month")))
+	     (nummonth (cond ((string= month "jan") "01")
+			     ((string= month "feb") "02")
+			     ((string= month "mar") "03")
+			     ((string= month "apr") "04")
+			     ((string= month "may") "05")
+			     ((string= month "jun") "06")
+			     ((string= month "jul") "07")
+			     ((string= month "aug") "08")
+			     ((string= month "sep") "09")
+			     ((string= month "oct") "10")
+			     ((string= month "nov") "11")
+			     ((string= month "dec") "12")
+			     (t "")))
+	     (olddate (bibtex-autokey-get-field "date"))
+	     (newdate (cond ((string-empty-p year) nil)
+			    ((string-empty-p nummonth) year)
+			    (t (concat year "-" nummonth)))))
+	(when (and (string-empty-p olddate)
+		   (not (string-empty-p newdate)))
+	  (bibtex-beginning-of-entry)
+	  (bibtex-set-field "date" newdate)
+	  (bibtex-set-field "year" "")
+	  (bibtex-set-field "month" "")))))
   (defun my/orcb-check-journal ()
     "Check entry at point to see if journal exists in `org-ref-bibtex-journal-abbreviations'.
 If not, issue a warning."
@@ -575,7 +608,8 @@ If not, issue a warning."
 			      ("inproceedings" "booktitle" "title")
 			      ("misc" "title")
 			      ("proceedings" "title")
-			      ("report" "title")))
+			      ("report" "title")
+			      ("thesis" "title")))
   (org-ref-bibtex-journal-abbreviations
    '(("CACM" "Communications of the ACM" "Comm. ACM")
      ("Discourse \\& Society")
@@ -615,6 +649,7 @@ If not, issue a warning."
   :after helm-bibtex
   :bind (:map bibtex-mode-map
 	      ("C-c C-c" . org-ref-clean-bibtex-entry)
+	      ("C-c e"   . my/set-source-ev)
 	      ("C-c d"   . my/set-checked-date))
   :config
   (defun my/org-ref-title-case-english ()
@@ -631,16 +666,21 @@ If not, issue a warning."
     (save-excursion
       (bibtex-beginning-of-entry)
       (bibtex-set-field "_checked" (format-time-string "%Y-%m-%d"))))
+  (defun my/set-source-ev ()
+    "Set the _source field of a bibtex entry to ev."
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (bibtex-set-field "_source" "ev")))
   ;; taken from org-ref-bibtex.el and extended
   (setq org-ref-nonascii-latex-replacements
 	(append '(("ﬁ" . "fi")
 		  ("ı́" . "{\\\\'i}")
 		  ("ω" . "$\\\\omega$")
-		  ("‘" . "`")
-		  ("’" . "'")
-		  ("’" . "'")
+		  ("‘" . "`") ; LEFT SINGLE QUOTATION MARK
+		  ("’" . "'") ; RIGHT SINGLE QUOTATION MARK
 		  ("“" . "``")
-		  ("’" . "'")
+		  ("′" . "'") ; PRIME
 		  ("”" . "''"))
 		org-ref-nonascii-latex-replacements))
   :custom
@@ -665,7 +705,7 @@ If not, issue a warning."
      orcb-%
      my/org-ref-title-case-english ;; all entries, -article does only articles
      my/org-ref-biblatex-journaltitle
-     orcb-clean-year
+     my/biblatex-date
      orcb-key
      orcb-clean-doi
      my/orcb-check-journal
@@ -782,8 +822,9 @@ If not, issue a warning."
   (column-mode-number t))
 
 (use-package smerge-mode
-  :custom
-  (smerge-command-prefix (kbd "C-c v")))
+  :commands smerge-mode
+  :init ;; weirdly won't work if under custom
+  (setq smerge-command-prefix (kbd "C-c v")))
 
 (use-package sml-mode
   :ensure t
