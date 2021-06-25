@@ -32,15 +32,17 @@
 
 # BEGIN LOCAL
 
-export LC_ALL="LOCALE"
 export LANG="LOCALE"
+export LC_TIME="en_GB.UTF-8"
+export LC_COLLATE=C                     # force strict lexicographic sorting
+export TIME_STYLE=long-iso              # make ls -l use YYYY-MM-DD in dired
 export TZ="America/Toronto"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
 export NAME="Ryan Kavanagh"             # Our name.
-export EMAIL="rak@debian.org"     # Our email address.
+export EMAIL="rak@rak.ac"               # Our email address.
 export GPGKEY="4E469519ED677734268FBD958F7BF8FC4A11C97A"                # Our GnuPG key ID.
 export DEBFULLNAME=$NAME                # These are used by Debian packaging...
-export DEBEMAIL=$EMAIL                  # ...programs.
+export DEBEMAIL="rak@debian.org"        # ...programs.
 export DEBSIGN_KEYID=$GPGKEY            # Key ID for signing Debian packages.
 export BZR_EMAIL="$NAME <$EMAIL>"       # Override email for Bazaar.
 export GIT_AUTHOR_NAME=$NAME
@@ -53,16 +55,12 @@ if [[ `hostname` = "demeter.rak.ac" ]]; then
 else
     export PATH=${HOME}/bin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
 fi
-export CCACHE_DIR=/ccache
-#export HTTP_PROXY="http://localhost:3128/"
 export MANWIDTH=80
 export MANOPT="-L en"
-export PYTHONSTARTUP=~/.pythonrc.py
 export PAGER=less
 export PDFVIEWER=evince
 export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
-export LESSCHARSET=utf-8                # Needed for cyrillic &c in less
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 
 export GPG_TTY=$(tty) # for gpg-agent to work
@@ -73,38 +71,17 @@ alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
 alias sneezymud='nc play.sneezymud.com 7900'
 alias news='tin -g  pqnews.cogeco.ca'
-alias bbcr1='mplayer mms://wmlive.bbc.net.uk/wms/bbc_ami/radio1/radio1_bb_live_int_eq1_sl1'
-alias bbcr2='mplayer mms://wmlive.bbc.net.uk/wms/bbc_ami/radio2/radio2_bb_live_int_eq1_sl1'
-alias bbcr3='mplayer mms://wmlive.bbc.net.uk/wms/bbc_ami/radio3/radio3_bb_live_int_eq1_sl1'
-alias rtvec='mplayer -playlist http://radioclasica.rtve.stream.flumotion.com/rtve/radioclasica.mp3.m3u'
-alias rtve3='mplayer -playlist http://radio3.rtve.stream.flumotion.com/rtve/radio3.mp3.m3u'
-alias rtve5='mplayer -playlist http://radio5.rtve.stream.flumotion.com/rtve/radio5.mp3.m3u'
-alias am740='mplayer -playlist http://provisioning.streamtheworld.com/asx/cfzmam.asx'
 alias 1920s='mplayer -playlist http://kara.fast-serv.com:8398/listen.pls'
-alias 1940s='mplayer http://s2.fastcast4u.com:10102/'
-alias wqxr='mplayer -playlist http://www.wqxr.org/stream/wqxr/aac.pls'
 alias dismuke='mplayer -playlist http://early1900s.org/radiodismuke/radiodismuke.ram'
-alias up-theme='rsync -avz --no-p --no-o --no-times -e ssh ~/work/kubuntu-theme-v2/* ryanak.ca:/home/ryan/kubuntu-theme-v2/'
-alias startxkde4='startx -nolisten tcp -- :0 &'
-alias irssi-notify='ssh -f ryanak.ca -L 2227:127.0.0.1:2227 -N && irssi-notifier &'
-alias i2e='/usr/bin/i2e-cli'
 alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
-alias bzbuild='bzr builddeb -S -- -sa -k$GPGKEY'
 alias svbuildi='svn-buildpackage --svn-ignore-new --svn-builder="debuild -S -sa -k$GPGKEY"'
 alias svbuild='svn-buildpackage --svn-builder="debuild -S -sa -k$GPGKEY"'
 alias gibuild='git-buildpackage --git-builder="sbuild -sAd u"'
 alias gibuildi='git-buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
-#alias wtau='wakeonlan 00:0d:56:1b:7a:f0'
-alias wtau='sudo etherwake tau'
-alias pology='python $HOME/work/pology/scripts/posieve.py'
-alias daylog='dch --changelog ${HOME}/work/mcgill/drafts/daylog/daylog'
-alias dmit='dch --changelog ${HOME}/work/MIT/bedrock-group/rakavan/daylog'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
-alias kbd="xkbcomp -I$HOME/.xkb $HOME/.xkb/keymap/icd $DISPLAY"
 alias vi='vim'
 alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
-alias remote_3051='ssh -f -N -q -L 6301:192.168.1.207:631 ryan@ryanak.ca'
 alias sshfw='ssh -oForwardAgent=yes'
 alias slpr="lpr -P scs_public -o Staple=1Staple\(Left\) -o KMDuplex=True"
 
@@ -147,10 +124,6 @@ if [[ `uname` = "Linux" ]]; then
 elif [[ `uname` = "OpenBSD" && -x /usr/local/bin/colorls ]]; then
     alias ls="colorls -G"
 fi
-
-# Cause encfs unmount a mounted encrypted partition after twenty minutes of
-# inactivity by default.
-alias encfs="encfs --idle=20"
 
 fpath=($fpath $HOME/.zsh/func)
 
@@ -211,10 +184,6 @@ bindkey '^R' history-incremental-pattern-search-backward
 # run-help on it :)
 autoload -U zmv
 
-# Command line calculator written in zsh, with a complete history
-# mechanism and other shell features.
-autoload -U zcalc
-
 # Like xargs, but instead of reading lines of arguments from standard input,
 # it takes them from the command line. This is possible/useful because,
 # especially with recursive glob operators, zsh often can construct a command
@@ -226,11 +195,6 @@ autoload -U zcalc
 # zsh: argument list too long: /bin/echo
 # zsh: exit 127   /bin/echo {1..30000}
 autoload -U zargs
-
-# Yes, we are as bloated as emacs
-autoload -U tetris
-zle -N tetris
-bindkey "^Xt" tetris
 
 # Makes it easy to type URLs as command line arguments. As you type, the
 # input character is analyzed and, if it mayn eed quoting, the current
@@ -323,7 +287,6 @@ fi
 # % zkbd
 # to discover your keys.
 
-# bindkey -v             # Vi keybindings.
 
 typeset -U fpath
 
@@ -332,31 +295,6 @@ prompt wunjo
 # seem to be as complete (even if it's nicer for editing, there's no
 # execute-named-cmd bound, for example).
 bindkey -e             # Emacs keybindings.
-
-# Up, down left, right.
-# echotc forms part of the zsh/termcap module. It outputs the termcap value
-# corresponding to the capability it was given as an argument. man zshmodules.
-zmodload -i zsh/termcap
-bindkey "$(echotc kl)" backward-char
-bindkey "$(echotc kr)" forward-char
-bindkey "$(echotc ku)" up-line-or-history
-bindkey "$(echotc kd)" down-line-or-history
-
-bindkey '\e[3~' delete-char # Delete
-
-if [[ "$TERM" == "rxvt-unicode" || "$TERM" == "screen" ]]; then
-    bindkey '\e[7~' beginning-of-line # Home
-    bindkey '\e[8~' end-of-line # End
-elif [[ "$TERM" == "linux" ]]; then
-    bindkey '\e[1~' beginning-of-line # Home
-    bindkey '\e[4~' end-of-line # End    
-else # At least xterm; probably other terms too
-    bindkey '\e[H~' beginning-of-line # Home
-    bindkey '\e[F~' end-of-line # End
-fi
-
-bindkey '\e[5~' up-history # PageUp
-bindkey '\e[6~' down-history # PageDown
 
 # This function sets the window tile to user@host:/workingdir before each
 # prompt. If you're using screen, it sets the window title (works
@@ -454,75 +392,6 @@ debian.wiki() {
 }
 
 #
-# Ubuntu.
-#
-
-ubuntu.help() {
-    # Ubuntu Help site.
-    w3m "https://help.ubuntu.com/community/?action=fullsearch&value=$@"
-}
-
-ubuntu.packages() {
-    # Ubuntu packages.
-    # Again; add: "src:" in order to search for source packages.
-    w3m "http://packages.ubuntu.com/$1"
-}
-
-ubuntu.wiki() {
-    # Search the Ubuntu wiki.
-    w3m "https://wiki.ubuntu.com/?action=fullsearch&value=$@"
-}
-
-#
-# Launchpad.
-#
-
-launchpad.answers.number() {
-    # Display a Launchpad answer by number.
-    w3m "https://answers.launchpad.net/questions/$1"
-}
-
-launchpad.answers.package() {
-    # Display list of questions for package in Launchpad.
-    w3m "https://answers.launchpad.net/ubuntu/+source/$1"
-}
-
-launchpad.answers.search() {
-    # Search Launchpad answers.
-    w3m "https://answers.launchpad.net/questions/+questions?field.search_text=$@"
-}
-
-launchpad.blueprints() {
-    # Search Launchpad blueprints.
-    w3m "https://blueprints.launchpad.net/?searchtext=$@"
-}
-
-launchpad.bugs.number() {
-    # Display a Launchpad bug by number.
-    w3m "https://bugs.launchpad.net/bugs/$1"
-}
-
-launchpad.bugs.package() {
-    # Display list of bugs for a package.
-    w3m "https://bugs.launchpad.net/ubuntu/+source/$1"
-}
-
-launchpad.packages() {
-    # Launchpad packages for Ubuntu.
-    w3m "http://launchpad.net/ubuntu/+source/$1"
-}
-
-launchpad.project() {
-    # Display a Launchpad project.
-    w3m "https://launchpad.net/$1"
-}
-
-launchpad.project.search() {
-    # Search Launchpad projects.
-    w3m "https://launchpad.net/projects/+index?text=$@"
-}
-
-#
 # Others.
 #
 
@@ -537,36 +406,6 @@ google() {
     w3m "http://www.google.com/search?q=$@"
 }
 
-bbc.search() {
-    # Search the BBC website.
-    w3m "http://search.bbc.co.uk/cgi-bin/search/results.pl?q=$@"
-}
-
-demonoid() {
-    # Search Demonoid.com torrents.
-    w3m "http://www.demonoid.com/files/?query=$@"
-}
-
-freedictonary.acronyms() {
-    # Look up an acronym on the FreeDictonary.
-    w3m "http://acronyms.thefreedictionary.com/$1"
-}
-
-imdb() {
-    # Search IMDb.
-    w3m "http://www.imdb.com/find?q=$@"
-}
-
-lonelyplanet() {
-    # Search Lonely Planet.
-    w3m "http://search.lonelyplanet.com/search.do?Ntt=$@"
-}
-
-urbandictionary() {
-    # Search Urbandictionary.com.
-    w3m "http://www.urbandictionary.com/define.php?term=$@"
-}
-
 wikipedia() {
     # Wikipedia search. English section.
     w3m "http://en.wikipedia.org/wiki/Special:Search?search=$@"
@@ -577,33 +416,9 @@ wiktionary() {
     w3m "http://en.wiktionary.org/wiki/Special:Search?search=$@"
 }
 
-wikitravel() {
-    # Wikitravel search. English section.
-    w3m "http://wikitravel.org/en/Special:Search?search=$@"
-}
-
-
 forkex() {
     # Fork program $@ from console.
     nohup "$@" >/dev/null 2>&1 <&1 & disown %%
-}
-
-#conjugate() {
-#    # Conjugates the verb $@
-#    w3m "http://www.mijnwoordenboek.nl/EN/verb/$@"
-#}
-
-conjugate() {
-    # Conjugates the verb $@
-    w3m "http://www.verbix.com/cache/webverbix/1/$@.shtml"
-}
-
-proxy() {
-    export http_proxy=http://localhost:3128/
-}
-
-noproxy() {
-    unset http_proxy
 }
 
 gbp-snap() {
@@ -618,10 +433,6 @@ gbp-snap() {
     DIST=`head -n1 debian/changelog | sed -e 's/.* \(.*\);.*/\1/g'`
     cd ..
     sbuild -d $DIST $DSC
-}
-
-enru() {
-    dict -d mueller7accent $@ | less
 }
 
 # Pretty menu!
@@ -695,13 +506,6 @@ dnslog foldingathome guest haldaemon jabber ldap mailman mpd mysql \
 nut p2p portage postmaster qmaild qmaill qmailp qmailq qmailr qmails \
 smmsp tinydns vpopmail wasabi zope
 
-# Pull hosts from $HOME/.ssh/known_hosts, also from the wiki
-# local _myhosts. If it exists that is.
-if [ -f $HOME/.ssh/known_hosts ]; then
-    _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-    zstyle ':completion:*' hosts $_myhosts
-fi
-
 # Approximate completion. From the wiki.
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
@@ -709,11 +513,6 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 zstyle ':completion:*:sudo:*' command-path /usr/sbin /usr/bin /sbin /bin \
                                            /usr/X11R6/bin
-
-# NOTE: Comment this out for now. Breaks preexec and precmd above.
-#if [ -f /etc/zsh_command_not_found ]; then
-#    . /etc/zsh_command_not_found
-#fi
 
 # Options
 setopt			\
