@@ -12,8 +12,8 @@ kinits () {
     kinit -r 200h -f rak@CLUB.CC.CMU.EDU
 }
 rkinits () {
-    for r in CS.CMU.EDU ANDREW.CMU.EDU CLUB.CC.CMU.EDU; do
-        KRB5CCNAME=`KRB5CCNAME=DIR:$HOME/.cache/krb5cc klist -l | grep $r | sed -e s'/.*:://g'` kinit -R rkavanag@$r
+    for r in rkavanag@CS.CMU.EDU rkavanag@ANDREW.CMU.EDU rak@CLUB.CC.CMU.EDU; do
+        KRB5CCNAME=`KRB5CCNAME=DIR:$HOME/.cache/krb5cc klist -l | grep $r | sed -e s'/.*:://g'` kinit -R $r
     done
     KRB5CCNAME=DIR:$HOME/.cache/krb5cc aklogs
 }
