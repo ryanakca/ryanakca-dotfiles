@@ -291,7 +291,7 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-select-method
    '(nntp "news.club.cc.cmu.edu"
 	  (nntp-address "news.club.cc.cmu.edu")
-	  (nntp-via-address "linux.gp.cs.cmu.edu")
+	  (nntp-via-address "unix.club.cc.cmu.edu")
 	  (nntp-via-rlogin-command "ssh")
 	  (nntp-via-rlogin-command-switches ("-C"))
 	  (nntp-open-connection-function nntp-open-via-rlogin-and-netcat)))
