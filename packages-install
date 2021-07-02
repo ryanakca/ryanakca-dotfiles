@@ -5,44 +5,26 @@ apt-get install \
     cmus \
     ctags \
     curl \
-    darcs \
     devscripts \
     dzen2 \
-    encfs \
-    evince \
-    fonts-spleen \
     git-buildpackage \
     git-core \
     gnupg-agent \
     graphviz \
     htop \
-    imapfilter \
     keychain \
     latex-mk \
     lbdb \
-    libmail-box-perl \
-    lintex \
-    mailcheck \
     mplayer \
-    mutt-patched \
-    nitrogen \
-    notmuch \
-    offlineimap \
+    neomutt \
     parcimonie \
     pinentry-curses \
-    pinentry-qt4 \
     powertop \
     quilt \
     redshift \
     rxvt-unicode \
     sbuild \
-    subversion \
     texlive-full \
     trayer \
     ttf-inconsolata \
-    ubuntu-dev-tools \
-    vim-gtk \
-    xautolock \
-    xpdf \
     zsh \
-
