@@ -17,7 +17,7 @@ case `uname` in
         pavucontrol &
         urxvtd -q -f -o &
         urxvtc &
-        ${HOME}/.screenlayout/zeta-home.sh && nitrogen --restore
+        ${HOME}/.screenlayout/zeta-home.sh
         if [ "false" = "True" ]; then
             sh bin/startaudio &
         fi
