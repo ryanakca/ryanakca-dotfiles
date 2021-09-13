@@ -48,7 +48,6 @@ export BZR_EMAIL="$NAME <$EMAIL>"       # Override email for Bazaar.
 export GIT_AUTHOR_NAME=$NAME
 export DARCS_EMAIL="$NAME <$EMAIL>"
 export QUILT_PATCHES=debian/patches
-export GEM_BIN="$(gem environment gempath | cut -d':' -f1)/bin"
 if [[ `hostname` = "demeter.rak.ac" ]]; then
     export PATH=${HOME}/bin:/opt/local/bin:/opt/local/sbin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
     export MANPATH=/opt/local/share/man:$MANPATH
