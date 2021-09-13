@@ -5,7 +5,6 @@ SUBSTS_FILE=SUBSTS.local
 # information
 LOCAL_FILES = \
     .config/beets/config.yaml \
-    .imapfilter/config.lua \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
     .mutt/ssl.rc \
@@ -41,7 +40,6 @@ GLOBAL_FILES = \
     .emacs.d \
     .gitconfig \
     .gitconfig-debian \
-    .imapfilter/ \
     .inputrc \
     .latexmkrc \
     .lbdbrc \
@@ -95,7 +93,6 @@ C_SENDMAIL      = $(shell which sendmail)
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS
 
 VARS_.config/beets/config.yaml = MBUSER MBPASS
-VARS_.imapfilter/config.lua = LOCAL_PASS IMAPFILTER_GMAIL_SERVER GMAIL_PASS IMAP_FOLDER_SEP IMAPFILTER_LOCAL
 VARS_.mutt/accounts.rc  = $(MAIL_PASS)
 VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS
@@ -119,7 +116,6 @@ build: $(BUILD) fonts
 # We must force these with a phony target, otherwise, make will see that they're
 # already there (for example, from installing the rest of .mutt or .zsh) and
 # will skip them---which means they don't get their substitutions
-build/.imapfilter/config.lua: FORCE
 build/.mutt/accounts.rc: FORCE
 build/.xmonad/xmonad.hs: FORCE
 build/.zsh/func/prompt_wunjo_setup: FORCE
