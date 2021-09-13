@@ -44,7 +44,7 @@ set status_format = '-%r-MCGILL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d?
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
 set imap_pass = 'QUEENSU_PASS';\
-set folder = 'imaps://outlook.office365.com';\
+set folder = 'imaps://9rak@queensu.ca@outlook.office365.com';\
 set record = '=Sent Items';\
 set copy = 'yes';\
 set postponed = '=Drafts';\
