@@ -14,8 +14,7 @@ GLOBAL_OPTIONS="\
 
 LAPTOP_OPTIONS="\
     ${GLOBAL_OPTIONS} \
-    -option lv3:ralt_switch_multikey \
-    -option ctrl:swapcaps"
+    -option lv3:ralt_switch_multikey"
 
 KIN_OPTIONS="\
     ${GLOBAL_OPTIONS} \
