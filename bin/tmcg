@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ! tmux switch -t mail:catgirl >/dev/null 2>&1; then
+    tmux new-window -c '~' -n catgirl     catgirl libera
+    tmux split-window -t mail:catgirl -c '~' catgirl oftc
+    tmux split-window -t mail:catgirl -c '~' catgirl sdf
+    tmux split-window -t mail:catgirl -c '~' catgirl tilde
+    tmux split-window -t mail:catgirl -c '~' catgirl bitlbee
+    tmux set-option -t mail:catgirl remain-on-exit on
+    tmux selectl -t mail:catgirl tiled
+fi
