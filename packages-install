@@ -13,10 +13,12 @@ apt-get install \
     graphviz \
     htop \
     keychain \
+    krb5-user \
     latex-mk \
     lbdb \
     mplayer \
     neomutt \
+    openafs-krb5 \
     parcimonie \
     pinentry-curses \
     powertop \
