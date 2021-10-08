@@ -1,6 +1,7 @@
-cert = /home/rak/private/certs/weechat-sdf.pem
-user = catgirl-zeta
+cert = weechat-sdf.pem
+user = catgirl-LOCALHOST
 host = tilde.pounce.rak.ac
 port = 40404
 save = tilde
 hash = 0,13
+quiet

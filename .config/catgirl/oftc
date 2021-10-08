@@ -1,6 +1,7 @@
-cert = /home/rak/private/certs/weechat.pem
-user = catgirl-zeta
+cert = weechat.pem
+user = catgirl-LOCALHOST
 host = oftc.pounce.rak.ac
 port = 40404
 save = oftc
 hash = 0,13
+quiet

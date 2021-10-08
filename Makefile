@@ -5,6 +5,11 @@ SUBSTS_FILE=SUBSTS.local
 # information
 LOCAL_FILES = \
     .config/beets/config.yaml \
+    .config/catgirl/bitlbee \
+    .config/catgirl/libera \
+    .config/catgirl/oftc \
+    .config/catgirl/sdf \
+    .config/catgirl/tilde \
     .mutt/accounts.rc \
     .mutt/gpg.rc \
     .mutt/ssl.rc \
@@ -93,6 +98,11 @@ C_SENDMAIL      = $(shell which sendmail)
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS
 
 VARS_.config/beets/config.yaml = MBUSER MBPASS
+VARS_.config/catgirl/bitlbee = LOCALHOST
+VARS_.config/catgirl/libera = LOCALHOST
+VARS_.config/catgirl/oftc = LOCALHOST
+VARS_.config/catgirl/sdf = LOCALHOST
+VARS_.config/catgirl/tilde = LOCALHOST
 VARS_.mutt/accounts.rc  = $(MAIL_PASS)
 VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS

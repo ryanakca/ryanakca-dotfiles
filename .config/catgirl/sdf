@@ -1,6 +1,7 @@
-cert = /home/rak/private/certs/weechat-sdf.pem
-user = catgirl-zeta
+cert = weechat-sdf.pem
+user = catgirl-LOCALHOST
 host = sdf.pounce.rak.ac
 port = 40404
 save = sdf
 hash = 0,13
+quiet
