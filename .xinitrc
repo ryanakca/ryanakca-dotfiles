@@ -2,7 +2,7 @@
 
 case `uname` in
     Darwin)
-        . /opt/local/etc/X11/xinit/xinitrc
+        exec icewm-session
         ;;
     *)
         if test -f ~/.Xresources; then
