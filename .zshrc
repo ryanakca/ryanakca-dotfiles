@@ -394,7 +394,7 @@ debian.wiki() {
 #
 
 wttr() {
-    local request="wttr.in/${1-Pittsburgh}"
+    local request="wttr.in/${1-Montreal}"
     [ "$(tput cols)" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
