@@ -1,7 +1,10 @@
 #!/bin/sh
 
+
 case `uname` in
     Darwin)
+        cd ${HOME}
+        xrdb -merge ~/.Xresources
         exec icewm-session
         ;;
     *)
