@@ -72,8 +72,8 @@ color index color109 default ~P
 color index color214 default ~F
 color index color175 default ~Q
 color index color167 default ~=
-color index default color223 ~T
-color index default color167 ~D
+color index color234 color223 ~T
+color index color234 color167 ~D
 
 color header color214 default "^(To|From):"
 color header color142 default "^Subject:"
