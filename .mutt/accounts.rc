@@ -78,12 +78,12 @@ set status_format = '-%r-RAK.AC: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d?
 
 # Sources cmu aliases to override any personal variants already loaded in
 # ~/.muttrc
-account-hook imaps://rkavanag@andrew.cmu.edu@imap.gmail.com \
-"set imap_user = 'rkavanag@andrew.cmu.edu';\
+account-hook imaps://rkavanag@alumni.cmu.edu@imap.gmail.com \
+"set imap_user = 'rkavanag@alumni.cmu.edu';\
 set imap_pass = 'CMU_PASS';\
 set imap_passive = 'no';\
 set imap_keepalive = 60;\
-set folder = 'imaps://rkavanag@andrew.cmu.edu@imap.gmail.com';\
+set folder = 'imaps://rkavanag@alumni.cmu.edu@imap.gmail.com';\
 set spoolfile = '=INBOX';\
 set sendmail='sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <rkavanagh@cs.cmu.edu>';\
@@ -109,13 +109,13 @@ macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@i
 <edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter>' \
 "Send mail from Kubuntu account"
 
-macro compose <F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
+macro compose <F3> '<enter-command>set folder="imaps://rkavanag@alumni.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="sendmail -oem -oi"<enter>\
-<edit-from><kill-line>Ryan Kavanagh <rkavanag@andrew.cmu.edu><enter>' \
-"Send mail from CMU account"
+<edit-from><kill-line>Ryan Kavanagh <rkavanag@alumni.cmu.edu><enter>' \
+"Send mail from CMU Alumni account"
 
-macro compose <Esc><F3> '<enter-command>set folder="imaps://rkavanag@andrew.cmu.edu@imap.gmail.com"<enter>\
+macro compose <Esc><F3> '<enter-command>set folder="imaps://rkavanag@alumni.cmu.edu@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\
 <enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.cmu.edu><enter>' \

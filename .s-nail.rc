@@ -97,7 +97,7 @@ set netrc-lookup
 # ACCOUNTS #
 ############
 
-set alternates="ryanakca@gmail.com,rak@debian.org,ryanakca@ubuntu.com,ryanakca@kubuntu.org,rak@rak.ac,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
+set alternates="ryanakca@gmail.com,rak@debian.org,ryanakca@ubuntu.com,ryanakca@kubuntu.org,rak@rak.ac,rak@ryanak.ca,rkavanag@andrew.cmu.edu,rkavanag@alumni.cmu.edu,rkavanag@cs.cmu.edu,rkavanagh@cs.cmu.edu,ryan@cs.queensu.ca"
 
 define gmail {
     set from="Ryan Kavanagh <ryanakca@gmail.com>"
@@ -122,9 +122,9 @@ define rak {
 
 define cmu {
     set from="Ryan Kavanagh <rkavanagh@cs.cmu.edu>"
-    set folder=imaps://rkavanag%40andrew.cmu.edu@imap.gmail.com/
+    set folder=imaps://rkavanag%40alumni.cmu.edu@imap.gmail.com/
     set MBOX=+Read
-    set record=+"[Gmail]/Sent Items"
+    set record=+"[Gmail]/Sent Mail"
 }
 
 # rak is the default account
