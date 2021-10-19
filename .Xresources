@@ -3,7 +3,6 @@ XTerm*eightBitInput: false
 URxvt.background: #000000
 URxvt.foreground: #ffffff
 URxvt.colorBD: #ffffff
-URxvt.cursorColo: #e0e080
 URxvt.hilightColor: #f0f0f0
 URxvt.scrollBar: false
 URxvt.scrollstyle: xterm
