@@ -68,7 +68,6 @@ GLOBAL_FILES = \
     .tmux/ \
     .tmux.conf \
     .tmux-mail.conf \
-    .tmux-powerlinerc \
     .urxvt/ \
     .vim/ \
     .vimrc \
