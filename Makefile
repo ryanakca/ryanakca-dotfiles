@@ -15,7 +15,6 @@ LOCAL_FILES = \
     .mutt/ssl.rc \
     .s-nail.rc \
     .netrc \
-    .offlineimaprc \
     .xinitrc \
     .xmonad/xmonad.hs \
     .zsh/func/prompt_wunjo_setup \
@@ -58,7 +57,6 @@ GLOBAL_FILES = \
     .mutt/savehooks.rc \
     .muttrc \
     .notmuch-config \
-    .offlineimap.py \
     .pulse/ \
     .pythonrc.py \
     .quiltrc-dpkg \
@@ -108,7 +106,6 @@ VARS_.mutt/gpg.rc       = PGPEWRAP_BINARY
 VARS_.mutt/ssl.rc       = SSL_CERTS
 VARS_.s-nail.rc		= SENDMAIL SSL_CERTS
 VARS_.netrc             = $(MAIL_PASS)
-VARS_.offlineimaprc     = $(MAIL_PASS) SSL_CERTS
 VARS_.xinitrc           = SCREENLAYOUT PULSE
 VARS_.xmonad/xmonad.hs  = XMONAD_DZEN_W XMONAD_DZEN_X XMONAD_DZEN_Y
 VARS_.zsh/func/prompt_wunjo_setup = ZSH_HOST_COLOUR
