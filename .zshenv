@@ -1,3 +1,11 @@
+# for gpg-agent/pinentry to work, even in non-interactive shells
+export GPG_TTY="${TTY}"
+
+# Otherwise we cannot use ^o as a keybinding
+if [[ `uname` == "Darwin" ]]; then
+    stty discard undef
+fi
+
 aklogs () {
     for r in CS.CMU.EDU ANDREW.CMU.EDU CLUB.CC.CMU.EDU; do
         KRB5CCNAME=`KRB5CCNAME=DIR:$HOME/.cache/krb5cc klist -l | grep $r | sed -e s'/.*:://g'` aklog -c $r -k $r
