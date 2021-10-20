@@ -62,8 +62,6 @@ export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 
-export GPG_TTY=$(tty) # for gpg-agent to work
-
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
