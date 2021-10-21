@@ -1,11 +1,24 @@
 #!/bin/sh
 
-if ! tmux switch -t mail:catgirl >/dev/null 2>&1; then
+current_session () {
+    tty=$(tty)
+    for s in $(tmux list-sessions -F '#{session_name}'); do
+            tmux list-panes -F '#{pane_tty} #{session_name}' -t "$s"
+    done | grep "${tty}" | awk '{print $2}'
+}
+
+SESSION=$(current_session)
+
+if [ "x${SESSION}" = "x" ]; then
+    SESSION="irc"
+    tmux new-session -s "${SESSION}" -d
+fi
+
+if ! tmux switch -t ${SESSION}:catgirl >/dev/null 2>&1; then
     tmux new-window -c '~' -n catgirl     catgirl libera
-    tmux split-window -t mail:catgirl -c '~' catgirl oftc
-    tmux split-window -t mail:catgirl -c '~' catgirl sdf
-    tmux split-window -t mail:catgirl -c '~' catgirl tilde
-    tmux split-window -t mail:catgirl -c '~' catgirl bitlbee
-    tmux set-option -t mail:catgirl remain-on-exit on
-    tmux selectl -t mail:catgirl tiled
+    tmux split-window -t ${SESSION}:catgirl -c '~' catgirl oftc
+    tmux split-window -t ${SESSION}:catgirl -c '~' catgirl sdf
+    tmux split-window -t ${SESSION}:catgirl -c '~' catgirl tilde
+    tmux set-option -t ${SESSION}:catgirl remain-on-exit on
+    tmux selectl -t ${SESSION}:catgirl tiled
 fi
