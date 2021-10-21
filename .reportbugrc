@@ -13,4 +13,8 @@ email "rak@debian.org"
 # /etc/reportbug.conf for a full listing of options.
 keyid 4E469519ED677734268FBD958F7BF8FC4A11C97A
 sign gpg
+# Don't BCC me
+no-cc
+# But have debbugs notify me of the bug report once it has a number
+list-cc-me
 mutt
