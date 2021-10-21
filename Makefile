@@ -65,7 +65,6 @@ GLOBAL_FILES = \
     .screenlayout/ \
     .signature \
     .ssh/ \
-    .tmux/ \
     .tmux.conf \
     .tmux-mail.conf \
     .urxvt/ \
