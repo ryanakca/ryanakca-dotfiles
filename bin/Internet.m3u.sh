@@ -28,5 +28,6 @@ http://listenlive.vistaradio.ca/CFSF
 ${RUHIT}
 
 #EXTINF:-1,WYEP 91.3 (Pittsburgh)
-http://playerservices.streamtheworld.com/api/livestream-redirect/WYEPFMAAC.m3u8
+https://ais-sa3.cdnstream1.com/2557_128.mp3
+
 EOF
