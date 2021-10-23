@@ -69,7 +69,7 @@ color sidebar_new        color142 default
 color index color142 default ~N
 color index color108 default ~O
 color index color109 default ~P
-color index color214 default ~F
+color index color234 color214 ~F
 color index color175 default ~Q
 color index color167 default ~=
 color index color234 color223 ~T
