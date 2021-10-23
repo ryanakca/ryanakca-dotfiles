@@ -17,6 +17,7 @@ QUEENSU_PASS secret
 LOCAL_PASS secret
 RYANAKCA_PASS secret
 CMU_PASS secret
+SOCS_PASS secret
 # xmonad
 XMONAD_DZEN_W 808
 XMONAD_DZEN_X 114
