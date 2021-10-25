@@ -79,12 +79,13 @@ set status_format = '-%r-RAK.AC: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d?
 account-hook imaps://mail.cs.mcgill.ca \
 "set imap_user = 'ryank';\
 set imap_pass = 'SOCS_PASS';\
-set folder = 'imaps://mail.cs.mcgill.ca/INBOX';\
-set record = '=Sent';\
+set imap_delim_chars = '.';\
+set folder = 'imaps://mail.cs.mcgill.ca/';\
+set record = '+INBOX.Sent';\
 set copy = 'yes';\
-set postponed = '=Drafts';\
-set spoolfile = 'imaps://mail.cs.mcgill.ca/';\
-set mbox = '=Read';\
+set postponed = '+INBOX.Drafts';\
+set spoolfile = '+';\
+set mbox = '+INBOX.Read';\
 unset smtp_url;\
 unset smtp_pass;\
 set sendmail = 'sendmail -oem -oi';\
