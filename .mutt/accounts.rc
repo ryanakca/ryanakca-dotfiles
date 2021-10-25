@@ -23,10 +23,10 @@ account-hook imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com \
 "set imap_user = 'ryan.kavanagh@mcgill.ca';\
 set imap_login = 'ryan.kavanagh@mcgill.ca';\
 set imap_authenticators = 'xoauth2';\
-set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/mcgill-token';\
+set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-mcgill.ca-token';\
 set smtp_url = 'smtp://ryan.kavanagh@mcgill.ca@smtp.office365.com:587/';\
 set smtp_authenticators = 'xoauth2';\
-set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/mcgill-token';\
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-mcgill.ca-token';\
 unset smtp_pass;\
 set folder = 'imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com';\
 set record = '=Sent Items';\
@@ -37,9 +37,31 @@ set imap_passive = 'no';\
 set mbox = '=Archive';\
 set from = 'Ryan Kavanagh <ryan.kavanagh@mcgill.ca>';\
 source "~/.mutt/alias-mcgill.rc";\
-set pager_format = '-%Z-MCGILL: %C/%m: %-20.20n   %s%*  -- (%P)';\
-set compose_format = '-- MCGILL: Compose [Approx. msg size: %l Atts: %a]%>-';\
-set status_format = '-%r-MCGILL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+set pager_format = '-%Z-MCGILL.CA: %C/%m: %-20.20n   %s%*  -- (%P)';\
+set compose_format = '-- MCGILL.CA: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+
+account-hook imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com \
+"set imap_user = 'ryan.kavanagh@mail.mcgill.ca';\
+set imap_login = 'ryan.kavanagh@mail.mcgill.ca';\
+set imap_authenticators = 'xoauth2';\
+set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-mail.mcgill.ca-token';\
+set smtp_url = 'smtp://ryan.kavanagh@mail.mcgill.ca@smtp.office365.com:587/';\
+set smtp_authenticators = 'xoauth2';\
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-mail.mcgill.ca-token';\
+unset smtp_pass;\
+set folder = 'imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com';\
+set record = '=Sent Items';\
+set copy = 'no';\
+set postponed = '=Drafts';\
+set spoolfile = '=Inbox';\
+set imap_passive = 'no';\
+set mbox = '=Archive';\
+set from = 'Ryan Kavanagh <ryan.kavanagh@mail.mcgill.ca>';\
+source "~/.mutt/alias-mcgill.rc";\
+set pager_format = '-%Z-MAIL.MCGILL.CA: %C/%m: %-20.20n   %s%*  -- (%P)';\
+set compose_format = '-- MAIL.MCGILL.CA: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-MAIL.MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
 
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
