@@ -112,9 +112,10 @@ unset smtp_url;\
 unset smtp_pass;\
 set sendmail = 'sendmail -oem -oi';\
 set from = 'Ryan Kavanagh <rkavanagh@cs.mcgill.ca>';\
-set pager_format = '-%Z-SOCS: %C/%m: %-20.20n   %s%*  -- (%P)';\
-set compose_format = '-- SOCS: Compose [Approx. msg size: %l Atts: %a]%>-';\
-set status_format = '-%r-SOCS: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
+source "~/.mutt/alias-mcgill.rc";\
+set pager_format = '-%Z-CS.MCGILL.CA: %C/%m: %-20.20n   %s%*  -- (%P)';\
+set compose_format = '-- CS.MCGILL.CA: Compose [Approx. msg size: %l Atts: %a]%>-';\
+set status_format = '-%r-CS.MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'"
 
 # Sources cmu aliases to override any personal variants already loaded in
 # ~/.muttrc
@@ -178,20 +179,19 @@ macro compose <F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter>' \
 "Send mail from Debian account"
 
-macro compose <Esc><F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
-<edit-fcc><kill-line>=Sent<enter>\
-<enter-command>set sendmail="sendmail -oem -oi"<enter>\
-<edit-from><kill-line>Ryan Kavanagh <rak@ryanak.ca><enter>' \
-"Send mail from ryanak.ca"
-
-macro compose <F6> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
+macro compose <Esc><F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
 <edit-fcc><kill-line>=Sent<enter>\
 <enter-command>set sendmail="sendmail -oem -oi"<enter>\
 <edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
 "Send mail from rak.ac"
 
-macro compose <F7> '<enter-command>set folder="imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com"<enter>\
-<edit-fcc><kill-line><enter>\
+macro compose <F6> '<enter-command>set folder="imaps://mail.cs.mcgill.ca/"<enter>\
+<edit-fcc><kill-line>=INBOX.Sent<enter>\
 <enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.mcgill.ca><enter>' \
+"Send mail from McGill SOCS account"
+
+macro compose <Esc><F6> '<enter-command>set folder="imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com"<enter>\
+<edit-fcc><kill-line><enter>\
 <edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@mcgill.ca><enter>' \
-"Send mail from McGill account"
+"Send mail from McGill Staff account"
