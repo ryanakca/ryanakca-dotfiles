@@ -34,6 +34,18 @@
   :custom-face
   (default ((t (:family "Input Mono" :foundry "FBI " :slant normal :weight normal :height 89 :width normal)))))
 
+(if (string= (system-name) "demeter.rak.ac")
+    (use-package leuven-theme ; nice theme for lecturing / projectors
+      :ensure t
+      :config
+      (load-theme 'leuven t))
+  (use-package moe-theme
+    :ensure t
+    :after powerline ; must be loaded after for powerline-moe-theme to work
+    :config
+    (moe-dark)
+    (powerline-moe-theme)))
+
 ;; (use-package auctex
 ;;   :config
 ;;   ;; From
@@ -452,13 +464,6 @@ Otherwise split the current paragraph into one sentence per line."
   :custom
   ;; Cycle  through tab-completions with tab if there are less than 5
   (setq completion-cycle-threshold 5))
-
-(use-package moe-theme
-  :ensure t
-  :after powerline ; must be loaded after for powerline-moe-theme to work
-  :config
-  (moe-dark)
-  (powerline-moe-theme))
 
 (use-package ocp-indent
   :ensure t)
