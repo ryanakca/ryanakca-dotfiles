@@ -89,7 +89,7 @@ SHA256        = $(call get-val,SHA256)
 GPG_DISABLED  = $(call get-val,GPG_DISABLED)
 EMACS_DISABLED= $(call get-val,EMACS_DISABLED)
 BUILD_FONTS   = $(call get-val,BUILD_FONTS)
-C_SENDMAIL      = $(shell which sendmail)
+C_SENDMAIL      = $(shell command -v sendmail)
 
 MAIL_PASS = GMAIL_PASS QUEENSU_PASS RYANAKCA_PASS LOCAL_PASS CMU_PASS SOCS_PASS
 
