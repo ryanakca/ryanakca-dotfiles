@@ -269,8 +269,11 @@ bindkey '[[A' run-help
 
 # History file name and maximum size.
 HISTFILE="$HOME/.zsh/history"
-SAVEHIST=15000
-HISTSIZE=15000
+SAVEHIST=9223372036854775807
+HISTSIZE=9223372036854775807
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_FIND_NO_DUPS
 
 # Push History from previous sessions. IF $HISTFILE exists.
 if [ -f $HISTFILE ]; then
