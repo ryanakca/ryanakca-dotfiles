@@ -280,6 +280,12 @@ Extended Format date in the date field and return it as a string obeing
 (use-package dtrt-indent
   :ensure t)
 
+(use-package dune
+  :ensure t)
+
+(use-package dune-format
+  :ensure t)
+
 (use-package elpher
   :ensure t)
 
