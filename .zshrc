@@ -367,7 +367,7 @@ ctand() {
 
 # For formating text files for a printer
 fmtpr() {
-    fmt --width=62 $@ | LC_ALL=C LANG=C pr -o 10 -W 62 -J -F -l 62 
+    fmt --width=62 $@ | LC_ALL=C LANG=C pr -o 10 -W 62 -J -F -l 62
 }
 
 # Russian
@@ -510,14 +510,14 @@ zstyle ':completion:*:cp:*' ignore-line yes
 zstyle ':completion:*:descriptions' format "%B---- %d%b"
 
 # Messages/warnings format.
-zstyle ':completion:*:messages' format '%B%U---- %d%u%b' 
+zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
 zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b'
 
 # Describe options in full.
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 
-# Simulate spider's old abbrev-expand 3.0.5 patch 
+# Simulate spider's old abbrev-expand 3.0.5 patch
 #zstyle ':completion:*:history-words' stop verbose
 #zstyle ':completion:*:history-words' remove-all-dups yes
 #zstyle ':completion:*:history-words' list false
