@@ -186,7 +186,7 @@ autoload -U zmv
 # line for a shell function that is longer than can be accepted by an external
 # command. This is what's often referred to as the "shitty Linux exec limit" ;)
 # The limitation is on the number of characters or arguments.
-# 
+#
 # slarti@pohl % echo {1..30000}
 # zsh: argument list too long: /bin/echo
 # zsh: exit 127   /bin/echo {1..30000}
@@ -267,17 +267,49 @@ autoload -U run-help
 # Press Alt-H to show help for command we are currently on.
 bindkey '[[A' run-help
 
+# https://zsh.sourceforge.io/Doc/Release/Options.html#History
 # History file name and maximum size.
 HISTFILE="$HOME/.zsh/history"
-SAVEHIST=9223372036854775807
-HISTSIZE=9223372036854775807
+SAVEHIST=500000
+HISTSIZE=600000 # should be > SAVEHIST
+
+# Save each command’s beginning timestamp (in seconds since the epoch) and the
+# duration (in seconds) to the history file.
 setopt EXTENDED_HISTORY
-setopt INC_APPEND_HISTORY
+
+# If the internal history needs to be trimmed to add the current command line,
+# setting this option will cause the oldest history event that has a duplicate
+# to be lost before losing a unique event from the list.
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Better locking to avoid corruption
+setopt HIST_FCNTL_LOCK
+
+# When searching for history entries in the line editor, do not display
+# duplicates of a line previously found, even if the duplicates are not
+# contiguous.
 setopt HIST_FIND_NO_DUPS
+
+# Don't story commands in history if they start with a space
+setopt HIST_IGNORE_SPACE
+
+# Don't store history/fc -l in the history list when invoked
+setopt HIST_NO_STORE
+
+# Remove superfluous blanks from each command line being added to the history
+# list.
+setopt HIST_REDUCE_BLANKS
+
+# This option works like APPEND_HISTORY except that new history lines are added
+# to the $HISTFILE incrementally (as soon as they are entered), rather than
+# waiting until the shell exits. The file will still be periodically re-written
+# to trim it when the number of lines grows 20% beyond the value specified by
+# $SAVEHIST (see also the HIST_SAVE_BY_COPY option).
+setopt INC_APPEND_HISTORY
 
 # Push History from previous sessions. IF $HISTFILE exists.
 if [ -f $HISTFILE ]; then
-    fc -R $HISTFILE
+    fc -RI $HISTFILE
 fi
 
 ## Key bindings
