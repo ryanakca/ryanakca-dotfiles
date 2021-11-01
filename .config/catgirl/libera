@@ -5,3 +5,4 @@ port = 40404
 save = libera
 hash = 0,13
 quiet
+timestamp = %d %X
