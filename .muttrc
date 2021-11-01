@@ -52,7 +52,7 @@ bind pager i exit
 bind index . noop
 macro index .n "<tag-pattern>~N|~O<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>~T<enter>" "Catchup all new messages"
 
-my_hdr X-OpenPGP: id=4E469519ED677734268FBD958F7BF8FC4A11C97A\; url=https://rak.ac/contact/4E469519ED677734268FBD958F7BF8FC4A11C97A.asc\; preference=sign
+my_hdr OpenPGP: id=4E469519ED677734268FBD958F7BF8FC4A11C97A\; url=https://rak.ac/contact/4E469519ED677734268FBD958F7BF8FC4A11C97A.asc\; preference=sign
 
 set sort=threads
 set sort_aux=date
