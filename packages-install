@@ -1,32 +1,177 @@
-apt-get install \
-    alsa-utils \
-    arandr \
-    build-essential \
-    cmus \
-    ctags \
-    curl \
-    devscripts \
-    dzen2 \
-    git-buildpackage \
-    git-core \
-    gnupg-agent \
-    graphviz \
-    htop \
-    keychain \
-    krb5-user \
-    latex-mk \
-    lbdb \
-    mplayer \
-    neomutt \
-    openafs-krb5 \
-    parcimonie \
-    pinentry-curses \
-    powertop \
-    quilt \
-    redshift \
-    rxvt-unicode \
-    sbuild \
-    texlive-full \
-    trayer \
-    ttf-inconsolata \
-    zsh \
+aldo
+angband
+anki
+antiword
+aoeui
+arandr
+asciidoctor
+aspell-fr
+aspell-ru
+audacity
+aufs-tools
+baresip-x11
+barrier
+beets
+biber
+bibtool
+bind9-dnsutils
+borgbackup
+bsdgames
+bsdmainutils
+build-essential
+catgirl
+colordiff
+console-setup
+coreutils
+cups
+curl
+devscripts
+dh-make
+dict
+dict-gcide
+dict-vera
+dict-wn
+dictd
+diffutils
+digikam
+dlocate
+docx2txt
+dosbox
+dovecot-core
+dovecot-imapd
+dspdfviewer
+dwdiff
+dzen2
+ed
+eject
+emacs
+emacs-el
+emacs-lucid
+evince
+finger
+fontforge
+fonts-symbola
+freedoom
+frescobaldi
+get-flash-videos
+gimp
+git
+git-buildpackage
+gnupg
+htop
+hugo
+ibritish-insane
+ifrench
+keychain
+ksh
+latexdiff
+latexmk
+lbdb
+ldnsutils
+libghc-xmonad-contrib-dev
+libghc-xmonad-dev
+lilypond
+links2
+lintex
+lynx
+mailcap
+mlton
+mpc
+mpd
+mpdscribble
+mplayer
+mtpfs
+mupdf
+mupdf-tools
+muttprint
+myspell-fr
+ncat
+ncmpcpp
+neomutt
+nmap
+ocaml
+opam
+openafs-client
+openafs-krb5
+openiked
+openntpd
+opensmtpd
+opensmtpd-extras
+openssh-client
+pavucontrol
+pdftk
+piuparts
+pm-utils
+pmount
+printer-driver-cups-pdf
+pulseaudio
+pulseaudio-module-bluetooth
+recoll
+recollcmd
+redshift
+reportbug
+rfkill
+rlwrap
+rxvt-unicode
+s-nail
+sbuild
+sbuild-debian-developer-setup
+scantailor
+scrot
+sieve-connect
+signal-desktop
+signing-party
+smlnj
+sshfs
+subversion
+suckless-tools
+sudo
+task-english
+task-laptop
+task-ssh-server
+tesseract-ocr
+tesseract-ocr-fra
+texlive
+texlive-bibtex-extra
+texlive-extra-utils
+texlive-fonts-extra
+texlive-generic-extra
+texlive-lang-cyrillic
+texlive-lang-french
+texlive-latex-base-doc
+texlive-latex-extra
+texlive-latex-extra-doc
+texlive-latex-recommended-doc
+texlive-publishers
+texlive-science
+tikzit
+tmux
+tor
+torbrowser-launcher
+traceroute
+trayer
+unbound
+urlscan
+vera
+vf1
+vim
+w3m-img
+wamerican
+wbritish-huge
+wdiff
+wfrench
+wget
+whipper
+whois
+xbacklight
+xdm
+xinit
+xinput
+xmonad
+xsel
+xserver-xorg
+youtube-dl
+zathura
+zfs-dkms
+zfsutils-linux
+zsh
