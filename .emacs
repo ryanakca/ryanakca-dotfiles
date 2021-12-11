@@ -66,6 +66,14 @@
 ;;	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
 ;;     latex-help-cmd-alist))
 
+(defun single-lines-only ()
+  "Replace multiple blank lines with a single one"
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
+    (replace-match "\n")
+    (forward-char 1)))
+
 (use-package ace-window
   :ensure t
   :custom
