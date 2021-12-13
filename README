@@ -16,3 +16,7 @@ To push to self-host and github, add the following to .git/config
         url = git@github.com:ryanakca/ryanakca-dotfiles.git
         url = hades.rak.ac:public_git/ryanakca-dotfiles.git
         fetch = +refs/heads/*:refs/remotes/origin/*
+
+To install fonts:
+
+    make -C fonts install

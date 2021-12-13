@@ -12,8 +12,8 @@ clean:
 	rm -f $(fonts)
 
 install: $(fonts)
-	[ -d ../build/.fonts ] || mkdir -p ../build/.fonts
-	rsync -av $^ ../build/.fonts/
+	[ -d ~/.fonts ] || mkdir -p ~/.fonts
+	rsync -av $^ .fonts/
 
 # Requires fontforge
 InconsolataHellenic.otf: Inconsolata-Hellenic/Inconsolata-Hellenic.sfd convert.pe
