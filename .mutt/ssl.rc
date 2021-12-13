@@ -1,5 +1,0 @@
-set smime_ca_location="SSL_CERTS"
-
-set smime_certificates="~/.smime/certificates"
-set smime_keys="~/.smime/keys"
-set smime_default_key="default"
