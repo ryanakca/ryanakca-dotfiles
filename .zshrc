@@ -57,6 +57,7 @@ fi
 export MANWIDTH=80
 export MANOPT="-L en"
 export PAGER=less
+export LESS=-FQXR
 export PDFVIEWER=evince
 export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
