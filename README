@@ -4,3 +4,8 @@ will copy updated distfiles to $HOME.
 After a checkout, don't forget to run
 
     git config core.hooksPath .githooks
+
+To get the submodules setup, run
+
+    git submodule init
+    git submodule update
