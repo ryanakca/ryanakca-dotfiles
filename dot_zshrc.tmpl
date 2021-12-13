@@ -32,7 +32,7 @@
 
 # BEGIN LOCAL
 
-export LANG="LOCALE"
+export LANG="{{ .locale }}"
 export LC_TIME="en_GB.UTF-8"
 export LC_COLLATE=C                     # force strict lexicographic sorting
 export TIME_STYLE=long-iso              # make ls -l use YYYY-MM-DD in dired
@@ -639,9 +639,8 @@ NO_verbose		\
 
 # GPG / SSH AGENT
 
-if [ "xKEYCHAIN" != "x" ]; then
-    keychain KEYCHAIN
-    #keychain -Q ${GPGKEY} ${GPGKEY1}
+if command -v keychain; then
+    keychain {{ .keychain_keys }}
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
            . $HOME/.keychain/$HOSTNAME-sh
