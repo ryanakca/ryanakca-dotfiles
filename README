@@ -1,5 +1,7 @@
-My dotfiles. Copy SUBSTS to SUBSTS.local and edit. Then run './dm install'. This
-will copy updated distfiles to $HOME.
+dotfiles as of Decmeber 2021 use chezmoi instead of a 10+ year old
+Makefile.
+
+    cp chezmoi.toml.censored ~/.config/chezmoi/chezmoi.toml
 
 After a checkout, don't forget to run
 

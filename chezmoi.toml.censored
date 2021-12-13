@@ -1,0 +1,11 @@
+
+[data]
+    keychain_keys = "id_ed25519"
+    locale = "en_CA.UTF-8"
+    password.cmu = "XXXXXXXXXX"
+    password.gmail = "XXXXXXXXXX"
+    password.local = "XXXXXXXXXX"
+    password.musicbrainz = "XXXXXXXXXX"
+    password.queensu = "XXXXXXXXXX"
+    password.rakac = "XXXXXXXXXX"
+    password.socs = "XXXXXXXXXX"
