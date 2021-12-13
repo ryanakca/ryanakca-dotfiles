@@ -1,5 +1,5 @@
 text/html;      mutt_bgrun firefox %s; nametemplate=%s.html
-text/html;      w3m -T text/html -dump %s; nametemplate=%s.html; copiousoutput
+text/html;      w3m -T text/html -cols 80 -dump %s; nametemplate=%s.html; copiousoutput
 application/pdf;            mutt_bgrun evince %s;        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-pdf;          mupdf %s;        nametemplate=%s.pdf;      test=test "$DISPLAY" != ""; description=Portable Document Format
 application/x-gzpdf;        evince %s;        nametemplate=%s.pdf.gz;   test=test "$DISPLAY" != ""; description=Portable Document Format
