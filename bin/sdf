@@ -1,8 +1,0 @@
-#!/bin/sh
-
-SDF=faeroes.sdf.org
-
-tmux new-session -A -s sdf -d -n com "ssh -t ${SDF} rcom"
-tmux set-option -t sdf:^ default-command "ssh -t ${SDF}"
-tmux set-option -t sdf:^ remain-on-exit on
-tmux attach -t sdf
