@@ -16,8 +16,8 @@ paths:
     comp: $format/comp/$album/$track $title
 
 musicbrainz:
-    user: MBUSER
-    pass: MBPASS
+    user: {{ .username.musicbrainz }}
+    pass: {{ .password.musicbrainz }}
     auto: yes
 
 mbcollection:
