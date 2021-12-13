@@ -2,7 +2,7 @@
 
 account-hook imaps://ryanakca@gmail.com@imap.gmail.com \
 "set imap_user = 'ryanakca@gmail.com';\
-set imap_pass = 'GMAIL_PASS';\
+set imap_pass = '{{ .password.gmail }}';\
 set imap_passive = 'no';\
 set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com';\
 set postponed = '=[Google Mail]/Drafts';\
@@ -65,7 +65,7 @@ set status_format = '-%r-MAIL.MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old
 
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
-set imap_pass = 'QUEENSU_PASS';\
+set imap_pass = '{{ .password.queensu }}';\
 set folder = 'imaps://9rak@queensu.ca@outlook.office365.com';\
 set record = '=Sent Items';\
 set copy = 'yes';\
@@ -83,7 +83,7 @@ set status_format = '-%r-QUEENSU: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d
 
 account-hook imaps://imap.rak.ac \
 "set imap_user = 'rak';\
-set imap_pass = 'RYANAKCA_PASS';\
+set imap_pass = '{{ .password.rakac }}';\
 set folder = 'imaps://imap.rak.ac/';\
 set record = '=Sent';\
 set copy = 'yes';\
@@ -100,7 +100,7 @@ set status_format = '-%r-RAK.AC: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d?
 
 account-hook imaps://mail.cs.mcgill.ca \
 "set imap_user = 'ryank';\
-set imap_pass = 'SOCS_PASS';\
+set imap_pass = '{{ .password.socs }}';\
 set imap_delim_chars = '.';\
 set folder = 'imaps://mail.cs.mcgill.ca/';\
 set record = '+INBOX.Sent';\
@@ -121,7 +121,7 @@ set status_format = '-%r-CS.MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%
 # ~/.muttrc
 account-hook imaps://rkavanag@alumni.cmu.edu@imap.gmail.com \
 "set imap_user = 'rkavanag@alumni.cmu.edu';\
-set imap_pass = 'CMU_PASS';\
+set imap_pass = '{{ .password.cmu }}';\
 set imap_passive = 'no';\
 set imap_keepalive = 60;\
 set folder = 'imaps://rkavanag@alumni.cmu.edu@imap.gmail.com';\
