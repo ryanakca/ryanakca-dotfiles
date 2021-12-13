@@ -627,7 +627,7 @@ NO_verbose		\
 
 # GPG / SSH AGENT
 
-if command -v keychain; then
+if command -v keychain > /dev/null; then
     keychain {{ .keychain_keys }}
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
