@@ -127,6 +127,13 @@ define cmu {
     set record=+"[Gmail]/Sent Mail"
 }
 
+define socs {
+    set from="Ryan Kavanagh <rkavanagh@cs.mcgill.ca>"
+    set folder=imaps://mail.cs.mcgill.ca/"
+    set mbox=+INBOX.Read
+    set record=+INBOX.Sent
+}
+
 # rak is the default account
 call rak
 set inbox=+INBOX
@@ -147,3 +154,6 @@ account c {
     call cmu
 }
 
+account s {
+    call socs
+}
