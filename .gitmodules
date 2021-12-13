@@ -4,3 +4,6 @@
 [submodule ".fonts/Inconsolata-Hellenic"]
 	path = .fonts/Inconsolata-Hellenic
 	url = git://github.com/cosmix/Inconsolata-Hellenic.git
+[submodule ".zsh/powerlevel10k"]
+	path = .zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
