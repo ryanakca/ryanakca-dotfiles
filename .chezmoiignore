@@ -6,3 +6,4 @@ fonts
 root
 packages-install
 .gitmodules
+chezmoi.toml.censored
