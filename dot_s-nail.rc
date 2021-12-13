@@ -88,7 +88,7 @@ set quote-inject-head="On %d, %f wrote:"
 set followup-to followup-to-honour=ask-yes reply-to-honour=ask-yes
 
 # use the system sendmail for sending mail
-set mta=SENDMAIL
+set mta=sendmail
 
 # and lookup passwords in netrc
 set netrc-lookup
