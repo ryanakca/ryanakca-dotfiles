@@ -57,7 +57,6 @@ fi
 export MANWIDTH=80
 export MANOPT="-L en"
 export PAGER=less
-export LESS=-FQXR
 export PDFVIEWER=evince
 export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
@@ -84,16 +83,18 @@ alias slpr="lpr -P scs_public -o Staple=1Staple\(Left\) -o KMDuplex=True"
 
 # END LOCAL
 
-fpath=($fpath
-        /home/ryan/.zen/zsh/scripts
-        /home/ryan/.zen/zsh/zle)
-autoload -U zen
+. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # Ensure that we possess a ~/.zsh/ directory. This is required for the
 # ~/.zsh/history file.
 if [ ! -d $HOME/.zsh/ ]; then
     mkdir -p $HOME/.zsh/
 fi
+
+# We use powerline10k for our prompt
+for f in $HOME/.zsh/p10k.zsh $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme; do
+    [[ ! -f $f ]] || source $f
+done
 
 # Alias/custom commands
 #
@@ -122,21 +123,8 @@ elif [[ `uname` = "OpenBSD" && -x /usr/local/bin/colorls ]]; then
     alias ls="colorls -G"
 fi
 
-fpath=($fpath $HOME/.zsh/func)
-
-# Prompt theme.
-autoload -U promptinit; promptinit
-# prompt walters
-
 # Colours.
 autoload -U colors; colors
-setopt promptsubst
-
-# Give us a prompt along the lines of:
-#
-#  jpds@topr>
-#
-#export PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}%\> "
 
 # Change word boundary characters. Nabbed from
 # http://zshwiki.org/KeyBindings.
@@ -322,7 +310,6 @@ fi
 
 typeset -U fpath
 
-prompt wunjo
 # Actually, stick with emacs for the moment. The vi keymap just doesn't
 # seem to be as complete (even if it's nicer for editing, there's no
 # execute-named-cmd bound, for example).
@@ -647,7 +634,3 @@ if command -v keychain; then
     [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
            . $HOME/.keychain/$HOSTNAME-sh-gpg
 fi
-
-# ocaml
-
-. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
