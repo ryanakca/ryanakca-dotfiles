@@ -9,7 +9,7 @@ set tls-verify=strict
 # Do not load the default CA locations that are built into the used to TLS
 # library to verify TLS server certificates.
 set tls-ca-no-defaults
-set tls-ca-file=SSL_CERTS
+# set tls-ca-file=SSL_CERTS
 
 # Send mail in utf-8, unless the original poster used a different charset
 set sendcharsets=utf-8
