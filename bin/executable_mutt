@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if which neomutt; then
+if command -v neomutt >/dev/null; then
     exec neomutt $@
 else
     exec mutt $@
