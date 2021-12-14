@@ -1,8 +1,4 @@
-ROOT=$(shell pwd)/..
-export ROOT
-EMACSD=$(ROOT)/build/.emacs.d/
-export ELISPDIR
-EMACSEN=$(ROOT)/emacsen
+EMACSD=~/.emacs.d/
 
 SUBDIRS = dictem
 
