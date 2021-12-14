@@ -46,26 +46,6 @@
     (moe-dark)
     (powerline-moe-theme)))
 
-;; (use-package auctex
-;;   :config
-;;   ;; From
-;;   ;; https://github.com/jwiegley/dot-emacs/commit/6dffc2511c60e1e15c79080bf37a36f380d9567b
-;;   (defun latex-help-get-cmd-alist ()    ;corrected version:
-;;     "Scoop up the commands in the index of the latex info manual.
-;;    The values are saved in `latex-help-cmd-alist' for speed."
-;;     ;; mm, does it contain any cached entries
-;;     (if (not (assoc "\\begin" latex-help-cmd-alist))
-;;	(save-window-excursion
-;;	  (setq latex-help-cmd-alist nil)
-;;	  (Info-goto-node (concat latex-help-file "Command Index"))
-;;	  (goto-char (point-max))
-;;	  (while (re-search-backward "^\\* \\(.+\\): *\\(.+\\)\\." nil t)
-;;	    (let ((key (buffer-substring (match-beginning 1) (match-end 1)))
-;;		  (value (buffer-substring (match-beginning 2)
-;;					   (match-end 2))))
-;;	      (add-to-list 'latex-help-cmd-alist (cons key value))))))
-;;     latex-help-cmd-alist))
-
 (defun single-lines-only ()
   "Replace multiple blank lines with a single one"
   (interactive)
