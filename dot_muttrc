@@ -136,7 +136,6 @@ source ~/.mutt/score.rc
 source ~/.mutt/color.rc
 source ~/.mutt/savehooks.rc
 source ~/.mutt/gpg.rc
-source ~/.mutt/ssl.rc
 source ~/.mutt/news.rc
 
 #set folder="/home/ryan/.maildb/GMAIL/"
