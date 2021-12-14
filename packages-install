@@ -126,6 +126,7 @@ sudo
 task-english
 task-laptop
 task-ssh-server
+tex-gyre
 texlive
 texlive-bibtex-extra
 texlive-extra-utils
