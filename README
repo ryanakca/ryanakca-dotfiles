@@ -22,3 +22,12 @@ To push to self-host and github, add the following to .git/config
 To install fonts:
 
     make -C fonts install
+
+To install emacs packages:
+
+    make -C emacsen
+    make -C emacsen install
+
+To update Debian known hosts:
+
+    gmake udh
