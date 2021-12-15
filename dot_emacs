@@ -474,6 +474,9 @@ Otherwise split the current paragraph into one sentence per line."
   :custom
   (org-link-file-path-type 'relative))
 
+(use-package org-chef
+  :ensure t)
+
 (use-package org-noter
   :ensure t
   :custom
