@@ -72,6 +72,7 @@ Host sdf
     Hostname tty.sdf.org
 Match final host="*.sdf.org"
     UserKnownHostsFile ~/.ssh/known_hosts.d/sdf.org
+    CertificateFile ~/.ssh/certs/%L-cert.pub
 
 ## Misc hosts
 Host republic republic.circumlunar.space
