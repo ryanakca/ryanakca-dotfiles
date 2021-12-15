@@ -1,2 +1,3 @@
 tty.sdf.org,faeroes.sdf.org,otaku.sdf.org,ukato.sdf.org,norge.sdf.org,rie.sdf.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1BBSaTBrKjpyDmIPt1t9oPvZpIxzm8D2kB/eLUoqXP9Eoicb3niMP8kWv1vhZQPGiQQ/q6sg+c92Bkk0ZiJTW9JdMJuaIfk+VDjGUV1US432mzq4581CFk/Q0HeHehrrAoqCKTcnp65/9UlnP3ljnyS1J0JE40YtjLIXfAeoJJKfKvrMhc1nOqn7NEMcmN8gY5ELr5R5ZUml0CsmurMDeIoeP9Ukf0PAc6uznv7JpL5GY+Eee8xXd8ehClZUY9kkvm6a6LIzPXtG5KXIYbGQkMrcDqWAdYOb2whfOICRbRLu16T8r30NjdHRjDq2kAH7upip4FqWGj96k+8ZmjA3f
 tty.sdf.org,faeroes.sdf.org,otaku.sdf.org,ukato.sdf.org,norge.sdf.org,rie.sdf.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJJk3a190w/1TZkzVKORvz/kwyKmFY144lVeDFm80p17
+beastie.sdf.org,205.166.94.21 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn5+1iwbwXHwaHGkdxwzKGecchM0XcY6lBVLxvKmqp8
