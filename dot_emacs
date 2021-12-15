@@ -228,6 +228,7 @@ Extended Format date in the date field and return it as a string obeing
   (after-init . global-company-mode))
 
 (use-package company-auctex
+  :ensure t
   :after latex
   :config
   (company-auctex-init))
