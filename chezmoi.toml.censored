@@ -11,3 +11,4 @@
     password.rakac = "XXXXXXXXXX"
     password.sdfsip = "XXXXXXXXXX"
     password.socs = "XXXXXXXXXX"
+    pinentry = "/usr/bin/pinentry-curses"
