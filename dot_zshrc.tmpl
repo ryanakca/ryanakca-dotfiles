@@ -628,7 +628,7 @@ NO_verbose		\
 # GPG / SSH AGENT
 
 if command -v keychain > /dev/null; then
-    keychain {{ .keychain_keys }}
+    ls ~/.ssh/keys/{{ .chezmoi.hostname }}/id_* | egrep -v '\.pub$' | xargs keychain
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
            . $HOME/.keychain/$HOSTNAME-sh
