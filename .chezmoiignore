@@ -1,3 +1,4 @@
+# files in repo
 README
 etc
 emacsen
@@ -12,3 +13,59 @@ chezmoi.toml.censored
 # only install if on openbsd
 .urxvt/perl
 {{- end }}
+
+# files in home
+.Xauthority
+.auth.gpg
+.cache
+.config/borg
+.config/chezmoi
+.config/dconf
+.config/gtk-3.0
+.emacs.d/auto-save-list
+.emacs.d/dictem
+.emacs.d/elpa
+.emacs.d/transient
+.fonts
+.gnupg/crls.d
+.gnupg/private-keys-v1.d
+.gnupg/pubring.gpg
+.gnupg/pubring.kbx
+.gnupg/random_seed
+.gnupg/secring.gpg
+.gnupg/tofu.db
+.gnupg/trustdb.gpg
+.keychain
+.lbdb
+.lesshst
+.local/share
+.lyrics
+.mozilla
+.mutt/cache
+.mutt/tmp
+.opam
+.ssh/known_hosts.old
+.texlive202*
+.texmf/doc
+.texmf/fonts
+.texmf/tex
+.texmf/web2c/tlmgr.log
+.urxvt
+.urxvt/urxvt-*
+.viminfo
+.w3m
+.xkb/keymap
+.xmonad/layout
+.xmonad/prompt-history
+.xmonad/xmonad-x86_64-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
+.xsession-errors
+.zcompdump
+.zsh/**/*.zwc
+.zsh/history
+Documents
+Downloads
+News
+>>>>>>> 4b28430 (Ignore some files)
