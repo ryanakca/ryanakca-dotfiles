@@ -25,6 +25,7 @@ console-setup
 coreutils
 cups
 curl
+dc
 devscripts
 dh-make
 dict
