@@ -1,0 +1,209 @@
+autogroup 1 "URxvt"
+
+command term urxvtc
+
+# F: function description
+# K: default keybinding
+unbind-key all
+
+# F:  restart                  Restart the running cwm(1).
+# D:  CMS-r           Restart.
+bind-key 4-semicolon restart
+
+# F:  quit                     Quit cwm(1).
+# D:  CMS-q           Quit.
+bind-key 4S-semicolon quit
+
+# F:  terminal                 Spawn a new terminal.
+# D:  CM-Return       Spawn a new terminal.
+bind-key 4S-Return terminal
+
+# F:  lock                     Lock the screen.
+# D:  CM-Delete       Lock the screen.
+bind-key 4-l lock
+
+# F:  menu-window              Launch window search menu.
+# D:  M-slash         Search for windows.
+bind-key 4-slash menu-search
+
+# F:  menu-window-hidden       Launch hidden window search menu.
+
+# F:  menu-cmd                 Launch application search menu.
+# D:  C-slash         Search for applications.
+
+# F:  menu-group               Launch group search menu.
+bind-key 4-g menu-group
+
+# F:  menu-exec                Launch “exec program” menu.
+# D:  M-question      Spawn “exec program” dialog.
+bind-key 4-z menu-exec
+
+# F:  menu-exec-wm             Launch “exec WindowManager” menu.
+# D:  CM-w            Spawn “exec WindowManager” menu, allowing a switch
+# D:                  to another window manager.
+
+# F:  menu-ssh                 Launch “ssh” menu.
+# D:  M-period        Spawn “ssh to” dialog.  This parses
+# D:                  $HOME/.ssh/known_hosts to provide host auto-
+# D:                  completion.  ssh(1) will be executed via the
+# D:                  configured terminal emulator.
+
+# F:  group-toggle-[n]         Toggle visibility of group n, where n is 1-9.
+# D:  CM-[n]          Toggle visibility of group n, where n is 1-9.
+bind-key C4-ampersand   group-toggle-1 
+bind-key C4-bracketleft group-toggle-2 
+bind-key C4-braceleft   group-toggle-3 
+bind-key C4-braceright  group-toggle-4 
+bind-key C4-parentleft  group-toggle-5 
+bind-key C4-equal       group-toggle-6 
+bind-key C4-asterisk    group-toggle-7 
+bind-key C4-parentright group-toggle-8 
+bind-key C4-plus        group-toggle-9 
+
+# F:  group-only-[n]           Show only group n, where n is 1-9, hiding other
+#                              groups.
+bind-key 4-ampersand   group-only-1
+bind-key 4-bracketleft group-only-2
+bind-key 4-braceleft   group-only-3
+bind-key 4-braceright  group-only-4
+bind-key 4-parentleft  group-only-5
+bind-key 4-equal       group-only-6
+bind-key 4-asterisk    group-only-7
+bind-key 4-parentright group-only-8
+bind-key 4-plus        group-only-9
+
+# F:  group-close-[n]          Close all windows in group n, where n is 1-9.
+
+# F:  group-toggle-all         Toggle visibility of all groups.
+# D:  CM-a            Toggle visibility of all groups.
+bind-key C4S-a group-toggle-all
+
+# F:  window-group             Toggle group membership of current window.
+# D:  CM-g            Toggle group membership of current window.
+# D:  CM-M1           Toggle group membership of current window.
+
+# F:  window-movetogroup-[n]   Hide current window from display and move to
+# F:                           group n, where n is 1-9.
+bind-key 4S-ampersand   window-movetogroup-1
+bind-key 4S-bracketleft window-movetogroup-2
+bind-key 4S-braceleft   window-movetogroup-3
+bind-key 4S-braceright  window-movetogroup-4
+bind-key 4S-parentleft  window-movetogroup-5
+bind-key 4S-equal       window-movetogroup-6
+bind-key 4S-asterisk    window-movetogroup-7
+bind-key 4S-parentright window-movetogroup-8
+bind-key 4S-plus        window-movetogroup-9
+
+# F:  group-cycle              Forward cycle through groups.
+# D:  M-Right         Cycle through active groups.
+bind-key 4-Right group-cycle
+
+# F:  group-rcycle             Reverse cycle through groups.
+# D:  M-Left          Reverse cycle through active groups.
+bind-key 4-Left group-cycle
+
+# F:  window-cycle             Forward cycle through windows.
+# D:  M-Tab           Cycle through currently visible windows.
+bind-key 4-Tab window-cycle
+
+# F:  window-rcycle            Reverse cycle through windows.
+# D:  MS-Tab          Reverse cycle through currently visible windows.
+bind-key 4S-Tab window-cycle
+
+# F:  window-cycle-ingroup     Forward cycle through windows in current group.
+# F:  window-rcycle-ingroup    Reverse cycle through windows in current group.
+# F:  window-close             Close current window.
+# D:  CM-x            Close current window.
+bind-key 4S-j window-close
+
+# F:  window-hide              Hide current window.
+# D:  M-Return        Hide current window.
+# D:  CMS-M3          Hide current window.
+bind-key 4-Return window-hide
+
+# F:  window-lower             Lower current window.
+# D:  M-Down          Lower current window.
+# D:  M-M3            Lower current window.
+bind-key 4-Down window-lower
+
+# F:  window-raise             Raise current window.
+# D:  M-Up            Raise current window.
+bind-key 4-Up window-raise
+
+# F:  window-menu-label        Label current window.
+# D:  CM-n            Label current window.
+
+# F:  window-freeze            Freeze current window geometry.
+# D:  CMS-f           Toggle freezing geometry of current window.
+
+# F:  window-stick             Stick current window to all groups (same as
+# F:                           assigning to nogroup).
+# D:  CM-s            Toggle stickiness of current window.
+
+# F:  window-fullscreen        Full-screen current window (gap + border
+# F:                           removed).
+# D:  CM-f            Toggle full-screen mode of current window.
+bind-key 4-s window-fullscreen
+
+# F:  window-maximize          Maximize current window (gap + border honored).
+# D:  CM-m            Toggle maximization of current window.
+
+# F:  window-vmaximize         Vertically maximize current window (gap + border
+# F:                           honored).
+# D:  CM-equal        Toggle vertical maximization of current window.
+
+# F:  window-hmaximize         Horizontally maximize current window (gap +
+# F:                           border honored).
+# D:  CMS-equal       Toggle horizontal maximization of current window.
+
+# F:  window-htile             Current window is placed at the top of the
+# F:                           screen, maximized horizontally and resized to
+# F:                           htile (default half) of the vertical screen
+# F:                           space.  Other windows in its group share
+# F:                           remaining screen space.
+bind-key 4S-space window-htile
+
+# F:  window-vtile             Current window is placed on the left of the
+# F:                           screen, maximized vertically and resized to
+# F:                           vtile (default half) of the horizontal screen
+# F:                           space.  Other windows in its group share
+# F:                           remaining screen space.
+bind-key 4-space window-vtile
+
+# F:  window-move              Move current window.
+# D:  M-M1            Move current window.
+bind-mouse 4-1 window-move
+
+# F:  window-resize            Resize current window.
+# D:  M-M2            Resize current window
+bind-mouse 4-3 window-resize
+
+# F:  window-resize-up
+# F:  window-resize-down
+# F:  window-resize-right
+# F:  window-resize-left
+# D:  CM-[hjkl]       Resize window by a small amount.
+bind-key 4-h window-resize-down
+bind-key 4-t window-resize-up
+bind-key 4-d window-resize-left
+bind-key 4-n window-resize-right
+
+# F:  window-resize-up-big
+# F:  window-resize-down-big
+# F:  window-resize-right-big
+# F:  window-resize-left-big
+# D:  CMS-[hjkl]      Resize window by a large amount; see cwmrc(5).
+
+# F:  window-move-up           Move window moveamount pixels up.
+# F:  window-move-down         Move window moveamount pixels down.
+# F:  window-move-right        Move window moveamount pixels right.
+# F:  window-move-left         Move window moveamount pixels left.
+# D:  M-[hjkl]        Move window by a small amount.
+
+# F:  window-move-up-big       Move window 10 times moveamount pixels up.
+# F:  window-move-down-big     Move window 10 times moveamount pixels down.
+# F:  window-move-right-big    Move window 10 times moveamount pixels right.
+# F:  window-move-left-big     Move window 10 times moveamount pixels left.
+# D:  MS-[hjkl]       Move window by a large amount; see cwmrc(5).
+
+
