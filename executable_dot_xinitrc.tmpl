@@ -7,6 +7,19 @@ case `uname` in
         xrdb -merge ~/.Xresources
         exec icewm-session
         ;;
+    OpenBSD)
+        export LANG="en_CA.UTF-8"
+        export LC_time="en_GB.UTF-8"
+        export LC_COLLATE=C
+        if test -f ~/.Xresources; then
+            xrdb -merge ~/.Xresources
+        fi
+        redshift &
+        ${HOME}/bin/icd
+        urxvtd -q -f -o &
+        xset dpms 180 300 600
+        exec cwm
+	;;
     *)
         if test -f ~/.Xresources; then
             xrdb -merge -I$HOME ~/.Xresources
