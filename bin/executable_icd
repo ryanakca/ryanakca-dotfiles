@@ -33,10 +33,20 @@ ERG_OPTIONS="\
     -option lv3:switch \
     -option caps:escape"
 
-LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
-KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
-ERG_USB_ID=$(lsusb | grep -i "feed:1307" | awk '{ print $6 }')
-SUN_USB_ID=$(lsusb | grep -i "Sun Microsystems, Inc. Type 6 Keyboard" | awk '{ print $6 }')
+
+case `uname` in
+    OpenBSD)
+        LAPTOP_ID=$(xinput | grep "/dev/wskbd" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+        ;;
+    Linux)
+        LAPTOP_ID=$(xinput | grep "AT Translated Set 2 keyboard" | sed -e 's/.*id=\([0-9]\+\).*/\1/g')
+        KIN_USB_ID=$(lsusb | grep -i "Kinesis Advantage Pro" | awk '{ print $6 }')
+        ERG_USB_ID=$(lsusb | grep -i "feed:1307" | awk '{ print $6 }')
+        SUN_USB_ID=$(lsusb | grep -i "Sun Microsystems, Inc. Type 6 Keyboard" | awk '{ print $6 }')
+        ;;
+    *)
+        ;;
+esac
 
 echo "Setting up laptop"
 setxkbmap ${LAPTOP_OPTIONS} -device ${LAPTOP_ID} -print > ${XKB_DIR}/keymap/icd.laptop
