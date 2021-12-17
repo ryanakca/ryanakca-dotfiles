@@ -5,7 +5,8 @@ emacsen
 Makefile
 fonts
 root
-packages-install
+packages-debian
+packages-openbsd
 .gitmodules
 chezmoi.toml.censored
 
