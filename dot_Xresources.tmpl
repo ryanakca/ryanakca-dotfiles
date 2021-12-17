@@ -14,7 +14,7 @@ URxvt*color12: #0088FF
 URxvt.underlineColor: yellow
 URxvt.saveLines: 8192
 URxvt.mapAlert: true
-URxvt.font: xft:spleen:size=10,xft:Inconsolata:size=10,xft:Input Mono Medium:size=10,xft:DejaVu Sans Mono:size=10,xft:Liberation Mono:size=10,xft:symbola:size=10:minspace=False
+URxvt.font: {{ if (eq .chezmoi.os "openbsd") }}xft:spleen:size=10{{ else }}xft:Spleen 16x32:antialias=false{{ end }},xft:,xft:Inconsolata:size=10,xft:Input Mono Medium:size=10,xft:DejaVu Sans Mono:size=10,xft:Liberation Mono:size=10,xft:symbola:size=10:minspace=False
 URxvt.perl-ext-common: default,matcher,font-size,-searchable-scrollback
 URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
