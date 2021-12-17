@@ -50,15 +50,15 @@ bind-key 4-z menu-exec
 
 # F:  group-toggle-[n]         Toggle visibility of group n, where n is 1-9.
 # D:  CM-[n]          Toggle visibility of group n, where n is 1-9.
-bind-key C4-ampersand   group-toggle-1 
-bind-key C4-bracketleft group-toggle-2 
-bind-key C4-braceleft   group-toggle-3 
-bind-key C4-braceright  group-toggle-4 
-bind-key C4-parentleft  group-toggle-5 
-bind-key C4-equal       group-toggle-6 
-bind-key C4-asterisk    group-toggle-7 
-bind-key C4-parentright group-toggle-8 
-bind-key C4-plus        group-toggle-9 
+bind-key C4-ampersand   group-toggle-1
+bind-key C4-bracketleft group-toggle-2
+bind-key C4-braceleft   group-toggle-3
+bind-key C4-braceright  group-toggle-4
+bind-key C4-parenleft  group-toggle-5
+bind-key C4-equal       group-toggle-6
+bind-key C4-asterisk    group-toggle-7
+bind-key C4-parenright group-toggle-8
+bind-key C4-plus        group-toggle-9
 
 # F:  group-only-[n]           Show only group n, where n is 1-9, hiding other
 #                              groups.
@@ -66,10 +66,10 @@ bind-key 4-ampersand   group-only-1
 bind-key 4-bracketleft group-only-2
 bind-key 4-braceleft   group-only-3
 bind-key 4-braceright  group-only-4
-bind-key 4-parentleft  group-only-5
+bind-key 4-parenleft  group-only-5
 bind-key 4-equal       group-only-6
 bind-key 4-asterisk    group-only-7
-bind-key 4-parentright group-only-8
+bind-key 4-parenright group-only-8
 bind-key 4-plus        group-only-9
 
 # F:  group-close-[n]          Close all windows in group n, where n is 1-9.
@@ -88,10 +88,10 @@ bind-key 4S-ampersand   window-movetogroup-1
 bind-key 4S-bracketleft window-movetogroup-2
 bind-key 4S-braceleft   window-movetogroup-3
 bind-key 4S-braceright  window-movetogroup-4
-bind-key 4S-parentleft  window-movetogroup-5
+bind-key 4S-parenleft  window-movetogroup-5
 bind-key 4S-equal       window-movetogroup-6
 bind-key 4S-asterisk    window-movetogroup-7
-bind-key 4S-parentright window-movetogroup-8
+bind-key 4S-parenright window-movetogroup-8
 bind-key 4S-plus        window-movetogroup-9
 
 # F:  group-cycle              Forward cycle through groups.
