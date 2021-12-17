@@ -1,4 +1,8 @@
 autogroup 1 "URxvt"
+autogroup 2 "Mozilla Firefox"
+
+# assign windows to current group
+sticky yes
 
 command term urxvtc
 
