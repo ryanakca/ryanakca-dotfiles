@@ -6,6 +6,8 @@ sticky yes
 
 command term urxvtc
 
+color activeborder "#ff7701"
+
 # F: function description
 # K: default keybinding
 unbind-key all
@@ -58,10 +60,10 @@ bind-key C4-ampersand   group-toggle-1
 bind-key C4-bracketleft group-toggle-2
 bind-key C4-braceleft   group-toggle-3
 bind-key C4-braceright  group-toggle-4
-bind-key C4-parenleft  group-toggle-5
+bind-key C4-parenleft   group-toggle-5
 bind-key C4-equal       group-toggle-6
 bind-key C4-asterisk    group-toggle-7
-bind-key C4-parenright group-toggle-8
+bind-key C4-parenright  group-toggle-8
 bind-key C4-plus        group-toggle-9
 
 # F:  group-only-[n]           Show only group n, where n is 1-9, hiding other
@@ -70,10 +72,10 @@ bind-key 4-ampersand   group-only-1
 bind-key 4-bracketleft group-only-2
 bind-key 4-braceleft   group-only-3
 bind-key 4-braceright  group-only-4
-bind-key 4-parenleft  group-only-5
+bind-key 4-parenleft   group-only-5
 bind-key 4-equal       group-only-6
 bind-key 4-asterisk    group-only-7
-bind-key 4-parenright group-only-8
+bind-key 4-parenright  group-only-8
 bind-key 4-plus        group-only-9
 
 # F:  group-close-[n]          Close all windows in group n, where n is 1-9.
@@ -92,10 +94,10 @@ bind-key 4S-ampersand   window-movetogroup-1
 bind-key 4S-bracketleft window-movetogroup-2
 bind-key 4S-braceleft   window-movetogroup-3
 bind-key 4S-braceright  window-movetogroup-4
-bind-key 4S-parenleft  window-movetogroup-5
+bind-key 4S-parenleft   window-movetogroup-5
 bind-key 4S-equal       window-movetogroup-6
 bind-key 4S-asterisk    window-movetogroup-7
-bind-key 4S-parenright window-movetogroup-8
+bind-key 4S-parenright  window-movetogroup-8
 bind-key 4S-plus        window-movetogroup-9
 
 # F:  group-cycle              Forward cycle through groups.
@@ -187,27 +189,37 @@ bind-mouse 4-3 window-resize
 # F:  window-resize-right
 # F:  window-resize-left
 # D:  CM-[hjkl]       Resize window by a small amount.
-bind-key 4-h window-resize-down
-bind-key 4-t window-resize-up
-bind-key 4-d window-resize-left
-bind-key 4-n window-resize-right
+bind-key C4-h window-resize-down
+bind-key C4-t window-resize-up
+bind-key C4-d window-resize-left
+bind-key C4-n window-resize-right
 
 # F:  window-resize-up-big
 # F:  window-resize-down-big
 # F:  window-resize-right-big
 # F:  window-resize-left-big
 # D:  CMS-[hjkl]      Resize window by a large amount; see cwmrc(5).
+bind-key C4S-h window-resize-down-big
+bind-key C4S-t window-resize-up-big
+bind-key C4S-d window-resize-left-big
+bind-key C4S-n window-resize-right-big
 
 # F:  window-move-up           Move window moveamount pixels up.
 # F:  window-move-down         Move window moveamount pixels down.
 # F:  window-move-right        Move window moveamount pixels right.
 # F:  window-move-left         Move window moveamount pixels left.
 # D:  M-[hjkl]        Move window by a small amount.
+bind-key 4-h window-move-down
+bind-key 4-t window-move-up
+bind-key 4-d window-move-left
+bind-key 4-n window-move-right
 
 # F:  window-move-up-big       Move window 10 times moveamount pixels up.
 # F:  window-move-down-big     Move window 10 times moveamount pixels down.
 # F:  window-move-right-big    Move window 10 times moveamount pixels right.
 # F:  window-move-left-big     Move window 10 times moveamount pixels left.
 # D:  MS-[hjkl]       Move window by a large amount; see cwmrc(5).
-
-
+bind-key 4S-h window-move-down-big
+bind-key 4S-t window-move-up-big
+bind-key 4S-d window-move-left-big
+bind-key 4S-n window-move-right-big
