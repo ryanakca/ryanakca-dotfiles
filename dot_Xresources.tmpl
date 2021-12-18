@@ -1,5 +1,3 @@
-XTerm*metaSendsEscape: true
-XTerm*eightBitInput: false
 URxvt.background: #000000
 URxvt.foreground: #ffffff
 URxvt.colorBD: #ffffff
@@ -28,15 +26,27 @@ URxvt.keysym.C-equal:  font-size:reset
 URxvt.keysym.C-slash:  font-size:show
 URxvt.keysym.M-Y: perl:mark-and-yank:activate_mark_mode
 URxvt.keysym.M-U: perl:mark-and-yank:activate_mark_url_mode
-XLock*logoutButton:     -1
+
 Xft.antialias:  1
-Xft.dpi:        97
 Xft.hinting:    1
 Xft.hintstyle:  hintfull
-Xft.rgba:       bgr
+Xft.rgba:       rgb
+
+XLock*logoutButton:     -1
+
 Xpdf*fileFilterStyle:   filter_hidden_files
+
+XTerm.metaSendsEscape: true
+XTerm.eightBitInput: false
+XTerm.termName: xterm-256color
+XTerm*faceName: xft:spleen:antialias=false
+XTerm*faceSize: 12
+XTerm*scrollBar: false
+XTerm*background: rgb:00/00/00
+XTerm*foreground: rgb:ff/ff/ff
+
 xautolock.locker: xscreensaver-command -lock
-xterm*faceName: spleen:pixelsize=12:antialias=false
+
 xscreensaver.cycle: 0:10:00
 xscreensaver.dpmsEnabled: True
 xscreensaver.dpmsQuickOff: True
