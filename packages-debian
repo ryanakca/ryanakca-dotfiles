@@ -50,7 +50,9 @@ emacs-el
 emacs-lucid
 evince
 finger
+firefox
 fontforge
+fonts-spleen
 fonts-symbola
 freedoom
 frescobaldi
@@ -58,13 +60,15 @@ gimp
 git
 git-buildpackage
 gnupg
+golang
 htop
 hugo
 ibritish-insane
 ifrench
+imagemagick
 keychain
-ksh
 krb5-user
+ksh
 latexdiff
 latexmk
 lbdb
@@ -106,6 +110,7 @@ pmount
 printer-driver-cups-pdf
 pulseaudio
 pulseaudio-module-bluetooth
+quilt
 recoll
 recollcmd
 redshift
