@@ -62,6 +62,7 @@ export PDFVIEWER=evince
 export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
+export GOPATH=${HOME}/.go
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'

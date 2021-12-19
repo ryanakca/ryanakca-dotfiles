@@ -36,6 +36,7 @@ chezmoi.toml.censored
 .gnupg/secring.gpg
 .gnupg/tofu.db
 .gnupg/trustdb.gpg
+.go
 .keychain
 .lbdb
 .lesshst
