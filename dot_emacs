@@ -31,8 +31,12 @@
       align-regexp
       (around align-regexp-with-spaces activate)
     (let ((indent-tabs-mode nil)) ad-do-it))
+  :custom
+  (face-font-family-alternatives
+   (append '(("Spleen" "Spleen 16x32" "FreeMono" "Liberation Mono"))
+	   face-font-family-alternatives))
   :custom-face
-  (default ((t (:family "Inconsolata")))))
+  (default ((t (:family "Spleen")))))
 
 (if (string= (system-name) "demeter.rak.ac")
     (use-package leuven-theme ; nice theme for lecturing / projectors
