@@ -27,5 +27,10 @@ colors:
     cyan:    '0x99faf2'
     white:   '0xffffff'
 
+font:
+  size: 16
+  normal:
+    family: Spleen
+
 keybinding:
   - { key: N,         mods: Command,      action: SpawnNewInstance       }
