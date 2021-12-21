@@ -1,45 +1,53 @@
 #!/bin/sh
 
+# Make sure that everything started by our window manager
+# happens from ${HOME}
+cd ${HOME}
+
+# Load our resources
+if test -f ~/.Xresources; then
+    # -I specifies the path to look for
+    # #include references.
+    xrdb -merge -I$HOME ~/.Xresources
+fi
+
+# Set our background to black
+xsetroot -solid black
+
+# xset dpms standby suspend off
+xset dpms 180 210 240
 
 case `uname` in
     Darwin)
-        cd ${HOME}
-        xrdb -merge ~/.Xresources
-        exec icewm-session
+        exec cwm
         ;;
+
     OpenBSD)
         export LANG="{{ .locale }}"
         export LC_time="en_GB.UTF-8"
         export LC_COLLATE=C
-        if test -f ~/.Xresources; then
-            xrdb -merge ~/.Xresources
-        fi
         redshift &
         ${HOME}/bin/icd
         urxvtd -q -f -o &
-        xset dpms 180 300 600
         exec cwm
 	;;
-    *)
-        if test -f ~/.Xresources; then
-            xrdb -merge -I$HOME ~/.Xresources
-        fi
-        redshift &
+
+    Linux)
         ${HOME}/bin/icd
-        # xcompmgr &
+        ${HOME}/bin/mice.sh
+
+        redshift &
+        ${HOME}/.screenlayout/{{ .chezmoi.hostname }}-home.sh
         trayer --tint black --edge top --SetDockType true --SetPartialStrut true \
           --expand true --width 10 --transparent true --height 12 --align right &
         ${HOME}/.dzen/battery.sh &
+
+        sh ${HOME}/bin/startaudio &
         pavucontrol &
+
         urxvtd -q -f -o &
         urxvtc &
-        ${HOME}/.screenlayout/{{ .chezmoi.hostname }}-home.sh
-        if [ "false" = "True" ]; then
-            sh bin/startaudio &
-        fi
-        ${HOME}/bin/mice.sh
-        xset dpms 180 300 600
 
-        exec /usr/bin/xmonad
+        exec xmonad
         ;;
 esac
