@@ -29,6 +29,7 @@
 	enabled = true
 [url "git@salsa.debian.org:"]
 	pushInsteadOf = https://salsa.debian.org/
+	insteadOf = https://salsa.debian.org/
 [core]
 	quotePath = false
 [includeIf "gitdir:/media/t/work/packaging/"]
