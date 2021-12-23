@@ -33,10 +33,10 @@
     (let ((indent-tabs-mode nil)) ad-do-it))
   :custom
   (face-font-family-alternatives
-   (append '(("Spleen" "Spleen 16x32" "FreeMono" "Liberation Mono"))
+   (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
 	   face-font-family-alternatives))
   :custom-face
-  (default ((t (:family "Spleen")))))
+  (default ((t (:family "Spleen 16x32")))))
 
 (if (string= (system-name) "demeter.rak.ac")
     (use-package leuven-theme ; nice theme for lecturing / projectors
