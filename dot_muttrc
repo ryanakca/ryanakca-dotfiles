@@ -122,6 +122,8 @@ set mbox_type=mbox
 # In case it's unset
 set sendmail="sendmail -oem -oi"
 
+set fcc_before_send=yes
+
 # For the -f option to work properly with account-hooks, it looks like I need
 # to unset the folder option
 unset folder
