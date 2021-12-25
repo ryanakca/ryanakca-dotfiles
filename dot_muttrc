@@ -140,18 +140,6 @@ source ~/.mutt/savehooks.rc
 source ~/.mutt/gpg.rc
 source ~/.mutt/news.rc
 
-#set folder="/home/ryan/.maildb/GMAIL/"
-#set spoolfile='/home/ryan/.maildb/GMAIL/INBOX'
-#mailboxes ! + `sed -e 's/\(.*\)$/"+.\1"/g' .maildb/GMAIL/subscriptions | tr '\n' ' '`
-#mailboxes ! + `\
-#for file in ~/.maildb/GMAIL/.*; do \
-#box=$(basename "$file"); \
-#if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
-#   -a ! "$box" = '.subscriptions' ]; then \
-# echo -n "\"+$box\" "; \
-#fi; \
-#done`
-
 set tmpdir='~/.mutt/tmp'
 
 macro index <F7> \
