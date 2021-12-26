@@ -7,7 +7,9 @@ autogroup 6 "pavucontrol", "Pavucontrol"
 # assign windows to current group
 sticky yes
 
-command term {{ if (eq .chezmoi.os "openbsd" ) -}}xterm{{ else }}urxvtc{{ end }}
+command term    {{ if (eq .chezmoi.os "openbsd" ) -}}xterm{{ else }}urxvtc{{ end }}
+command lock    "slock xset dpms force off"
+command dpmsoff "xset dpms force off"
 
 color activeborder "#ff7701"
 
@@ -39,6 +41,7 @@ bind-key 4-slash menu-window
 
 # F:  menu-cmd                 Launch application search menu.
 # D:  C-slash         Search for applications.
+bind-key 4-c menu-cmd
 
 # F:  menu-group               Launch group search menu.
 bind-key 4-g menu-group
@@ -85,7 +88,7 @@ bind-key 4-plus        group-only-9
 
 # F:  group-toggle-all         Toggle visibility of all groups.
 # D:  CM-a            Toggle visibility of all groups.
-bind-key C4S-a group-toggle-all
+bind-key 4-a group-toggle-all
 
 # F:  window-group             Toggle group membership of current window.
 # D:  CM-g            Toggle group membership of current window.
