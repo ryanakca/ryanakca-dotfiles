@@ -642,7 +642,7 @@ If not, issue a warning."
      ("Reason Papers")
      ("Reprints in Theory and Applications of Categories")
      ("Rice University Studies")
-     ("Rice University Studies"))
+     ("Rice University Studies")
      ("SICOMP" "SIAM Journal on Computing")
      ("Science")
      ("TAC" "Theory and Applications of Categories")
@@ -653,7 +653,7 @@ If not, issue a warning."
      ("The Voice")
      ("Topoi")
      ("Transactions of the American Mathematical Society")
-     ("{ACM} {SIGACT} News" "ACM SIGACT News")))
+     ("{ACM} {SIGACT} News" "ACM SIGACT News"))))
 
 (use-package org-ref-core
   :ensure org-ref
