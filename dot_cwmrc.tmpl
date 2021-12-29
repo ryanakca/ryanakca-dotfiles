@@ -120,10 +120,12 @@ bind-key 4-Tab window-cycle
 
 # F:  window-rcycle            Reverse cycle through windows.
 # D:  MS-Tab          Reverse cycle through currently visible windows.
-bind-key 4S-Tab window-cycle
+bind-key 4S-Tab window-rcycle
 
 # F:  window-cycle-ingroup     Forward cycle through windows in current group.
 # F:  window-rcycle-ingroup    Reverse cycle through windows in current group.
+bind-key C4-Tab window-cycle-ingroup
+bind-key C4S-Tab window-rcycle-ingroup
 
 # F:  window-close    Close current window.
 # D:  CM-x            Close current window.
@@ -161,6 +163,7 @@ bind-key 4-s window-fullscreen
 
 # F:  window-maximize          Maximize current window (gap + border honored).
 # D:  CM-m            Toggle maximization of current window.
+bind-key C4-m window-maximize
 
 # F:  window-vmaximize         Vertically maximize current window (gap + border
 # F:                           honored).
