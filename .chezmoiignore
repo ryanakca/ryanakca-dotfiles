@@ -16,26 +16,35 @@ chezmoi.toml.censored
 {{- end }}
 
 # files in home
+.*~
+.**/*~
 .Xauthority
 .auth.gpg
+.bash_history
 .cache
+.config/GIMP
+.config/Recoll.org
+.config/Signal
 .config/borg
 .config/chezmoi
 .config/dconf
+.config/evince
 .config/gtk-3.0
+.config/htop
+.config/ncmpcpp/*
+!.config/ncmpcpp/config
+.config/pavucontrol.ini
+.config/pulse/*
+!.config/pulse/daemon.conf
+!.config/pulse/default.pa
 .emacs.d/auto-save-list
 .emacs.d/dictem
 .emacs.d/elpa
 .emacs.d/transient
 .fonts
-.gnupg/crls.d
-.gnupg/private-keys-v1.d
-.gnupg/pubring.gpg
-.gnupg/pubring.kbx
-.gnupg/random_seed
-.gnupg/secring.gpg
-.gnupg/tofu.db
-.gnupg/trustdb.gpg
+.gnupg/*
+!.gnupg/gpg-agent.conf.tmpl
+!.gnupg/gpg.conf
 .go
 .keychain
 .lbdb
@@ -46,7 +55,10 @@ chezmoi.toml.censored
 .mutt/cache
 .mutt/tmp
 .opam
+.recoll
 .ssh/known_hosts.old
+.ssh/keys/{{ .chezmoi.hostname }}/id_ed25519
+.ssh/keys/{{ .chezmoi.hostname }}/id_rsa
 .texlive202*
 .texmf/doc
 .texmf/fonts
@@ -66,8 +78,10 @@ chezmoi.toml.censored
 .xsession-errors
 .zcompdump
 .zsh/**/*.zwc
+.zsh/cache
 .zsh/history
 Documents
 Downloads
 News
->>>>>>> 4b28430 (Ignore some files)
+src
+tmp
