@@ -36,7 +36,9 @@
    (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
 	   face-font-family-alternatives))
   :custom-face
-  (default ((t (:family "Spleen 16x32")))))
+  (default ((t (:family "Spleen 16x32"
+			:height 130 ; unit is 1/10 pt
+			)))))
 
 (if (string= (system-name) "demeter.rak.ac")
     (use-package leuven-theme ; nice theme for lecturing / projectors
