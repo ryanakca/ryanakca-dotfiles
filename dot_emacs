@@ -617,6 +617,7 @@ If not, issue a warning."
   :custom
   (org-ref-title-case-types '(("article" "title")
 			      ("book" "booktitle" "title")
+			      ("collection" "booktitle" "title")
 			      ("incollection" "booktitle" "title")
 			      ("inproceedings" "booktitle" "title")
 			      ("misc" "title")
