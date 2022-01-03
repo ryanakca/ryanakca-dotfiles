@@ -20,6 +20,7 @@
   (put 'narrow-to-region 'disabled nil)
   :hook   ; add functions onto hook; only basename needed
   ((text-mode   . turn-on-auto-fill)
+   (text-mode   . flyspell-mode)
    (before-save . whitespace-cleanup))
   :bind   ; key bindings
   (("C-x a r" . align-regexp))
