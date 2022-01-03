@@ -97,7 +97,7 @@ mykeys x = [
   , ((myMod, xK_F6), spawn "sleep 0.5 && ${HOME}/bin/icd && ${HOME}/bin/mice.sh")
   , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
   , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
-  , ((myMod, xK_l), spawn "slock")
+  , ((myMod, xK_l), spawn "slock xset dpms force off")
   , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
   , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
   , ((myMod .|. myCtrl .|. shiftMask, xK_Up),    sendMessage $ Move U)
