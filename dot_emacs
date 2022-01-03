@@ -478,6 +478,8 @@ Otherwise split the current paragraph into one sentence per line."
   :mode ("\\.m\'" . octave-mode))
 
 (use-package org
+  :hook
+  (org-mode . visual-line-mode)
   :custom
   (org-link-file-path-type 'relative))
 
