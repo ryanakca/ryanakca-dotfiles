@@ -61,13 +61,13 @@ Match final host="*.club.cc.cmu.edu"
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
     GSSAPITrustDNS yes
-    {{ end }}
+    {{- end }}
     UserKnownHostsFile ~/.ssh/known_hosts.d/club.cc.cmu.edu
 Match final host="*.andrew.cmu.edu,*.cs.cmu.edu"
     {{- if (ne .chezmoi.os "openbsd") }}
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
-    {{ end }}
+    {{- end }}
     User rkavanag
 
 ## SDF hosts
