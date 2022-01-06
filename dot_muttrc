@@ -59,8 +59,8 @@ set sort_aux=date
 set move=no
 set mark_old=no
 ignore * # ignore all headers except for ...
-unignore Date: From: To: CC: Bcc: Subject:
-hdr_order Subject: Date: From: To: CC: Bcc:
+unignore  date from to cc bcc subject
+hdr_order date from to cc bcc subject
 # MessageNo Mo Day (To if sent by me, from if sent to me) List [Flags (Hidden Messages/line count) Subject
 set index_format="%4C %{%m%d} %-16.16F [%Z] %?M?(#%03M)&(%4l)? %s"
 # Narrow / wide versions.
