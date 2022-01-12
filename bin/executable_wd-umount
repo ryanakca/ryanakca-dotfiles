@@ -1,7 +1,19 @@
 #!/bin/sh
 
-sudo umount --lazy -f /var/lib/mpd/music
-sudo zpool export -f ztosh
-sudo cryptdisks_stop tosh
-sudo vgchange -an tosh
-sudo vgexport tosh
+case `uname` in
+    OpenBSD)
+        doas umount /mnt/wd
+        doas bioctl -d sd3
+        ;;
+    Linux)
+        sudo umount --lazy -f /var/lib/mpd/music
+        sudo zpool export -f ztosh
+        sudo cryptdisks_stop tosh
+        sudo vgchange -an tosh
+        sudo vgexport tosh
+        ;;
+    *)
+        echo "Unknown host"
+        exit 1
+        ;;
+esac
