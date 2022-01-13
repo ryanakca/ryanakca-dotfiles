@@ -2,8 +2,8 @@
 
 case `uname` in
     OpenBSD)
-        doas bioctl -c C -l sd2a softraid0
-        doas mount /mnt/wd
+        doas bioctl -c C -l fe3fd8d53b06049b.a softraid0
+        doas mount /media/wd
         ;;
     Linux)
         if ! mount | grep -w /media/t > /dev/null ; then
@@ -28,3 +28,5 @@ case `uname` in
         echo "Unknown host"
         exit 1
 esac
+
+# vim: set sw=4:
