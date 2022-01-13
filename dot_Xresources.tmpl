@@ -37,7 +37,10 @@ XLock*logoutButton:     -1
 
 Xpdf*fileFilterStyle:   filter_hidden_files
 
-XTerm.metaSendsEscape: true
+XTerm*metaSendsEscape: true
+XTerm.VT100.translations: #override \
+    Ctrl <Key> Down: smaller-vt-font() \n\
+    Ctrl <Key> Up: larger-vt-font()
 XTerm.eightBitInput: false
 XTerm.termName: xterm-256color
 XTerm*faceName: xft:spleen:antialias=false
@@ -60,3 +63,12 @@ xscreensaver.selected: -1
 xscreensaver.timeout: 0:02:00
 xscreensaver.timestamp: True
 xscreensaver.unfade: False
+
+XConsole*background:	black
+XConsole*foreground:	white
+XConsole*borderWidth:	2
+XConsole*borderColor:   grey
+XConsole.text.geometry:	480x130
+XConsole.verbose:	true
+XConsole*iconic:	true
+XConsole*font:		fixed
