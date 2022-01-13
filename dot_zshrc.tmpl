@@ -48,12 +48,6 @@ export BZR_EMAIL="$NAME <$EMAIL>"       # Override email for Bazaar.
 export GIT_AUTHOR_NAME=$NAME
 export DARCS_EMAIL="$NAME <$EMAIL>"
 export QUILT_PATCHES=debian/patches
-if [[ `hostname` = "demeter.rak.ac" ]]; then
-    export PATH=${HOME}/bin:/opt/local/bin:/opt/local/sbin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
-    export MANPATH=/opt/local/share/man:$MANPATH
-else
-    export PATH=${HOME}/bin:/usr/sbin:/sbin:$PATH:${GEM_BIN}:${HOME}/.local/bin/
-fi
 export MANWIDTH=80
 export MANOPT="-L en"
 export PAGER=less
@@ -63,6 +57,21 @@ export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 export GOPATH=${HOME}/.go
+
+export PATH=/usr/sbin:/sbin:${PATH}
+case `uname` in
+    Linux)
+        ;;
+    Darwin)
+        export PATH=/opt/local/bin:/opt/local/sbin:/usr/sbin:/sbin:$PATH
+        export MANPATH=/opt/local/share/man:${MANPATH}
+        ;;
+    OpenBSD)
+        export PATH=/usr/games:${PATH}
+        ;;
+    *)
+esac
+export PATH=${HOME}/bin:${PATH}
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 alias dbuild='GPG_TTY=$(tty) debuild -S -sa -k$GPGKEY'
