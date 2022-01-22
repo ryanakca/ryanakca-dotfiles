@@ -2,9 +2,11 @@
 export GPG_TTY="${TTY}"
 
 # Otherwise we cannot use ^o as a keybinding
-if [[ `uname` == "Darwin" ]]; then
-    stty discard undef
-fi
+case `uname` in
+    Darwin|OpenBSD)
+        stty discard undef
+        ;;
+esac
 
 aklogs () {
     for r in ANDREW.CMU.EDU CLUB.CC.CMU.EDU; do
