@@ -3,7 +3,7 @@
 case `uname` in
     OpenBSD)
         doas umount /mnt/wd
-        doas bioctl -d sd3
+        doas bioctl -d 79665ba14a5187ba
         ;;
     Linux)
         sudo umount --lazy -f /var/lib/mpd/music
