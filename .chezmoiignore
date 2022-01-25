@@ -47,7 +47,8 @@ chezmoi.toml.censored
 !.gnupg/gpg.conf
 .go
 .keychain
-.lbdb
+.lbdb/*
+!.lbdb/lbdbrc
 .lesshst
 .local/share
 .lyrics
