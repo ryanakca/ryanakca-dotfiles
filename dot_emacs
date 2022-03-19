@@ -545,7 +545,95 @@ Returns a formatted BibTeX entry."
 
 (use-package org-ref-bibtex
   :ensure org-ref
+  :custom
+  (org-ref-title-case-types '(("article" "title")
+			      ("book" "booktitle" "title")
+			      ("collection" "booktitle" "title")
+			      ("incollection" "booktitle" "title")
+			      ("inproceedings" "booktitle" "title")
+			      ("misc" "title")
+			      ("proceedings" "title")
+			      ("report" "title")
+			      ("thesis" "title")))
+  (org-ref-bibtex-journal-abbreviations
+   '(("CACM" "Communications of the ACM" "Comm. ACM")
+     ("Discourse \\& Society")
+     ("ENTCS" "Electronic Notes in Theoretical Computer Science")
+     ("Information and Computation")
+     ("International Journal of Foundations of Computer Science" "Int. J. Found. Comput. Sci.")
+     ("JSL" "The Journal of Symbolic Logic")
+     ("Journal of Computer Security")
+     ("Journal of Logic and Computation" "J. Logic Computat.")
+     ("LCNS" "Lecture Notes in Computer Science" "Lect. Notes Comput. Sc.")
+     ("LMCS" "Logical Methods in Computer Science")
+     ("Le Devoir")
+     ("MSCS" "Mathematical Structures in Computer Science" "Math. Struct. Comp. Sci.")
+     ("Nordic Journal of Philosophical Logic")
+     ("PACMPL" "Proceedings of the ACM on Programming Languages" "Proc. ACM Program. Lang.")
+     ("Philosophy Compass")
+     ("Piping Today")
+     ("Proceedings of the Aristotelian Society")
+     ("Publications of the Research Institute for Mathematical Sciences" "Publ. RIMS")
+     ("Reason Papers")
+     ("Reprints in Theory and Applications of Categories")
+     ("Rice University Studies")
+     ("Rice University Studies")
+     ("SICOMP" "SIAM Journal on Computing")
+     ("Science")
+     ("TAC" "Theory and Applications of Categories")
+     ("TCS" "Theoretical Computer Science")
+     ("TUGboat")
+     ("The American Mathematical Monthly")
+     ("The Review of Symbolic Logic")
+     ("The Voice")
+     ("Topoi")
+     ("Transactions of the American Mathematical Society")
+     ("{ACM} {SIGACT} News" "ACM SIGACT News"))))
+
+(use-package reftex-cite
+  :ensure t)
+
+(use-package org-ref-core
+  :ensure org-ref
+  :after org-ref-bibtex
+  :after reftex-cite
+  :after helm-bibtex
+  :bind (:map bibtex-mode-map
+	      ("C-c C-c" . org-ref-clean-bibtex-entry)
+	      ("C-c e"   . my/set-source-ev)
+	      ("C-c d"   . my/set-checked-date))
   :config
+  (defun my/org-ref-title-case-english ()
+    "Call org-ref-title-case only if the language field is set
+       to `english' or is missing. This will avoid having foreign-
+       language titles re-cased."
+    (interactive)
+    (let ((langfield (bibtex-autokey-get-field "language")))
+      (if (= (length langfield) 0)
+	  (org-ref-title-case))))
+  (defun my/set-checked-date ()
+    "Set the _checked field of a bibtex entry to the current date."
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (bibtex-set-field "_checked" (format-time-string "%Y-%m-%d"))))
+  (defun my/set-source-ev ()
+    "Set the _source field of a bibtex entry to ev."
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (bibtex-set-field "_source" "ev")))
+  ;; taken from org-ref-bibtex.el and extended
+  (setq org-ref-nonascii-latex-replacements
+	(append '(("ﬁ" . "fi")
+		  ("ı́" . "{\\\\'i}")
+		  ("ω" . "$\\\\omega$")
+		  ("‘" . "`") ; LEFT SINGLE QUOTATION MARK
+		  ("’" . "'") ; RIGHT SINGLE QUOTATION MARK
+		  ("“" . "``")
+		  ("′" . "'") ; PRIME
+		  ("”" . "''"))
+		org-ref-nonascii-latex-replacements))
   (defun my/org-ref-format-url-if-doi ()
     "Override built-in function. Originally, this reformatted
 the url to point to DOI. I would rather kill the URL field
@@ -618,90 +706,6 @@ If not, issue a warning."
 	  (unless (member journal (-flatten org-ref-bibtex-journal-abbreviations))
 	    (message "Journal \"%s\" not found in org-ref-bibtex-journal-abbreviations." journal))))))
   :custom
-  (org-ref-title-case-types '(("article" "title")
-			      ("book" "booktitle" "title")
-			      ("collection" "booktitle" "title")
-			      ("incollection" "booktitle" "title")
-			      ("inproceedings" "booktitle" "title")
-			      ("misc" "title")
-			      ("proceedings" "title")
-			      ("report" "title")
-			      ("thesis" "title")))
-  (org-ref-bibtex-journal-abbreviations
-   '(("CACM" "Communications of the ACM" "Comm. ACM")
-     ("Discourse \\& Society")
-     ("ENTCS" "Electronic Notes in Theoretical Computer Science")
-     ("Information and Computation")
-     ("International Journal of Foundations of Computer Science" "Int. J. Found. Comput. Sci.")
-     ("JSL" "The Journal of Symbolic Logic")
-     ("Journal of Computer Security")
-     ("Journal of Logic and Computation" "J. Logic Computat.")
-     ("LCNS" "Lecture Notes in Computer Science" "Lect. Notes Comput. Sc.")
-     ("LMCS" "Logical Methods in Computer Science")
-     ("Le Devoir")
-     ("MSCS" "Mathematical Structures in Computer Science" "Math. Struct. Comp. Sci.")
-     ("Nordic Journal of Philosophical Logic")
-     ("PACMPL" "Proceedings of the ACM on Programming Languages" "Proc. ACM Program. Lang.")
-     ("Philosophy Compass")
-     ("Piping Today")
-     ("Proceedings of the Aristotelian Society")
-     ("Publications of the Research Institute for Mathematical Sciences" "Publ. RIMS")
-     ("Reason Papers")
-     ("Reprints in Theory and Applications of Categories")
-     ("Rice University Studies")
-     ("Rice University Studies")
-     ("SICOMP" "SIAM Journal on Computing")
-     ("Science")
-     ("TAC" "Theory and Applications of Categories")
-     ("TCS" "Theoretical Computer Science")
-     ("TUGboat")
-     ("The American Mathematical Monthly")
-     ("The Review of Symbolic Logic")
-     ("The Voice")
-     ("Topoi")
-     ("Transactions of the American Mathematical Society")
-     ("{ACM} {SIGACT} News" "ACM SIGACT News"))))
-
-(use-package org-ref-core
-  :ensure org-ref
-  :after helm-bibtex
-  :bind (:map bibtex-mode-map
-	      ("C-c C-c" . org-ref-clean-bibtex-entry)
-	      ("C-c e"   . my/set-source-ev)
-	      ("C-c d"   . my/set-checked-date))
-  :config
-  (defun my/org-ref-title-case-english ()
-    "Call org-ref-title-case only if the language field is set
-       to `english' or is missing. This will avoid having foreign-
-       language titles re-cased."
-    (interactive)
-    (let ((langfield (bibtex-autokey-get-field "language")))
-      (if (= (length langfield) 0)
-	  (org-ref-title-case))))
-  (defun my/set-checked-date ()
-    "Set the _checked field of a bibtex entry to the current date."
-    (interactive)
-    (save-excursion
-      (bibtex-beginning-of-entry)
-      (bibtex-set-field "_checked" (format-time-string "%Y-%m-%d"))))
-  (defun my/set-source-ev ()
-    "Set the _source field of a bibtex entry to ev."
-    (interactive)
-    (save-excursion
-      (bibtex-beginning-of-entry)
-      (bibtex-set-field "_source" "ev")))
-  ;; taken from org-ref-bibtex.el and extended
-  (setq org-ref-nonascii-latex-replacements
-	(append '(("ﬁ" . "fi")
-		  ("ı́" . "{\\\\'i}")
-		  ("ω" . "$\\\\omega$")
-		  ("‘" . "`") ; LEFT SINGLE QUOTATION MARK
-		  ("’" . "'") ; RIGHT SINGLE QUOTATION MARK
-		  ("“" . "``")
-		  ("′" . "'") ; PRIME
-		  ("”" . "''"))
-		org-ref-nonascii-latex-replacements))
-  :custom
   (org-ref-default-bibliography '("~/Documents/papers/library.bib"))
   (org-ref-bibliography-notes "~/Documents/papers/notes.org")
   (org-ref-pdf-directory "~/Documents/papers/pdfs/")
@@ -736,6 +740,11 @@ If not, issue a warning."
 
 (use-package org-ref-pdf
   :ensure org-ref)
+
+(use-package ox-md
+  ;; org-mode to markdown exporter
+  :ensure org
+  :after (org))
 
 (use-package outline
   :ensure t
