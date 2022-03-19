@@ -43,3 +43,5 @@
 	textconv = gpg --no-tty --decrypt
 [help]
 	autocorrect = prompt
+[init]
+	defaultBranch = master
