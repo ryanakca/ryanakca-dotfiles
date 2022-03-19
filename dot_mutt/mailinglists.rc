@@ -1,30 +1,6 @@
-subscribe -group ML.kubuntu-bugs kubuntu-bugs@lists.ubuntu.com
-subscribe -group ML.kubuntu-devel kubuntu-devel@lists.ubuntu.com
-subscribe -group ML.kubuntu-users kubuntu-users@lists.ubuntu.com
-subscribe -group ML.ubuntu-ca ubuntu-ca@lists.ubuntu.com
-subscribe -group ML.ubuntu-classroom ubuntu-classroom@lists.ubuntu.com
-subscribe -group ML.ubuntu-devel-announce ubuntu-devel-announce@lists.ubuntu.com
-subscribe -group ML.ubuntu-doc ubuntu-doc@lists.ubuntu.com
-subscribe -group ML.ubuntu-website ubuntu-website@lists.canonical.com
-subscribe -group ML.ubuntu .*@.*lists.ubuntu.com
-
-subscribe -group ML.debian-devel debian-devel@lists.debian.org
-subscribe -group ML.debian-devel-announce debian-devel-announce@lists.debian.org
-subscribe -group ML.debian-devel-fr debian-devel-fr@lists.debian.org
-subscribe -group ML.debian-haskell debian-haskell@lists.debian.org
-subscribe -group ML.debian-mentors debian-mentors@lists.debian.org
-subscribe -group ML.debian-project debian-python@lists.debian.org
-subscribe -group ML.debian-python debian-python@lists.debian.org
-subscribe -group ML.debian-qt-kde debian-qt-kde@lists.debian.org
-subscribe -group ML.pkg-kde-talk pkg-kde-talk@lists.debian.org
-subscribe -group ML.pkg-multimedia-commits pkg-multimedia-commits@lists.alioth.debian.org
-subscribe -group ML.pkg-multimedia-maintainers pkg-multimedia-maintainers@lists.alioth.debian.org
-subscribe -group ML.python-apps-team python-apps-team@lists.debian.org
-subscribe -group ML.debian .*@.*lists.debian.org, .*@.*lists.alioth.debian.org
-
-subscribe -group ML.openbsd-misc misc@opensmtpd.org
-
-subscribe -group ML.frescobaldi frescobaldi@googlegroups.com
-
-subscribe -group ML.cmu .*@lists.andrew.cmu.edu
-subscribe -group ML.concertrg concertrg@cs.cmu.edu
+subscribe -group ml.cmu .*@lists.andrew.cmu.edu (cs-phd-students|pop-group|concertrg)@cs.cmu.edu
+subscribe -group ml.debian .*@.*lists.debian.org
+subscribe -group ml.openbsd (bugs|misc)@opensmtpd.org
+subscribe -group ml.opensmtpd misc@opensmtpd.org
+subscribe -group ml.ubuntu .*@.*lists.ubuntu.com
+subscribe -group ml.mcgill (complogic)@cs.mcgill.ca
