@@ -24,7 +24,7 @@ case `uname` in
 
     OpenBSD)
         export LANG="{{ .locale }}"
-        export LC_time="en_GB.UTF-8"
+        export LC_TIME="en_GB.UTF-8"
         export LC_COLLATE=C
         [ -d /usr/local/share/fonts/spleen ] && xset +fp /usr/local/share/fonts/spleen/
         redshift &
