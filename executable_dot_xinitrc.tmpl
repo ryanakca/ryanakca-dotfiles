@@ -19,6 +19,12 @@ xset dpms 180 210 240
 
 case `uname` in
     Darwin)
+        # Don't forget to create a symlink from
+        # ~/.xinitrc.d/xinitrc.sh -> ~/.xinitrc
+        export LANG="{{ .locale }}"
+        export LC_TIME="en_GB.UTF-8"
+        export LC_COLLATE=C
+        urxvtd -q -f -o &
         exec cwm
         ;;
 
