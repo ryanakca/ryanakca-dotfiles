@@ -8,7 +8,7 @@ autogroup 6 "pavucontrol", "Pavucontrol"
 # assign windows to current group
 sticky yes
 
-command term    {{ if (eq .chezmoi.os "openbsd" ) -}}xterm{{ else }}urxvtc{{ end }}
+command term    {{ if (eq .chezmoi.os "openbsd" "darwin") -}}xterm{{ else }}urxvtc{{ end }}
 command lock    {{ if (eq .chezmoi.os "openbsd") -}}"xlock -dpmsoff 1"{{ else }}"slock xset dpms force off"{{ end }}
 command dpmsoff "xset dpms force off"
 
