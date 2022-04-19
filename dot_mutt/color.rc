@@ -66,14 +66,16 @@ color underline   color223 color239
 color sidebar_divider    color250 default
 color sidebar_new        color142 default
 
-color index color142 default ~N
-color index color108 default ~O
-color index color109 default ~P
-color index color234 color214 ~F
-color index color175 default ~Q
-color index color167 default ~=
-color index color234 color223 ~T
-color index color234 color167 ~D
+# Note that the the last matching pattern is the
+# one that gets used, so order matters
+color index color142 default  ~N # new messages
+color index color108 default  ~O # old messages
+color index color109 default  ~P # message is from you (consults $alternates)
+color index color175 default  ~Q # messages which have been replied to
+color index color167 default  ~= # duplicate
+color index color234 color214 ~F # flagged messages
+color index color234 color223 ~T # tagged messages
+color index color234 color167 ~D # deleted messages
 
 color header color214 default "^(To|From):"
 color header color142 default "^Subject:"
