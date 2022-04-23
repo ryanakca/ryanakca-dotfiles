@@ -484,6 +484,8 @@ Otherwise split the current paragraph into one sentence per line."
   :mode ("\\.m\'" . octave-mode))
 
 (use-package org
+  :bind (:map org-mode-map
+	      ("<tab>" . org-cycle))
   :hook
   (org-mode . visual-line-mode)
   :custom
