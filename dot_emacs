@@ -259,6 +259,12 @@ Extended Format date in the date field and return it as a string obeing
   (add-to-list 'company-backends 'company-math-symbols-unicode)
   (add-to-list 'company-backends 'company-latex-commands))
 
+(use-package company-org-block
+  :ensure t
+  :hook ((org-mode . (lambda ()
+		       (setq-local company-backends '(company-org-block))
+		       (company-mode +1)))))
+
 (use-package cus-edit
   :custom
   (custom-file null-device "Don't store customizations"))
