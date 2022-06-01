@@ -41,9 +41,9 @@ Host hades eos
 Host zeta demeter asteria
     Hostname %h.home.arpa
 Host hades hades.rak.ac hades.home.arpa
-    CertificateFile ~/.ssh/keys/%L/certs/%h.pub
+    CertificateFile ~/.ssh/keys/%L/certs/hades.rak.ac.pub
 Host eos eos.rak.ac eos.home.arpa
-    CertificateFile ~/.ssh/keys/%L/certs/%h.pub
+    CertificateFile ~/.ssh/keys/%L/certs/eos.rak.ac.pub
 Match final host="zeta.home.arpa,demeter.home.arpa,asteria.home.arpa"
     CertificateFile ~/.ssh/keys/%L/certs/rak.pub
 Match final host="*.rak.ac,*.ryanak.ca,*.home.arpa"
