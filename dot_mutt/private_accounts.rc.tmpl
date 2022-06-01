@@ -84,6 +84,7 @@ set status_format = '-%r-QUEENSU: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d
 account-hook imaps://imap.rak.ac \
 "set imap_user = 'rak';\
 set imap_pass = '{{ .password.rakac }}';\
+set imap_delim_chars = '/';\
 set folder = 'imaps://imap.rak.ac/';\
 set record = '=Sent';\
 set copy = 'yes';\
