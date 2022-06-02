@@ -124,7 +124,7 @@ define cmu {
 
 define socs {
     set from="Ryan Kavanagh <rkavanagh@cs.mcgill.ca>"
-    set folder=imaps://mail.cs.mcgill.ca/"
+    set folder=imaps://mail.cs.mcgill.ca/
     set mbox=+INBOX.Read
     set record=+INBOX.Sent
 }
