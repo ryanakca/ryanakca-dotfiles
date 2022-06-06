@@ -1,3 +1,4 @@
 handler image/* display %s
+handler application/pdf open %s
 set color_menus True
 g gopher://rak.ac/
