@@ -1,0 +1,9 @@
+host = irc.sdf.org
+save = otaku
+hash = 0,13
+nick = rak
+user = rak
+real = Ryan Kavanagh
+join = #anonradio,#gopher,#helpdesk,#hurtdesk,#plan9,#sdf
+quiet
+timestamp = %d %X
