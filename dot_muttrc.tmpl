@@ -3,7 +3,7 @@ set use_from = yes
 set use_envelope_from = yes
 set reverse_name = yes
 set reverse_realname = no
-alternates "ryanakca@(gmail\\.com|kubuntu\\.org|ubuntu\\.com)|(ryan\\.kavanagh|9rak)@queensu\\.ca|rak@(debian\\.org|rak\\.ac|ryanak\\.ca)|rkavanag@((andrew|alumni|cs)\\.cmu\\.edu)|rkavanagh@cs\\.cmu\\.edu|ryan@cs\\.queensu\\.ca|ryank@cs\\.mcgill\.ca|ryan\\.kavanagh@(mail\\.)?mcgill\\.ca"
+alternates "ryanakca@(gmail\\.com|kubuntu\\.org|ubuntu\\.com)|(ryan\\.kavanagh|9rak)@queensu\\.ca|rak@(debian\\.org|rak\\.ac|ryanak\\.ca)|rkavanag@((andrew|alumni|cs)\\.cmu\\.edu)|rkavanagh@cs\\.cmu\\.edu|ryan@cs\\.queensu\\.ca|ryank@cs\\.mcgill\.ca|ryan\\.kavanagh@(mail\\.)?mcgill\\.ca|rak@sdf\\.org"
 
 set crypt_autosign = yes # default: no
 set crypt_replysign = yes # default: no
@@ -111,7 +111,6 @@ macro index \cb |urlscan\n
 macro pager \cb |urlscan\n
 macro index I 'c=INBOX<enter>'
 macro index x 'c=QueensU.INBOX<enter>'
-#:source ~/.muttrc<enter>'
 
 bind editor <space> noop
 
@@ -139,6 +138,10 @@ source ~/.mutt/color.rc
 source ~/.mutt/savehooks.rc
 source ~/.mutt/gpg.rc
 source ~/.mutt/news.rc
+
+{{- if hasPrefix .chezmoi.homeDir "/sdf"  }}
+set from = 'Ryan Kavanagh <rak@sdf.org>'
+{{- end }}
 
 set tmpdir='~/.mutt/tmp'
 
