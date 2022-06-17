@@ -106,6 +106,9 @@ fi
 for f in $HOME/.zsh/p10k.zsh $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme; do
     [[ ! -f $f ]] || source $f
 done
+if [[ -f $HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname) ]]; then
+    GITSTATUS_DAEMON=$HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname);
+fi
 
 # Alias/custom commands
 #
@@ -645,3 +648,5 @@ if command -v keychain > /dev/null; then
     [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
            . $HOME/.keychain/$HOSTNAME-sh-gpg
 fi
+
+# vim: set ft=sh:
