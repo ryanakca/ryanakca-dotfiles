@@ -1,0 +1,11 @@
+# Enable with
+# systemctl enable --now fix-f4-led.service
+[Unit]
+Description=Fix F4 LED on Thinkpad
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo 0 > /sys/class/leds/platform::micmute/brightness"
+
+[Install]
+WantedBy=multi-user.target

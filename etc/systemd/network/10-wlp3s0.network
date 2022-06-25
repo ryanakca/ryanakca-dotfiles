@@ -3,3 +3,4 @@ Name=wlp3s0
 
 [Network]
 DHCP=yes
+# Tunnel=he-ipv6
