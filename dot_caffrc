@@ -2,7 +2,7 @@
 # vim:ft=perl:
 
 $CONFIG{'owner'}       = 'Ryan Kavanagh';
-$CONFIG{'email'}       = 'rak@ryanak.ca';
+$CONFIG{'email'}       = 'rak@debian.org';
 
 # you can get your long keyid from
 #   gpg --with-colons --list-key <yourkeyid|name|emailaddress..>
