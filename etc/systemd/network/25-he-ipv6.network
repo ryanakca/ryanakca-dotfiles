@@ -6,3 +6,4 @@ Gateway=2001:470:7:384::1
 Address=2001:470:7:384::103/64
 Address=2001:470:8:385::103/64
 DNS=2001:470:20::2
+BindCarrier=wlp3s0 enp5s0
