@@ -1,0 +1,80 @@
+# vim: syntax=muttrc
+
+account-hook imaps://ryanakca@gmail.com@imap.gmail.com \
+    source ~/.mutt/accounts/ryanakca.gmail.com/main.rc
+
+account-hook imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com \
+    source ~/.mutt/accounts/ryan.kavanagh.mcgill.ca/main.rc
+
+account-hook imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com \
+    source ~/.mutt/accounts/ryan.kavanagh.mail.mcgill.ca/main.rc
+
+account-hook imaps://9rak@queensu.ca@outlook.office365.com \
+    source ~/.mutt/accounts/9rak.queensu.ca/main.rc
+
+account-hook imaps://imap.rak.ac \
+    source ~/.mutt/accounts/rak.rak.ac/main.rc
+
+account-hook imaps://mail.cs.mcgill.ca \
+    source ~/.mutt/accounts/ryank.mail.cs.mcgill.ca/main.rc
+
+account-hook imaps://rkavanag@alumni.cmu.edu@imap.gmail.com \
+    source ~/.mutt/accounts/rkavanag.alumni.cmu.edu/main.rc
+
+macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <ryanakca@ubuntu.com><enter>' \
+"Send mail from Ubuntu account"
+
+macro compose <Esc><F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <ryanakca@kubuntu.org><enter>' \
+"Send mail from Kubuntu account"
+
+macro compose <F3> '<enter-command>set folder="imaps://rkavanag@alumni.cmu.edu@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rkavanag@alumni.cmu.edu><enter>' \
+"Send mail from CMU Alumni account"
+
+macro compose <Esc><F3> '<enter-command>set folder="imaps://rkavanag@alumni.cmu.edu@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.cmu.edu><enter>' \
+"Send mail from CMU SCS account"
+
+macro compose <F4> '<enter-command>set folder="imaps://outlook.office365.com"<enter>\
+<edit-fcc><kill-line>=Sent Items<enter>\
+<edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@queensu.ca><enter>' \
+"Send mail from QueensU"
+
+macro compose <Esc><F4> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <ryan@cs.queensu.ca><enter>' \
+"Send mail from cs.queensu.ca"
+
+macro compose <F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
+<edit-fcc><kill-line>=Sent<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rak@debian.org><enter>' \
+"Send mail from Debian account"
+
+macro compose <Esc><F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>\
+<edit-fcc><kill-line>=Sent<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
+"Send mail from rak.ac"
+
+macro compose <F6> '<enter-command>set folder="imaps://mail.cs.mcgill.ca/"<enter>\
+<edit-fcc><kill-line>=INBOX.Sent<enter>\
+<enter-command>set sendmail="sendmail -oem -oi"<enter>\
+<edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.mcgill.ca><enter>' \
+"Send mail from McGill SOCS account"
+
+macro compose <Esc><F6> '<enter-command>set folder="imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com"<enter>\
+<edit-fcc><kill-line><enter>\
+<edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@mcgill.ca><enter>' \
+"Send mail from McGill Staff account"
