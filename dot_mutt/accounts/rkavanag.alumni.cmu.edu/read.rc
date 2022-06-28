@@ -1,0 +1,6 @@
+# vim: syntax=muttrc
+
+set imap_keepalive = 60
+set imap_pass = '{{ .password.cmu }}'
+set imap_passive = 'no'
+set imap_user = 'rkavanag@alumni.cmu.edu'

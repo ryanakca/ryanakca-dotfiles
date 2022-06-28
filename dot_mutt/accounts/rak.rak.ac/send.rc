@@ -1,0 +1,7 @@
+# vim: syntax=muttrc
+
+set from = 'Ryan Kavanagh <rak@rak.ac>'
+
+set sendmail = 'sendmail -oem -oi'
+unset smtp_pass
+unset smtp_url

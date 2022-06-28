@@ -1,0 +1,4 @@
+# vim: syntax=muttrc
+
+set mbox = '=Read'
+set record = '+[Gmail]/Sent Mail'

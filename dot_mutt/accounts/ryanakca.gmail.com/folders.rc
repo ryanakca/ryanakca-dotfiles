@@ -1,0 +1,8 @@
+# vim: syntax=muttrc
+
+set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com'
+
+set postponed = '=[Google Mail]/Drafts'
+set record = '=[Google Mail]/Sent Mail'
+
+unset mbox

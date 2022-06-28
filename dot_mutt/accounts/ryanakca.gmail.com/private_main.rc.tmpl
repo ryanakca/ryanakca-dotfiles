@@ -1,21 +1,11 @@
 # vim: syntax=muttrc
 
-set imap_user = 'ryanakca@gmail.com'
-set imap_pass = '{{ .password.gmail }}'
-set imap_passive = 'no'
+cd ~/.mutt/accounts/ryanakca.gmail.com
 
-set folder = 'imaps://ryanakca@gmail.com@imap.gmail.com'
-set postponed = '=[Google Mail]/Drafts'
-set spoolfile = '=INBOX'
-set record = '=[Google Mail]/Sent Mail'
-set copy = 'no'
-unset mbox
+source folders.rc
+source read.rc
+source send.rc
+source format.rc
+source savehooks.rc
 
-set from = 'Ryan Kavanagh <ryanakca@gmail.com>'
-set sendmail = 'sendmail -oem -oi'
-unset smtp_url
-unset smtp_pass
-
-set pager_format = '-%Z-GMAIL: %C/%m: %-20.20n   %s%*  -- (%P)'
-set compose_format = '-- GMAIL: Compose [Approx. msg size: %l Atts: %a]%>-'
-set status_format = '-%r-GMAIL: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
+cd

@@ -1,0 +1,5 @@
+# vim: syntax=muttrc
+
+set mbox = '=RAK'
+set postponed = '=Drafts'
+set record = '=Sent'

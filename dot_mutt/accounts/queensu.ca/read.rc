@@ -1,0 +1,8 @@
+# vim: syntax=muttrc
+
+set imap_authenticators = 'xoauth2'
+set imap_login = '9rak@queensu.ca'
+set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-queensu.ca-token'
+set imap_passive = 'no'
+set imap_user = '9rak@queensu.ca'
+unset imap_pass

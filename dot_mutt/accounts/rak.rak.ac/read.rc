@@ -1,0 +1,5 @@
+# vim: syntax=muttrc
+
+set imap_delim_chars = '/'
+set imap_pass = '{{ .password.rakac }}'
+set imap_user = 'rak'

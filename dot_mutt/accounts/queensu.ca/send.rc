@@ -1,0 +1,12 @@
+# vim: syntax=muttrc
+
+set copy = yes
+
+set from = 'Ryan Kavanagh <ryan.kavanagh@queensu.ca>'
+
+set smtp_url = 'smtp://9rak@queensu.ca@smtp.office365.com:587/'
+set smtp_authenticators = 'xoauth2'
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-queensu.ca-token'
+
+unset smtp_pass
+unset sendmail
