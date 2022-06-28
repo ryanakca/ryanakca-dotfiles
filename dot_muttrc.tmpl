@@ -126,12 +126,9 @@ set fcc_before_send=yes
 # For the -f option to work properly with account-hooks, it looks like I need
 # to unset the folder option
 unset folder
-source ~/.mutt/accounts.rc
-# load alias-cmu.rc before alias.rc so that alias.rc overrides any aliases
-# in all accounts apart from SCS. The SCS account hook reloads alias-cmu.rc
-# afterwards
-source ~/.mutt/alias-cmu.rc
+# alias.rc before accounts.rc
 source ~/.mutt/alias.rc
+source ~/.mutt/accounts.rc
 source ~/.mutt/mailinglists.rc
 source ~/.mutt/score.rc
 source ~/.mutt/color.rc

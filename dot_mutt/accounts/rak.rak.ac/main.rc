@@ -8,5 +8,6 @@ source folders.rc
 source read.rc
 source send.rc
 source format.rc
+source savehooks.rc
 
 cd
