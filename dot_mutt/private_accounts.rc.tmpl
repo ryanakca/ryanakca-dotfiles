@@ -65,7 +65,14 @@ set status_format = '-%r-MAIL.MCGILL.CA: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old
 
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
 "set imap_user = '9rak@queensu.ca';\
-set imap_pass = '{{ .password.queensu }}';\
+set imap_login = '9rak@queensu.ca';\
+unset imap_pass;\
+set imap_authenticators = 'xoauth2';\
+set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-queensu.ca-token';\
+set smtp_url = 'smtp://9rak@queensu.ca@smtp.office365.com:587/';\
+set smtp_authenticators = 'xoauth2';\
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-queensu.ca-token';\
+unset smtp_pass;\
 set folder = 'imaps://9rak@queensu.ca@outlook.office365.com';\
 set record = '=Sent Items';\
 set copy = 'yes';\
@@ -75,7 +82,7 @@ set imap_passive = 'no';\
 set mbox = '=Read';\
 unset smtp_url;\
 unset smtp_pass;\
-set sendmail = 'sendmail -oem -oi';\
+unset sendmail;\
 set from = 'Ryan Kavanagh <ryan.kavanagh@queensu.ca>';\
 set pager_format = '-%Z-QUEENSU: %C/%m: %-20.20n   %s%*  -- (%P)';\
 set compose_format = '-- QUEENSU: Compose [Approx. msg size: %l Atts: %a]%>-';\
