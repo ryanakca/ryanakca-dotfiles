@@ -1,5 +1,7 @@
 # vim: syntax=muttrc
 
+{{- if .password.gmail }}
 set imap_pass = '{{ .password.gmail }}'
+{{- end }}
 set imap_passive = 'no'
 set imap_user = 'ryanakca@gmail.com'

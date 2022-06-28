@@ -1,5 +1,7 @@
 # vim: syntax=muttrc
 
 set imap_delim_chars = '/'
+{{- if .password.rakac }}
 set imap_pass = '{{ .password.rakac }}'
+{{- end }}
 set imap_user = 'rak'
