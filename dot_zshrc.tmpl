@@ -112,6 +112,8 @@ for f in $HOME/.zsh/p10k.zsh $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme; d
 done
 if [[ -f $HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname) ]]; then
     GITSTATUS_DAEMON=$HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname);
+elif [[ ! -f $HOME/.zsh/powerlevel10k/gitstatus/gitstatusd ]]; then
+    POWERLEVEL9K_DISABLE_GITSTATUS=true
 fi
 
 # Alias/custom commands
