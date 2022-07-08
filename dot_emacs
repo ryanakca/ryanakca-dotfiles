@@ -446,7 +446,9 @@ Otherwise split the current paragraph into one sentence per line."
 (use-package magit
   :ensure t
   :config
-  (put 'magit-clean 'disabled nil))
+  (put 'magit-clean 'disabled nil)
+  :custom
+  (magit-diff-refine-hunk 'all))
 
 (use-package markdown-mode
   :ensure t
