@@ -129,6 +129,13 @@ define socs {
     set record=+INBOX.Sent
 }
 
+define sdf {
+    set from="Ryan Kavanagh <rak@SDF.ORG>"
+    set folder=imaps://mx.sdf.org/
+    set mbox=+INBOX.Read
+    set record=+INBOX.Sent
+}
+
 # rak is the default account
 call rak
 set inbox=+INBOX
@@ -151,4 +158,8 @@ account c {
 
 account s {
     call socs
+}
+
+account sdf {
+    call sdf
 }
