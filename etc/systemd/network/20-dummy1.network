@@ -1,3 +1,6 @@
 [Match]
 Name=dummy1
 Unmanaged=yes
+
+[Network]
+Domains=~home.arpa
