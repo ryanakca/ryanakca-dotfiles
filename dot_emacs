@@ -468,6 +468,49 @@ Otherwise split the current paragraph into one sentence per line."
   ;; ocaml assistant
   :ensure t)
 
+(use-package message
+  :config
+  (defun whitespace-cleanup-mail ()
+    "Kill the whitespace in a buffer while preserving the last instance of '-- '."
+    (interactive)
+    (save-excursion
+      (save-restriction
+        (widen)
+        (let ((signature-delimiter
+               (progn
+                 ;; Find the last occurence of "-- " in the buffer
+                 ;; and set signature-delimiter to the position of the first -
+                 ;; This means we must subtract 2, because re-search-backward
+                 ;; returns the end of the occurence found
+                 (goto-char (point-max))
+                 (- (re-search-backward "^-- $" nil t) 2))))
+          (when signature-delimiter
+            (progn
+              ;; Run whitespace-cleanup on the region
+              ;; [start, signature-delimiter]. Include the first dash
+              ;; to avoid deleting any empty lines leading up to the
+              ;; delimiter.
+              (narrow-to-region (point-min) signature-delimiter)
+              (whitespace-cleanup)
+              (widen)
+              ;; Run it on the region [signature-delimiter, end).
+              ;; We include the signature delimiter so that we do not
+              ;; delete any empty lines immediately following it.
+              ;; A side-effect is that the first line might become "^--$".
+              ;; This means that we must re-add the space at the end of
+              ;; the first line. Easiest just replace the first line of the
+              ;; buffer by "^-- $".
+              (narrow-to-region signature-delimiter (point-max))
+              (whitespace-cleanup)
+              (goto-char (point-min))
+              (kill-whole-line 0)
+              (insert "-- ")))))))
+  :hook
+  ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
+   (before-save  . whitespace-cleanup-mail))
+  :custom
+  (message-send-mail-function 'message-send-mail-with-sendmail))
+
 (use-package mingus
   ;; mpd client
   :ensure t)
