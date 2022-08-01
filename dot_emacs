@@ -685,6 +685,8 @@ Returns a formatted BibTeX entry."
 		  ("’" . "'") ; RIGHT SINGLE QUOTATION MARK
 		  ("“" . "``")
 		  ("′" . "'") ; PRIME
+		  ("∇" . "$\\\\nabla$")
+		  ("ι" . "$\\\\iota$")
 		  ("”" . "''"))
 		org-ref-nonascii-latex-replacements))
   (defun my/org-ref-format-url-if-doi ()
