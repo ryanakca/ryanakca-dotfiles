@@ -169,6 +169,20 @@ autoload -U compinit; compinit
 
 compdef _quilt dquilt=quilt  # Quilt tab completion for dquilt
 
+## Key bindings
+# You may use:
+# % autoload -U zkbd
+# % zkbd
+# to discover your keys.
+
+
+typeset -U fpath
+
+# Actually, stick with emacs for the moment. The vi keymap just doesn't
+# seem to be as complete (even if it's nicer for editing, there's no
+# execute-named-cmd bound, for example).
+bindkey -e             # Emacs keybindings.
+
 # pattern history search
 bindkey '^R' history-incremental-pattern-search-backward
 
@@ -321,19 +335,7 @@ if [ -f $HISTFILE ]; then
     fc -RI $HISTFILE
 fi
 
-## Key bindings
-# You may use:
-# % autoload -U zkbd
-# % zkbd
-# to discover your keys.
 
-
-typeset -U fpath
-
-# Actually, stick with emacs for the moment. The vi keymap just doesn't
-# seem to be as complete (even if it's nicer for editing, there's no
-# execute-named-cmd bound, for example).
-bindkey -e             # Emacs keybindings.
 
 # This function sets the window tile to user@host:/workingdir before each
 # prompt. If you're using screen, it sets the window title (works
