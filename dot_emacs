@@ -32,6 +32,8 @@
   :custom
   (inhibit-startup-screen t)
   (default-input-method "TeX")
+  (user-full-name "Ryan Kavanagh")
+  (user-mail-address "rak@rak.ac")
   (face-font-family-alternatives
    (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
 	   face-font-family-alternatives))
@@ -310,25 +312,39 @@ Extended Format date in the date field and return it as a string obeing
 (use-package gnus
   :ensure t
   :defer t
+  :bind
+  ;; (:map gnus-summary-buffer-map
+  ;;	("SPC" . (gnus-summary-goto-next-page)
   :custom
   (gnus-select-method
    '(nntp "news.club.cc.cmu.edu"
 	  (nntp-address "news.club.cc.cmu.edu")
-	  (nntp-via-address "unix.club.cc.cmu.edu")
+	  (nntp-via-address "news-cclub")
 	  (nntp-via-rlogin-command "ssh")
-	  (nntp-via-rlogin-command-switches ("-C"))
 	  (nntp-open-connection-function nntp-open-via-rlogin-and-netcat)))
   (gnus-home-score-file "gnus.SCORE")
   (gnus-secondary-select-methods
    '((nntp "news.gmane.io")
-     (nntp "news.eternal-september.org")
+     ; (nntp "news.eternal-september.org")
      ; (nntp "nntp.olduse.net")
+     (nnimap "imap.rak.ac")
+     (nnimap "mail.cs.mcgill.ca")
      (nntp "tilde.team"
 	   (nntp-address "localhost")
 	   (nntp-via-address "tilde.team")
 	   (nntp-via-rlogin-command "ssh")
 	   (nntp-via-rlogin-command-switches ("-C"))
 	   (nntp-open-connection-function nntp-open-via-rlogin-and-netcat))))
+  (gnus-parameters
+   '(("^nntp+.*" (address . "rak@rak.ac"))
+     ("^nnimap+imap\\.rak\\.ac:.*"
+      (posting-style
+       (address . "rak@rak.ac")
+       (gcc "nnimap+imap.rak.ac:Sent")))
+     ("^nnimap+mail\\.cs\\.mcgill\\.ca:.*"
+      (posting-style
+       (address . "rkavanagh@cs.mcgill.ca")
+       (gcc "nnimap+mail.cs.mcgill.ca:INBOX.Sent")))))
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (gnus-update-message-archive-method t)
   (gnus-message-archive-method
@@ -339,6 +355,7 @@ Extended Format date in the date field and return it as a string obeing
 	       (nnfolder-directory   "~/News/sent")))
   (gnus-check-new-newsgroups nil)
   (gnus-group-line-format "%M%S%p%P%5y:%B%(%G%) %z\n")
+  (gnus-topic-display-empty-topics nil)
   :hook
   (message-send . gnus-score-followup-article)
   (gnus-group-mode . gnus-topic-mode))
@@ -474,36 +491,36 @@ Otherwise split the current paragraph into one sentence per line."
     (interactive)
     (save-excursion
       (save-restriction
-        (widen)
-        (let ((signature-delimiter
-               (progn
-                 ;; Find the last occurence of "-- " in the buffer
-                 ;; and set signature-delimiter to the position of the first -
-                 ;; This means we must subtract 2, because re-search-backward
-                 ;; returns the end of the occurence found
-                 (goto-char (point-max))
-                 (- (re-search-backward "^-- $" nil t) 2))))
-          (when signature-delimiter
-            (progn
-              ;; Run whitespace-cleanup on the region
-              ;; [start, signature-delimiter]. Include the first dash
-              ;; to avoid deleting any empty lines leading up to the
-              ;; delimiter.
-              (narrow-to-region (point-min) signature-delimiter)
-              (whitespace-cleanup)
-              (widen)
-              ;; Run it on the region [signature-delimiter, end).
-              ;; We include the signature delimiter so that we do not
-              ;; delete any empty lines immediately following it.
-              ;; A side-effect is that the first line might become "^--$".
-              ;; This means that we must re-add the space at the end of
-              ;; the first line. Easiest just replace the first line of the
-              ;; buffer by "^-- $".
-              (narrow-to-region signature-delimiter (point-max))
-              (whitespace-cleanup)
-              (goto-char (point-min))
-              (kill-whole-line 0)
-              (insert "-- ")))))))
+	(widen)
+	(let ((signature-delimiter
+	       (progn
+		 ;; Find the last occurence of "-- " in the buffer
+		 ;; and set signature-delimiter to the position of the first -
+		 ;; This means we must subtract 2, because re-search-backward
+		 ;; returns the end of the occurence found
+		 (goto-char (point-max))
+		 (- (re-search-backward "^-- $" nil t) 2))))
+	  (when signature-delimiter
+	    (progn
+	      ;; Run whitespace-cleanup on the region
+	      ;; [start, signature-delimiter]. Include the first dash
+	      ;; to avoid deleting any empty lines leading up to the
+	      ;; delimiter.
+	      (narrow-to-region (point-min) signature-delimiter)
+	      (whitespace-cleanup)
+	      (widen)
+	      ;; Run it on the region [signature-delimiter, end).
+	      ;; We include the signature delimiter so that we do not
+	      ;; delete any empty lines immediately following it.
+	      ;; A side-effect is that the first line might become "^--$".
+	      ;; This means that we must re-add the space at the end of
+	      ;; the first line. Easiest just replace the first line of the
+	      ;; buffer by "^-- $".
+	      (narrow-to-region signature-delimiter (point-max))
+	      (whitespace-cleanup)
+	      (goto-char (point-min))
+	      (kill-whole-line 0)
+	      (insert "-- ")))))))
   :hook
   ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
    (before-save  . whitespace-cleanup-mail))
@@ -895,8 +912,7 @@ If not, issue a warning."
 (use-package sendmail
   :custom
   (mail-specify-envelope-from t)
-  (mail-envelope-from 'header)
-  (message-send-mail-function 'sendmail-send-it))
+  (mail-envelope-from 'header))
 
 (use-package simple
   :custom
