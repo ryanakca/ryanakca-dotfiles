@@ -24,15 +24,14 @@
    (before-save . whitespace-cleanup))
   :bind   ; key bindings
   (("C-x a r" . align-regexp))
-  :custom ; options set by customize-variable
-  (inhibit-startup-screen t)
-  (default-input-method "TeX")
   :config ; executed after package is loaded
   (defadvice  ; align-regexp should use spaces.
       align-regexp
       (around align-regexp-with-spaces activate)
     (let ((indent-tabs-mode nil)) ad-do-it))
   :custom
+  (inhibit-startup-screen t)
+  (default-input-method "TeX")
   (face-font-family-alternatives
    (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
 	   face-font-family-alternatives))
