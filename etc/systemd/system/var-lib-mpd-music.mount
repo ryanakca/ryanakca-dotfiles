@@ -1,0 +1,11 @@
+[Unit]
+Description=MPD music mount
+Requires=zfs-mount.service
+
+[Mount]
+What=/media/t/music_clean
+Where=/var/lib/mpd/music
+Options=bind,ro
+
+[Install]
+WantedBy=multi-user.target

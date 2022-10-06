@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount /var/lib/mpd/music
+
+[Automount]
+Where=/var/lib/mpd/music
+DirectoryMode=0555
+
+[Install]
+WantedBy=multi-user.target mpd.service
