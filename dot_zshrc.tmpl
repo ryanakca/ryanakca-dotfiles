@@ -32,8 +32,8 @@
 
 # BEGIN LOCAL
 
-if ! export LANG=$(locale -a | egrep -i "en_CA.UTF-?8"); then
-    if ! export LANG=$(locale -a | egrep -i "C.UTF-?8"); then
+if ! export LANG=$(locale -a | grep -E -i "en_CA.UTF-?8"); then
+    if ! export LANG=$(locale -a | grep -E -i "C.UTF-?8"); then
         export LANG=C
     fi
 fi
@@ -649,7 +649,7 @@ NO_verbose		\
 # GPG / SSH AGENT
 
 if command -v keychain > /dev/null && test -d ~/.ssh/keys/{{ .chezmoi.hostname }}; then
-    ls ~/.ssh/keys/{{ .chezmoi.hostname }}/id_* | egrep -v '\.pub$' | xargs keychain
+    ls ~/.ssh/keys/{{ .chezmoi.hostname }}/id_* | grep -E -v '\.pub$' | xargs keychain
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
            . $HOME/.keychain/$HOSTNAME-sh
