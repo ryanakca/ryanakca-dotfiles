@@ -293,8 +293,8 @@ myXPConfig = def {
 
 -- My workspaces
 
-myWorkspaces = ["term", "web", "chatter", "reading", "5", "music", "LaTeX"]
-               ++ (map show [8..20])
+myWorkspaces = ["term", "web", "chatter", "reading", "gnus", "music", "LaTeX", "work", "radio"]
+               ++ (map show [9..20])
 
 -- smartBorders removes borders when there's no ambiguity
 myLayout = mkToggle (single MIRROR) (smartBorders $ toggleLayouts Full
