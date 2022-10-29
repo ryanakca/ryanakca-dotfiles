@@ -1,5 +1,4 @@
-load-module module-native-protocol-unix
-load-module module-stream-restore
-load-module module-always-sink
-load-module module-suspend-on-idle
+.include /etc/pulse/default.pa
+
+# module-native-protocol-tcp is used by mpd
 load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
