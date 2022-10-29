@@ -345,7 +345,6 @@ Extended Format date in the date field and return it as a string obeing
       (posting-style
        (address . "rkavanagh@cs.mcgill.ca")
        (gcc "nnimap+mail.cs.mcgill.ca:INBOX.Sent")))))
-  (message-citation-line-function 'message-insert-formatted-citation-line)
   (gnus-cloud-method "imap.rak.ac")
   (gnus-cloud-storage-method 'base64)
   (gnus-update-message-archive-method t)
@@ -527,6 +526,7 @@ Otherwise split the current paragraph into one sentence per line."
   ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
    (before-save  . whitespace-cleanup-mail))
   :custom
+  (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
 
 (use-package mingus
