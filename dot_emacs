@@ -524,7 +524,7 @@ Otherwise split the current paragraph into one sentence per line."
 	      (insert "-- ")))))))
   :hook
   ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
-   (before-save  . whitespace-cleanup-mail))
+   (message-mode . (lambda () (add-hook 'before-save-hook 'whitespace-cleanup-mail nil t))))
   :custom
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
