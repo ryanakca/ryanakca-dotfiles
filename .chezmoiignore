@@ -9,6 +9,7 @@ packages-debian
 packages-openbsd
 .gitmodules
 chezmoi.toml.censored
+crontab
 
 {{- if ne .chezmoi.os "openbsd" }}
 # only install if on openbsd
