@@ -88,8 +88,8 @@ alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
 
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
-alias gibuild='git-buildpackage --git-builder="sbuild -sAd u"'
-alias gibuildi='git-buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
+alias gibuild='gbp buildpackage --git-builder="sbuild -sAd u"'
+alias gibuildi='gbp buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 
 alias vi='vim'
