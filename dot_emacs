@@ -218,7 +218,7 @@ Extended Format date in the date field and return it as a string obeing
   :ensure helm-bibtex
   :custom
   (bibtex-completion-bibliography "~/Documents/papers/library.bib")
-  (bibtex-completion-library-path "~/Documents/papers/pdfs/")
+  (bibtex-completion-library-path '("~/Documents/papers/pdfs/"))
   (bibtex-completion-notes-path   "~/Documents/papers/notes/")
   (bibtex-completion-notes-extension ".org")
   (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt"))
