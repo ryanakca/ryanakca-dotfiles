@@ -3,7 +3,7 @@
 set copy = yes
 set from = 'Ryan Kavanagh <ryan.kavanagh@queensu.ca>'
 set smtp_authenticators = 'xoauth2'
-set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py ~/.mutt/xoauth2-queensu.ca-token'
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.mutt/accounts/9rak.queensu.ca/xoauth2-token'
 set smtp_url = 'smtp://9rak@queensu.ca@smtp.office365.com:587/'
 
 unset sendmail

@@ -1,6 +1,6 @@
 # vim: syntax=muttrc
 
-cd ~/.mutt/accounts/queensu.ca
+cd ~/.mutt/accounts/9rak.queensu.ca
 
 set folder = 'imaps://9rak@queensu.ca@outlook.office365.com'
 
