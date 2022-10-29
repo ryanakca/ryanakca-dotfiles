@@ -5,7 +5,7 @@ import System.Environment (getEnv, setEnv)
 import System.IO (hPutStrLn)
 import XMonad
 import XMonad.Actions.CopyWindow (copy, kill1, killAllOtherCopies)
-import XMonad.Actions.CycleWS (moveTo, nextWS, WSType(NonEmptyWS)
+import XMonad.Actions.CycleWS (moveTo, nextWS, emptyWS, WSType(Not)
                               , prevWS, shiftToNext, shiftToPrev, toggleWS)
 import XMonad.Actions.DynamicWorkspaces (addWorkspacePrompt, removeWorkspace
                                         , renameWorkspace, selectWorkspace
@@ -42,7 +42,7 @@ import XMonad.Layout.Tabbed (shrinkText, tabbed)
 import XMonad.Layout.ThreeColumns (ThreeCol(ThreeColMid))
 import XMonad.Layout.ToggleLayouts (toggleLayouts, ToggleLayout(ToggleLayout))
 import XMonad.Layout.WindowNavigation (Navigate(Move))
-import XMonad.Prompt (fgColor, bgColor, XPPosition(Bottom), height
+import XMonad.Prompt (fgColor, bgColor, XPPosition(Bottom), height, font
                      , position, promptBorderWidth)
 import XMonad.Prompt.Shell (shellPrompt)
 import XMonad.Util.Loggers (date, logCmd)
@@ -71,14 +71,14 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w
                                           >> windows shiftMaster))
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
-    , ((modMask, button5), (\_ -> moveTo Next NonEmptyWS))
-    , ((modMask, button4), (\_ -> moveTo Prev NonEmptyWS ))
+    , ((modMask, button5), (\_ -> moveTo Next (Not emptyWS)))
+    , ((modMask, button4), (\_ -> moveTo Prev (Not emptyWS)))
     -- scroll wheel click, bottom right corner on trackball
     , ((modMask, 6), (\w -> focus w >> kill))
     , ((modMask, 8), (\w -> focus w >> kill))
     ]
 
-mykeys x = [
+mykeys _ = [
   ((myMod, xK_Left), prevWS)
   , ((myMod, xK_Right), nextWS)
   , ((myMod .|. shiftMask, xK_Left),  shiftToPrev >> prevWS)
@@ -284,6 +284,7 @@ myXPConfig = def {
   , promptBorderWidth = 0
   , position = Bottom
   , height   = 15
+  , font = "xft:" ++ xftFont
   }
 
 -----------------
@@ -412,7 +413,6 @@ myConfig dzenPipe = docks $ def {
       , keys               = \x -> (fromList $ mykeys x)
                                    `union` dvorakify (keys def x)
       , logHook            = dynamicLogWithPP $ mPP dzenPipe
-      , handleEventHook    = docksEventHook
       }
 
 main = do
