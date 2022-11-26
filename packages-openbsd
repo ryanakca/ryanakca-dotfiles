@@ -2,6 +2,7 @@ arandr--
 aspell-fr--
 borgbackup--
 catgirl--
+chezmoi--
 cmake--
 colordiff--
 curl--
@@ -42,7 +43,7 @@ vim--no_x11
 w3m--image
 wdiff--
 wget--
-xmonad--
+wpa_supplicant--
 xsel--
 zathura--
 zsh--
