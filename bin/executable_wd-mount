@@ -6,22 +6,8 @@ case `uname` in
         doas mount /media/wd
         ;;
     Linux)
-        if ! mount | grep -w /media/t > /dev/null ; then
-            if [ -e /dev/disk/by-uuid/0c5bcd92-bf08-4a21-a117-0ba9c0c31862 ]; then
-                sudo cryptdisks_start tosh && \
-                    sudo zpool import ztosh && \
-                    sudo mount /var/lib/mpd/music
-                sudo vgimport tosh
-                sudo vgchange -ay tosh
-            fi
-        fi
-
-        if ! mount | grep -w /media/wd-bak > /dev/null ; then
-            if [ -e /dev/disk/by-uuid/68b52a2b-2be5-4d40-98ba-c8469da50f1f ]; then
-                sudo cryptdisks_start wd-bak-work && mount /dev/mapper/wd-bak-work
-            elif [ -e /dev/disk/by-uuid/49491f12-45ec-4f3f-9f70-73a94149aaf2 ]; then
-                sudo cryptdisks_start wd-bak && mount /dev/mapper/wd-bak
-            fi
+        if ! zpool list wd-pass > /dev/null 2>&1 ; then
+            sudo zpool import -l wd-pass
         fi
         ;;
     *)

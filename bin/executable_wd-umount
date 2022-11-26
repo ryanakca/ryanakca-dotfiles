@@ -6,11 +6,13 @@ case `uname` in
         doas bioctl -d 79665ba14a5187ba
         ;;
     Linux)
-        sudo umount --lazy -f /var/lib/mpd/music
-        sudo zpool export -f ztosh
-        sudo cryptdisks_stop tosh
-        sudo vgchange -an tosh
-        sudo vgexport tosh
+        if zpool list wd-pass > /dev/null 2>&1; then
+            if mount -l | grep -E '^/var/lib/mpd/music '; then
+                sudo umount --lazy -f /var/lib/mpd/music
+            fi
+            mount -l -t zfs | IFS=' on ' awk '{ print $1 }' | sudo xargs -I '{}' zfs umount -u '{}'
+            sudo zpool export wd-pass
+        fi
         ;;
     *)
         echo "Unknown host"
