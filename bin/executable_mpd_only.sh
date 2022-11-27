@@ -1,2 +1,7 @@
 #!/bin/sh
-pacmd exit && mpc enable "DigiHug USB Audio" && mpc disable "My Pulse Output"
+
+set -e
+
+systemctl --user stop pulseaudio.socket
+mpc enable "DigiHug USB Audio"
+mpc disable "My Pulse Output"
