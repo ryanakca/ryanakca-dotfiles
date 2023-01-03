@@ -52,7 +52,7 @@
     :after powerline ; must be loaded after for powerline-moe-theme to work
     :config
     (moe-dark)
-    (powerline-moe-theme)))
+    (moe-theme-powerline)))
 
 (defun single-lines-only ()
   "Replace multiple blank lines with a single one"
@@ -615,6 +615,7 @@ Returns a formatted BibTeX entry."
 
 (use-package org-ref-bibtex
   :ensure org-ref
+  :after bibtex-completion ; needs bibtex-completion-library-path
   :custom
   (org-ref-title-case-types '(("article" "title")
 			      ("book" "booktitle" "title")
