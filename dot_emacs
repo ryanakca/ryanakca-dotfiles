@@ -85,18 +85,10 @@
       (?1 delete-other-windows "Delete Other Windows")
       (?? aw-show-dispatch-help))))
 
-(use-package auto-indent-mode
+(use-package aggressive-indent
   :ensure t
   :config
-  (auto-indent-global-mode)
-  :custom
-  (auto-indent-next-pair-timer-interval
-   (quote ((css-mode 1.5)
-	   (haskell-mode 1.5)
-	   (python-mode 1.5)
-	   (latex-mode 1.5)
-	   (coq-mode 1.5)
-	   (default 0.0005)))))
+  (global-aggressive-indent-mode 1))
 
 (use-package bibtex
   :mode ("\\.bib\'" . bibtex-mode)
