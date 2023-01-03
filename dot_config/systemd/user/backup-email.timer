@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup email
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=3h
+
+[Install]
+WantedBy=timers.target
