@@ -90,6 +90,9 @@
   :config
   (global-aggressive-indent-mode 1))
 
+(use-package autorevert
+  :diminish auto-revert-mode)
+
 (use-package bibtex
   :mode ("\\.bib\'" . bibtex-mode)
   :custom
@@ -240,6 +243,7 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package company-box
   :ensure t
+  :diminish
   :hook (company-mode . company-box-mode))
 
 (use-package company-coq
@@ -271,6 +275,9 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package dictem
   :load-path "~/.emacs.d/dictem/")
+
+(use-package diminish
+  :ensure t)
 
 (use-package doi-utils
   ;; provided by org-ref
