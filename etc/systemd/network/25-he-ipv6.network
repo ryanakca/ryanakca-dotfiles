@@ -2,8 +2,8 @@
 Name=he-ipv6
 
 [Network]
-Gateway=2001:470:7:384::1
-Address=2001:470:7:384::103/64
-Address=2001:470:8:385::103/64
+Gateway=2001:470:1f06:1d3::1
+Address=2001:470:1f06:1d3::2/64
+Address=2001:470:89ac:3::1/64
 DNS=2001:470:20::2
 BindCarrier=wlp3s0 enp5s0

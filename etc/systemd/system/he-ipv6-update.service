@@ -4,16 +4,23 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=curl --silent "https://USERNAME:PASSWORD@ipv4.tunnelbroker.net/nic/update?hostname=582358"
-NoNewPrivileges=yes                   # Prevent acquiring new privileges. Warning: breaks execution of SUID binaries
+ExecStart=curl --silent "https://USERNAME:PASSWORD@ipv4.tunnelbroker.net/nic/update?hostname=801807"
+# Prevent acquiring new privileges. Warning: breaks execution of SUID binaries
+NoNewPrivileges=yes
 PermissionsStartOnly=true
-PrivateDevices=yes                    # Prevent access to /dev
-PrivateTmp=yes                        # Use dedicated /tmp
+# Prevent access to /dev
+PrivateDevices=yes
+# Use dedicated /tmp
+PrivateTmp=yes
 PrivateUsers=true
-ProtectHome=yes                       # Hide user homes
-ProtectKernelModules=yes              # Prevent loading or reading kernel modules
-ProtectKernelTunables=yes             # Prevent altering kernel tunables
-ProtectSystem=strict                  # strict or full, see docs
+# Hide user homes
+ProtectHome=yes
+# Prevent loading or reading kernel modules
+ProtectKernelModules=yes
+# Prevent altering kernel tunables
+ProtectKernelTunables=yes
+# strict or full, see docs
+ProtectSystem=strict
 
 [Install]
 WantedBy=network-online.target
