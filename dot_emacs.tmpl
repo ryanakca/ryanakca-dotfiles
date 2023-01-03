@@ -39,7 +39,11 @@
 	   face-font-family-alternatives))
   :custom-face
   (default ((t (:family "Spleen 16x32"
-			:height 130 ; unit is 1/10 pt
+			{{ if (eq .chezmoi.os "openbsd") -}}
+                        :height 80 ; unit is 1/10 pt
+                        {{- else -}}
+                        :height 130 ; unit is 1/10 pt
+                        {{- end }}
 			)))))
 
 (if (string= (system-name) "demeter.rak.ac")
