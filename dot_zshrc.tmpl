@@ -652,7 +652,9 @@ NO_verbose		\
 # GPG / SSH AGENT
 
 if command -v keychain > /dev/null && test -d ~/.ssh/keys/{{ .chezmoi.hostname }}; then
-    ls ~/.ssh/keys/{{ .chezmoi.hostname }}/id_* | grep -E -v '\.pub$' | xargs keychain --systemd
+    ls ~/.ssh/keys/{{ .chezmoi.hostname }}/id_* | \
+        grep -E -v '\.pub$' | \
+        xargs keychain {{ if (eq .chezmoi.os "linux") -}} --systemd {{- end }}
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
            . $HOME/.keychain/$HOSTNAME-sh
