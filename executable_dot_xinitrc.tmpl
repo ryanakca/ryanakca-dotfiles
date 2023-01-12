@@ -35,7 +35,7 @@ case `uname` in
         [ -d /usr/local/share/fonts/spleen ] && xset +fp /usr/local/share/fonts/spleen/
         redshift &
         ${HOME}/bin/icd
-        urxvtd -q -f -o &
+        ${HOME}/.screenlayout/{{ .chezmoi.hostname }}-work.sh
         exec cwm
 	;;
 
