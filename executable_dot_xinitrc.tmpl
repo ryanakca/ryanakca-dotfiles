@@ -36,6 +36,7 @@ case `uname` in
         redshift &
         ${HOME}/bin/icd
         ${HOME}/.screenlayout/{{ .chezmoi.hostname }}-work.sh
+        xidle -delay 2 -se -timeout 180 -program "/usr/X11R6/bin/xlock" &
         exec xmonad
 	;;
 
