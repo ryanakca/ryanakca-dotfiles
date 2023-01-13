@@ -58,7 +58,7 @@ import XMonad.StackSet (shiftMaster, greedyView, shift)
 
 myMod = mod4Mask -- windows key
 myCtrl = controlMask
-myTerminal = "urxvtc"
+myTerminal = {{ if (eq .chezmoi.os "linux")  }}"urxvtc"{{ else }}"xterm"{{ end }}
 
 -- Mouse bindings: default actions bound to mouse events
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = fromList $
@@ -97,7 +97,7 @@ mykeys _ = [
   , ((myMod, xK_F6), spawn "sleep 0.5 && ${HOME}/bin/icd && ${HOME}/bin/mice.sh")
   , ((myMod, xK_Up),   spawn "sleep 0.5 && b u")
   , ((myMod, xK_Down), spawn "sleep 0.5 && b d")
-  , ((myMod, xK_l), spawn "slock xset dpms force off")
+  , ((myMod, xK_l), spawn {{ if (eq .chezmoi.os "linux") }}"slock xset dpms force off"{{ else }}"xlock"{{ end }})
   , ((myMod .|. myCtrl .|. shiftMask, xK_Right), sendMessage $ Move R)
   , ((myMod .|. myCtrl .|. shiftMask, xK_Left),  sendMessage $ Move L)
   , ((myMod .|. myCtrl .|. shiftMask, xK_Up),    sendMessage $ Move U)
