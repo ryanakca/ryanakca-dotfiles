@@ -1,3 +1,0 @@
-KEEP_DUPES="yes"
-METHODS="m_inmail m_gpg m_muttalias"
-MUTTALIAS_FILES="~/.mutt/aliases.rc ~/.mutt/aliases-cmu.rc"

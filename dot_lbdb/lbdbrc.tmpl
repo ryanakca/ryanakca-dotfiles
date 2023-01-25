@@ -1,0 +1,3 @@
+KEEP_DUPES="yes"
+METHODS="m_inmail {{ if (not (eq .chezmoi.os "openbsd")) }}m_gpg {{ end }}m_muttalias"
+MUTTALIAS_FILES="aliases.rc accounts/rkavanag.alumni.cmu.edu/alias.rc accounts/ryank.mail.cs.mcgill.ca/alias.rc"
