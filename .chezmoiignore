@@ -14,6 +14,8 @@ crontab
 {{- if ne .chezmoi.os "openbsd" }}
 # only install if on openbsd
 .urxvt/perl
+.xmonad/build
+.xmonad/xmonad-config.cabal
 {{- end }}
 
 # files in home

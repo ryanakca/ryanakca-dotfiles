@@ -35,8 +35,9 @@ case `uname` in
         [ -d /usr/local/share/fonts/spleen ] && xset +fp /usr/local/share/fonts/spleen/
         redshift &
         ${HOME}/bin/icd
-        urxvtd -q -f -o &
-        exec cwm
+        ${HOME}/.screenlayout/{{ .chezmoi.hostname }}-work.sh
+        xidle -delay 2 -se -timeout 180 -program "/usr/X11R6/bin/xlock" &
+        exec xmonad
 	;;
 
     Linux)
