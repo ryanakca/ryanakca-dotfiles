@@ -1,3 +1,4 @@
 .gnupg/dirmngr.conf
 .lbdbrc
 .pulse
+bin/mutt
