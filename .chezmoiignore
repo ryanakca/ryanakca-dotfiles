@@ -39,8 +39,9 @@ crontab
 !.config/pulse/daemon.conf
 !.config/pulse/default.pa
 .emacs.d/auto-save-list
-.emacs.d/dictem
-.emacs.d/elpa
+.emacs.d/elpa/*
+!.emacs.d/elpa/gnupg
+!.emacs.d/elpa/gnupg/pubring.kbx
 .emacs.d/transient
 .fonts
 .gnupg/*
