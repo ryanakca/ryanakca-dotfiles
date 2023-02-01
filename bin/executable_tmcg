@@ -8,10 +8,12 @@ current_session () {
 }
 
 SESSION=$(current_session)
+NEW=1
 
 if [ "x${SESSION}" = "x" ]; then
     SESSION="irc"
     tmux new-session -s "${SESSION}" -d
+    NEW=$?
 fi
 
 if ! tmux switch -t ${SESSION}:catgirl >/dev/null 2>&1; then
@@ -21,4 +23,7 @@ if ! tmux switch -t ${SESSION}:catgirl >/dev/null 2>&1; then
     tmux split-window -t ${SESSION}:catgirl -c '~' catgirl tilde
     tmux set-option -t ${SESSION}:catgirl remain-on-exit on
     tmux selectl -t ${SESSION}:catgirl tiled
+    if test ${NEW} -eq 0; then
+        tmux kill-window -t ${SESSION}:0
+    fi
 fi
