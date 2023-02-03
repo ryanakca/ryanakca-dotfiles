@@ -3,6 +3,7 @@
 [data]
     keychain_keys = "id_ed25519"
     password.cmu = ""
+    password.eseptember = ""
     password.gmail = ""
     password.local = ""
     password.mcgill = ""

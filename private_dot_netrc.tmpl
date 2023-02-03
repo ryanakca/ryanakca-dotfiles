@@ -1,12 +1,18 @@
-{{- if .password.cmu }}
+{{ if .password.cmu -}}
 machine imap.gmail.com login rkavanag@alumni.cmu.edu password {{ .password.cmu }}
 {{- end }}
-{{- if .password.gmail }}
+{{ if .password.gmail -}}
 machine imap.gmail.com login ryanakca@gmail.com password {{ .password.gmail }}
 {{- end }}
-{{- if .password.rakac }}
+{{ if .password.rakac -}}
 machine imap.rak.ac login rak password {{ .password.rakac }}
 {{- end }}
-{{- if .password.socs }}
+{{ if .password.socs -}}
 machine mail.cs.mcgill.ca login ryank password {{ .password.socs }}
+{{- end }}
+{{ if .password.queensu -}}
+machine pod51018.outlook.com login 9rak@queensu.ca password {{ .password.queensu }}
+{{- end }}
+{{ if .password.eseptember -}}
+machine news.eternal-september.org login ryanakca force yes password {{ .password.eseptember }}
 {{- end }}
