@@ -98,6 +98,14 @@
 (use-package autorevert
   :diminish auto-revert-mode)
 
+(use-package avy
+  :ensure t
+  :config
+  (avy-setup-default)
+  :bind
+  (("C-c C-j" . avy-resume)
+   ("C-;" . avy-goto-char-2)))
+
 (use-package bibtex
   :mode ("\\.bib\'" . bibtex-mode)
   :custom
