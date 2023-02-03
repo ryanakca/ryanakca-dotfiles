@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if command -v neomutt >/dev/null; then
-    exec neomutt $@
-else
-    exec mutt $@
-fi
