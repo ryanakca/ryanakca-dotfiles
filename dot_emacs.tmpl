@@ -1,4 +1,3 @@
-;; -*- emacs-lisp -*-
 ;; (setq debug-on-error t)
 
 (require 'package)
@@ -310,6 +309,9 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package dune-format
   :ensure t)
+
+(use-package eldoc
+  :diminish)
 
 (use-package elpher
   :ensure t)

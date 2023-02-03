@@ -1,4 +1,7 @@
 .gnupg/dirmngr.conf
 .lbdbrc
 .pulse
+.screenlayout/zeta-home.sh
+.screenlayout/zeta-solo.sh
+.screenlayout/zeta-work.sh
 bin/mutt
