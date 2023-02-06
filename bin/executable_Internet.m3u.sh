@@ -14,7 +14,7 @@ EOF
 }
 
 getstream() {
-    curl -s $1 | grep '^File1=' | sed -e 's/File1=//g'
+    curl -s "$1" | grep '^File1=' | sed -e 's/File1=//g'
 }
 
 playlist "1920s"   "1920s Radio Network"           "$(getstream 'http://kara.fast-serv.com:8398/listen.pls')"
@@ -27,3 +27,14 @@ playlist "WYEP"    "WYEP 91.3 (Pittsburgh)"        'https://ais-sa3.cdnstream1.c
 playlist "WZUM"    "WZUM 88.1 (Pittsburgh)"        'http://pubmusic.streamguys1.com/wzum-aac'
 playlist "Dismuke" "Radio Dismuke"                 "$(getstream 'https://early1900s.org/radiodismuke/radiodismuke.pls')"
 playlist "russhit" "99.6 Радио Русский Хит"        "$(curl -s http://ruhit.fm/player.htm | grep ruhit_64 | sed -e 's/.*="//g;s/".*//g')"
+
+# http://colombiacrossover.com/
+playlist "salsa.dura" "Colombia Salsa Dura"        "$(getstream 'http://64.37.50.226:8054/listen.pls?sid=1')"
+
+# http://www.tenientiko.com/
+playlist "salsa.catedral" "La Catedral de la Salsa" "$(getstream 'http://176.31.120.166:4450/listen.pls?sid=1')"
+
+# http://www.rockolapegassera.com
+playlist "cumbia.rockola" "Rockola Pegassera 107.9" "$(getstream 'http://54.39.19.215:8004/listen.pls?sid=1')"
+
+playlist "salsa.metro" "El Metro Salsero" 'http://s5.voscast.com:7516/stream'

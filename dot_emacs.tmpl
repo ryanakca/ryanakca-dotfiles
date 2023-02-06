@@ -97,6 +97,14 @@
 (use-package autorevert
   :diminish auto-revert-mode)
 
+(use-package avy
+  :ensure t
+  :config
+  (avy-setup-default)
+  :bind
+  (("C-c C-j" . avy-resume)
+   ("C-;" . avy-goto-char-2)))
+
 (use-package bibtex
   :mode ("\\.bib\'" . bibtex-mode)
   :custom
@@ -214,14 +222,13 @@ Extended Format date in the date field and return it as a string obeing
 	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-titleword-change-strings pair)) charMap))))
 
 (use-package bibtex-completion
-  :ensure helm-bibtex
+  :ensure ivy-bibtex
   :custom
   (bibtex-completion-bibliography "~/Documents/papers/library.bib")
   (bibtex-completion-library-path '("~/Documents/papers/pdfs/"))
   (bibtex-completion-notes-path   "~/Documents/papers/notes/")
   (bibtex-completion-notes-extension ".org")
-  (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt"))
-  :bind (("C-c b" . helm-bibtex)))
+  (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt")))
 
 (use-package cc-mode
   :custom
@@ -265,6 +272,13 @@ Extended Format date in the date field and return it as a string obeing
   :hook ((org-mode . (lambda ()
 		       (setq-local company-backends '(company-org-block))
 		       (company-mode +1)))))
+
+(use-package counsel
+  :ensure t
+  :bind (("C-x C-b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 ("M-x" . counsel-M-x)
+	 ("M-y" . counsel-yank-pop)))
 
 (use-package cus-edit
   :custom
@@ -372,19 +386,6 @@ Extended Format date in the date field and return it as a string obeing
   :hook ((haskell-mode . turn-on-haskell-doc-mode)
 	 (haskell-mode . turn-on-haskell-indentation)))
 
-(use-package helm
-  :ensure t
-  :bind (("M-x"     . helm-M-x)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x C-b" . helm-mini)
-	 :map helm-map
-	 ("<tab>"   . helm-select-action))
-  :config
-  (helm-mode 1))
-
-(use-package helm-org
-  :ensure t)
-
 (use-package info-look
   :ensure t)
 
@@ -393,6 +394,19 @@ Extended Format date in the date field and return it as a string obeing
   :defer t
   :custom
   (ispell-dictionary "en_CA-w_accents"))
+
+(use-package ivy
+  :ensure t
+  :diminish
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "(%d/%d) ")
+  :config
+  (ivy-mode 1))
+
+(use-package ivy-bibtex
+  :ensure t
+  :bind (("C-c b" . ivy-bibtex)))
 
 (use-package latex
   :ensure auctex
@@ -571,7 +585,7 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package org-ref
   :ensure t
-  :after helm-bibtex)
+  :after ivy-bibtex)
 
 (use-package org-ref-arxiv
   :ensure org-ref
@@ -675,7 +689,7 @@ Returns a formatted BibTeX entry."
   :ensure org-ref
   :after org-ref-bibtex
   :after reftex-cite
-  :after helm-bibtex
+  :after ivy-bibtex
   :bind (:map bibtex-mode-map
 	      ("C-c C-c" . org-ref-clean-bibtex-entry)
 	      ("C-c e"   . my/set-source-ev)
