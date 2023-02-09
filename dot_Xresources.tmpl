@@ -64,8 +64,22 @@ XTerm.VT100.translations: #override \
     Ctrl <Key> Up: larger-vt-font()
 XTerm.eightBitInput: false
 XTerm.termName: xterm-256color
-XTerm*faceName: xft:spleen:antialias=false
-XTerm*faceSize: 12
+! Do not let xterm pick dumb fonts for Unreadable, Tiny and Small
+XTerm*faceName: Spleen:size=8:antialias=false
+XTerm*faceSize: 8
+XTerm*faceSize1: 8
+XTerm*faceSize2: 12
+XTerm*faceSize3: 16
+XTerm*faceSize4: 24
+XTerm*faceSize5: 32
+XTerm*faceSize6: 64
+XTerm.VT100.font: -misc-spleen-medium-r-normal--12-120-72-72-c-60-iso10646-1
+XTerm.VT100.font1: -misc-spleen-medium-r-normal--8-80-72-72-c-50-iso10646-1
+XTerm.VT100.font2: -misc-spleen-medium-r-normal--12-120-72-72-c-60-iso10646-1
+XTerm.VT100.font3: -misc-spleen-medium-r-normal--16-160-72-72-c-80-iso10646-1
+XTerm.VT100.font4: -misc-spleen-medium-r-normal--24-240-72-72-c-120-iso10646-1
+XTerm.VT100.font5: -misc-spleen-medium-r-normal--32-320-72-72-c-160-iso10646-1
+XTerm.VT100.font6: -misc-spleen-medium-r-normal--64-640-72-72-c-320-iso10646-1
 XTerm*scrollBar: false
 XTerm*background: rgb:00/00/00
 XTerm*foreground: rgb:ff/ff/ff
