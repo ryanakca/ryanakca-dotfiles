@@ -1,0 +1,252 @@
+Version 1.0.4, Sat, 25 Aug 2012 23:23:24 +0300
+
+  - Flag (interactive) was removed from the following functions:
+     dictem-select-strategy, dictem-select-database, dictem-read-query
+     and dictem-run. This fixes Debian bug #564251.
+
+Version 1.0.3, Sun, 22 Jul 2012 13:12:00 +0300
+
+  - fix: "dictem-get-matches" function returns dictionary names
+    without ":" in the end.
+
+  - fix.  insertion of text produced by "dict" client of by user's
+    database is always made IN THE END of dictem buffer. This fixes
+    the problems with hightlighting in match/define mixed results.
+
+  - Fix failure when dictem-use-user-databases-only is t.  The problem
+    was that dictem-last-database variable was initialized
+    incorrectly.
+
+Version 1.0.2, Sun, 22 Mar 2009 17:20:12 +0200
+
+  Another fix in dictem-postprocess-definition-remove-header.
+
+Version 1.0.1, Fri, 20 Mar 2009 12:43:15 +0200
+
+  - fix in dictem-postprocess-definition-remove-header.
+    It wrongly deleted extra line
+
+Version 1.0.0, Sat, 11 Oct 2008 18:59:15 +0300
+
+   - Running dictem-initialize everytime your network/internet is up
+     (if case you have no permanent connection to Internet,
+     e.g. dial-up, adsl etc.) is a bit annoying. To avoid this dictem
+     is (re)initialized (if needed) automatically from
+     dictem-select-strategy and dictem-select-database functions.  As
+     a result, running dictem-initialize in .emacs becomes unnecessary
+
+   - New function (dictem-reinitialize-err) added
+
+   - Minor fix in dictem-initialize-databases-alist function.  Now it
+     returns error data in case of failure, not nil.
+     (just like dictem-initialize-strategies-alist)
+
+Version 0.82, Mon, 28 Jan 2008 22:59:07 +0200
+
+  - FIX for emacs-22 (insert-string is replaced with insert)
+  - Minor fixes in README
+
+Version 0.81, Sat, 22 Jul 2006 15:45:53 +0300
+
+  - dictem-server variable can be equal to nil, in this case
+    'dict' command line tool will be called without -h option, i.e.
+    default _list of servers_ specified in .dictrc (or dict.conf)
+    will be used.
+
+    dict:///dictionary_name (in dictem-user-databases-alist) also means
+    that default server list will be used, see Ex.4 for the sample of use.
+
+  - dictem-server variable now defaults to nil, old value was "dict.org".
+    dictem-strategy-alist and dictem-database-alist also defaults to nil.
+
+Version 0.8, Mon,  Sun, 28 May 2006 00:23:43 +0300
+
+  - removed: ./configure / make / make install
+    See installation section in README if you are in trouble
+
+  - added: dictem-exclude-databases variable to disable some databases
+    from autocompletion menu, see example 15 in README file.
+
+    example for those who uses dict://dict.org:
+
+        (setq dictem-exclude-databases
+         '("tur-" "afr-" "ara-" "cro-" "cze-" "dan-" "hin-" "hun-"
+           "iri-" "ita-" "kha-" "lat-" "nld-" "por-" "sco-" "scr-"
+           "slo-" "swa-" "swe-" "tur-" "rom-" "wel-"
+
+           "-tur" "-afr" "-ara" "-cro" "-cze" "-dan" "-hin" "-hun"
+           "-iri" "-ita" "-kha" "-lat" "-nld" "-por" "-sco" "-scr"
+           "-slo" "-swa" "-swe" "-tur" "-rom" "-wel"))
+
+  - errors messages obtained from 'dict' command are printed
+     in case initialization failure but the constant string.
+
+Version 0.7, Mon,  3 Apr 2006 15:11:57 +0300
+
+  - DICTEM can handle dictionaries defined by user.
+    This allows to use dictem not only for accessing DICT servers,
+    but also for accesing user's databases.
+    See Ex.14 in README file for a simple example.
+
+  - added: dictem-client-prog-args-list variable
+    that keeps a list of additional
+    arguments to the command line 'dict' client.
+    This may be helpful in case you use 'dict' wrappers (having additional
+    options) or new versions of 'dict' program.
+
+  - added: dictem-option-mime variable.
+    If `t' the OPTION MIME command (see RFC-2229 for details)
+    will be sent to the DICT server. i.e. 'dict' program
+    will be run with '-M' option.
+    As a result server's response will be prepanded with MIME header
+    followed by a blank line.
+    Because of bugs in dict -M (dict version < 1.10.3),
+    dict-1.10.3 or later is STRONGLY recommended.
+
+    MIME-ized content can be postprocessed by functions called from
+    dictem-postprocess-xxxx hooks. Because the current version of dictem
+    doesn't contain such kind of functions, this variable should be used
+    by those who program in Emacs.
+    Suggestions and code are welcomed as always.
+    Have a lot of fun ;-)
+
+  - added: dictem-run-show-strategies function,
+    similar to dictem-run-show-databases.
+
+  - more complete dictem-mode's help string (documentation for dictem mode)
+
+  - new examples of dictem usage in Ex.9 section
+
+  - minor fixes in documentation and README
+
+Version 0.0.5, Wed,  8 Jun 2005 19:56:56 +0300
+
+  - new examples in README file: Ex.12-13
+
+  - `dictem-postprocess-collect-hyperlinks' function
+    (when added to `dictem-postprocess-definition-hook',
+     `dictem-postprocess-show-info-hook' or
+     `dictem-postprocess-show-server-hook' hooks) collects hyperlinks
+     in the variable `dictem-hyperlinks-alist'.
+     This variable is used by the function `dictem-hyperlinks-menu'
+     which implements
+     the autocompletion-based menu the same way `Info-menu' does.
+
+    "e" is assigned to call the function `dictem-hyperlinks-menu'.
+    The variable `dictem-hyperlinks-alist' is local to buffer.
+
+  - If `dictem-use-existing-buffer' variable is `t'
+    and dictem-use-content-history is not nil,
+    the entire buffer content and (point)
+    is stored in `dictem-content-history' variable when you click
+    on hyperlink and thus you can easily return to the previous
+    buffer by pressing "l" (`dictem-last' function).
+
+    "l" is assigned to function `dictem-last'.
+    It works just like the button <BACK> in the WEB browsers.
+
+  - added: `dictem-postprocess-definition-remove-header',
+      function for postprocessing DEFINE buffer.
+      It is intended to remove header `XXX definition[s] found'
+      at the beginning of dict's output
+      and can be added to the hook `dictem-postprocess-definition-hook'.
+
+  - fixes:
+    `dictem-kill-all-buffers' has been reimplemented for using
+    `dolist' macros instead of recursion.
+    Recursion-bases implementation causes dictem to fail
+    when lots of buffers exist.
+    Thanks to Juri Linkov for bug reports and lots of suggestions.
+
+  - String that begins hyperlink
+      is stored in the variable `dictem-hyperlink-beginning', defaults to "{"
+    String that ends hyperlink
+      is stored in the variable `dictem-hyperlink-end, defaults to "}"
+    Function that is called when hyperlink "define" is activated
+      is stored in the variable `dictem-hyperlink-define-func',
+      defaults to `dictem-base-define'
+
+    All this stuff may be useful for more complex buffer postprocessing.
+    Hyperlinks are not always enclosed in '{' and '}' braces.
+
+Version 0.0.4, Thu, 24 Feb 2005 19:40:24 +0200
+
+  dictem-default-database (dictem-default-strategy) variables override
+  value of dictem-last-database (dictem-last-strategy) variable,
+  i.e. when dictem-default-xxx is set to non-nil
+  this database (strategy) is always used by default,
+  otherwise the last used database (strategy) is used.
+
+  All examples in README file are know numbered.
+
+  New examples #10 and #11 in README file.
+
+  By default dictem uses the default query as an initial
+  input, this may be very useful.
+  To disable this behaviour set `dictem-empty-initial-input' to `t'.
+  See (describe-variable 'dictem-empty-initial-input)
+  and REAME example #11.
+
+  FIXED: `dictem-last-database' keeps "low-level" database name
+  but the user's virtual one. As a result virtual dictionary
+  could not be the default one (kept in dictem-last-database or
+  dictem-default-database variable ).
+
+Version 0.0.3, Tue, 14 Dec 2004 20:43:34 +0200
+
+  DictEm has been ported to XEmacs
+
+  Virtual dictionaries can access databases from different DICT servers
+
+    (setq dictem-user-databases-alist
+      '(("_translate" . ("dict://mova.org/mueller7"
+                         "dict://dict.org:2628/web1913"))
+        ("_ru-ru" . ("beslov" "dict://mova.org:2628/religion"))
+        ))
+
+    See README file for more information.
+
+  The following commands can be run non-interactively.
+     `dictem-run-show-info', `dictem-run-search' and
+     `dictem-run-define' 
+
+  `dictem-next-link' and `dictem-previous-link' skip hyperlinks on
+    database names.
+
+  Renamed: `dictem-url'       to `dictem-make-url'
+           `link-create-link' to `dictem-create-link'
+
+  DictEm's prompt looks like this: `<string> [<default>]:'
+
+  New default faces
+
+  Lots of README updates.
+
+  A few fixes
+
+Version 0.0.2, Tue, 30 Nov 2004 16:40:00 +0200
+
+  added: new function `dictem-kill-all-buffers' killing all dictem buffers.
+      The key "x" press in dictem buffer use it.
+
+  dictem-postprocess-definition-hyperlinks function:
+     When a substring {foo|bar} is encountered in a definition,
+     `foo' is used for highlighting and `bar' is used for subsearch.
+
+  new functions: `dictem-next-link' and `dictem-previous-link' which
+     set pointer to the next (or previous) hyper link
+  \M-n and \M-p key
+     are assigned to `dictem-next-link' and `dictem-previous-link'
+  When pressing RET (C-m) key on hyper link, subsearch
+     DICT server is sent a DEFINE command
+
+  added: new customizable variable: `dictem-use-existing-buffer'
+      which can be used
+      to use existing dictem buffer instead of creating a new one
+      for subsearches. This variable is local to buffer.
+
+  Documentation update
+
+Version 0.0.1, Thu, 08 Jul 2004 13:58:59 +0300
+
+  first publicly available release

@@ -1,0 +1,558 @@
+DictEm is a Dictionary protocol client for GNU Emacs.
+
+It uses a console dict client (http://sf.net/projects/dict) and
+implements all functions of the client part of DICT protocol
+(RFC-2229, www.dict.org), i.e. looking up words and definitions,
+obtaining information about available strategies, provided databases,
+information about DICT server etc.
+
+Unlike dictionary.el
+(http://www.myrkr.in-berlin.de/dictionary/index.html) DictEm widely
+uses autocompletion that is used for selecting dictionary and search
+strategy.  Moreover, DictEm provides several hooks which may be used
+for buffer postprocessing. For example, inbuilt hyperlinking and
+highlighting mechanisms are based on this possibility.  Another example
+is that information obtained from DICT server that is in HTML, ROFF or
+INFO format can be easily viewed by Emacs+DictEm if the user supplies
+appropriate conversion functions.  Of course DictEm can be differently
+configured for different Emacs modes (major, minor or buffer
+oriented), that allows modularized access to all data serviced by DICT
+servers. This makes it ideal tool for translating articles between a
+series of foreign languages, browsing manuals and other tasks
+depending on Emacs mode user currently works with.
+
+Additionally DictEm supports accessing so called virtual dictionaries (a set
+of dictionaries provided by DICT server that user prefers to treat as
+a single one).
+
+Yet another feature DictEm provides is a set of useful functions with
+a help of which user can extend DictEm functionality such as to define
+new search strategies or even provide new functionality such as to use
+another sources of data other than DICT servers.
+
+See below for a set of example configuration and extensions.
+
+Also DictEm uses customization mechanism provided by Emacs that helps
+Emacs users to easily configure DictEm.
+
+COPYING
+============
+
+See the file COPYING
+
+DOWNLOAD
+========
+
+Latest sources can be downloaded from
+http://sourceforge.net/projects/dictem
+or
+http://freshmeat.net/projects/dictem
+
+INSTALLATION
+============
+
+* In order to uncompress dictem tarball run the following.
+
+  tar xfv dictem-x.y.z.tar.gz
+
+  If you read this file, you probably have already done this.
+
+* Change your current directory to dictem.
+
+  cd dictem-x.y.z
+
+* Copy *.el file to the directory you want.
+
+  cp *.el /path/to/emacs/el/files
+
+* Make sure that DICT client named dict
+  (available at http://sf.net/projects/dict)
+  is installed on your system.
+  Console dict client is used by DictEm for accessing the DICT server.
+  dict-1.9.14 or later is strongly recommended.
+  If you'll set dictem-option-mime variable to t (read below),
+  dict-1.10.3 or later MUST be used.
+
+REPORTING BUGS
+==============
+
+    Please send all bug reports and suggestions directly to
+    Aleksey Cheusov <vle@gmx.net>.
+    Reporting bugs at sf.net is also good.
+
+    Also note that there exists dict-beta@dict.org mailing list (low
+    traffic) where you can ask questions about DICT protocol and
+    software.
+
+CONFIGURING
+=============
+
+Customization group
+-------------------
+
+Take note, that DictEm defines customization group "dictem".
+So, it may be easier for you to customize DictEm by running
+M-x customize-group <RET> dictem <RET>
+
+Manual Configuration
+--------------------
+
+Ex.1
+
+The easiest configuration of dictem may look like this
+
+; Add to load-path variable a new directory with files of dictem
+(add-to-list 'load-path "/path/you/installed/dictem/to")
+
+; Loading dictem functions
+(require 'dictem)
+
+; Setting the dictionary server hostname.
+; This part is optional, if dictem-server is nil (the default value)
+; "dict" command line utility will use its ows config file
+; ~/.dictrc or PREFIX/etc/dict.conf.
+; Keeping dictem-server variable unset is recomended because
+; this allows to try _list of_ servers until connection is made,
+; see dict(1) for details.
+;(setq dictem-server "localhost")
+;(setq dictem-server "dict.org")
+
+
+; Setting the dictionary server port.
+; Setting dictem-port is usually not necessary because
+; most DICT servers use the default port 2628.
+;(setq dictem-port   "2628")
+
+; Code necessary to obtain database and strategy list from DICT
+; server. As of version 0.90, dictem runs this function from
+; dictem-select-database and dictem-select-strategy if an
+; initialization was not completed or failed previously, that is
+; running dictem-initialize is optional
+(dictem-initialize)
+
+; Assigning hot keys for accessing DICT server
+
+; SEARCH = MATCH + DEFINE
+; Ask for word, database and search strategy
+; and show definitions found
+(global-set-key "\C-cs" 'dictem-run-search)
+
+; MATCH
+; Ask for word, database and search strategy
+; and show matches found
+(global-set-key "\C-cm" 'dictem-run-match)
+
+; DEFINE
+; Ask for word and database name
+; and show definitions found
+(global-set-key "\C-cd" 'dictem-run-define)
+
+; SHOW SERVER
+; Show information about DICT server
+(global-set-key "\C-c\M-r" 'dictem-run-show-server)
+
+; SHOW INFO
+; Show information about the database
+(global-set-key "\C-c\M-i" 'dictem-run-show-info)
+
+; SHOW DB
+; Show a list of databases provided by DICT server
+(global-set-key "\C-c\M-b" 'dictem-run-show-databases)
+
+-------
+Ex.2
+
+There are a few functions that can make dictem look
+a bit nicer and be more functional. They should
+be added to special hooks like the following.
+
+; For creating hyperlinks on database names
+; and found matches.
+; Click on them with mouse-2
+(add-hook 'dictem-postprocess-match-hook
+	  'dictem-postprocess-match)
+
+; For highlighting the separator between the definitions found.
+; This also creates hyperlink on database names.
+(add-hook 'dictem-postprocess-definition-hook 
+	  'dictem-postprocess-definition-separator)
+
+; For creating hyperlinks in dictem buffer
+; that contains definitions.
+(add-hook 'dictem-postprocess-definition-hook 
+	  'dictem-postprocess-definition-hyperlinks)
+
+; For creating hyperlinks in dictem buffer
+; that contains information about a database.
+(add-hook 'dictem-postprocess-show-info-hook
+	  'dictem-postprocess-definition-hyperlinks)
+
+-------
+Ex.3
+
+If you want to combine some databases in you own "virtual" dictionary,
+create them like this
+
+(setq dictem-user-databases-alist
+   '(("_en-ru"  . ("mueller7" "korolew_en-ru"))
+     ("_en-en"  . ("foldoc" "gcide" "wn"))
+     ("_ru-ru"  . ("beslov" "ushakov" "ozhegov" "brok_and_efr"))
+     ("_unidoc" . ("susv3" "man" "info" "howto" "rfc"))
+     ))
+
+As a result four new special database collections will be created
+and new names will appear when
+dictem-run function will ask you about database name.
+
+-------
+Ex.4
+
+You can even create virtual dictionaries which consist of
+databases from different DICT server.
+The dict url form dict:///religion means 'dict' command line tool
+will be called without -h option, i.e. a list of dictionary servers
+from .dictrc (or dict.conf) will be used.
+
+(setq dictem-user-databases-alist
+   '(("_en-ru" . ("dict://mova.org/mueller7"
+                  "dict://dict.org:2628/web1913"))
+     ("_ru-ru" . ("beslov" "dict:///religion"))
+     ))
+
+another example:
+
+(setq dictem-user-databases-alist
+      `(("en-en" . ("dict://dict.org:2628/english"))
+        ("en-ru" . ("dict:///en-ru"
+                    "dict://dict.org:2628/eng-rus"
+                    ))
+        ))
+
+-------
+Ex.5
+
+If your DICT server provides too many databases and most of which
+are of no interest for you, you can disable them
+and use only those specified in dictem-user-databases-alist variable. 
+
+(setq dictem-use-user-databases-only t)
+
+-------
+Ex.6
+
+Of course, you can assign your own key bindings in dictem buffer
+
+(define-key dictem-mode-map [tab] 'dictem-next-link)
+(define-key dictem-mode-map [(backtab)] 'dictem-previous-link)
+
+-------
+Ex.7
+
+You are not limited to the default DICT server only.
+The following code will allow you to access any server you want.
+You'll be asked for host and port.
+
+; DEFINE
+(global-set-key
+ "\C-c\M-d"
+ '(lambda ()
+    (interactive)
+    (save-dictem
+     (let* ((dictem-server (read-string "server: "
+					dictem-server nil "dict.org"))
+	    (dictem-port (read-string "port: "
+				      (dictem-get-port) nil "2628")))
+       (dictem-initialize)
+       (call-interactively 'dictem-run-define)))))
+
+; MATCH
+(global-set-key
+ "\C-c\M-m"
+ '(lambda ()
+    (interactive)
+    (save-dictem
+     (let* ((dictem-server (read-string "server: "
+					dictem-server nil "dict.org"))
+	    (dictem-port (read-string "port: "
+				      (dictem-get-port) nil "2628")))
+       (dictem-initialize)
+       (call-interactively 'dictem-run-match)))))
+
+; SEARCH = MATCH+DEFINE
+(global-set-key
+ "\C-c\M-s"
+ '(lambda ()
+    (interactive)
+    (save-dictem
+     (let* ((dictem-server (read-string "server: "
+					dictem-server nil "dict.org"))
+	    (dictem-port (read-string "port: "
+				      (dictem-get-port) nil "2628")))
+       (dictem-initialize)
+       (call-interactively 'dictem-run-search)))))
+
+; SHOW INFO
+(global-set-key
+ "\C-c\M-i"
+ '(lambda ()
+    (interactive)
+    (save-dictem
+     (let* ((dictem-server (read-string "server: "
+					dictem-server nil "dict.org"))
+	    (dictem-port (read-string "port: "
+				      (dictem-get-port) nil "2628")))
+       (dictem-initialize)
+       (call-interactively 'dictem-run-show-info)))))
+
+; SHOW SERVER
+(global-set-key
+ "\C-c\M-r"
+ '(lambda ()
+    (interactive)
+    (save-dictem
+     (let* ((dictem-server (read-string "server: "
+					dictem-server nil "dict.org"))
+	    (dictem-port (read-string "port: "
+				      (dictem-get-port) nil "2628")))
+       (dictem-initialize)
+       (call-interactively 'dictem-run-show-server)))))
+
+-------
+Ex.8
+
+Some databases may have specially formatted definitions,
+for example, HTML, MIME, DICF or ROFF formats.
+It is easy to postprocess them.
+
+; All functions from dictem-postprocess-each-definition-hook
+; will be run for each definition which in turn will be narrowed.
+; Current database name is kept in dictem-current-dbname variable.
+; The following code demonstrates how to highlight SUSV3 and ROFF
+; definitions.
+(add-hook 'dictem-postprocess-definition-hook
+	  'dictem-postprocess-each-definition)
+
+; Function for highlighting definition from the database "susv3".
+(defun dictem-highlight-susv3-definition ()
+  (cond ((string= "susv3" dictem-current-dbname)
+	 (goto-char (point-min))
+	 (while (search-forward-regexp
+		 "^ *[QWERTYUIOPASDFGHJKLZXCVBNM ]+$" nil t)
+	   (put-text-property
+	    (match-beginning 0) (match-end 0) 'face 'bold)
+	   ))))
+
+; Function to show roff-formatted text from the database "man".
+(require 'woman)
+(defun dictem-highlight-man-definition ()
+  (cond ((string= "man" dictem-current-dbname)
+	 (goto-char (point-min))
+	 (while (search-forward-regexp "^  " nil t)
+	   (replace-match ""))
+	 (goto-char (point-min))
+	 (forward-line 2)
+	 (woman-decode-region (point) (point-max))
+	 )))
+
+(add-hook 'dictem-postprocess-each-definition-hook 
+	  'dictem-highlight-susv3-definition)
+(add-hook 'dictem-postprocess-each-definition-hook 
+	  'dictem-highlight-man-definition)
+
+-------
+Ex.9
+
+; The dictem's top level function is 'dictem-run'.
+; By using it more advanced ELISP programmers
+; can create their own search scenaria. Look at this code.
+
+(dictem-run
+  'dictem-base-search
+  "gcide" "apple" "lev")
+
+(dictem-run
+  'dictem-base-match
+  "dict://mova.org/mueller7" "apple" "exact")
+
+(dictem-run
+  'dictem-base-define
+  '("dict://mova.org/mueller7" "dict://dict.org/gcide")
+   "apple" "exact")
+
+(dictem-run 'dictem-base-show-info "dict://dict.org/gcide")
+
+(let ((dictem-server "localhost"))
+  (dictem-run
+   '(lambda (a b c)
+      (dictem-base-show-strategies nil nil nil)
+      (dictem-base-show-databases nil nil nil)
+      (dictem-base-show-server nil nil nil)
+      )))
+
+(dictem-run
+  '(lambda (a b c)
+     (dictem-base-define
+      '("man" "susv3")
+      (dictem-read-query (thing-at-point 'word))
+      nil ))
+  nil nil)
+
+(let ((query (dictem-read-query (thing-at-point 'word))))
+  (dictem-run
+   `((lambda (a b c)
+       (dictem-base-match
+	'("gcide" "wn")
+	,query "exact"))
+     (lambda (a b c)
+       (dictem-base-search
+	'("mueller7" "korolew_en-ru")
+	,query "word")))))
+
+-------
+Ex.10
+
+By default dictem remembers the database name and strategy that
+was used last time.
+The  dictem-select-database and dictem-select-strategy functions
+will use these values as a default in the minibuffer.
+If you dislike this behaviour, set variables
+dictem-default-database and/or dictem-default-strategy.
+
+(add-hook 'c-mode-common-hook
+	  '(lambda ()
+	     (interactive)
+	     (make-local-variable 'dictem-default-database)
+	     (setq dictem-default-database "man")
+	     ))
+
+The example above sets default database to "man"
+in C buffers.
+
+-------
+Ex.11
+
+As of dictem-0.0.4 dictem-empty-initial-input customizable variable
+tells dictem-read-query whether to leave initial input empty or not.
+It is `nil' by default.
+For emulating behaviour of older releases, set it to `t'.
+
+(setq dictem-empty-initial-input t)
+
+-------
+Ex. 12
+
+By default dictem-postprocess-definition-hyperlinks function
+assumes that hyperlinks have the following form: {foo} or {foo|bar}.
+Sometimes "{" and "}" characters are general characters
+in definitions. The following code changes "{" and "}" for
+"{link-beg " and " link-end" respectively
+inside definitions obtained from the databases "^infopage-..."
+
+; new function is used for creating hyperlinks
+; which works differently depending on database name
+(defun my-dictem-postprocess-definition-hyperlinks ()
+  "Creating hyperlinks according to database name"
+  (interactive)
+  (cond (
+	((string-match "^infopage-" dictem-current-dbname)
+	 (let ((dictem-hyperlink-beginning "{link-beg ")
+	       (dictem-hyperlink-end       " link-end}")
+	       )
+	   (dictem-postprocess-definition-hyperlinks)))
+	(t (dictem-postprocess-definition-hyperlinks)))))
+
+; definitions from each database are processed separately
+(add-hook 'dictem-postprocess-definition-hook
+	  'dictem-postprocess-each-definition)
+(add-hook 'dictem-postprocess-each-definition-hook
+	  'my-dictem-postprocess-definition-hyperlinks)
+
+-------
+Ex. 13
+
+You may want to remove "XXX definition[s] found" header
+from the DEFINE buffers.
+It may be done with a help of
+dictem-postprocess-definition-remove-header function.
+
+(add-hook 'dictem-postprocess-definition-hook
+	  'dictem-postprocess-definition-remove-header)
+
+-------
+Ex. 14
+
+As of version 0.7 dictem can handle dictionaries defined by user.
+This allows to use dictem not only for accessing DICT servers,
+but also for accesing users' databases.
+
+; DEFINE function for the database "mysuperdb"
+(defun dictem-mysuperdb-DEFINE (query)
+  (cond
+   ((string= query "apple")  '("Apples grow on the trees"
+			       "Apple may be green, yellow or red"))
+   ((string= query "potato") '("Potato is a vegetable"
+			       "Potato is a traditional Belarusian food"))
+   (t (dictem-make-error
+       20 (format "No definitions for %s" query)))
+  ))
+
+; MATCH function for the database "mysuperdb"
+(defun dictem-mysuperdb-MATCH (query strategy)
+  ; the name of strategy is ignored
+  (let ((apple  (string-match query "apple"))
+	(potato (string-match query "potato")))
+    (cond
+     ((and (string= strategy "exact") (string= query "apple"))
+      '("apple"))
+     ((and (string= strategy "exact") (string= query "potato"))
+      '("potato"))
+     ((and apple potato)
+      '("apple" "potato"))
+     (apple
+      '("apple"))
+     (potato
+      '("potato"))
+     (t (dictem-make-error
+	 20 (format "No matches for %s/%s" query strategy)))
+     )))
+
+; Initializing a list of user-defined databases
+(setq dictem-user-databases-alist
+      `(("_en-en"  . ("foldoc" "gcide" "wn"))
+	("_ru-ru"  . ("beslov" "ushakov" "ozhegov" "brok_and_efr"))
+	,(dictem-make-userdb
+          ; the name of the database
+	  "mysuperdb"
+          ; short description
+          "My super database"
+          ; MATCH function
+	  (symbol-function 'dictem-mysuperdb-MATCH)
+          ; DEFINE function
+	  (symbol-function 'dictem-mysuperdb-DEFINE))
+	))
+
+-------
+Ex. 15
+
+Last years many dictionary servers provide too many bilingual dictionaries,
+most of which may be not very interesting for you.
+DictEm allows to exclude such dictionaries from an autocompletion menu
+by setting a list of regular expressions in dictem-exclude-databases
+variable.
+If, for example, you don't speak french and german and use
+dict://dict.org server, your config may look like this
+
+(setq dictem-server "dict.org")
+(setq dictem-exclude-databases '("ger-" "-ger" "fra-" "-fra"))
+(dictem-initialize)
+
+Note that, (dictem-initialize) is placed after initializing
+dictem-exclude-databases variable.
+
+-------
+If you have read to this point and all the examples above seem easy,
+you are probably a ELISP Guru.
+So, I have nothing more to tell you ;-)
+Feel free to inspect the code, and I hope you'll find DictEm useful.
+
+Dict'em All! ;-)
