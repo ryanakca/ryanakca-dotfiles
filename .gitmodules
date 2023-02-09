@@ -1,6 +1,3 @@
-[submodule "emacsen/dictem"]
-	path = emacsen/dictem
-	url = https://github.com/cheusov/dictem.git
 [submodule "dot_fonts/Inconsolata-Hellenic"]
 	path = fonts/Inconsolata-Hellenic
 	url = git://github.com/cosmix/Inconsolata-Hellenic.git

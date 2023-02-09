@@ -44,6 +44,8 @@ crontab
 .emacs.d/elpa/*
 !.emacs.d/elpa/gnupg
 !.emacs.d/elpa/gnupg/pubring.kbx
+.emacs.d/local/dictem/*
+!.emacs.d/local/dictem/*.el
 .emacs.d/transient
 .fonts
 .gnupg/*
