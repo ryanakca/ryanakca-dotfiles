@@ -366,6 +366,8 @@ Extended Format date in the date field and return it as a string obeing
        (gcc "nnimap+mail.cs.mcgill.ca:INBOX.Sent")))))
   (gnus-cloud-method "nnimap:imap.rak.ac")
   (gnus-cloud-storage-method 'base64)
+  (gnus-cloud-synced-files
+   '("~/.newsrc" "~/.newsrc.eld"  (:directory "~/News" :match ".*.SCORE\\'")))
   (gnus-update-message-archive-method t)
   (gnus-message-archive-method
    '(nnfolder "archive" ; this gets included in the server buffer
@@ -376,8 +378,6 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-check-new-newsgroups nil)
   (gnus-group-line-format "%M%S%p%P%5y:%B%(%G%) %z\n")
   (gnus-topic-display-empty-topics nil)
-  :config
-  (append '("~/.newsrc" "~/.newsrc.eld") gnus-cloud-synced-files)
   :hook
   (message-send . gnus-score-followup-article)
   (gnus-group-mode . gnus-topic-mode))
