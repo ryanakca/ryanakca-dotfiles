@@ -346,8 +346,6 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-home-score-file "gnus.SCORE")
   (gnus-secondary-select-methods
    '((nntp "news.gmane.io")
-     ; (nntp "news.eternal-september.org")
-     ; (nntp "nntp.olduse.net")
      (nnimap "imap.rak.ac")
      (nnimap "mail.cs.mcgill.ca")
      (nntp "tilde.team"
@@ -370,11 +368,11 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-cloud-storage-method 'base64)
   (gnus-update-message-archive-method t)
   (gnus-message-archive-method
-	'(nnfolder "archive" ; this gets included in the server buffer
-	       (nnfolder-inhibit-expiry t)
-	       (nnfolder-get-new-mail nil)
-	       (nnfolder-active-file "~/News/sent/active")
-	       (nnfolder-directory   "~/News/sent")))
+   '(nnfolder "archive" ; this gets included in the server buffer
+	      (nnfolder-inhibit-expiry t)
+	      (nnfolder-get-new-mail nil)
+	      (nnfolder-active-file "~/News/sent/active")
+	      (nnfolder-directory   "~/News/sent")))
   (gnus-check-new-newsgroups nil)
   (gnus-group-line-format "%M%S%p%P%5y:%B%(%G%) %z\n")
   (gnus-topic-display-empty-topics nil)
