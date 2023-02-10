@@ -45,3 +45,7 @@
 	autocorrect = prompt
 [init]
 	defaultBranch = master
+{{ if (eq .chezmoi.os "openbsd") -}}
+[safe]
+	directory = /usr/src
+{{- end }}

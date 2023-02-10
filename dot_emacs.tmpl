@@ -4,6 +4,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'load-path "~/.emacs.d/local")
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -39,11 +40,10 @@
    (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
 	   face-font-family-alternatives))
   :custom-face
-  (default ((t (:family "Spleen 16x32"
-			{{ if (eq .chezmoi.os "openbsd") -}}
-                        :height 80 ; unit is 1/10 pt
+  (default ((t (:family {{ if (eq .chezmoi.os "openbsd") -}}
+                        "Spleen 12x24" :height 80 ; unit is 1/10 pt
                         {{- else -}}
-                        :height 130 ; unit is 1/10 pt
+                        "Spleen 16x32" :height 130 ; unit is 1/10 pt
                         {{- end }}
 			)))))
 

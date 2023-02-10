@@ -35,7 +35,7 @@ case `uname` in
         [ -d /usr/local/share/fonts/spleen ] && xset +fp /usr/local/share/fonts/spleen/
         redshift &
         ${HOME}/bin/icd
-        xidle -delay 2 -se -timeout 600 -program "/usr/X11R6/bin/xlock" &
+        xidle &
         exec xmonad
 	;;
 
