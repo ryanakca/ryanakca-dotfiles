@@ -4,7 +4,8 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'load-path "~/.emacs.d/local")
+(let ((default-directory  "~/.emacs.d/lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -41,10 +42,10 @@
 	   face-font-family-alternatives))
   :custom-face
   (default ((t (:family {{ if (eq .chezmoi.os "openbsd") -}}
-                        "Spleen 12x24" :height 80 ; unit is 1/10 pt
-                        {{- else -}}
-                        "Spleen 16x32" :height 130 ; unit is 1/10 pt
-                        {{- end }}
+			"Spleen 12x24" :height 80 ; unit is 1/10 pt
+			{{- else -}}
+			"Spleen 16x32" :height 130 ; unit is 1/10 pt
+			{{- end }}
 			)))))
 
 (if (string= (system-name) "demeter.rak.ac")
@@ -293,7 +294,7 @@ Extended Format date in the date field and return it as a string obeing
 	 (diary-list-entries . diary-sort-entries)))
 
 (use-package dictem
-  :load-path "~/.emacs.d/dictem/")
+  :ensure t)
 
 (use-package diminish
   :ensure t)
