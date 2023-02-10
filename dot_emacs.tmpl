@@ -376,6 +376,8 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-check-new-newsgroups nil)
   (gnus-group-line-format "%M%S%p%P%5y:%B%(%G%) %z\n")
   (gnus-topic-display-empty-topics nil)
+  :config
+  (append '("~/.newsrc" "~/.newsrc.eld") gnus-cloud-synced-files)
   :hook
   (message-send . gnus-score-followup-article)
   (gnus-group-mode . gnus-topic-mode))
