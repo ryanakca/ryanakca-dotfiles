@@ -21,6 +21,7 @@
         rl = reflog --format='%C(auto)%h %<|(20)%gd %C(blue)%cr%C(reset) %gs (%s)'
 
 	subrepo = !~/.local/lib/git-core/git-subrepo
+	addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
 [push]
 	default = simple
 [url "git://anonscm.debian.org"]
