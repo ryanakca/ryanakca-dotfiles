@@ -568,6 +568,10 @@ Otherwise split the current paragraph into one sentence per line."
   ;; Cycle  through tab-completions with tab if there are less than 5
   (setq completion-cycle-threshold 5))
 
+(use-package mpc
+  :custom
+  (mpc-host "asteria.home.arpa"))
+
 (use-package ocp-indent
   :ensure t)
 
