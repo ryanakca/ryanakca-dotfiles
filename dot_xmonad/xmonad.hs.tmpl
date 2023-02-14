@@ -353,33 +353,6 @@ myLayout = mkToggle (single MIRROR) (smartBorders $ toggleLayouts Full
             delta = 3/100
             ratio = 1/2
 
--------------------
--- STATUS BAR
--------------------
-
-statusBarCmd = "dzen2" ++
-               " -dock" ++
-               " -bg '" ++ colorBlack ++ "'" ++
-               " -fg '" ++ colorBlue ++ "'" ++
-               " -sa c" ++
-               " -fn '" ++ xftFont ++ "'" ++
-               " -w 925 -x 0 -y 0 -ta l -e ''"
-
--- dynamiclog pretty printer for dzen
-mPP h = def
-        { ppCurrent = dzenColor colorOrange colorBlack
-        , ppVisible = dzenColor colorGreen colorBlack
-        , ppHidden  = dzenColor colorBlue colorBlack
-        , ppUrgent  = dzenColor colorRed colorBlack . wrap "[" "]"
-        , ppSep     = dzenColor "grey60" colorBlack " ^r(1x8) "
-        , ppTitle   = dzenColor colorWhite colorBlack . trim
-        , ppOrder   = \(ws:l:t:d:b:o) -> [b,d,ws,l,t] ++ o
-        , ppExtras  = [date "%H:%M:%S", batteryCheck]
-        , ppOutput  = hPutStrLn h
-        }
-    where
-        batteryCheck = logCmd ("${HOME}/.dzen/battery.sh")
-
 ---------------------
 -- GENERAL CONFIG
 --------------------
@@ -404,7 +377,7 @@ myManageHook = composeAll . concat $
     music     = ["pavucontrol", "Pavucontrol"]
     xconsole  = ["xconsole", "XConsole"]
 
-myConfig dzenPipe = docks $ def {
+myConfig = docks $ def {
       workspaces           = myWorkspaces
       , modMask            = myMod
       , terminal           = myTerminal
@@ -416,12 +389,10 @@ myConfig dzenPipe = docks $ def {
       , mouseBindings      = myMouseBindings
       , keys               = \x -> (fromList $ mykeys x)
                                    `union` dvorakify (keys def x)
-      , logHook            = dynamicLogWithPP $ mPP dzenPipe
       }
 
 main = do
-    dzenPipe <- spawnPipe statusBarCmd
     path <- getEnv "PATH"
     home <- getEnv "HOME"
     setEnv "PATH" (home ++ "/bin:" ++ path)
-    xmonad $ myConfig dzenPipe
+    xmonad $ myConfig
