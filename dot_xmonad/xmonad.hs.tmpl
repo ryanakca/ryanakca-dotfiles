@@ -21,6 +21,7 @@ import XMonad.Hooks.DynamicLog (dzenColor, dynamicLogWithPP
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, docksEventHook
                                 , ToggleStruts(ToggleStruts))
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
+import XMonad.Hooks.Place (placeHook, fixed)
 import XMonad.Hooks.UrgencyHook (focusUrgent)
 import XMonad.Layout.Accordion (Accordion(Accordion))
 import XMonad.Layout.Dishes (Dishes(Dishes))
@@ -294,7 +295,7 @@ myXPConfig = def {
 -- My workspaces
 
 myWorkspaces = ["term", "web", "chatter", "reading", "gnus", "music", "LaTeX", "work", "radio"]
-               ++ (map show [9..20])
+               ++ (map show [9..20]) ++ ["console"]
 
 -- smartBorders removes borders when there's no ambiguity
 myLayout = mkToggle (single MIRROR) (smartBorders $ toggleLayouts Full
@@ -391,14 +392,17 @@ myManageHook = composeAll . concat $
                 , [ className =? c --> viewShift "web"     | c <- web]
                 , [ className =? c --> viewShift "chatter" | c <- chatter]
                 , [ className =? c --> viewShift "music"   | c <- music]
+                , [ className =? c --> doShift "console"   | c <- xconsole]
                 , [ isFullscreen   --> doFullFloat ]
               ]
   where
     viewShift = doF . liftM2 (.) greedyView shift
+    doShift   = doF . shift
     floats    = ["MPlayer"]
     web       = ["Firefox", "Firefox-esr", "Navigator", "google-chrome", "Google-chrome"]
     chatter   = ["slack", "Slack"]
     music     = ["pavucontrol", "Pavucontrol"]
+    xconsole  = ["xconsole", "XConsole"]
 
 myConfig dzenPipe = docks $ def {
       workspaces           = myWorkspaces
