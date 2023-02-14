@@ -277,10 +277,14 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package counsel
   :ensure t
-  :bind (("C-x C-b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 ("M-x" . counsel-M-x)
-	 ("M-y" . counsel-yank-pop)))
+  :bind
+  (("C-x C-b" . counsel-ibuffer)
+   ("C-x C-f" . counsel-find-file)
+   ("M-x" . counsel-M-x)
+   ("M-y" . counsel-yank-pop))
+  :config
+  (add-to-list 'ivy-initial-inputs-alist
+	       '(counsel-M-x . "")))
 
 (use-package cus-edit
   :custom
