@@ -559,7 +559,9 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package mingus
   ;; mpd client
-  :ensure t)
+  :ensure t
+  :custom
+  (mingus-mpd-host "asteria.home.arpa"))
 
 (use-package minibuffer
   :config
