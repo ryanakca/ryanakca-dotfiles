@@ -86,9 +86,11 @@ texlive_base--
 texlive_mktexlsr--
 texlive_synctex--
 texlive_texmf-buildset--
+texlive_texmf-docs--
 texlive_texmf-full--
 texlive_texmf-minimal--
 urlscan--
+vf1--
 vim--no_x11
 vimb--
 w3m--image
