@@ -452,7 +452,7 @@ Otherwise split the current paragraph into one sentence per line."
    (LaTeX-mode . turn-on-flyspell)
    (LaTeX-mode . LaTeX-math-mode)
    (LaTeX-mode . (lambda () (set (make-local-variable 'TeX-electric-math)
-			     (cons "\\(" "\\)"))))
+				 (cons "\\(" "\\)"))))
    (LaTeX-mode . (lambda ()
 		   (LaTeX-add-environments
 		    '("axiom" LaTeX-env-label)
