@@ -488,6 +488,11 @@ Otherwise split the current paragraph into one sentence per line."
   (:map LaTeX-mode-map
 	("M-q" . ales/fill-paragraph)))
 
+(use-package libmpdel
+  ;; used by mpdel to connect to mpd
+  :custom
+  (libmpdel-hostname "asteria.home.arpa"))
+
 (use-package magit
   :ensure t
   :config
@@ -559,7 +564,6 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package mingus
   ;; mpd client
-  :ensure t
   :custom
   (mingus-mpd-host "asteria.home.arpa"))
 
@@ -571,8 +575,17 @@ Otherwise split the current paragraph into one sentence per line."
   (completion-cycle-threshold 5))
 
 (use-package mpc
+  ;; mpd client
   :custom
   (mpc-host "asteria.home.arpa"))
+
+(use-package mpdel
+  ;; mpd client
+  ;; host/port customization under libmpdel package
+  :ensure t
+  :diminish
+  :config
+  (mpdel-mode))
 
 (use-package ocp-indent
   :ensure t)
