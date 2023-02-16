@@ -23,7 +23,6 @@
   (put 'narrow-to-region 'disabled nil)
   :hook   ; add functions onto hook; only basename needed
   ((text-mode   . turn-on-auto-fill)
-   (text-mode   . flyspell-mode)
    (before-save . whitespace-cleanup))
   :bind   ; key bindings
   (("C-x a r" . align-regexp))
@@ -333,6 +332,20 @@ Extended Format date in the date field and return it as a string obeing
 
 (use-package fill-column-indicator
   :ensure t)
+
+(use-package flyspell
+  :bind
+  (("<f12>" . flyspell-auto-correct-previous-word))
+  :config
+  (unbind-key "C-;" flyspell-mode-map))
+
+(use-package flyspell-correct-ivy
+  :ensure t
+  :after flyspell
+  :bind
+  ("C-<f12>" . flyspell-correct-wrapper)
+  :config
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 (use-package gnus
   :ensure t
@@ -709,6 +722,10 @@ Returns a formatted BibTeX entry."
      ("Transactions of the American Mathematical Society")
      ("{ACM} {SIGACT} News" "ACM SIGACT News"))))
 
+(use-package prog-mode
+  :hook
+  ((prog-mode . flyspell-prog-mode)))
+
 (use-package reftex-cite
   :ensure t)
 
@@ -1010,6 +1027,10 @@ If not, issue a warning."
 		    " %o")
 		   "zathura"))))
   (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura")))
+
+(use-package text-mode
+  :hook
+  ((text-mode . flyspell-mode)))
 
 (use-package tool-bar
   :config
