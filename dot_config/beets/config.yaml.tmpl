@@ -1,6 +1,15 @@
 directory: /media/t/music_clean
 library: /media/t/music_clean/beetsmusic.blb
-plugins: mbsync duplicates fetchart mbcollection badfiles info smartplaylist
+plugins:
+ - mbsync
+ - duplicates
+ - fetchart
+ - mbcollection
+ - badfiles
+ - info
+ - smartplaylist
+ - playlist
+ - mpdupdate
 
 import:
     incremental: true
@@ -27,6 +36,11 @@ match:
     preferred:
         countries: ['CA', 'US']
         media: ['CD']
+
+playlist:
+    auto: yes
+    relative_to: /media/t/music_clean
+    playlist_dir: /media/t/music_clean/M3U
 
 smartplaylist:
     relative_to: /media/t/music_clean
@@ -119,6 +133,8 @@ smartplaylist:
                  ]
         - name: added-2023.m3u
           query: [ "added:2023" ]
+        - name: ripped-2023.m3u
+          query: [ "added:2023 format:flac album+ disc+ track+" ]
         - name: added-2020.m3u
           query: [ "added:2020" ]
         - name: added-2019.m3u
