@@ -364,13 +364,7 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-secondary-select-methods
    '((nntp "news.gmane.io")
      (nnimap "imap.rak.ac")
-     (nnimap "mail.cs.mcgill.ca")
-     (nntp "tilde.team"
-	   (nntp-address "localhost")
-	   (nntp-via-address "tilde.team")
-	   (nntp-via-rlogin-command "ssh")
-	   (nntp-via-rlogin-command-switches ("-C"))
-	   (nntp-open-connection-function nntp-open-via-rlogin-and-netcat))))
+     (nnimap "mail.cs.mcgill.ca")))
   (gnus-parameters
    '(("^nntp+.*" (address . "rak@rak.ac"))
      ("^nnimap+imap\\.rak\\.ac:.*"
