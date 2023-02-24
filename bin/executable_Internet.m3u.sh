@@ -3,7 +3,7 @@
 # Updates the internet radio playlists for MPD
 # Best run from a cronjob
 
-BASE=/var/lib/mpd/playlists/
+BASE=/var/lib/mpd/playlists.radio/
 
 playlist() {
     cat<<EOF > "${BASE}/radio-$1.m3u"
