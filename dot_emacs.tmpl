@@ -527,44 +527,42 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package message
   :config
-  (defun whitespace-cleanup-mail ()
-    "Kill the whitespace in a buffer while preserving the last instance of '-- '."
+  (defun message-whitespace-cleanup ()
+    "Clean whitespace in message-mode
+
+     Runs whitespace-cleanup on a message body and signature,
+     while also preserving the space at the end of the '-- '
+     delimiter between body and signature.
+
+     This function is dumb and implicitly assumes the existence
+     of a delimiter."
     (interactive)
     (save-excursion
       (save-restriction
 	(widen)
-	(let ((signature-delimiter
+	(let ((body-min
 	       (progn
-		 ;; Find the last occurence of "-- " in the buffer
-		 ;; and set signature-delimiter to the position of the first -
-		 ;; This means we must subtract 2, because re-search-backward
-		 ;; returns the end of the occurence found
-		 (goto-char (point-max))
-		 (- (re-search-backward "^-- $" nil t) 2))))
-	  (when signature-delimiter
-	    (progn
-	      ;; Run whitespace-cleanup on the region
-	      ;; [start, signature-delimiter]. Include the first dash
-	      ;; to avoid deleting any empty lines leading up to the
-	      ;; delimiter.
-	      (narrow-to-region (point-min) signature-delimiter)
-	      (whitespace-cleanup)
-	      (widen)
-	      ;; Run it on the region [signature-delimiter, end).
-	      ;; We include the signature delimiter so that we do not
-	      ;; delete any empty lines immediately following it.
-	      ;; A side-effect is that the first line might become "^--$".
-	      ;; This means that we must re-add the space at the end of
-	      ;; the first line. Easiest just replace the first line of the
-	      ;; buffer by "^-- $".
-	      (narrow-to-region signature-delimiter (point-max))
-	      (whitespace-cleanup)
-	      (goto-char (point-min))
-	      (kill-whole-line 0)
-	      (insert "-- ")))))))
+		 (message-goto-body)
+		 (point)))
+	      (body-max
+	       (progn
+		 (message-goto-signature)
+		 (previous-line)
+		 (point)))
+	      (signature-min
+	       (progn
+		 (message-goto-signature)
+		 (point)))
+	      (whitespace-style (trailing)))
+	  (progn
+	    (narrow-to-region body-min body-max)
+	    (whitespace-cleanup)
+	    (widen)
+	    (narrow-to-region signature-min (point-max))
+	    (whitespace-cleanup))))))
   :hook
   ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
-   (message-mode . (lambda () (add-hook 'before-save-hook 'whitespace-cleanup-mail nil t))))
+   (message-mode . (lambda () (add-hook 'before-save-hook 'message-whitespace-cleanup nil t))))
   :custom
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
