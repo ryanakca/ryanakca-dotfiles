@@ -553,7 +553,7 @@ Otherwise split the current paragraph into one sentence per line."
 	       (progn
 		 (message-goto-signature)
 		 (point)))
-	      (whitespace-style (trailing)))
+	      (whitespace-style '(trailing)))
 	  (progn
 	    (narrow-to-region body-min body-max)
 	    (whitespace-cleanup)
