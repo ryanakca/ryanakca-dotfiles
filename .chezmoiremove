@@ -1,5 +1,6 @@
 .gnupg/dirmngr.conf
 .lbdbrc
+.mutt/savehooks.rc
 .pulse
 .screenlayout/zeta-home.sh
 .screenlayout/zeta-solo.sh
