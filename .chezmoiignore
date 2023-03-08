@@ -66,6 +66,8 @@ crontab
 .ssh/known_hosts.old
 .ssh/keys/{{ .chezmoi.hostname }}/id_ed25519
 .ssh/keys/{{ .chezmoi.hostname }}/id_rsa
+.screenlayout/*
+! .screenlayout/{{ .chezmoi.hostname }}
 .texlive202*
 .texmf/doc
 .texmf/fonts
