@@ -106,6 +106,10 @@
   (("C-c C-j" . avy-resume)
    ("C-;" . avy-goto-char)))
 
+(use-package beluga-mode
+  :load-path "~/.opam/default/.opam-switch/sources/beluga/tools/"
+  :mode "\\.bel\'")
+
 (use-package bibtex
   :mode ("\\.bib\'" . bibtex-mode)
   :custom
