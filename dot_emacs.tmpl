@@ -413,6 +413,8 @@ Extended Format date in the date field and return it as a string obeing
 (use-package ivy
   :ensure t
   :diminish
+  :bind
+  (("C-c C-r" . ivy-resume))
   :custom
   (ivy-use-virtual-buffers t)
   (ivy-count-format "(%d/%d) ")
@@ -998,6 +1000,11 @@ If not, issue a warning."
 (use-package spaceline
   :ensure t
   :requires spaceline-config)
+
+(use-package swiper
+  :ensure t
+  :bind
+  (("C-s" . swiper)))
 
 (use-package tex
   :ensure auctex
