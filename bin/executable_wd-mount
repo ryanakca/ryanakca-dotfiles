@@ -8,6 +8,9 @@ case `uname` in
     Linux)
         if ! zpool list wd-pass > /dev/null 2>&1 ; then
             sudo zpool import -l wd-pass
+            sudo mount /var/lib/mpd/playlists
+            sudo mount /var/lib/mpd/music
+            sudo systemctl start var-lib-mpd-music.mount --now
         fi
         ;;
     *)
