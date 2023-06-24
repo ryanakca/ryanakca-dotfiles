@@ -7,8 +7,11 @@ case `uname` in
         ;;
     Linux)
         if zpool list wd-pass > /dev/null 2>&1; then
-            if mount -l | grep -E '^/var/lib/mpd/music '; then
+            if mount -l | grep -E '^/var/lib/mpd/music ' > /dev/null 2>&1; then
                 sudo umount --lazy -f /var/lib/mpd/music
+            fi
+            if mount -l | grep -E '^systemd.* on /var/lib/mpd/playlists ' > /dev/null 2>&1; then
+                sudo umount --lazy -f /var/lib/mpd/playlists
             fi
             mount -l -t zfs | IFS=' on ' awk '{ print $1 }' | sudo xargs -I '{}' zfs umount -u '{}'
             sudo zpool export wd-pass
