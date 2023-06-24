@@ -1,7 +1,6 @@
 [Unit]
 Description=backup dovecot
 Wants=network-online.target
-BindsTo=dovecot.service
 After=network-online.target
 ConditionFileNotEmpty=/media/t/Archives/email/%I/backup.sh
 
