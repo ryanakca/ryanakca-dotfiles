@@ -19,7 +19,6 @@ LockPersonality=true
 # But you can try setting it to "yes" for improved security if you don't use those features.
 MemoryDenyWriteExecute=no
 NoNewPrivileges=yes
-PrivateTmp=yes
 ProtectControlGroups=yes
 ProtectHostname=yes
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK

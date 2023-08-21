@@ -13,7 +13,6 @@ Type=oneshot
 LockPersonality=true
 MemoryDenyWriteExecute=no
 NoNewPrivileges=yes
-PrivateTmp=yes
 ProtectControlGroups=yes
 ProtectHostname=yes
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
