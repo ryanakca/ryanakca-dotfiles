@@ -12,6 +12,9 @@ account-hook imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com \
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
     source ~/.mutt/accounts/9rak.queensu.ca/main.rc
 
+account-hook imaps://kavanagh.ryan@uqam.ca@outlook.office365.com \
+    source ~/.mutt/accounts/kavanagh.ryan.uqam.ca/main.rc
+
 account-hook imaps://imap.rak.ac \
     source ~/.mutt/accounts/rak.rak.ac/main.rc
 
