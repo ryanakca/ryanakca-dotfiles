@@ -1,0 +1,14 @@
+# vim: syntax=muttrc
+
+set copy = yes
+set from = 'Ryan Kavanagh <kavanagh.ryan@uqam.ca>'
+set smtp_authenticators = 'xoauth2'
+set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py --encryption-pipe="cat" --decryption-pipe="cat" ~/.mutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token'
+set smtp_url = 'smtp://kavanagh.ryan@uqam.ca@smtp.office365.com:587/'
+
+set attribution = "Le %d, %n a écrit:"
+set attribution_locale = "fr_CA.utf8"
+set date_format = "%a %d %b %Y à %I:%M:%S%p %Z" 
+
+unset sendmail
+unset smtp_pass
