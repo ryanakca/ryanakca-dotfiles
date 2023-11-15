@@ -35,6 +35,7 @@ import hashlib
 import time
 from datetime import timedelta, datetime
 from pathlib import Path
+import shlex
 import socket
 import http.server
 import subprocess
@@ -44,8 +45,8 @@ import subprocess
 # encryption and decryption pipes you prefer. They should read from standard
 # input and write to standard output. The example values here invoke GPG,
 # although won't work until an appropriate identity appears in the first line.
-ENCRYPTION_PIPE = ['cat']
-DECRYPTION_PIPE = ['cat']
+ENCRYPTION_PIPE = ['gpg', '--encrypt', '--recipient', 'YOUR_GPG_IDENTITY']
+DECRYPTION_PIPE = ['gpg', '--decrypt']
 
 registrations = {
     'google': {
@@ -58,8 +59,6 @@ registrations = {
         'smtp_endpoint': 'smtp.gmail.com',
         'sasl_method': 'OAUTHBEARER',
         'scope': 'https://mail.google.com/',
-        'client_id': '',
-        'client_secret': '',
     },
     'microsoft': {
         'authorize_endpoint': 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
@@ -74,17 +73,15 @@ registrations = {
         'scope': ('offline_access https://outlook.office.com/IMAP.AccessAsUser.All '
                   'https://outlook.office.com/POP.AccessAsUser.All '
                   'https://outlook.office.com/SMTP.Send'),
-        'client_id': '08162f7c-0fd2-4200-a84a-f25a4db0b584',
-        'client_secret': 'TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82',
     },
 }
 
 ap = argparse.ArgumentParser(epilog='''
 This script obtains and prints a valid OAuth2 access token.  State is maintained in an
-encrypted TOKENFILE.  Run with "--verbose --authorize" to get started or whenever all
-tokens have expired, optionally with "--authflow" to override the default authorization
-flow.  To truly start over from scratch, first delete TOKENFILE.  Use "--verbose --test"
-to test the IMAP/POP/SMTP endpoints.
+encrypted TOKENFILE.  Run with "--verbose --authorize --encryption-pipe 'foo@bar.org'"
+to get started or whenever all tokens have expired, optionally with "--authflow" to override
+the default authorization flow.  To truly start over from scratch, first delete TOKENFILE.
+Use "--verbose --test" to test the IMAP/POP/SMTP endpoints.
 ''')
 ap.add_argument('-v', '--verbose', action='store_true', help='increase verbosity')
 ap.add_argument('-d', '--debug', action='store_true', help='enable debug output')
@@ -92,7 +89,25 @@ ap.add_argument('tokenfile', help='persistent token storage')
 ap.add_argument('-a', '--authorize', action='store_true', help='manually authorize new tokens')
 ap.add_argument('--authflow', help='authcode | localhostauthcode | devicecode')
 ap.add_argument('-t', '--test', action='store_true', help='test IMAP/POP/SMTP endpoints')
+ap.add_argument('--decryption-pipe', type=shlex.split, default=DECRYPTION_PIPE,
+                help='decryption command (string), reads from stdin and writes '
+                'to stdout, default: "{}"'.format(
+                    " ".join(DECRYPTION_PIPE)))
+ap.add_argument('--encryption-pipe', type=shlex.split,
+                help='encryption command (string), reads from stdin and writes '
+                'to stdout, suggested: "{}"'.format(
+                    " ".join(ENCRYPTION_PIPE)))
+ap.add_argument('--client-id', type=str, default='',
+                help='Provider id from registration')
+ap.add_argument('--client-secret', type=str, default='',
+                help='(optional) Provider secret from registration')
+ap.add_argument('--provider', type=str, choices=registrations.keys(),
+                help='Specify provider to use.')
+ap.add_argument('--email', type=str, help='Your email address.')
 args = ap.parse_args()
+
+ENCRYPTION_PIPE = args.encryption_pipe
+DECRYPTION_PIPE = args.decryption_pipe
 
 token = {}
 path = Path(args.tokenfile)
@@ -125,14 +140,19 @@ if args.debug:
 if not token:
     if not args.authorize:
         sys.exit('You must run script with "--authorize" at least once.')
-    print('Available app and endpoint registrations:', *registrations)
-    token['registration'] = input('OAuth2 registration: ')
-    token['authflow'] = input('Preferred OAuth2 flow ("authcode" or "localhostauthcode" '
-                              'or "devicecode"): ')
-    token['email'] = input('Account e-mail address: ')
+    print('', )
+    token['registration'] = args.provider or input(
+        'Available app and endpoint registrations: {regs}\nOAuth2 registration: '.format(
+            regs=', '.join(registrations.keys())))
+    token['authflow'] = args.authflow or input(
+        'Preferred OAuth2 flow ("authcode" or "localhostauthcode" or "devicecode"): '
+    )
+    token['email'] = args.email or input('Account e-mail address: ')
     token['access_token'] = ''
     token['access_token_expiration'] = ''
     token['refresh_token'] = ''
+    token['client_id'] = args.client_id or input('Client ID: ')
+    token['client_secret'] = args.client_secret or input('Client secret: ')
     writetokenfile()
 
 if token['registration'] not in registrations:
@@ -144,7 +164,7 @@ authflow = token['authflow']
 if args.authflow:
     authflow = args.authflow
 
-baseparams = {'client_id': registration['client_id']}
+baseparams = {'client_id': token['client_id']}
 # Microsoft uses 'tenant' but Google does not
 if 'tenant' in registration:
     baseparams['tenant'] = registration['tenant']
@@ -237,7 +257,7 @@ if args.authorize:
             del p[k]
         p.update({'grant_type': 'authorization_code',
                   'code': authcode,
-                  'client_secret': registration['client_secret'],
+                  'client_secret': token['client_secret'],
                   'code_verifier': verifier})
         try:
             response = urllib.request.urlopen(registration['token_endpoint'],
@@ -320,7 +340,8 @@ if not access_token_valid():
     if not token['refresh_token']:
         sys.exit('ERROR: No refresh token. Run script with "--authorize".')
     p = baseparams.copy()
-    p.update({'client_secret': registration['client_secret'],
+    p.update({'client_id': token['client_id'],
+              'client_secret': token['client_secret'],
               'refresh_token': token['refresh_token'],
               'grant_type': 'refresh_token'})
     try:
