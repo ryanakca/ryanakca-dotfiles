@@ -914,6 +914,11 @@ If not, issue a warning."
   :config
   (pdf-tools-install))
 
+(use-package pdf-view
+  :bind
+  (:map pdf-view-mode-map
+	("C-s" . isearch-forward)))
+
 (use-package powerline
   :ensure t)
 
