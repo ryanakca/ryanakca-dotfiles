@@ -1,8 +1,0 @@
-# vim: syntax=muttrc
-
-set copy = yes
-set from = 'Ryan Kavanagh <rkavanagh@cs.mcgill.ca>'
-set sendmail = 'sendmail -oem -oi'
-
-unset smtp_pass
-unset smtp_url
