@@ -1,5 +1,7 @@
 .gnupg/dirmngr.conf
 .lbdbrc
+.mutt/accounts/ryank.mail.cs.mcgill.ca/
+.mutt/accounts/ryan.kavanagh.mcgill.ca/
 .mutt/savehooks.rc
 .pulse
 .screenlayout/zeta-home.sh
