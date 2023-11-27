@@ -35,7 +35,8 @@ case `uname` in
         [ -d /usr/local/share/fonts/spleen ] && xset +fp /usr/local/share/fonts/spleen/
         redshift &
         ${HOME}/bin/icd
-        xmodmap -e 'remove mod4 = Alt_R'
+        # Only needed if you have Kinesis in Windows mode
+        # xmodmap -e 'remove mod4 = Alt_R'
         xidle &
         exec xmonad
 	;;
