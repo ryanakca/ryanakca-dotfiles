@@ -31,8 +31,8 @@ set mail_check=60
 
 set move = no
 
-set header_cache="~/.mutt/cache/headers"
-set message_cachedir="~/.mutt/cache/bodies"
+set header_cache="$XDG_CACHE_HOME/neomutt/headers"
+set message_cachedir="$XDG_CACHE_HOME/neomutt/bodies"
 
 set edit_headers = yes
 
@@ -54,8 +54,8 @@ macro index .n "<tag-pattern>~N|~O<enter><tag-prefix-cond><tag-prefix><clear-fla
 
 my_hdr OpenPGP: id=4E469519ED677734268FBD958F7BF8FC4A11C97A\; url=https://rak.ac/contact/4E469519ED677734268FBD958F7BF8FC4A11C97A.asc\; preference=sign
 
-set sort=threads
-set sort_aux=date
+set use_threads=threads
+set sort_aux=last-date-received
 set move=no
 set mark_old=no
 ignore * # ignore all headers except for ...
@@ -76,7 +76,7 @@ set query_command="lbdbq %s"
 # macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
 # macro index,pager A "<pipe-message>abook --add-email-quiet<return>"
 set reverse_alias = yes
-set alias_file = ~/.mutt/alias.rc
+set alias_file = $XDG_CONFIG_HOME/neomutt/alias.rc
 
 set ispell="aspell -e -c"
 
@@ -127,19 +127,19 @@ set fcc_before_send=yes
 # to unset the folder option
 unset folder
 # alias.rc before accounts.rc
-source ~/.mutt/alias.rc
-source ~/.mutt/accounts.rc
-source ~/.mutt/mailinglists.rc
-source ~/.mutt/score.rc
-source ~/.mutt/color.rc
-source ~/.mutt/gpg.rc
-source ~/.mutt/news.rc
+source $XDG_CONFIG_HOME/neomutt/alias.rc
+source $XDG_CONFIG_HOME/neomutt/accounts.rc
+source $XDG_CONFIG_HOME/neomutt/mailinglists.rc
+source $XDG_CONFIG_HOME/neomutt/score.rc
+source $XDG_CONFIG_HOME/neomutt/color.rc
+source $XDG_CONFIG_HOME/neomutt/gpg.rc
+source $XDG_CONFIG_HOME/neomutt/news.rc
 
 {{- if hasPrefix .chezmoi.homeDir "/sdf"  }}
 set from = 'Ryan Kavanagh <rak@sdf.org>'
 {{- end }}
 
-set tmpdir='~/.mutt/tmp'
+set tmpdir='$XDG_CONFIG_HOME/neomutt/tmp'
 
 macro index <F7> \
   "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-fetchbug --prompt search<enter><change-folder-readonly>~/.cache/mutt_btsresults<enter><enter-command>set wait_key<enter>" \

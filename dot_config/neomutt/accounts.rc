@@ -1,28 +1,28 @@
 # vim: syntax=muttrc
 
 account-hook imaps://ryanakca@gmail.com@imap.gmail.com \
-    source ~/.mutt/accounts/ryanakca.gmail.com/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/ryanakca.gmail.com/main.rc
 
 account-hook imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com \
-    source ~/.mutt/accounts/ryan.kavanagh.mcgill.ca/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/ryan.kavanagh.mcgill.ca/main.rc
 
 account-hook imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com \
-    source ~/.mutt/accounts/ryan.kavanagh.mail.mcgill.ca/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/main.rc
 
 account-hook imaps://9rak@queensu.ca@outlook.office365.com \
-    source ~/.mutt/accounts/9rak.queensu.ca/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/9rak.queensu.ca/main.rc
 
 account-hook imaps://kavanagh.ryan@uqam.ca@outlook.office365.com \
-    source ~/.mutt/accounts/kavanagh.ryan.uqam.ca/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/kavanagh.ryan.uqam.ca/main.rc
 
 account-hook imaps://imap.rak.ac \
-    source ~/.mutt/accounts/rak.rak.ac/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/rak.rak.ac/main.rc
 
 account-hook imaps://mail.cs.mcgill.ca \
-    source ~/.mutt/accounts/ryank.mail.cs.mcgill.ca/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/ryank.mail.cs.mcgill.ca/main.rc
 
 account-hook imaps://rkavanag@alumni.cmu.edu@imap.gmail.com \
-    source ~/.mutt/accounts/rkavanag.alumni.cmu.edu/main.rc
+    source $XDG_CONFIG_HOME/neomutt/accounts/rkavanag.alumni.cmu.edu/main.rc
 
 macro compose <F2> '<enter-command>set folder="imaps://ryanakca@gmail.com@imap.gmail.com"<enter>\
 <edit-fcc><kill-line><enter>\

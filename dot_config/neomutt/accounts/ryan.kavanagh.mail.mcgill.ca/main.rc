@@ -1,6 +1,6 @@
 # vim: syntax=muttrc
 
-cd ~/.mutt/accounts/ryan.kavanagh.mail.mcgill.ca/
+cd $XDG_CONFIG_HOME/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/
 
 set folder = 'imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com/'
 

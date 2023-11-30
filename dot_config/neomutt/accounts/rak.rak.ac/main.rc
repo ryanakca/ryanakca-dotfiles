@@ -1,6 +1,6 @@
 # vim: syntax=muttrc
 
-cd ~/.mutt/accounts/rak.rak.ac
+cd $XDG_CONFIG_HOME/neomutt/accounts/rak.rak.ac
 
 set folder = 'imaps://imap.rak.ac/'
 
