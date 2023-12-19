@@ -17,6 +17,10 @@ crontab
 .xmonad/build
 .xmonad/xmonad-config.cabal
 {{- end }}
+{{- if ne .chezmoi.os "linux" }}
+# only install on linux
+afs
+{{-end }}
 
 # files in home
 .*~
