@@ -1,7 +1,7 @@
 # vim: syntax=neomuttrc
 
 set imap_authenticators = 'xoauth2'
-set imap_oauth_refresh_command = '~/bin/mutt_oauth2.py --encryption-pipe="cat" --decryption-pipe="cat" $XDG_CONFIG_HOME/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token'
+set imap_oauth_refresh_command = "~/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' `pwd`/xoauth2-token"
 set imap_passive = 'no'
 set imap_user = 'kavanagh.ryan@uqam.ca'
 

@@ -1,14 +1,18 @@
 # vim: syntax=muttrc
 
-set copy = yes
+# Set copy to no so long as you use UQAM's smtp,
+# which automatically saves messages to $record
+set copy = no
 set from = 'Ryan Kavanagh <kavanagh.ryan@uqam.ca>'
 set smtp_authenticators = 'xoauth2'
-set smtp_oauth_refresh_command = '~/bin/mutt_oauth2.py --encryption-pipe="cat" --decryption-pipe="cat" $XDG_CONFIG_HOME/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token'
+set smtp_oauth_refresh_command = "~/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' `pwd`/xoauth2-token"
 set smtp_url = 'smtp://kavanagh.ryan@uqam.ca@smtp.office365.com:587/'
 
 set attribution = "Le %d, %n a écrit:"
 set attribution_locale = "fr_CA.utf8"
 set date_format = "%a %d %b %Y à %I:%M:%S%p %Z" 
+
+set signature = "`pwd`/signature"
 
 unset sendmail
 unset smtp_pass
