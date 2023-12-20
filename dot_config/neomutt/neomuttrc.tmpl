@@ -76,7 +76,7 @@ set query_command="lbdbq %s"
 # macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
 # macro index,pager A "<pipe-message>abook --add-email-quiet<return>"
 set reverse_alias = yes
-set alias_file = $XDG_CONFIG_HOME/neomutt/alias.rc
+set alias_file = "$XDG_CONFIG_HOME/neomutt/alias.rc"
 
 set ispell="aspell -e -c"
 
@@ -127,19 +127,20 @@ set fcc_before_send=yes
 # to unset the folder option
 unset folder
 # alias.rc before accounts.rc
-source $XDG_CONFIG_HOME/neomutt/alias.rc
-source $XDG_CONFIG_HOME/neomutt/accounts.rc
-source $XDG_CONFIG_HOME/neomutt/mailinglists.rc
-source $XDG_CONFIG_HOME/neomutt/score.rc
-source $XDG_CONFIG_HOME/neomutt/color.rc
-source $XDG_CONFIG_HOME/neomutt/gpg.rc
-source $XDG_CONFIG_HOME/neomutt/news.rc
+source "$XDG_CONFIG_HOME/neomutt/alias.rc"
+source "$XDG_CONFIG_HOME/neomutt/accounts.rc"
+source "$XDG_CONFIG_HOME/neomutt/mailinglists.rc"
+source "$XDG_CONFIG_HOME/neomutt/score.rc"
+source "$XDG_CONFIG_HOME/neomutt/color.rc"
+source "$XDG_CONFIG_HOME/neomutt/gpg.rc"
+source "$XDG_CONFIG_HOME/neomutt/news.rc"
 
 {{- if hasPrefix .chezmoi.homeDir "/sdf"  }}
 set from = 'Ryan Kavanagh <rak@sdf.org>'
 {{- end }}
 
-set tmpdir='$XDG_CONFIG_HOME/neomutt/tmp'
+# preserve messages-in-composition between restarts in case of a power failure.
+set tmpdir= "$XDG_STATE_HOME/neomutt"
 
 macro index <F7> \
   "<enter-command>unset wait_key<enter><shell-escape>~/bin/mutt-fetchbug --prompt search<enter><change-folder-readonly>~/.cache/mutt_btsresults<enter><enter-command>set wait_key<enter>" \
