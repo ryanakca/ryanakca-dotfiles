@@ -32,13 +32,6 @@
 
 # BEGIN LOCAL
 
-if ! export LANG=$(locale -a | grep -E -i "en_CA.UTF-?8"); then
-    if ! export LANG=$(locale -a | grep -E -i "C.UTF-?8"); then
-        export LANG=C
-    fi
-fi
-export LC_TIME="en_GB.UTF-8"
-export LC_COLLATE=C                     # force strict lexicographic sorting
 export TIME_STYLE=long-iso              # make ls -l use YYYY-MM-DD in dired
 export TZ="America/Toronto"             # Force our time zone this location.
 export EDITOR="vim"                     # Long live vim (as our editor).
@@ -62,7 +55,9 @@ export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 export GOPATH=${HOME}/.go
 
-[ -f "${HOME}/.config/sh/xdg-base-dirs" ] && . "${HOME}/.config/sh/xdg-base-dirs"
+for common in ${HOME}/.config/sh/*; do
+    [ -f "${common}" ] && . "${common}"
+done
 
 export PATH=/usr/sbin:/sbin:${PATH}
 case `uname` in
@@ -78,27 +73,6 @@ case `uname` in
     *)
 esac
 export PATH=${HOME}/bin:${PATH}
-
-alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
-
-alias 1920s='mplayer -playlist http://kara.fast-serv.com:8398/listen.pls'
-alias dismuke='mplayer -playlist https://early1900s.org/radiodismuke/radiodismuke.pls'
-alias wzum='mplayer http://pubmusic.streamguys1.com/wzum-aac'
-
-alias mplayer-fb='mplayer -vo fbdev'
-alias links2-fb='links2 -driver fb'
-
-alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
-alias gibuild='gbp buildpackage --git-builder="sbuild -sAd u"'
-alias gibuildi='gbp buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
-alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
-
-alias vi='vim'
-
-alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
-alias sshfw='ssh -oForwardAgent=yes'
-
-alias llocate="locate -d ${XDG_STATE_HOME}/plocate/home.db"
 
 # END LOCAL
 
@@ -118,33 +92,6 @@ if [[ -f $HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname) ]]; then
     GITSTATUS_DAEMON=$HOME/.zsh/powerlevel10k/gitstatus/gitstatusd-$(uname);
 elif [[ ! -f $HOME/.zsh/powerlevel10k/gitstatus/gitstatusd ]]; then
     POWERLEVEL9K_DISABLE_GITSTATUS=true
-fi
-
-# Alias/custom commands
-#
-# Many of these options don's exist on BSD rm/cp/mkdir/ln/etc.
-#
-# Some are just in case - for 'rm', 'cp' and 'mv' - ask about overwriting or
-# deleting files.
-# Furthermore, be verbose about what each command is performing to be present of
-# what is occuring every time.
-if [[ `uname` = "Linux" ]]; then
-    alias cp="cp -iv"
-    alias mkdir="mkdir -v"
-    alias mv="mv -iv"
-    alias ln="ln -v"
-    # Only delete files on the current file system to avoid removing recursively
-    # from bind mounts.
-    alias rm="rm -iv --one-file-system"
-
-    alias grep="grep --colour=auto"
-
-    alias chown="chown -v"
-    alias chmod="chmod -v"
-    alias ls="ls --classify --color=always" # Add all colours and
-                                            # have fancy symbols for files, etc.
-elif [[ `uname` = "OpenBSD" && -x /usr/local/bin/colorls ]]; then
-    alias ls="colorls -G"
 fi
 
 # Colours.
