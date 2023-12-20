@@ -61,7 +61,8 @@ export BROWSER=firefox
 export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 export GOPATH=${HOME}/.go
-export XDG_STATE_HOME="${HOME}/.local/state"
+
+[ -f "${HOME}/.config/sh/xdg-base-dirs" ] && . "${HOME}/.config/sh/xdg-base-dirs"
 
 export PATH=/usr/sbin:/sbin:${PATH}
 case `uname` in

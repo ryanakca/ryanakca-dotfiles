@@ -6,6 +6,8 @@ export PS1=$PPROMPT
 export HISTFILE="$HOME/.ksh_history"
 export HISTSIZE=5000
 
+[ -f "${HOME}/.config/sh/xdg-base-dirs" ] && . "${HOME}/.config/sh/xdg-base-dirs"
+
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 set -o emacs
