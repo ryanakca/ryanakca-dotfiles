@@ -20,7 +20,7 @@ crontab
 {{- if ne .chezmoi.os "linux" }}
 # only install on linux
 afs
-{{-end }}
+{{- end }}
 
 # files in home
 .*~
