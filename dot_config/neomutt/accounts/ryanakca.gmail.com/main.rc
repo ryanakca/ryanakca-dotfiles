@@ -1,6 +1,6 @@
 # vim: syntax=muttrc
 
-cd ~/.mutt/accounts/ryanakca.gmail.com
+cd $XDG_CONFIG_HOME/neomutt/accounts/ryanakca.gmail.com
 
 source folders.rc
 source read.rc

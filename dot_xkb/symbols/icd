@@ -17,8 +17,8 @@
 //
 //        TAB  :   <   >   P   Y   F   G   C   R   L   ?   ^   |
 //        TAB  ;   ,   .   p   y   f   g   c   r   l   /   @   \
-//        TAB  ä   «   »   ü   í           ç       þ   ¿   dˆ  d'
-//        TAB  Ä   °   ·   Ü   Í           Ç       Þ       dˇ  d.
+//        TAB  ë   «   »   ü   í           ç       þ   ¿   dˆ  d'
+//        TAB  Ë   °   ·   Ü   Í           Ç       Þ       dˇ  d.
 //
 //       CAPL  A   O   E   U   I   D   H   T   N   S   _   ENTER
 //       CAPL  a   o   e   u   i   d   h   t   n   s   -   ENTER
@@ -64,7 +64,7 @@ xkb_symbols "icd" {
     key <BKSP> { [ BackSpace                                                    ] };
 
     // upper row, left side
-    key <AD01> { [ semicolon,       colon,          adiaeresis,      Adiaeresis ] };
+    key <AD01> { [ semicolon,       colon,          ediaeresis,      Ediaeresis ] };
     key <AD02> { [ comma,           less,           guillemotleft,   degree     ] };
     key <AD03> { [ period,          greater,        guillemotright,  periodcentered ] };
     key <AD04> { [ p,               P,              udiaeresis,      Udiaeresis ] };

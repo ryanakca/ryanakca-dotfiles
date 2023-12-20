@@ -1,10 +1,14 @@
 [ -f /etc/ksh.kshrc ] && . /etc/ksh.kshrc || true
 
-export PPROMPT='<$USER@$HOST:$PWD:!>'"$PS1S"
+export PPROMPT='<$USER@$HOST:$PWD:!> '"$PS1S"
 export PS1=$PPROMPT
 
 export HISTFILE="$HOME/.ksh_history"
 export HISTSIZE=5000
+
+for common in ${HOME}/.config/sh/*; do
+    [ -f "${common}" ] && . "${common}"
+done
 
 export VISUAL="vim"
 export EDITOR="$VISUAL"

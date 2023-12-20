@@ -528,6 +528,8 @@ Otherwise split the current paragraph into one sentence per line."
   :init
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
+  :hook ((markdown-mode . (lambda ()
+			    (setq-default indent-tabs-mode -1))))
   :mode (("\\.markdown\\'" . markdown-mode)
 	 ("\\.mdown\'" . markdown-mode)))
 

@@ -1,6 +1,6 @@
 uncolor index *
 unscore *
-source ~/.mutt/color.rc
+source $XDG_CONFIG_HOME/neomutt/color.rc
 # Set directly to me
 score "~p" 8
 # from me

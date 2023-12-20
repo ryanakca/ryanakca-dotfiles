@@ -1,6 +1,6 @@
 # vim: syntax=muttrc
 
-cd ~/.mutt/accounts/rkavanag.alumni.cmu.edu
+cd $XDG_CONFIG_HOME/neomutt/accounts/rkavanag.alumni.cmu.edu
 
 set folder = 'imaps://rkavanag@alumni.cmu.edu@imap.gmail.com'
 

@@ -1,10 +1,9 @@
 .gnupg/dirmngr.conf
 .lbdbrc
-.mutt/accounts/ryank.mail.cs.mcgill.ca/
-.mutt/accounts/ryan.kavanagh.mcgill.ca/
-.mutt/savehooks.rc
+.mutt*
 .pulse
 .screenlayout/zeta-home.sh
 .screenlayout/zeta-solo.sh
 .screenlayout/zeta-work.sh
 bin/mutt
+.config/systemd/user/borgmatic@tosh.service.wants/backup-email@mail.cs.mcgill.ca.service
