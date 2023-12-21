@@ -3,3 +3,7 @@
 set pager_format = '-%Z-UQAM: %C/%m: %-20.20n   %s%*  -- (%P)'
 set compose_format = '-- UQAM: Compose [Approx. msg size: %l Atts: %a]%>-'
 set status_format = '-%r-UQAM: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
+
+set attribution = "Le %d, %n a écrit:"
+set attribution_locale = "{{ if (eq .chezmoi.os "openbsd") }}fr_CA.UTF-8{{ else }}fr_CA.utf8{{ end }}"
+set date_format = "%a %d %b %Y à %I:%M:%S%p %Z" 
