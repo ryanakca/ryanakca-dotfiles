@@ -1,0 +1,6 @@
+show-keyboard-layout
+show-failed-attempts
+color=000000
+font=Iosevka
+font-size=24
+daemonize
