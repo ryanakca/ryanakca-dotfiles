@@ -6,4 +6,5 @@
 .screenlayout/zeta-solo.sh
 .screenlayout/zeta-work.sh
 bin/mutt
+.config/pulse
 .config/systemd/user/borgmatic@tosh.service.wants/backup-email@mail.cs.mcgill.ca.service
