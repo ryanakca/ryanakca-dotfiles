@@ -1,7 +1,7 @@
 [gpg]
     recipient = "4E469519ED677734268FBD958F7BF8FC4A11C97A"
 [data]
-    keychain_keys = "id_ed25519"
+    locale_base = "en_CA"
     password.cmu = ""
     password.eseptember = ""
     password.gmail = ""

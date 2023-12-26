@@ -1,4 +1,4 @@
-if ! export LANG=$(locale -a | grep -E -i "en_CA.UTF-?8"); then
+if ! export LANG=$(locale -a | grep -E -i "{{ .locale_base }}\.UTF-?8"); then
     if ! export LANG=$(locale -a | grep -E -i "C.UTF-?8"); then
         export LANG=C
     fi
