@@ -27,7 +27,7 @@ alias llocate="locate -d ${XDG_STATE_HOME}/plocate/home.db"
 # deleting files.
 # Furthermore, be verbose about what each command is performing to be present of
 # what is occuring every time.
-if [[ `uname` = "Linux" ]]; then
+if test `uname` = "Linux"; then
     alias cp="cp -iv"
     alias mkdir="mkdir -v"
     alias mv="mv -iv"
@@ -42,7 +42,7 @@ if [[ `uname` = "Linux" ]]; then
     alias chmod="chmod -v"
     alias ls="ls --classify --color=always" # Add all colours and
                                             # have fancy symbols for files, etc.
-elif [[ `uname` = "OpenBSD" && -x /usr/local/bin/colorls ]]; then
+elif test `uname` = "OpenBSD" && test -x /usr/local/bin/colorls; then
     alias ls="colorls -G"
 fi
 
