@@ -1,0 +1,6 @@
+exec wl-paste --watch cliphist store
+
+bindsym --to-code $mod+y exec cliphist list | wofi -d | cliphist decode | wl-copy
+bindsym --to-code $mod+Shift+y exec cliphist clear
+
+# vim:set ft=swayconfig:

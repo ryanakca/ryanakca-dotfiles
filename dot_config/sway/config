@@ -21,6 +21,10 @@ set $lock swaylock
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+set $trans 0.7
+set $alphamark "α"
+for_window [con_mark=$alphamark] opacity set $trans
+
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
@@ -44,122 +48,109 @@ exec swayidle -w \
 ### Input configuration
 #
 
-# built-in Thinkpad keyboard
-input "1:1:AT_Translated_Set_2_keyboard" {
-     xkb_file /home/rak/.xkb/keymap/icd.laptop.xkb
+# This is only used to make bindsym --to-code map all of the default bindings to
+# the same physical keys as the default us layout.
+# The layouts are actually set by $XDG_CONFIG_HOME/sway/config.d/20_keyboards
+input * {
+    xkb_layout us
 }
 
-### Key bindings
+bindsym --locked {
+    XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+    XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    XF86MonBrightnessUp exec --no-startup-id light -A 10
+    XF86MonBrightnessDown exec --no-startup-id light -U 10
+}
+
 #
 # Basics:
 #
+bindsym --to-code {
     # Start a terminal
-    bindsym $mod+Return exec $term
+    $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+    $mod+d exec $menu
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    $mod+Shift+e exec \
+        swaynag -t warning \
+                -m 'You pressed the exit shortcut. Do you really want to \
+                    exit sway? This will end your Wayland session.' \
+                -B 'Yes, exit sway' \
+                'swaymsg exit'
 
     # Lock screen
-    bindsym $mod+F5 exec swaymsg 'output * dpms toggle'
-    bindsym $mod+F7 exec $lock
+    $mod+F5 exec swaymsg 'output * dpms toggle'
+    $mod+F7 exec $lock
+
+    # List all windows
+    $mod+u exec wofi-window-switcher
+
+    $mod+Shift+t mark --toggle "$alphamark" ; [con_id=__focused__] opacity set 1 ; [con_mark=$alphamark con_id=__focused__] opacity set $trans
 
 #
 # Moving around:
 #
 
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    $mod+$left focus left
+    $mod+$down focus down
+    $mod+$up focus up
+    $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left workspace prev
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right workspace next 
+    $mod+Left workspace prev
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right workspace next
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    $mod+Shift+$left move left
+    $mod+Shift+$down move down
+    $mod+Shift+$up move up
+    $mod+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-    # Switch to workspace
-    bindsym $mod+ampersand workspace number 1
-    bindsym $mod+bracketleft workspace number 2
-    bindsym $mod+braceleft workspace number 3
-    bindsym $mod+braceright workspace number 4
-    bindsym $mod+parenleft workspace number 5
-    bindsym $mod+equal workspace number 6
-    bindsym $mod+asterisk workspace number 7
-    bindsym $mod+parenright workspace number 8
-    bindsym $mod+plus workspace number 9
-    bindsym $mod+bracketright workspace number 10
+    $mod+Shift+Left move left
+    $mod+Shift+Down move down
+    $mod+Shift+Up move up
+    $mod+Shift+Right move right
 
-    bindgesture swipe:right workspace prev
-    bindgesture swipe:left  workspace next
-
-    # Move focused container to workspace
-    bindsym $mod+percent move container to workspace number 1
-    bindsym $mod+7 move container to workspace number 2
-    bindsym $mod+5 move container to workspace number 3
-    bindsym $mod+3 move container to workspace number 4
-    bindsym $mod+1 move container to workspace number 5
-    bindsym $mod+9 move container to workspace number 6
-    bindsym $mod+0 move container to workspace number 7
-    bindsym $mod+2 move container to workspace number 8
-    bindsym $mod+4 move container to workspace number 9
-    bindsym $mod+6 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+    # Move focus between outputs
+    $mod+x       focus output next
+    $mod+Shift+x focus output prev
 #
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    $mod+b splith
+    $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    $mod+s layout stacking
+    $mod+w layout tabbed
+    $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    $mod+a focus parent
 #
 # Scratchpad:
 #
@@ -167,36 +158,47 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    $mod+minus scratchpad show
 
+}
+
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left  workspace next
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
 #
 # Resizing containers:
 #
-mode "resize" {
+mode "resize" bindsym --to-code {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    $left resize shrink width 10px
+    $down resize grow height 10px
+    $up resize shrink height 10px
+    $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    Left resize shrink width 10px
+    Down resize grow height 10px
+    Up resize shrink height 10px
+    Right resize grow width 10px
 
     # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    Return mode "default"
+    Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 
 
 # use for_window instead of assign when we want to follow the window and focus
@@ -206,8 +208,8 @@ for_window [class="Signal"]   move container to workspace number 3; focus
 
 bar swaybar_command waybar
 exec_always pkill kanshi; exec kanshi
-exec wl-paste --watch cliphist store
-bindsym $mod+y exec cliphist list | dmenu | cliphist decode | wl-copy
 
 font pango:Iosevka Regular 8
+
 include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*

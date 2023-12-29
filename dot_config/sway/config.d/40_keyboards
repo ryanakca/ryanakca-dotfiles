@@ -1,0 +1,16 @@
+input type:keyboard {
+    xkb_layout "icd,ru"
+    xkb_variant "icd,"
+}
+# built-in Thinkpad keyboard
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_options "nbsp:level3n,lalt_meta:lalt_meta,caps:swapescape,grp:shifts_toggle,lv3:ralt_switch_multikey"
+}
+input "kinesis????" {
+    xkb_options "nbsp:level3n,lalt_meta:lalt_meta,caps:swapescape,grp:shifts_toggle,lv3:switch"
+}
+input "ergodox????" {
+    xkb_options "nbsp:level3n,lalt_meta:lalt_meta,caps:swapescape,grp:shifts_toggle,lv3:switch"
+}
+
+# vim:set ft=swayconfig:
