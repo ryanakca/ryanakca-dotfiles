@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xkbConfigRegistry SYSTEM "xkb.dtd">
+<xkbConfigRegistry version="1.1">
+  <layoutList>
+    <layout>
+      <configItem>
+        <name>icd</name>
+        <shortDescription>International Coder Dvorak</shortDescription>
+        <description>
+	  International Coder Dvorak: based on us(dvp), but optimized for
+          French, English, and Spanish with deadkeys
+        </description>
+      </configItem>
+    </layout>
+  </layoutList>
+</xkbConfigRegistry>
