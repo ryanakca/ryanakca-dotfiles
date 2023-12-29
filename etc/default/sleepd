@@ -1,0 +1,4 @@
+# This is a configuration file for /etc/init.d/sleepd.
+
+# Parameters to pass to sleepd.
+PARAMS="-b 5 -u 0"
