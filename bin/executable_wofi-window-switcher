@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+
+swaymsg -t get_tree | \
+    jq -r '.nodes[].nodes[] | 
+	if .nodes then [recurse(.nodes[])] else [] end  + .floating_nodes |
+	.[] | select(.nodes==[]) | ((.id | tostring) + " " + .name)' | \
+    grep -v __i3_scratch |
+    wofi -d -i | {
+	read -r id name
+	swaymsg "[con_id=$id]" focus
+}
