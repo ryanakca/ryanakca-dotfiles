@@ -200,12 +200,6 @@ mode "resize" bindsym --to-code {
 }
 bindsym --to-code $mod+r mode "resize"
 
-
-# use for_window instead of assign when we want to follow the window and focus
-# on it
-for_window [app_id="firefox"] move container to workspace number 2; focus
-for_window [class="Signal"]   move container to workspace number 3; focus
-
 bar swaybar_command waybar
 exec_always pkill kanshi; exec kanshi
 
