@@ -1,0 +1,237 @@
+Source: rak-meta
+Section: misc
+Priority: optional
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.6.2
+Maintainer: Ryan Kavanagh <rak@rak.ac>
+
+Package: rak-meta
+Recommends:
+ rak-compilers,
+ rak-debian,
+ rak-desktop,
+ rak-dicts,
+ rak-firmware,
+ rak-fonts,
+ rak-multimedia,
+ rak-shell,
+ rak-sway,
+ rak-sysadmin,
+ rak-textproc,
+ rak-web,
+Architecture: all
+Description: rak - all of my meta packages
+
+Package: rak-compilers
+Recommends:
+Description: rak - fonts
+Architecture: all
+
+Package: rak-debian
+Depends:
+ build-essential,
+ devscripts,
+ equivs,
+ ${misc:Depends},
+Recommends:
+ rak-compilers,
+Description: rak - Debian development
+Architecture: all
+
+Package: rak-desktop
+Depends:
+ gimp,
+ inkscape,
+ rak-sway,
+ ${misc:Depends},
+Recommends:
+ rak-web,
+Description: rak - web browsing
+Architecture: all
+
+Package: rak-dicts
+Depends:
+ aspell-en,
+ aspell-fr,
+ dict,
+ dict-gcide,
+ dict-vera,
+ dict-wn,
+ dictd,
+ myspell-fr,
+ vera,
+ ${misc:Depends},
+Description: rak - dictionnaries
+Architecture: all
+
+Package: rak-firmware
+Depends:
+ firmware-iwlwifi,
+ firmware-misc-nonfree,
+ firmware-sof-signed,
+ intel-microcode,
+ ${misc:Depends},
+Description: rak - firmware
+Architecture: all
+
+Package: rak-fonts
+Depends:
+ ${misc:Depends},
+Description: rak - fonts
+Architecture: all
+
+Package: rak-mail
+Depends:
+ muttprint,
+ neomutt,
+ opensmtpd,
+ s-nail,
+ ${misc:Depends},
+Description: rak - email
+Architecture: all
+
+Package: rak-multimedia
+Depends:
+ alsa-utils,
+ bluez-tools,
+ ffmpeg,
+ helvum | qpwgraph,
+ mpv,
+ ncmpcpp,
+ pavucontrol,
+ pipewire-audio,
+ yt-dlp,
+ ${misc:Depends},
+Description: rak - multimedia
+Architecture: all
+
+Package: rak-shell
+Depends:
+ antiword,
+ bash-completion,
+ colordiff,
+ curl,
+ dc,
+ dwdiff,
+ file,
+ finger,
+ git,
+ gnupg,
+ groff-base,
+ imagemagick,
+ info,
+ keychain,
+ ksh,
+ less,
+ ncal,
+ ncat,
+ tmux,
+ util-linux-extra,
+ vim,
+ wdiff,
+ wget,
+ whois,
+ zsh,
+ ${misc:Depends},
+Recommends:
+ rak-compilers,
+Description: rak - shell utilities
+Architecture: all
+
+Package: rak-sway
+Depends:
+ cliphist,
+ gammastep,
+ greetd,
+ grim,
+ jq,
+ kanshi,
+ light,
+ seatd,
+ sway,
+ swayidle,
+ swaylock,
+ waybar,
+ wdisplays,
+ wlgreet,
+ wofi,
+ xdg-desktop-portal-wlr,
+ xwayland,
+ ${misc:Depends},
+Description: rak - sway
+Architecture: all
+
+Package: rak-sysadmin
+Depends:
+ apt-listchanges,
+ at,
+ borgbackup,
+ btop,
+ console-setup,
+ dlocate,
+ dselect,
+ eject,
+ etckeeper,
+ htop,
+ lsof,
+ netcat-traditional,
+ nmap,
+ openiked,
+ plocate,
+ pmount,
+ sanoid,
+ sleepd,
+ smartmontools,
+ sudo,
+ systemd-resolved,
+ ${misc:Depends},
+Description: rak - system administration packages
+Architecture: all
+
+Package: rak-textproc
+Depends:
+ asciidoctor,
+ biber,
+ bibtool,
+ docx2txt,
+ dspdfviewer,
+ elpa-pdf-tools,
+ emacs-el,
+ emacs-lucid,
+ evince,
+ groff-base,
+ gv,
+ hugo,
+ mupdf,
+ mupdf-tools,
+ texlive,
+ texlive-bibtex-extra,
+ texlive-extra-utils,
+ texlive-fonts-extra,
+ texlive-fonts-extra-doc,
+ texlive-lang-french,
+ texlive-latex-base-doc,
+ texlive-latex-extra,
+ texlive-latex-extra-doc,
+ texlive-latex-recommended-doc,
+ texlive-publishers,
+ texlive-science,
+ texlive-science-doc,
+ texlive-xetex,
+ tikzit,
+ ${misc:Depends},
+Recommends:
+ rak-dicts,
+Description: rak - text processing
+Architecture: all
+
+Package: rak-web
+Depends:
+ chromium,
+ firefox,
+ lynx,
+ w3m-img,
+ ${misc:Depends},
+Description: rak - web browsing
+Architecture: all
