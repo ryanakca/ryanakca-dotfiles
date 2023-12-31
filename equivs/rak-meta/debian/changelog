@@ -1,9 +1,10 @@
 rak-meta (0.3) unstable; urgency=medium
 
-  * dictionnaries
+  * dict
   * system packages
+  * much more
 
- -- Ryan Kavanagh <rak@debian.org>  Sun, 31 Dec 2023 15:02:21 -0500
+ -- Ryan Kavanagh <rak@debian.org>  Sun, 31 Dec 2023 15:47:36 -0500
 
 rak-meta (0.2) unstable; urgency=medium
 

@@ -15,6 +15,7 @@ Recommends:
  rak-dicts,
  rak-firmware,
  rak-fonts,
+ rak-games,
  rak-multimedia,
  rak-radio,
  rak-shell,
@@ -27,14 +28,30 @@ Description: rak - all of my meta packages
 
 Package: rak-compilers
 Recommends:
+ mllex-polyml,
+ mlton,
+ mlyacc-polyml,
+ ocaml,
+ opam,
+ polyml,
+ rustc,
+ smlnj,
+ ${misc:Depends},
 Description: rak - fonts
 Architecture: all
 
 Package: rak-debian
 Depends:
  build-essential,
+ debcargo,
  devscripts,
+ dh-golang,
+ dh-python,
  equivs,
+ git-buildpackage,
+ reportbug,
+ sbuild-debian-developer-setup,
+ signing-party,
  ${misc:Depends},
 Recommends:
  rak-compilers,
@@ -43,12 +60,22 @@ Architecture: all
 
 Package: rak-desktop
 Depends:
+ digikam,
+ flatpak,
+ frescobaldi,
  gimp,
  inkscape,
  rak-sway,
+ recoll,
+ recollgui,
  ${misc:Depends},
 Recommends:
  rak-web,
+ signal-desktop,
+ tango-icon-theme,
+ task-laptop,
+ telegram-desktop,
+ tlp,
 Description: rak - web browsing
 Architecture: all
 
@@ -62,18 +89,21 @@ Depends:
  dict-wn,
  dictd,
  myspell-fr,
+ task-english | task-french,
  vera,
  wamerican,
- wfrench,
  wbritish-huge,
+ wfrench,
  ${misc:Depends},
 Description: rak - dictionnaries
 Architecture: all
 
 Package: rak-firmware
 Depends:
+ firmware-amd-graphics,
  firmware-iwlwifi,
  firmware-misc-nonfree,
+ firmware-realtek,
  firmware-sof-signed,
  intel-microcode,
  ${misc:Depends},
@@ -86,27 +116,45 @@ Depends:
 Description: rak - fonts
 Architecture: all
 
+Package: rak-games
+Depends:
+ angband,
+ bsdgames,
+ ${misc:Depends},
+Description: rak - games
+Architecture: all
+
 Package: rak-mail
 Depends:
+ lbdb,
  muttprint,
  neomutt,
  opensmtpd,
  opensmtpd-extras,
  s-nail,
+ sieve-connect,
+ urlscan,
  ${misc:Depends},
+Recommends:
+ dovecot-imapd,
+ dovecot-sieve,
 Description: rak - email
 Architecture: all
 
 Package: rak-multimedia
 Depends:
  alsa-utils,
+ audacity,
+ beets,
  bluez-tools,
  ffmpeg,
  helvum | qpwgraph,
+ isrcsubmit,
  mpv,
  ncmpcpp,
  pavucontrol,
  pipewire-audio,
+ whipper,
  yt-dlp,
  ${misc:Depends},
 Description: rak - multimedia
@@ -118,6 +166,7 @@ Depends:
  flrig,
  js8call,
  klog,
+ qsstv,
  trustedqsl,
  wsjtx,
  ${misc:Depends},
@@ -128,6 +177,7 @@ Package: rak-shell
 Depends:
  antiword,
  bash-completion,
+ catgirl,
  colordiff,
  curl,
  dc,
@@ -136,6 +186,7 @@ Depends:
  file,
  finger,
  git,
+ git-autofixup,
  gnupg,
  groff-base,
  imagemagick,
@@ -147,6 +198,7 @@ Depends:
  ncal,
  ncat,
  openssh-client,
+ rlwrap,
  tmux,
  util-linux-extra,
  vim,
@@ -188,6 +240,7 @@ Depends:
  apt-listchanges,
  at,
  borgbackup,
+ borgmatic,
  btop,
  console-setup,
  dlocate,
@@ -195,19 +248,26 @@ Depends:
  eject,
  etckeeper,
  htop,
+ iputils-ping,
+ jmtpfs,
  lsof,
+ mtr,
  netcat-traditional,
  nmap,
  openiked,
  plocate,
  pmount,
+ rfkill,
  sanoid,
  sleepd,
  smartmontools,
+ sshfs,
  sudo,
  systemd-resolved,
  systemd-timesyncd,
  task-ssh-server,
+ tmpreaper,
+ traceroute,
  ${misc:Depends},
 Description: rak - system administration packages
 Architecture: all
@@ -228,6 +288,7 @@ Depends:
  hugo,
  mupdf,
  mupdf-tools,
+ pdftk,
  texlive,
  texlive-bibtex-extra,
  texlive-extra-utils,
@@ -243,6 +304,7 @@ Depends:
  texlive-science-doc,
  texlive-xetex,
  tikzit,
+ ttf-mscorefonts-installer,
  ${misc:Depends},
 Recommends:
  rak-dicts,
@@ -254,6 +316,7 @@ Depends:
  chromium,
  firefox,
  lynx,
+ vf1,
  w3m-img,
  ${misc:Depends},
 Description: rak - web browsing
