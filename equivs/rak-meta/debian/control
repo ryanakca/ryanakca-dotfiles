@@ -8,6 +8,7 @@ Maintainer: Ryan Kavanagh <rak@debian.org>
 
 Package: rak-meta
 Recommends:
+ rak-base,
  rak-compilers,
  rak-debian,
  rak-desktop,
@@ -62,6 +63,9 @@ Depends:
  dictd,
  myspell-fr,
  vera,
+ wamerican,
+ wfrench,
+ wbritish-huge,
  ${misc:Depends},
 Description: rak - dictionnaries
 Architecture: all
@@ -87,6 +91,7 @@ Depends:
  muttprint,
  neomutt,
  opensmtpd,
+ opensmtpd-extras,
  s-nail,
  ${misc:Depends},
 Description: rak - email
@@ -127,6 +132,7 @@ Depends:
  curl,
  dc,
  dwdiff,
+ ed,
  file,
  finger,
  git,
@@ -137,8 +143,10 @@ Depends:
  keychain,
  ksh,
  less,
+ manpages,
  ncal,
  ncat,
+ openssh-client,
  tmux,
  util-linux-extra,
  vim,
@@ -198,6 +206,8 @@ Depends:
  smartmontools,
  sudo,
  systemd-resolved,
+ systemd-timesyncd,
+ task-ssh-server,
  ${misc:Depends},
 Description: rak - system administration packages
 Architecture: all
