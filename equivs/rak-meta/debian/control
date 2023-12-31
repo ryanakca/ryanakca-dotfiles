@@ -4,7 +4,7 @@ Priority: optional
 Build-Depends:
  debhelper-compat (= 13),
 Standards-Version: 4.6.2
-Maintainer: Ryan Kavanagh <rak@rak.ac>
+Maintainer: Ryan Kavanagh <rak@debian.org>
 
 Package: rak-meta
 Recommends:
@@ -15,6 +15,7 @@ Recommends:
  rak-firmware,
  rak-fonts,
  rak-multimedia,
+ rak-radio,
  rak-shell,
  rak-sway,
  rak-sysadmin,
@@ -104,6 +105,18 @@ Depends:
  yt-dlp,
  ${misc:Depends},
 Description: rak - multimedia
+Architecture: all
+
+Package: rak-radio
+Depends:
+ fldigi,
+ flrig,
+ js8call,
+ klog,
+ trustedqsl,
+ wsjtx,
+ ${misc:Depends},
+Description: rak - hamradio
 Architecture: all
 
 Package: rak-shell
