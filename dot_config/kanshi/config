@@ -1,3 +1,10 @@
 profile thinkpad_L15 {
     output "AU Optronics 0x25ED Unknown" mode 1920x1080
 }
+profile thinkpad_T14 {
+    output "AU Optronics 0x573D Unknown" mode 1920x1080
+}
+profile thinkpad_T14_home {
+    output "Ancor Communications Inc VE248 H5LMQS022049" mode 1920x1080 position 0,0
+    output "AU Optronics 0x573D Unknown" mode 1920x1080 position 0,1080
+}
