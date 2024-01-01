@@ -1,0 +1,5 @@
+! option = symbols
+  lalt_meta:lalt_meta = +lalt_meta(lalt_meta)
+  ralt_super:ralt_super = +ralt_super(ralt_super)
+
+! include %S/evdev
