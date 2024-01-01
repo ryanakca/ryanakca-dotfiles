@@ -83,8 +83,7 @@ bindsym --to-code {
     # Exit sway (logs you out of your Wayland session)
     $mod+Shift+e exec \
         swaynag -t warning \
-                -m 'You pressed the exit shortcut. Do you really want to \
-                    exit sway? This will end your Wayland session.' \
+                -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
                 -B 'Yes, exit sway' \
                 'swaymsg exit'
 
@@ -106,11 +105,10 @@ bindsym --to-code {
     $mod+$down focus down
     $mod+$up focus up
     $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    $mod+Left workspace prev
-    $mod+Down focus down
-    $mod+Up focus up
-    $mod+Right workspace next
+    $mod+Alt+$left focus output left
+    $mod+Alt+$down focus output down
+    $mod+Alt+$up focus output up
+    $mod+Alt+$right focus output right
 
     # Move the focused window with the same, but add Shift
     $mod+Shift+$left move left
