@@ -36,16 +36,8 @@
   (default-input-method "TeX")
   (user-full-name "Ryan Kavanagh")
   (user-mail-address "rak@rak.ac")
-  (face-font-family-alternatives
-   (append '(("Spleen 16x32" "Ubuntu Mono" "FreeMono" "Liberation Mono"))
-	   face-font-family-alternatives))
   :custom-face
-  (default ((t (:family {{ if (eq .chezmoi.os "openbsd") -}}
-			"Spleen 12x24" :height 80 ; unit is 1/10 pt
-			{{- else -}}
-			"Spleen 16x32" :height 130 ; unit is 1/10 pt
-			{{- end }}
-			)))))
+  (default ((t (:family "Iosevka")))))
 
 (if (string= (system-name) "demeter.rak.ac")
     (use-package leuven-theme ; nice theme for lecturing / projectors
