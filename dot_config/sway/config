@@ -94,8 +94,11 @@ bindsym --to-code {
     # List all windows
     $mod+u exec wofi-window-switcher
 
+    # Make focused window transparent
     $mod+Shift+t mark --toggle "$alphamark" ; [con_id=__focused__] opacity set 1 ; [con_mark=$alphamark con_id=__focused__] opacity set $trans
 
+    # Hide/show waybar
+    $mod+x exec pkill -SIGUSR1 waybar
 #
 # Moving around:
 #
@@ -121,9 +124,6 @@ bindsym --to-code {
     $mod+Shift+Up move up
     $mod+Shift+Right move right
 
-    # Move focus between outputs
-    $mod+x       focus output next
-    $mod+Shift+x focus output prev
 #
 # Layout stuff:
 #
