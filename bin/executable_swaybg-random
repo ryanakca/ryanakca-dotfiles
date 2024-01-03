@@ -1,0 +1,10 @@
+#!/bin/sh
+# Usage: swaybg-random directory
+
+DIR=$1
+PIDFILE=$XDG_RUNTIME_DIR/swaybg.pid
+
+swaybg -i $(find $DIR/. -type f | shuf -n1) -m fill -o \* &
+NEWPID=$!
+pkill -F $PIDFILE
+echo $NEWPID > $PIDFILE
