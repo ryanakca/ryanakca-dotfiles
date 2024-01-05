@@ -1,0 +1,3 @@
+#!/bin/sh
+
+foot -c ${HOME}/.config/foot/lfoot.ini
