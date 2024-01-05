@@ -6,18 +6,36 @@ Build-Depends:
 Standards-Version: 4.6.2
 Maintainer: Ryan Kavanagh <rak@debian.org>
 
-Package: rak-meta
+Package: rak-home
 Recommends:
- rak-base,
+ rak-common,
+ rak-games,
+ rak-radio,
+Architecture: all
+Breaks:
+ rak-meta (<< 0.4),
+Replaces:
+ rak-meta (<< 0.4),
+Description: rak - all of my meta packages
+
+Package: rak-work
+Recommends:
+ rak-common,
+Architecture: all
+Breaks:
+ rak-meta (<< 0.4),
+Replaces:
+ rak-meta (<< 0.4),
+Description: rak - all of my meta packages
+
+Package: rak-common
+Recommends:
  rak-compilers,
  rak-debian,
  rak-desktop,
- rak-dicts,
  rak-firmware,
  rak-fonts,
- rak-games,
  rak-multimedia,
- rak-radio,
  rak-shell,
  rak-sway,
  rak-sysadmin,
@@ -177,6 +195,7 @@ Package: rak-shell
 Depends:
  antiword,
  bash-completion,
+ bind9-dnsutils,
  catgirl,
  colordiff,
  curl,
@@ -193,6 +212,7 @@ Depends:
  info,
  keychain,
  ksh,
+ ldnsutils,
  less,
  manpages,
  ncal,
@@ -210,6 +230,8 @@ Depends:
 Recommends:
  rak-compilers,
 Description: rak - shell utilities
+ bind9-dnsutils: dig
+ ldnsutils: drill
 Architecture: all
 
 Package: rak-sway
@@ -222,6 +244,7 @@ Depends:
  kanshi,
  light,
  seatd,
+ slurp,
  sway,
  swayidle,
  swaylock,
@@ -233,6 +256,7 @@ Depends:
  xwayland,
  ${misc:Depends},
 Description: rak - sway
+ slurp: select screen region, pipe to grim for screenshot of region
 Architecture: all
 
 Package: rak-sysadmin
