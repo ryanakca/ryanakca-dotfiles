@@ -45,3 +45,11 @@ For a generic new host HOST:
     mkdir -p ~/.ssh/keys/${HOST}
     ssh-keygen -t ed25519 -f ~/.ssh/keys/${HOST}/id_ed25519
     # sign ~/.ssh/keys/${HOST}/id_ed25519.pub
+
+
+
+#####
+
+On Debian:
+
+sudo useradd _greetd video
