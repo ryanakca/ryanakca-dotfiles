@@ -3,9 +3,6 @@
 account-hook imaps://ryanakca@gmail.com@imap.gmail.com \
     source $XDG_CONFIG_HOME/neomutt/accounts/ryanakca.gmail.com/main.rc
 
-account-hook imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com \
-    source $XDG_CONFIG_HOME/neomutt/accounts/ryan.kavanagh.mcgill.ca/main.rc
-
 account-hook imaps://ryan.kavanagh@mail.mcgill.ca@outlook.office365.com \
     source $XDG_CONFIG_HOME/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/main.rc
 
