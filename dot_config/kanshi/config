@@ -13,6 +13,11 @@ profile thinkpad_L15_SH-2420 {
     output "AU Optronics 0x25ED Unknown" mode 1920x1080 position 0,0
     output "RGB Systems, Inc. dba Extron Electronics Extron HDMI Unknown" mode 1280x720 position 1920,0
 }
+profile thinkpad_L15_SH-R810 {
+    output "AU Optronics 0x25ED Unknown" mode 1920x1080 position 0,0
+    output "Crestron Electronics, Inc. Crestron Unknown" mode 1920x1080 position 1920,0
+}
+
 
 profile thinkpad_T14 {
     output "AU Optronics 0x573D Unknown" mode 1920x1080
