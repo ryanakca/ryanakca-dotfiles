@@ -27,20 +27,20 @@ for_window [con_mark=$alphamark] opacity set $trans
 
 include /etc/sway/config-vars.d/*
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-
+### Things to run at start of session
 exec {
-    # Idle configuration
-    swayidle -w \
-         timeout 180 $lock \
-         timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep $lock
+    # set a random background
+    swaybg-random ~/bg
     # use footclient/footserver as our terminal
     foot -s
 }
+
+### Idle configuration
+exec swayidle -w \
+         timeout 180 $lock \
+         timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep $lock
+for_window [app_id="dspdfviewer"] inhibit_idle focus
 
 ### Input configuration
 #
@@ -158,6 +158,11 @@ bindsym --to-code {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     $mod+minus scratchpad show
+
+#
+# Marking:
+#
+#    $mod+m exec 
 
 }
 
