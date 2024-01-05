@@ -521,7 +521,8 @@ Otherwise split the current paragraph into one sentence per line."
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
   :hook ((markdown-mode . (lambda ()
-			    (setq-default indent-tabs-mode -1))))
+			    (setq-default indent-tabs-mode nil)
+			    (setq-default whitespace-style nil))))
   :mode (("\\.markdown\\'" . markdown-mode)
 	 ("\\.mdown\'" . markdown-mode)))
 
