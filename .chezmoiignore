@@ -12,14 +12,12 @@ packages-openbsd
 chezmoi.toml.censored
 crontab
 
-{{- if ne .chezmoi.os "openbsd" }}
-# only install if on openbsd
-.urxvt/perl
+{{- if eq .chezmoi.os "linux" }}
+# don't install the following on linux
 .xmonad/build
 .xmonad/xmonad-config.cabal
-{{- end }}
-{{- if ne .chezmoi.os "linux" }}
-# only install on linux
+.xinitrc
+.xsession
 afs
 {{- end }}
 
