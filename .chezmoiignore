@@ -14,8 +14,7 @@ crontab
 
 {{- if eq .chezmoi.os "linux" }}
 # don't install the following on linux
-.xmonad/build
-.xmonad/xmonad-config.cabal
+.xmonad
 .xinitrc
 .xsession
 afs

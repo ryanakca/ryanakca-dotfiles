@@ -9,3 +9,13 @@ bin/mutt
 .config/systemd/user/borgmatic@tosh.service.wants/backup-email@mail.cs.mcgill.ca.service
 .config/neomutt/news.rc
 .xkb
+afs
+
+
+{{- if eq .chezmoi.os "linux" }}
+# don't install the following on linux
+.xmonad
+.xinitrc
+.xsession
+afs
+{{- end }}
