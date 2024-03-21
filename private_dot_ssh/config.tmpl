@@ -71,6 +71,12 @@ Match final host="*.club.cc.cmu.edu"
     {{- end }}
     UserKnownHostsFile ~/.ssh/known_hosts.d/club.cc.cmu.edu
 
+## UQAM hosts
+Host java
+    Hostname %h.labunix.uqam.ca
+Match final host="*.labunix.uqam.ca"
+    User kavanagh_r
+
 ## SDF hosts
 Host faeroes.sdf.org
     ControlMaster auto
