@@ -70,12 +70,6 @@ Match final host="*.club.cc.cmu.edu"
     GSSAPITrustDNS yes
     {{- end }}
     UserKnownHostsFile ~/.ssh/known_hosts.d/club.cc.cmu.edu
-Match final host="*.andrew.cmu.edu,*.cs.cmu.edu"
-    {{- if (ne .chezmoi.os "openbsd") }}
-    GSSAPIAuthentication yes
-    GSSAPIDelegateCredentials yes
-    {{- end }}
-    User rkavanag
 
 ## SDF hosts
 Host faeroes.sdf.org
