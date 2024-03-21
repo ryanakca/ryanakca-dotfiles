@@ -68,13 +68,7 @@ macro compose <Esc><F5> '<enter-command>set folder="imaps://imap.rak.ac/"<enter>
 <edit-from><kill-line>Ryan Kavanagh <rak@rak.ac><enter>' \
 "Send mail from rak.ac"
 
-macro compose <F6> '<enter-command>set folder="imaps://mail.cs.mcgill.ca/"<enter>\
-<edit-fcc><kill-line>=INBOX.Sent<enter>\
-<enter-command>set sendmail="sendmail -oem -oi"<enter>\
-<edit-from><kill-line>Ryan Kavanagh <rkavanagh@cs.mcgill.ca><enter>' \
-"Send mail from McGill SOCS account"
-
-macro compose <Esc><F6> '<enter-command>set folder="imaps://ryan.kavanagh@mcgill.ca@outlook.office365.com"<enter>\
+macro compose <F6> '<enter-command>set folder="imaps://kavanagh.ryan@uqam.ca@outlook.office365.com"<enter>\
 <edit-fcc><kill-line><enter>\
-<edit-from><kill-line>Ryan Kavanagh <ryan.kavanagh@mcgill.ca><enter>' \
-"Send mail from McGill Staff account"
+<edit-from><kill-line>Ryan Kavanagh <kavanagh.ryan@uqam.ca><enter>' \
+"Send mail from UQAM account"
