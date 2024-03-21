@@ -1,3 +1,18 @@
+rak-meta (0.7) unstable; urgency=medium
+
+  * rak-common: dep rak-mail 
+  * rak-textproc: texlive-lang-cyrillic
+
+ -- Ryan Kavanagh <rak@debian.org>  Thu, 21 Mar 2024 14:14:13 -0400
+
+rak-meta (0.6) unstable; urgency=medium
+
+  * rak-textproc: add pandoc
+  * rak-sysadmin: zfs-dkms, zfs-initramfs, zfsutils-linux
+  * rak-sway: add foot foot-themes
+
+ -- Ryan Kavanagh <rak@debian.org>  Thu, 21 Mar 2024 13:49:10 -0400
+
 rak-meta (0.5) unstable; urgency=medium
 
   * rak-debian: libsoap-lite-perl for added bts functionality

@@ -16,7 +16,7 @@ Breaks:
  rak-meta (<< 0.4),
 Replaces:
  rak-meta (<< 0.4),
-Description: rak - all of my meta packages
+Description: rak - meta packages for home
 
 Package: rak-work
 Recommends:
@@ -26,7 +26,7 @@ Breaks:
  rak-meta (<< 0.4),
 Replaces:
  rak-meta (<< 0.4),
-Description: rak - all of my meta packages
+Description: rak - meta packages for work
 
 Package: rak-common
 Recommends:
@@ -35,6 +35,7 @@ Recommends:
  rak-desktop,
  rak-firmware,
  rak-fonts,
+ rak-mail,
  rak-multimedia,
  rak-shell,
  rak-sway,
@@ -42,7 +43,7 @@ Recommends:
  rak-textproc,
  rak-web,
 Architecture: all
-Description: rak - all of my meta packages
+Description: rak - meta packages common to different locations
 
 Package: rak-compilers
 Recommends:
@@ -240,6 +241,8 @@ Architecture: all
 Package: rak-sway
 Depends:
  cliphist,
+ foot,
+ foot-themes,
  gammastep,
  greetd,
  grim,
@@ -297,6 +300,9 @@ Depends:
  task-ssh-server,
  tmpreaper,
  traceroute,
+ zfs-dkms,
+ zfs-initramfs,
+ zfsutils-linux,
  ${misc:Depends},
 Description: rak - system administration packages
 Architecture: all
@@ -317,12 +323,14 @@ Depends:
  hugo,
  mupdf,
  mupdf-tools,
+ pandoc,
  pdftk,
  texlive,
  texlive-bibtex-extra,
  texlive-extra-utils,
  texlive-fonts-extra,
  texlive-fonts-extra-doc,
+ texlive-lang-cyrillic,
  texlive-lang-french,
  texlive-latex-base-doc,
  texlive-latex-extra,
