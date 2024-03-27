@@ -1,5 +1,7 @@
 [Match]
 Name=dummy3
+
+[Link]
 Unmanaged=yes
 
 [Network]
