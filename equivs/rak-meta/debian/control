@@ -40,6 +40,7 @@ Recommends:
  rak-shell,
  rak-sway,
  rak-sysadmin,
+ rak-system,
  rak-textproc,
  rak-web,
 Architecture: all
@@ -307,6 +308,14 @@ Depends:
 Description: rak - system administration packages
 Architecture: all
 
+Package: rak-system
+Depends:
+ linux-headers-amd64 [amd64],
+ linux-image-amd64 [amd64],
+ ${misc:Depends},
+Description: rak - base system packages
+Architecture: amd64
+
 Package: rak-textproc
 Depends:
  asciidoctor,
@@ -353,6 +362,7 @@ Depends:
  chromium,
  firefox,
  lynx,
+ nss-passwords,
  vf1,
  w3m-img,
  ${misc:Depends},

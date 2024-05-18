@@ -1,3 +1,10 @@
+rak-meta (0.8) unstable; urgency=medium
+
+  * rak-system: add linux-{headers,image}-amd64
+  * rak-web: add nss-passwords
+
+ -- Ryan Kavanagh <rak@debian.org>  Sat, 18 May 2024 10:20:14 -0400
+
 rak-meta (0.7) unstable; urgency=medium
 
   * rak-common: dep rak-mail 
