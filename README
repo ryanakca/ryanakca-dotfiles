@@ -53,3 +53,7 @@ For a generic new host HOST:
 On Debian:
 
 sudo useradd _greetd video
+
+sudo ./etc/resolv.conf
+
+edit etc/network-setup.sh and run it
