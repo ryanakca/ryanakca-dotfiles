@@ -436,7 +436,7 @@ Extended Format date in the date field and return it as a string obeing
 (use-package latex
   :ensure auctex
   :after info-look
-  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :mode ("\\.tex\\'" . LaTeX-mode)
   :init
   ;; http://www.cs.au.dk/~abizjak/emacs/2016/03/06/latex-fill-paragraph.html
   (defun ales/fill-paragraph (&optional P)
