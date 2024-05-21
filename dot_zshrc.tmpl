@@ -51,28 +51,17 @@ export PAGER=less
 export LESS=-FQXR
 export PDFVIEWER=evince
 export BROWSER=firefox
-export TEXMFHOME=${HOME}/.texmf
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 export GOPATH=${HOME}/.go
 
-for common in ${HOME}/.config/sh/*; do
+for common in "${HOME}/.config/sh/"*; do
     [ -f "${common}" ] && . "${common}"
 done
 
-export PATH=/usr/sbin:/sbin:${PATH}
-case `uname` in
-    Linux)
-        ;;
-    Darwin)
-        export PATH=/opt/local/bin:/opt/local/sbin:/usr/sbin:/sbin:$PATH
+if [ "$(uname)" = "Darwin" ]; then
+        export PATH="/opt/local/bin:/opt/local/sbin:${PATH}"
         export MANPATH=/opt/local/share/man:${MANPATH}
-        ;;
-    OpenBSD)
-        export PATH=/usr/games:${PATH}
-        ;;
-    *)
-esac
-export PATH=${HOME}/bin:${PATH}
+fi
 
 # END LOCAL
 
