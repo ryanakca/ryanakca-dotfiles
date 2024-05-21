@@ -580,11 +580,6 @@ Otherwise split the current paragraph into one sentence per line."
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
 
-(use-package mingus
-  ;; mpd client
-  :custom
-  (mingus-mpd-host "asteria.home.arpa"))
-
 (use-package minibuffer
   :config
   (add-to-list 'completion-styles 'substring)
