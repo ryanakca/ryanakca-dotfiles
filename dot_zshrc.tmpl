@@ -69,9 +69,7 @@ fi
 
 # Ensure that we possess a ~/.zsh/ directory. This is required for the
 # ~/.zsh/history file.
-if [ ! -d $HOME/.zsh/ ]; then
-    mkdir -p $HOME/.zsh/
-fi
+mkdir -p $HOME/.zsh/
 
 # We use powerline10k for our prompt
 for f in $HOME/.zsh/p10k.zsh $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme; do
