@@ -7,3 +7,5 @@ set status_format = '-%r-UQAM: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? D
 set attribution = "Le %d, %n a écrit:"
 set attribution_locale = "{{ if (eq .chezmoi.os "openbsd") }}fr_CA.UTF-8{{ else }}fr_CA.utf8{{ end }}"
 set date_format = "%a %d %b %Y à %I:%M:%S%p %Z" 
+set forward_attribution_intro = "----- Message transféré de %f -----"
+set forward_attribution_trailer = "----- Fin du message transféré -----"
