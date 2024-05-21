@@ -285,6 +285,9 @@ Extended Format date in the date field and return it as a string obeing
   (add-to-list 'ivy-initial-inputs-alist
 	       '(counsel-M-x . "")))
 
+(use-package csv-mode
+  :ensure t)
+
 (use-package cus-edit
   :custom
   (custom-file null-device "Don't store customizations"))
