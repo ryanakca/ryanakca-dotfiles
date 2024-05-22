@@ -99,7 +99,6 @@
    ("C-;" . avy-goto-char)))
 
 (use-package beluga-mode
-  :load-path "~/.opam/default/.opam-switch/sources/beluga/tools/"
   :mode "\\.bel\'")
 
 (use-package bibtex
@@ -286,6 +285,9 @@ Extended Format date in the date field and return it as a string obeing
   (add-to-list 'ivy-initial-inputs-alist
 	       '(counsel-M-x . "")))
 
+(use-package csv-mode
+  :ensure t)
+
 (use-package cus-edit
   :custom
   (custom-file null-device "Don't store customizations"))
@@ -434,7 +436,7 @@ Extended Format date in the date field and return it as a string obeing
 (use-package latex
   :ensure auctex
   :after info-look
-  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :mode ("\\.tex\\'" . LaTeX-mode)
   :init
   ;; http://www.cs.au.dk/~abizjak/emacs/2016/03/06/latex-fill-paragraph.html
   (defun ales/fill-paragraph (&optional P)
@@ -577,11 +579,6 @@ Otherwise split the current paragraph into one sentence per line."
   :custom
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
-
-(use-package mingus
-  ;; mpd client
-  :custom
-  (mingus-mpd-host "asteria.home.arpa"))
 
 (use-package minibuffer
   :config

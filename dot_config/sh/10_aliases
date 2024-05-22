@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 
 alias 1920s='mplayer -playlist http://kara.fast-serv.com:8398/listen.pls'
@@ -10,14 +12,16 @@ alias links2-fb='links2 -driver fb'
 alias itp='reportbug -M -B debian --email rak@debian.org --paranoid -K $GPGKEY wnpp'
 alias gibuild='gbp buildpackage --git-builder="sbuild -sAd u"'
 alias gibuildi='gbp buildpackage --git-ignore-new --git-builder="sbuild -sAd u"'
-alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+alias dquilt="quilt --quiltrc=~/.quiltrc-dpkg"
 
 alias vi='vim'
 
 alias sm='tmux attach -t mail || tmux -f ${HOME}/.tmux-mail.conf attach -t mail'
 alias sshfw='ssh -oForwardAgent=yes'
 
-alias llocate="locate -d ${XDG_STATE_HOME}/plocate/home.db"
+# escape ${XDG_STATE_HOME} to use the value when invoked rather than
+# the value at definition time
+alias llocate="locate -d \${XDG_STATE_HOME}/plocate/home.db"
 
 # Alias/custom commands
 #
@@ -27,7 +31,7 @@ alias llocate="locate -d ${XDG_STATE_HOME}/plocate/home.db"
 # deleting files.
 # Furthermore, be verbose about what each command is performing to be present of
 # what is occuring every time.
-if test `uname` = "Linux"; then
+if [ "$(uname)" = "Linux" ]; then
     alias cp="cp -iv"
     alias mkdir="mkdir -v"
     alias mv="mv -iv"
@@ -42,7 +46,7 @@ if test `uname` = "Linux"; then
     alias chmod="chmod -v"
     alias ls="ls --classify --color=always" # Add all colours and
                                             # have fancy symbols for files, etc.
-elif test `uname` = "OpenBSD" && test -x /usr/local/bin/colorls; then
+elif [ "$(uname )" = "OpenBSD" ] && [ -x /usr/local/bin/colorls ]; then
     alias ls="colorls -G"
 fi
 
