@@ -244,6 +244,7 @@ Depends:
  cliphist,
  foot,
  foot-themes,
+ fuzzel,
  gammastep,
  greetd,
  grim,

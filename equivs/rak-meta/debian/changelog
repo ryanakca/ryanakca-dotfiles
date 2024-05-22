@@ -1,3 +1,9 @@
+rak-meta (0.9) unstable; urgency=medium
+
+  * rak-sway: fuzzel
+
+ -- Ryan Kavanagh <rak@debian.org>  Wed, 22 May 2024 10:50:45 -0400
+
 rak-meta (0.8) unstable; urgency=medium
 
   * rak-system: add linux-{headers,image}-amd64
