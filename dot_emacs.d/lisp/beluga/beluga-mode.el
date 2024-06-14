@@ -153,7 +153,8 @@ in unicode using Font Lock mode."
     (modify-syntax-entry ?\{ "(}2 b" st)
     (modify-syntax-entry ?\} "){3 b" st)
     (modify-syntax-entry ?\n ">" st)
-    (modify-syntax-entry ?/ "$/" st)
+    ;; the following line breaks using / in identifiers
+    ;; (modify-syntax-entry ?/ "$/" st)
     ;; For application of dependent arguments "exp A < ctx . term >", we'd want
     ;; <..> to match, but that breaks ->, <-, and other things.
     ;; (modify-syntax-entry ?< "(>" st)
@@ -224,7 +225,7 @@ Regexp match data 0 points to the chars."
               keep)))))))
 
 (defconst beluga-syntax-id-re
-  "[[:alpha:]_][[:alnum:]_']*"
+  "[[:alpha:]_][[:alnum:]!'-@~$*/^&+=_]*"
   "A regexp for matching a Beluga identifier.")
 
 (defconst beluga-syntax-fundec-re
