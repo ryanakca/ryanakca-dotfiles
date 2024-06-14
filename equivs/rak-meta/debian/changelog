@@ -1,3 +1,23 @@
+rak-meta (0.12) unstable; urgency=medium
+
+  * rak-desktop: recollcmd for recollindex
+
+ -- Ryan Kavanagh <rak@debian.org>  Mon, 10 Jun 2024 16:08:25 -0400
+
+rak-meta (0.11) unstable; urgency=medium
+
+  * rak-sysadmin: usbutils, tlp, wpasupplicant
+  * rak-multimedia: bluez
+
+ -- Ryan Kavanagh <rak@debian.org>  Mon, 10 Jun 2024 16:05:11 -0400
+
+rak-meta (0.10) unstable; urgency=medium
+
+  * rak-printing: new, cups
+  * drop breaks on -meta
+
+ -- Ryan Kavanagh <rak@debian.org>  Wed, 05 Jun 2024 14:40:07 -0400
+
 rak-meta (0.9) unstable; urgency=medium
 
   * rak-sway: fuzzel

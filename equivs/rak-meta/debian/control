@@ -12,20 +12,12 @@ Recommends:
  rak-games,
  rak-radio,
 Architecture: all
-Breaks:
- rak-meta (<< 0.4),
-Replaces:
- rak-meta (<< 0.4),
 Description: rak - meta packages for home
 
 Package: rak-work
 Recommends:
  rak-common,
 Architecture: all
-Breaks:
- rak-meta (<< 0.4),
-Replaces:
- rak-meta (<< 0.4),
 Description: rak - meta packages for work
 
 Package: rak-common
@@ -37,6 +29,7 @@ Recommends:
  rak-fonts,
  rak-mail,
  rak-multimedia,
+ rak-printing,
  rak-shell,
  rak-sway,
  rak-sysadmin,
@@ -89,6 +82,7 @@ Depends:
  inkscape,
  rak-sway,
  recoll,
+ recollcmd,
  recollgui,
  ${misc:Depends},
 Recommends:
@@ -168,6 +162,7 @@ Depends:
  alsa-utils,
  audacity,
  beets,
+ bluez,
  bluez-tools,
  ffmpeg,
  helvum | qpwgraph,
@@ -180,6 +175,15 @@ Depends:
  yt-dlp,
  ${misc:Depends},
 Description: rak - multimedia
+Architecture: all
+
+Package: rak-printing
+Depends:
+ cups,
+ lpr,
+ printer-driver-cups-pdf,
+ ${misc:Depends},
+Description: rak - printing
 Architecture: all
 
 Package: rak-radio
@@ -225,6 +229,7 @@ Depends:
  openssh-client,
  rlwrap,
  tmux,
+ usbutils,
  util-linux-extra,
  vim,
  wdiff,
@@ -300,8 +305,10 @@ Depends:
  systemd-resolved,
  systemd-timesyncd,
  task-ssh-server,
+ tlp,
  tmpreaper,
  traceroute,
+ wpasupplicant,
  zfs-dkms,
  zfs-initramfs,
  zfsutils-linux,
