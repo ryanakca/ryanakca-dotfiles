@@ -1078,7 +1078,7 @@ Return the starting position of the short pragma; else, nil."
                  (shell-quote-argument buffer-file-name))))
   (set (make-local-variable 'comment-start) "%")
   (set (make-local-variable 'comment-start-skip) "%[%{]*[ \t]*")
-  (set (make-local-variable 'comment-end-skip) "[ \t]*\\(?:\n\\|}%\\)")
+  (set (make-local-variable 'comment-end-skip) "[ \t]*\\(?:\n\\|}+%\\)")
   (comment-normalize-vars)
   (set (make-local-variable 'electric-indent-chars)
        (append '(?|) (if (boundp 'electric-indent-chars)
