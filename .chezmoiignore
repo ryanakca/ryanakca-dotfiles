@@ -64,7 +64,8 @@ afs
 .mutt/cache
 .mutt/tmp
 .opam
-.recoll
+.recoll/*
+!.recoll/recoll.conf
 .ssh/known_hosts.old
 .ssh/keys/{{ .chezmoi.hostname }}/id_ed25519
 .ssh/keys/{{ .chezmoi.hostname }}/id_rsa
