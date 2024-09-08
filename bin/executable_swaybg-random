@@ -1,15 +1,4 @@
 #!/bin/sh
 # Usage: swaybg-random directory
 
-DIR=$1
-PIDFILE=$XDG_RUNTIME_DIR/swaybg.pid
-
-if test -z "$DIR"; then
-    echo "Usage: swaybg-random dir"
-    exit 1
-fi
-
-swaybg -i $(find $DIR/. -type f | shuf -n1) -m fill -o \* &
-NEWPID=$!
-pkill -F $PIDFILE
-echo $NEWPID > $PIDFILE
+exec swaybg -i "$(find ~/bg/. -type f | shuf -n1)" -m fill

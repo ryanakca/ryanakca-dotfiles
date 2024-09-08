@@ -1,0 +1,10 @@
+[Unit]
+Description=Hourly Timer for %i service
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Persistent=true
+Unit=%i.service
+
+[Install]
+WantedBy=default.target

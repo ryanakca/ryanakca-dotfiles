@@ -1,0 +1,12 @@
+[Unit]
+Description=randomize background
+
+[Service]
+Type=exec
+Restart=always
+RuntimeMaxSec=1h
+
+ExecStart=/home/rak/bin/swaybg-random
+
+[Install]
+WantedBy=default.target
