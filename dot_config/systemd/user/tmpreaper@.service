@@ -1,0 +1,38 @@
+[Unit]
+Description=tmpreaper cleanup
+
+[Service]
+Type=oneshot
+LockPersonality=true
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+RestrictAddressFamilies=
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+# To restrict write access further, change "ProtectSystem" to "strict" and uncomment
+# "ReadWritePaths", "ReadOnlyPaths", "ProtectHome", and "BindPaths". Then add any local repository
+# paths to the list of "ReadWritePaths" and local backup source paths to "ReadOnlyPaths". This
+# leaves most of the filesystem read-only to borgmatic.
+ProtectSystem=strict
+ReadWritePaths=%I
+
+# Lower CPU and I/O priority.
+Nice=19
+CPUSchedulingPolicy=batch
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+IOWeight=100
+
+Restart=no
+LogRateLimitIntervalSec=0
+
+# Delay start to prevent backups running during boot. Note that systemd-inhibit requires dbus and
+# dbus-user-session to be installed.
+#ExecStartPre=sleep 1m
+ExecStart=/usr/sbin/tmpreaper --test --mtime-dir 60d %I

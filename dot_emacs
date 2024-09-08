@@ -1068,6 +1068,9 @@ If not, issue a warning."
   :config
   (add-to-list 'vc-handled-backends 'git))
 
+(use-package wc-mode
+  :ensure t)
+
 (use-package windmove
   :config
   (windmove-default-keybindings)
