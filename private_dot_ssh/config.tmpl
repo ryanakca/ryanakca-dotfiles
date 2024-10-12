@@ -8,7 +8,7 @@ Host master
     Hostname %h.debian.org
 Host *.debian.org master !*.ssh.debian.org !ssh.debian.org
     ProxyJump ssh.debian.org
-Match final host="*.debian.org"
+Match final host *.debian.org
     UserKnownHostsFile ~/.ssh/known_hosts.d/debian
 
 ## QueensU hosts
@@ -44,9 +44,9 @@ Host hades hades.rak.ac hades.home.arpa
     CertificateFile ~/.ssh/keys/%L/certs/hades.rak.ac.pub
 Host eos eos.rak.ac eos.home.arpa
     CertificateFile ~/.ssh/keys/%L/certs/eos.rak.ac.pub
-Match final host="zeta.home.arpa,demeter.home.arpa,asteria.home.arpa"
+Match final host zeta.home.arpa,demeter.home.arpa,asteria.home.arpa
     CertificateFile ~/.ssh/keys/%L/certs/rak.pub
-Match final host="*.rak.ac,*.ryanak.ca,*.home.arpa"
+Match final host *.rak.ac,*.ryanak.ca,*.home.arpa
     UpdateHostKeys no
     UserKnownHostsFile ~/.ssh/known_hosts.d/rak.ac
     StrictHostKeyChecking yes
@@ -63,7 +63,7 @@ Host cclub
     Hostname unix.club.cc.cmu.edu
 Host whelk oyster clam
     Hostname %h.club.cc.cmu.edu
-Match final host="*.club.cc.cmu.edu"
+Match final host *.club.cc.cmu.edu
     {{- if (ne .chezmoi.os "openbsd") }}
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
@@ -74,7 +74,7 @@ Match final host="*.club.cc.cmu.edu"
 ## UQAM hosts
 Host java
     Hostname %h.labunix.uqam.ca
-Match final host="*.labunix.uqam.ca"
+Match final host *.labunix.uqam.ca
     User kavanagh_r
 
 ## SDF hosts
@@ -83,7 +83,7 @@ Host faeroes.sdf.org
     ControlPath ~/.ssh/cm_socket/%r@%h:%p
 Host sdf
     Hostname tty.sdf.org
-Match final host="*.sdf.org"
+Match final host *.sdf.org
     UserKnownHostsFile ~/.ssh/known_hosts.d/sdf.org
     CertificateFile ~/.ssh/keys/%L/%L-cert.pub
 
