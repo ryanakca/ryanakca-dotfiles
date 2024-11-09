@@ -587,7 +587,7 @@ NO_verbose		\
 # GPG / SSH AGENT
 
 if command -v keychain > /dev/null && test -d ~/.ssh/keys/{{ .chezmoi.hostname }}; then
-    keychain {{ if (eq .chezmoi.os "linux") -}} --systemd {{- end }} ~/.ssh/keys/{{ .chezmoi.hostname }}/id_*[^p][^u][^b]
+    keychain {{ if (eq .chezmoi.os "linux") -}} --systemd {{- end }} --inherit any ~/.ssh/keys/{{ .chezmoi.hostname }}/id_*[^p][^u][^b]
     [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
     [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
            . $HOME/.keychain/$HOSTNAME-sh
