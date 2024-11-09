@@ -22,8 +22,7 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (put 'narrow-to-region 'disabled nil)
   :hook   ; add functions onto hook; only basename needed
-  ((text-mode   . turn-on-auto-fill)
-   (before-save . whitespace-cleanup))
+  ((text-mode   . turn-on-auto-fill))
   :bind   ; key bindings
   (("C-x a r" . align-regexp))
   :config ; executed after package is loaded
@@ -395,6 +394,7 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-posting-styles
    '((".*"
       (signature-file "~/.signature"))))
+  (mml-secure-openpgp-sign-with-sender t)
   :hook
   (message-send . gnus-score-followup-article)
   (gnus-group-mode . gnus-topic-mode))
@@ -523,8 +523,7 @@ Otherwise split the current paragraph into one sentence per line."
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
   :hook ((markdown-mode . (lambda ()
-			    (setq-default indent-tabs-mode nil)
-			    (setq-default whitespace-style nil))))
+			    (setq-default indent-tabs-mode nil))))
   :mode (("\\.markdown\\'" . markdown-mode)
 	 ("\\.mdown\'" . markdown-mode)))
 
@@ -539,43 +538,6 @@ Otherwise split the current paragraph into one sentence per line."
   :ensure t)
 
 (use-package message
-  :config
-  (defun message-whitespace-cleanup ()
-    "Clean whitespace in message-mode
-
-     Runs whitespace-cleanup on a message body and signature,
-     while also preserving the space at the end of the '-- '
-     delimiter between body and signature.
-
-     This function is dumb and implicitly assumes the existence
-     of a delimiter."
-    (interactive)
-    (save-excursion
-      (save-restriction
-	(widen)
-	(let ((body-min
-	       (progn
-		 (message-goto-body)
-		 (point)))
-	      (body-max
-	       (progn
-		 (message-goto-signature)
-		 (previous-line)
-		 (point)))
-	      (signature-min
-	       (progn
-		 (message-goto-signature)
-		 (point)))
-	      (whitespace-style '(trailing)))
-	  (progn
-	    (narrow-to-region body-min body-max)
-	    (whitespace-cleanup)
-	    (widen)
-	    (narrow-to-region signature-min (point-max))
-	    (whitespace-cleanup))))))
-  :hook
-  ((message-mode . (lambda () (remove-hook 'before-save-hook 'whitespace-cleanup t)))
-   (message-mode . (lambda () (add-hook 'before-save-hook 'message-whitespace-cleanup nil t))))
   :custom
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
@@ -599,6 +561,129 @@ Otherwise split the current paragraph into one sentence per line."
   :diminish
   :config
   (mpdel-mode))
+
+(use-package mu4e
+  :ensure t
+  :bind
+  (("<f6>" . mu4e))
+  :config
+  (setq mu4e-contexts
+	(list
+	 (make-mu4e-context
+	  :name "UQAM"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-match-p "^/UQAM/" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "kavanagh.ryan@uqam.ca")
+		  (system-time-locale . "fr_CA.utf8")
+		  (message-citation-line-format . "Le %A %d %B %Y à %R, %N a écrit:")
+		  (mu4e-drafts-folder  . "/UQAM/Drafts")
+		  (mu4e-sent-folder  . "/UQAM/Sent Items")
+		  (mu4e-refile-folder  . "/UQAM/Read")
+		  (mu4e-trash-folder  . "/UQAM/Deleted Items")
+		  (mu4e-sent-messages-behavior . delete)
+		  (message-send-mail-function . message-send-mail-with-sendmail)
+		  (message-signature-file . "~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/signature")
+		  ;; (message-send-mail-function . smtpmail-send-it)
+		  ;; (smtpmail-smtp-server . "smtp.office365.com")
+		  ;; (smtpmail-smtp-user . "kavanagh.ryan@uqam.ca")
+		  ;; (smtpmail-smtp-service . 587)
+		  ;; (smtpmail-auth-supported . '(xoauth2))
+		  ;; (smtpmail-stream-type . ssl)
+		  ;; (oauth2-token-file "~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token")
+		  (sendmail-program . "msmtp")))
+
+	 (make-mu4e-context
+	  :name "CMU"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-match-p "^/CMU/" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "rkavanag@alumni.cmu.edu")
+		  (message-citation-line-format . "On %b %d, %Y at %R, %N wrote:")
+		  (system-time-locale . "en_GB.utf8")
+		  (mu4e-drafts-folder  . "/CMU/Drafts")
+		  (mu4e-sent-folder  . "/CMU/[Gmail]/Sent Mail")
+		  (mu4e-refile-folder  . "/CMU/Read")
+		  (mu4e-trash-folder  . "/CMU/[Gmail]/Bin")
+		  (mu4e-sent-messages-behavior . delete)
+		  (message-send-mail-function . message-send-mail-with-sendmail)
+		  (message-signature-file . "~/.signature")
+		  (sendmail-program . "/sbin/sendmail")))
+
+	 (make-mu4e-context
+	  :name "rak"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-match-p "^/rak/" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "rak@rak.ac")
+		  (message-citation-line-format . "On %b %d, %Y at %R, %N wrote:")
+		  (system-time-locale . "en_GB.utf8")
+		  (mu4e-drafts-folder  . "/rak/Drafts")
+		  (mu4e-sent-folder  . "/rak/Sent")
+		  (mu4e-refile-folder  . "/rak/RAK")
+		  (mu4e-sent-messages-behavior . sent)
+		  (mu4e-trash-folder . nil)
+		  (message-send-mail-function  . message-send-mail-with-sendmail)
+		  (message-signature-file . "~/.signature")
+		  (sendmail-program . "/sbin/sendmail")))
+
+	 (make-mu4e-context
+	  :name "gmail"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-match-p "^/gmail/" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "ryanakca@gmail.com")
+		  (message-citation-line-format . "On %b %d, %Y at %R, %N wrote:")
+		  (system-time-locale . "en_GB.utf8")
+		  (mu4e-drafts-folder  . "/gmail/[Google Mail]/Drafts")
+		  (mu4e-sent-folder  . "/gmail/[Google Mail]/Sent Mail")
+		  (mu4e-refile-folder  . nil)
+		  (mu4e-trash-folder . "/gmail/[Google Mail]/Bin")
+		  (mu4e-sent-messages-behavior . 'delete)
+		  (message-send-mail-function  . message-send-mail-with-sendmail)
+		  (message-signature-file . "~/.signature")
+		  (sendmail-program . "/sbin/sendmail")))
+
+	 (make-mu4e-context
+	  :name "QueensU"
+	  :match-func
+	  (lambda (msg)
+	    (when msg
+	      (string-match-p "^/queensu/" (mu4e-message-field msg :maildir))))
+	  :vars '((user-mail-address . "ryan.kavanagh@queensu.ca")
+		  (message-citation-line-format . "On %b %d, %Y at %R, %N wrote:")
+		  (system-time-locale . "en_GB.utf8")
+		  (mu4e-drafts-folder  . "/queensu/Drafts")
+		  (mu4e-sent-folder  . "/queensu/Sent Items")
+		  (mu4e-refile-folder  . "/queensu/Read")
+		  (mu4e-trash-folder  . "/queensu/Deleted Items")
+		  (mu4e-sent-messages-behavior . delete)
+		  (message-send-mail-function . message-send-mail-with-sendmail)
+		  (message-signature-file . "~/.signature")
+		  (sendmail-program . "msmtp")))))
+  :custom
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (mu4e-change-filenames-when-moving t)
+
+  ;; hide long list off addresses from main view and silence warnings
+  ;; about mu4e not recognizing user-mail-address against regexp
+  (mu4e-main-hide-personal-addresses t)
+  ;; Refresh mail using isync every 10 minutes
+  (mu4e-update-interval (* 10 60))
+  (mu4e-get-mail-command "mbsync -a")
+  (mu4e-maildir-shortcuts
+   '(("/UQAM/INBOX" . ?u)
+     ("/rak/INBOX" . ?r)
+     ("/CMU/INBOX" . ?c)
+     ("/gmail/INBOX" . ?g)
+     ("/queensu/INBOX" . ?q))))
+
+(use-package oauth2
+  :ensure t)
 
 (use-package ocp-indent
   :ensure t)
@@ -974,6 +1059,12 @@ If not, issue a warning."
 			 (regexp "equations?" "eqs?\\." "eqn\\." "Gleichung\\(en\\)?" "Gl\\."))
 			("eqnarray" 101 "eq:%F:" nil eqnarray-like))))
 
+(use-package rfc2047
+  :custom
+  ;; needed so that mu4e doesn't produce broken address lines
+  ;; when replying to addresses with accents in name portion
+  (rfc2047-quote-decoded-words-containing-tspecials t))
+
 (use-package sass-mode
   :ensure t)
 
@@ -1072,10 +1163,16 @@ If not, issue a warning."
   :ensure t)
 
 (use-package windmove
+  :ensure t
   :config
   (windmove-default-keybindings)
   :custom
   (windmove-wrap-around t))
+
+(use-package ws-butler
+  :ensure t
+  :config
+  (ws-butler-global-mode))
 
 (use-package yaml-mode
   :ensure t)
