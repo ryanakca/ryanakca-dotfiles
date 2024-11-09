@@ -1,0 +1,143 @@
+IMAPAccount UQAM
+Host outlook.office365.com
+User kavanagh.ryan@uqam.ca
+PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' -t ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token"
+AuthMechs XOAUTH2
+SSLType IMAPS
+
+IMAPAccount queensu
+Host outlook.office365.com
+User 9rak@queensu.ca
+PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/9rak.queensu.ca/xoauth2-token"
+AuthMechs XOAUTH2
+SSLType IMAPS
+
+IMAPAccount CMU
+Host imap.gmail.com
+User rkavanag@alumni.cmu.edu
+Pass {{ .password.cmu }}
+AuthMechs PLAIN
+SSLType IMAPS
+
+IMAPAccount gmail
+Host imap.gmail.com
+User ryanakca@gmail.com
+Pass {{ .password.gmail }}
+AuthMechs PLAIN
+SSLType IMAPS
+
+IMAPAccount rak
+Host imap.rak.ac
+User rak
+Pass {{ .password.rakac }}
+AuthMechs PLAIN
+SSLType IMAPS
+
+IMAPStore uqam-remote
+Account UQAM
+
+IMAPStore queensu-remote
+Account queensu
+
+IMAPStore cmu-remote
+Account CMU
+
+IMAPStore rak-remote
+Account rak
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore uqam-maildir
+Subfolders Verbatim
+Path ~/Maildir/UQAM/
+Inbox ~/Maildir/UQAM/INBOX
+
+MaildirStore cmu-maildir
+Subfolders Verbatim
+Path ~/Maildir/CMU/
+Inbox ~/Maildir/CMU/INBOX
+
+MaildirStore rak-maildir
+Subfolders Verbatim
+Path ~/Maildir/rak/
+Inbox ~/Maildir/rak/INBOX
+
+MaildirStore queensu-maildir
+Subfolders Verbatim
+Path ~/Maildir/queensu/
+Inbox ~/Maildir/queensu/INBOX
+
+MaildirStore gmail-maildir
+Subfolders Verbatim
+Path ~/Maildir/gmail/
+Inbox ~/Maildir/gmail/INBOX
+
+Channel uqam
+Far :uqam-remote:
+Near :uqam-maildir:
+Create Both
+Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox !Probl*
+Expunge Near
+Sync All
+
+Channel queensu
+Far :queensu-remote:
+Near :queensu-maildir:
+Create Both
+Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
+Expunge Both
+Sync All
+
+Channel cmu
+Far :cmu-remote:
+Near :cmu-maildir:
+Create Both
+Expunge Near
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Sync All
+
+Channel rak-inbox
+Far :rak-remote:
+Near :rak-maildir:
+Create Both
+Expunge Near
+Patterns INBOX
+Sync All
+
+Channel rak-lists
+Far :rak-remote:
+Near :rak-maildir:
+Create Both
+Expunge Near
+Patterns Lists/*
+Sync All
+
+Channel rak-misc
+Far :rak-remote:
+Near :rak-maildir:
+Create Both
+Expunge Near
+Patterns * !Archive !Virtual !Virtual/* !INBOX !Lists !Lists/*
+Sync All
+
+Group rak
+Channel rak-inbox
+Channel rak-lists
+Channel rak-misc
+
+Channel gmail-base
+Far :gmail-remote:
+Near :gmail-maildir:
+Create Near
+Expunge Near
+Pattern INBOX "[Google Mail]/Sent Mail" "[Google Mail]/Drafts"  "[Google Mail]/Bin"
+Sync Pull
+
+Channel gmail-others
+Far :gmail-remote:
+Near :gmail-maildir:
+Create Near
+Expunge Near
+Pattern * !INBOX !"[Google Mail]/Sent Mail" !"[Google Mail]/Drafts"  !"[Google Mail]/Bin" !"[Google Mail]/All Mail"
+Sync Pull
