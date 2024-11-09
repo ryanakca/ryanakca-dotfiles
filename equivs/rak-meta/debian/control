@@ -143,6 +143,9 @@ Architecture: all
 Package: rak-mail
 Depends:
  lbdb,
+ libsasl2-modules-kdexoauth2,
+ msmtp,
+ mu4e,
  muttprint,
  neomutt,
  opensmtpd,
