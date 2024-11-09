@@ -27,14 +27,6 @@ for_window [con_mark=$alphamark] opacity set $trans
 
 include /etc/sway/config-vars.d/*
 
-### Things to run at start of session
-exec {
-    # set a random background
-    swaybg-random ~/bg
-    # use footclient/footserver as our terminal
-    foot -s
-}
-
 ### Idle configuration
 exec swayidle -w \
          timeout 180 $lock \
@@ -200,7 +192,6 @@ mode "resize" bindsym --to-code {
 }
 bindsym --to-code $mod+r mode "resize"
 
-bar swaybar_command waybar
 exec_always pkill kanshi; exec kanshi
 
 font pango:Iosevka Regular 8
