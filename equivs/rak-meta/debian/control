@@ -266,6 +266,7 @@ Depends:
  sway,
  swayidle,
  swaylock,
+ swaysome,
  waybar,
  wdisplays,
  wlgreet,
