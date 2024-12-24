@@ -98,10 +98,10 @@
    ("C-;" . avy-goto-char)))
 
 (use-package beluga-mode
-  :mode "\\.bel\'")
+  :mode "\\.bel\\'")
 
 (use-package bibtex
-  :mode ("\\.bib\'" . bibtex-mode)
+  :mode ("\\.bib\\'" . bibtex-mode)
   :custom
   (bibtex-dialect 'biblatex)
   (bibtex-maintain-sorted-entries 'crossref)
