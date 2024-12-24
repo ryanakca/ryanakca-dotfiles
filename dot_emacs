@@ -332,6 +332,20 @@ Extended Format date in the date field and return it as a string obeing
 (use-package ess
   :ensure t)
 
+(use-package erc
+  :ensure t
+  :custom
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+  ;; :config
+  ;; (erc-tls :server "libera.pounce.rak.ac"
+  ;; 	   :port 40404
+  ;; 	   :nick "rak"
+  ;; 	   :client-certificate '("/home/rak/.config/catgirl/weechat.pem"
+  ;; 				 "/home/rak/.config/catgirl/weechat.pem")
+  ;; 	   :user "koios-erc")
+  )
+
 (use-package fill-column-indicator
   :ensure t)
 
