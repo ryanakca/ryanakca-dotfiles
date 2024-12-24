@@ -142,6 +142,7 @@ Architecture: all
 
 Package: rak-mail
 Depends:
+ isync,
  lbdb,
  libsasl2-modules-kdexoauth2,
  msmtp,
