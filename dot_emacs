@@ -657,7 +657,7 @@ Otherwise split the current paragraph into one sentence per line."
 		  (mu4e-sent-folder  . "/gmail/[Google Mail]/Sent Mail")
 		  (mu4e-refile-folder  . nil)
 		  (mu4e-trash-folder . "/gmail/[Google Mail]/Bin")
-		  (mu4e-sent-messages-behavior . 'delete)
+		  (mu4e-sent-messages-behavior . delete)
 		  (message-send-mail-function  . message-send-mail-with-sendmail)
 		  (message-signature-file . "~/.signature")
 		  (sendmail-program . "/sbin/sendmail")))
@@ -688,7 +688,7 @@ Otherwise split the current paragraph into one sentence per line."
   (mu4e-main-hide-personal-addresses t)
   ;; Refresh mail using isync every 10 minutes
   (mu4e-update-interval (* 10 60))
-  (mu4e-get-mail-command "mbsync -a")
+  (mu4e-get-mail-command "mbsync inboxes")
   (mu4e-maildir-shortcuts
    '(("/UQAM/INBOX" . ?u)
      ("/rak/INBOX" . ?r)
