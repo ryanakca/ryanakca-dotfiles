@@ -1,7 +1,7 @@
 IMAPAccount UQAM
 Host outlook.office365.com
 User kavanagh.ryan@uqam.ca
-PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' -t ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token"
+PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token"
 AuthMechs XOAUTH2
 SSLType IMAPS
 
@@ -9,6 +9,13 @@ IMAPAccount queensu
 Host outlook.office365.com
 User 9rak@queensu.ca
 PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/9rak.queensu.ca/xoauth2-token"
+AuthMechs XOAUTH2
+SSLType IMAPS
+
+IMAPAccount mcgill
+Host outlook.office365.com
+User ryan.kavanagh@mail.mcgill.ca
+PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/xoauth2-token"
 AuthMechs XOAUTH2
 SSLType IMAPS
 
@@ -39,6 +46,9 @@ Account UQAM
 IMAPStore queensu-remote
 Account queensu
 
+IMAPStore mcgill-remote
+Account mcgill
+
 IMAPStore cmu-remote
 Account CMU
 
@@ -68,12 +78,25 @@ Subfolders Verbatim
 Path ~/Maildir/queensu/
 Inbox ~/Maildir/queensu/INBOX
 
+MaildirStore mcgill-maildir
+Subfolders Verbatim
+Path ~/Maildir/mcgill/
+Inbox ~/Maildir/mcgill/INBOX
+
 MaildirStore gmail-maildir
 Subfolders Verbatim
 Path ~/Maildir/gmail/
 Inbox ~/Maildir/gmail/INBOX
 
-Channel uqam
+Channel uqam-inbox
+Far :uqam-remote:
+Near :uqam-maildir:
+Create Both
+Patterns INBOX
+Expunge Near
+Sync All
+
+Channel uqam-others
 Far :uqam-remote:
 Near :uqam-maildir:
 Create Both
@@ -88,6 +111,14 @@ Create Both
 Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
 Expunge Both
 Sync All
+
+Channel mcgill
+Far :mcgill-remote:
+Near :mcgill-maildir:
+Create Near
+Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
+Expunge Near
+Sync Pull
 
 Channel cmu
 Far :cmu-remote:
@@ -126,6 +157,14 @@ Channel rak-inbox
 Channel rak-lists
 Channel rak-misc
 
+Channel gmail-inbox
+Far :gmail-remote:
+Near :gmail-maildir:
+Create Near
+Expunge Near
+Pattern INBOX
+Sync Pull
+
 Channel gmail-base
 Far :gmail-remote:
 Near :gmail-maildir:
@@ -141,3 +180,8 @@ Create Near
 Expunge Near
 Pattern * !INBOX !"[Google Mail]/Sent Mail" !"[Google Mail]/Drafts"  !"[Google Mail]/Bin" !"[Google Mail]/All Mail"
 Sync Pull
+
+Group inboxes
+Channel gmail-inbox
+Channel rak-inbox
+Channel uqam-inbox
