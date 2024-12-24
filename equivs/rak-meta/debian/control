@@ -302,7 +302,6 @@ Depends:
  pmount,
  rfkill,
  sanoid,
- sleepd,
  smartmontools,
  sshfs,
  sudo,
