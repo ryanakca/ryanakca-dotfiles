@@ -178,6 +178,8 @@ Depends:
  whipper,
  yt-dlp,
  ${misc:Depends},
+Conflicts:
+ fluidsynth,
 Description: rak - multimedia
 Architecture: all
 
