@@ -118,6 +118,8 @@ $log_dir = "$HOME/tmp/sbuild/logs";
 # Directory for writing build statistics to
 $stats_dir = "$HOME/tmp/sbuild/stats";
 
+$chroot_mode = "schroot";
+$schroot = "schroot";
 
 # don't remove this, Perl needs it:
 1;
