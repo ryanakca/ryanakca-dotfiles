@@ -319,6 +319,9 @@ Depends:
  zfs-initramfs,
  zfsutils-linux,
  ${misc:Depends},
+Conflicts:
+ network-manager,
+ ppp,
 Description: rak - system administration packages
 Architecture: all
 

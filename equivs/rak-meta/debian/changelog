@@ -1,3 +1,9 @@
+rak-meta (0.18) unstable; urgency=medium
+
+  * rak-sysadmin: block installation of ppp and network-manager
+
+ -- Ryan Kavanagh <rak@debian.org>  Thu, 26 Dec 2024 18:09:28 -0500
+
 rak-meta (0.17) unstable; urgency=medium
 
   * rak-multimedia: block installation of fluidsynth 
