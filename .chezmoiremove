@@ -2,6 +2,7 @@
 .lbdbrc
 .mutt*
 .pulse
+.sbuildrc
 .screenlayout/zeta-home.sh
 .screenlayout/zeta-solo.sh
 .screenlayout/zeta-work.sh
