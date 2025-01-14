@@ -1,3 +1,9 @@
+rak-meta (0.19) unstable; urgency=medium
+
+  * rak-sway: python3-dbsu-next is a dependency of assign-cgroups.py 
+
+ -- Ryan Kavanagh <rak@debian.org>  Tue, 14 Jan 2025 10:39:04 -0500
+
 rak-meta (0.18) unstable; urgency=medium
 
   * rak-sysadmin: block installation of ppp and network-manager

@@ -263,6 +263,7 @@ Depends:
  jq,
  kanshi,
  light,
+ python3-dbus-next,
  seatd,
  slurp,
  sway,
