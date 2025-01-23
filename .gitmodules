@@ -1,3 +1,6 @@
 [submodule "dot_zsh/powerlevel10k"]
 	path = dot_zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "dot_emacs.d/lisp/mu4e-goodies"]
+	path = dot_emacs.d/lisp/mu4e-goodies
+	url = git@github.com:panjie/mu4e-goodies.git
