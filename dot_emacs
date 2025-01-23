@@ -556,6 +556,9 @@ Otherwise split the current paragraph into one sentence per line."
   (message-citation-line-function 'message-insert-formatted-citation-line)
   (message-send-mail-function 'message-send-mail-with-sendmail))
 
+(use-package message-view-patch
+  :ensure t)
+
 (use-package minibuffer
   :config
   (add-to-list 'completion-styles 'substring)
@@ -695,6 +698,9 @@ Otherwise split the current paragraph into one sentence per line."
      ("/CMU/INBOX" . ?c)
      ("/gmail/INBOX" . ?g)
      ("/queensu/INBOX" . ?q))))
+
+;; provided through git/chezmoi
+(use-package mu4e-goodies-tags)
 
 (use-package oauth2
   :ensure t)
