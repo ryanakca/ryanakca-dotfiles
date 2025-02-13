@@ -1,6 +1,12 @@
+rak-meta (0.20) unstable; urgency=medium
+
+  * rak-textproc: zathura used by auctex for pdf viewing
+
+ -- Ryan Kavanagh <rak@debian.org>  Thu, 13 Feb 2025 14:54:52 -0500
+
 rak-meta (0.19) unstable; urgency=medium
 
-  * rak-sway: python3-dbsu-next is a dependency of assign-cgroups.py 
+  * rak-sway: python3-dbsu-next is a dependency of assign-cgroups.py
 
  -- Ryan Kavanagh <rak@debian.org>  Tue, 14 Jan 2025 10:39:04 -0500
 

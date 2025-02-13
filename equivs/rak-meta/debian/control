@@ -369,6 +369,7 @@ Depends:
  texlive-xetex,
  tikzit,
  ttf-mscorefonts-installer,
+ zathura,
  ${misc:Depends},
 Recommends:
  rak-dicts,
