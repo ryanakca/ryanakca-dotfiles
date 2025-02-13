@@ -1112,7 +1112,8 @@ If not, issue a warning."
 
 (use-package simple
   :custom
-  (column-mode-number t))
+  (column-mode-number t)
+  (visual-line-fringe-idicators (left-curly-arrow right-curly-arrow)))
 
 (use-package smerge-mode
   :commands smerge-mode
