@@ -52,10 +52,17 @@ bindsym --to-code {
     # Move focused container to previous output
     $mod+Shift+o exec "swaysome prev-output"
 
+    # Move focused group to up/down/left/right output
+    $mod+Ctrl+k exec "sway move workspace to output up"
+    $mod+Ctrl+j exec "sway move workspace to output down"
+    $mod+Ctrl+l exec "sway move workspace to output right"
+    $mod+Ctrl+h exec "sway move workspace to output left"
+
     # Move focused workspace group to next output
     $mod+Alt+o exec "swaysome workspace-group-next-output"
     # Move focused workspace group to previous output
     $mod+Alt+Shift+o exec "swaysome workspace-group-prev-output"
+
 }
 
 # Init workspaces for every screen

@@ -34,7 +34,7 @@ AuthMechs PLAIN
 SSLType IMAPS
 
 IMAPAccount rak
-Host imap.rak.ac
+Host hades.rak.ac
 User rak
 Pass {{ .password.rakac }}
 AuthMechs PLAIN
@@ -150,6 +150,14 @@ Near :rak-maildir:
 Create Both
 Expunge Near
 Patterns * !Archive !Virtual !Virtual/* !INBOX !Lists !Lists/*
+Sync All
+
+Channel rak-archive
+Far :rak-remote:
+Near :rak-maildir:
+Create Both
+Expunge Near
+Patterns Archive
 Sync All
 
 Group rak

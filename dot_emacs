@@ -35,6 +35,8 @@
   (default-input-method "TeX")
   (user-full-name "Ryan Kavanagh")
   (user-mail-address "rak@rak.ac")
+  (mail-user-agent 'mu4e-user-agent)
+  (read-mail-command 'mu4e)
   :custom-face
   (default ((t (:family "Iosevka")))))
 
@@ -553,8 +555,16 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package message
   :custom
+  (message-kill-buffer-on-exit t)
   (message-citation-line-function 'message-insert-formatted-citation-line)
-  (message-send-mail-function 'message-send-mail-with-sendmail))
+  (message-send-mail-function 'message-send-mail-with-sendmail)
+  :hook
+  (message-mode . turn-off-auto-fill)
+  (message-mode . visual-line-mode)
+  (message-mode . visual-fill-column-mode))
+
+(use-package message-view-patch
+  :ensure t)
 
 (use-package minibuffer
   :config
@@ -680,8 +690,14 @@ Otherwise split the current paragraph into one sentence per line."
 		  (message-signature-file . "~/.signature")
 		  (sendmail-program . "msmtp")))))
   :custom
+  ;; flowed text in messages
+  (mu4e-compose-format-flowed t)
+
   ;; This is set to 't' to avoid mail syncing issues when using mbsync
   (mu4e-change-filenames-when-moving t)
+
+  ;; compose messages in new frame
+  (mu4e-compose-in-new-frame t)
 
   ;; hide long list off addresses from main view and silence warnings
   ;; about mu4e not recognizing user-mail-address against regexp
@@ -695,6 +711,9 @@ Otherwise split the current paragraph into one sentence per line."
      ("/CMU/INBOX" . ?c)
      ("/gmail/INBOX" . ?g)
      ("/queensu/INBOX" . ?q))))
+
+;; provided through git/chezmoi
+(use-package mu4e-goodies-tags)
 
 (use-package oauth2
   :ensure t)
@@ -1172,6 +1191,9 @@ If not, issue a warning."
   :requires vc
   :config
   (add-to-list 'vc-handled-backends 'git))
+
+(use-package visual-fill-column
+  :ensure t)
 
 (use-package wc-mode
   :ensure t)
