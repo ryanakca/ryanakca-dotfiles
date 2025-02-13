@@ -3,42 +3,42 @@ Host outlook.office365.com
 User kavanagh.ryan@uqam.ca
 PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token"
 AuthMechs XOAUTH2
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPAccount queensu
 Host outlook.office365.com
 User 9rak@queensu.ca
 PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/9rak.queensu.ca/xoauth2-token"
 AuthMechs XOAUTH2
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPAccount mcgill
 Host outlook.office365.com
 User ryan.kavanagh@mail.mcgill.ca
 PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/xoauth2-token"
 AuthMechs XOAUTH2
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPAccount CMU
 Host imap.gmail.com
 User rkavanag@alumni.cmu.edu
 Pass {{ .password.cmu }}
 AuthMechs PLAIN
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPAccount gmail
 Host imap.gmail.com
 User ryanakca@gmail.com
 Pass {{ .password.gmail }}
 AuthMechs PLAIN
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPAccount rak
 Host hades.rak.ac
 User rak
 Pass {{ .password.rakac }}
 AuthMechs PLAIN
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPStore uqam-remote
 Account UQAM
