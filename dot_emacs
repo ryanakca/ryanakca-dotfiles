@@ -37,6 +37,7 @@
   (user-mail-address "rak@rak.ac")
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
+  (visual-line-fringe-indicators (left-curly-arrow right-curly-arrow))
   :custom-face
   (default ((t (:family "Iosevka")))))
 
@@ -1113,7 +1114,7 @@ If not, issue a warning."
 (use-package simple
   :custom
   (column-mode-number t)
-  (visual-line-fringe-idicators (left-curly-arrow right-curly-arrow)))
+  (visual-line-fringe-indicators (left-curly-arrow right-curly-arrow)))
 
 (use-package smerge-mode
   :commands smerge-mode
