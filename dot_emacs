@@ -53,14 +53,6 @@
     (moe-dark)
     (moe-theme-powerline)))
 
-(defun single-lines-only ()
-  "Replace multiple blank lines with a single one"
-  (interactive)
-  (goto-char (point-min))
-  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
-    (replace-match "\n")
-    (forward-char 1)))
-
 (use-package ace-window
   :ensure t
   :custom
