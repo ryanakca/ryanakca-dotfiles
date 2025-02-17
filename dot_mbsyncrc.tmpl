@@ -1,21 +1,21 @@
 IMAPAccount UQAM
 Host outlook.office365.com
 User kavanagh.ryan@uqam.ca
-PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token"
+PassCmd "mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' $XDG_STATE_HOME/xoauth2-tokens/kavanagh.ryan.uqam.ca"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
 IMAPAccount queensu
 Host outlook.office365.com
 User 9rak@queensu.ca
-PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/9rak.queensu.ca/xoauth2-token"
+PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" $XDG_STATE_HOME/xoauth2-tokens/9rak.queensu.ca"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
 IMAPAccount mcgill
 Host outlook.office365.com
 User ryan.kavanagh@mail.mcgill.ca
-PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" ~/.config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/xoauth2-token"
+PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" $XDG_STATE_HOME/xoauth2-tokens/ryan.kavanagh.mail.mcgill.ca"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
@@ -31,6 +31,13 @@ Host imap.gmail.com
 User ryanakca@gmail.com
 Pass {{ .password.gmail }}
 AuthMechs PLAIN
+TLSType IMAPS
+
+IMAPAccount ryan.a.kavanagh.gmail.com
+Host imap.gmail.com
+User ryan.a.kavanagh@gmail.com
+PassCmd "~/bin/mutt_oauth2.py --encryption-pipe=cat --decryption-pipe=cat $XDG_STATE_HOME/xoauth2-tokens/ryan.a.kavanagh.gmail.com"
+AuthMechs XOAUTH2
 TLSType IMAPS
 
 IMAPAccount rak
@@ -57,6 +64,9 @@ Account rak
 
 IMAPStore gmail-remote
 Account gmail
+
+IMAPStore ryan.a.kavanagh.gmail.com
+Account ryan.a.kavanagh.gmail.com
 
 MaildirStore uqam-maildir
 Subfolders Verbatim
@@ -88,6 +98,11 @@ Subfolders Verbatim
 Path ~/Maildir/gmail/
 Inbox ~/Maildir/gmail/INBOX
 
+MaildirStore archive
+Subfolders Verbatim
+Path ~/Maildir/Archive/
+Inbox ~/Maildir/Archive/INBOX
+
 Channel uqam-inbox
 Far :uqam-remote:
 Near :uqam-maildir:
@@ -110,6 +125,7 @@ Near :queensu-maildir:
 Create Both
 Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
 Expunge Both
+Remove Both
 Sync All
 
 Channel mcgill
@@ -188,6 +204,14 @@ Create Near
 Expunge Near
 Pattern * !INBOX !"[Google Mail]/Sent Mail" !"[Google Mail]/Drafts"  !"[Google Mail]/Bin" !"[Google Mail]/All Mail"
 Sync Pull
+
+Channel archive-to-gmail
+Far :ryan.a.kavanagh.gmail.com:
+Near :archive:
+Create Both
+Expunge Both
+Pattern * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Spam" !"[Gmail]/Starred" !"[Gmail]/Trash"
+Sync All
 
 Group inboxes
 Channel gmail-inbox

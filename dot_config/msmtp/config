@@ -9,6 +9,6 @@ user             kavanagh.ryan@uqam.ca
 from             kavanagh.ryan@uqam.ca
 tls_certcheck    on
 auth             xoauth2
-passwordeval     /home/rak/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' -t ~/.config/neomutt/accounts/kavanagh.ryan.uqam.ca/xoauth2-token
+passwordeval     /home/rak/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' -t $XDG_STATE_HOME/xoauth2-tokens/kavanagh.ryan.uqam.ca
 port             587
 tls_trust_file   /etc/ssl/certs/ca-certificates.crt
