@@ -1,0 +1,14 @@
+[Unit]
+Description=Idle manager for Wayland
+Documentation=man:swayidle(1)
+PartOf=wayland-session.target
+Requires=wayland-session.target
+After=wayland-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swayidle -w
+Restart=always
+
+[Install]
+WantedBy=wayland-session.target

@@ -28,10 +28,6 @@ for_window [con_mark=$alphamark] opacity set $trans
 include /etc/sway/config-vars.d/*
 
 ### Idle configuration
-exec swayidle -w \
-         timeout 180 $lock \
-         timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep $lock
 for_window [app_id="dspdfviewer"] inhibit_idle focus
 
 ### Input configuration
@@ -196,5 +192,5 @@ exec_always pkill kanshi; exec kanshi
 
 font pango:Iosevka Regular 8
 
-include /etc/sway/config.d/*
+include /etc/sway/config.d/50-systemd-user.conf
 include ~/.config/sway/config.d/*
