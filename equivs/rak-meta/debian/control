@@ -47,6 +47,7 @@ Recommends:
  ocaml,
  opam,
  polyml,
+ rak-rlang,
  rustc,
  smlnj,
  ${misc:Depends},
@@ -55,15 +56,16 @@ Architecture: all
 
 Package: rak-debian
 Depends:
+ dh-golang,
+ dh-python,
  build-essential,
  debcargo,
  devscripts,
- dh-golang,
- dh-python,
  dput-ng | dput,
  equivs,
  git-buildpackage,
  libsoap-lite-perl,
+ piuparts,
  reportbug,
  sbuild-debian-developer-setup,
  signing-party,
@@ -150,7 +152,7 @@ Depends:
  muttprint,
  neomutt,
  opensmtpd,
- opensmtpd-extras,
+ opensmtpd-table-passwd,
  s-nail,
  sieve-connect,
  urlscan,
@@ -203,6 +205,17 @@ Depends:
  wsjtx,
  ${misc:Depends},
 Description: rak - hamradio
+Architecture: all
+
+Package: rak-rlang
+Depends:
+ r-base,
+ r-cran-dplyr,
+ r-cran-ggplot2,
+ r-cran-purrr,
+ r-cran-tibble,
+ ${misc:Depends},
+Description: rak - R packages
 Architecture: all
 
 Package: rak-shell
@@ -337,6 +350,7 @@ Architecture: amd64
 Package: rak-textproc
 Depends:
  asciidoctor,
+ auto-multiple-choice,
  biber,
  bibtool,
  docx2txt,

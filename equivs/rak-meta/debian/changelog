@@ -1,3 +1,10 @@
+rak-meta (0.21) unstable; urgency=medium
+
+  * rak-rlang: R packages 
+  * bunch of other manual packages now auto
+
+ -- Ryan Kavanagh <rak@debian.org>  Sat, 08 Mar 2025 12:21:28 -0500
+
 rak-meta (0.20) unstable; urgency=medium
 
   * rak-textproc: zathura used by auctex for pdf viewing
