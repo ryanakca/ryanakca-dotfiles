@@ -10,6 +10,7 @@ bin/mutt
 .config/systemd/user/borgmatic@tosh.service.wants/backup-email@mail.cs.mcgill.ca.service
 .config/systemd/user/default.target.wants/swaybg-random.service
 .config/neomutt/news.rc
+.mbsyncrc
 .xkb
 afs
 
