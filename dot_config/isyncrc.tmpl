@@ -108,7 +108,7 @@ Far :uqam-remote:
 Near :uqam-maildir:
 Create Both
 Patterns INBOX
-Expunge Near
+Expunge Both
 Sync All
 
 Channel uqam-others
@@ -164,6 +164,7 @@ Channel rak-misc
 Far :rak-remote:
 Near :rak-maildir:
 Create Both
+Remove Both
 Expunge Near
 Patterns * !Archive !Virtual !Virtual/* !INBOX !Lists !Lists/*
 Sync All
@@ -201,6 +202,7 @@ Channel gmail-others
 Far :gmail-remote:
 Near :gmail-maildir:
 Create Near
+Remove Both
 Expunge Near
 Pattern * !INBOX !"[Google Mail]/Sent Mail" !"[Google Mail]/Drafts"  !"[Google Mail]/Bin" !"[Google Mail]/All Mail"
 Sync Pull
@@ -209,6 +211,7 @@ Channel archive-to-gmail
 Far :ryan.a.kavanagh.gmail.com:
 Near :archive:
 Create Both
+Remove Both
 Expunge Both
 Pattern * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Spam" !"[Gmail]/Starred" !"[Gmail]/Trash"
 Sync All
