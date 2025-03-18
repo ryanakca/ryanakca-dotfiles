@@ -691,6 +691,10 @@ Otherwise split the current paragraph into one sentence per line."
   ;; compose messages in new frame
   (mu4e-compose-in-new-frame t)
 
+  ;; use default emacs completion
+  (mu4e-read-option-use-builtin nil)
+  (mu4e-completing-read-function 'completing-read)
+
   ;; hide long list off addresses from main view and silence warnings
   ;; about mu4e not recognizing user-mail-address against regexp
   (mu4e-main-hide-personal-addresses t)
