@@ -708,6 +708,11 @@ Otherwise split the current paragraph into one sentence per line."
      ("/gmail/INBOX" . ?g)
      ("/queensu/INBOX" . ?q))))
 
+(use-package mu4e-column-faces
+  :ensure t
+  :after mu4e
+  :config (mu4e-column-faces-mode))
+
 ;; provided through git/chezmoi
 (use-package mu4e-goodies-tags)
 
