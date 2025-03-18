@@ -714,7 +714,8 @@ Otherwise split the current paragraph into one sentence per line."
   :config (mu4e-column-faces-mode))
 
 ;; provided through git/chezmoi
-(use-package mu4e-goodies-tags)
+(use-package mu4e-goodies-tags
+  :after mu4e)
 
 (use-package oauth2
   :ensure t)
