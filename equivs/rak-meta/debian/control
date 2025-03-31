@@ -309,7 +309,7 @@ Depends:
  smartmontools,
  sshfs,
  sudo,
- systemd-resolved,
+ systemd-resolved | resolvconf,
  systemd-timesyncd,
  task-ssh-server,
  tlp,
