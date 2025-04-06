@@ -26,10 +26,11 @@
   :bind   ; key bindings
   (("C-x a r" . align-regexp))
   :config ; executed after package is loaded
-  (defadvice  ; align-regexp should use spaces.
-      align-regexp
-      (around align-regexp-with-spaces activate)
+  (defun align-regexp--align-regexp-with-spaces ()
+    "Never use tabs for alignment."
     (let ((indent-tabs-mode nil)) ad-do-it))
+  (advice-add 'align-regexp--align-regexp-with-spaces
+	      :around #'align-regexp-with-spaces)
   :custom
   (inhibit-startup-screen t)
   (default-input-method "TeX")
@@ -37,6 +38,15 @@
   (user-mail-address "rak@rak.ac")
   (mail-user-agent 'mu4e-user-agent)
   (read-mail-command 'mu4e)
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (enable-recursive-minibuffers t)
+  ;; Hide commands in M-x which do not work in the current mode.  Vertico
+  ;; commands are hidden in normal buffers. This setting is useful beyond
+  ;; Vertico.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt))
   :custom-face
   (default ((t (:family "Iosevka")))))
 
@@ -62,18 +72,18 @@
   ;; need to redefine a few of these because the defaults
   ;; overlap with customized aw-keys
   (setq aw-dispatch-alist
-    '((?x aw-delete-window "Delete Window")
-      (?m aw-swap-window "Swap Windows")
-      (?M aw-move-window "Move Window")
-      (?c aw-copy-window "Copy Window")
-      (?j aw-switch-buffer-in-window "Select Buffer")
-      (?f aw-flip-window)
-      (?p aw-switch-buffer-other-window "Switch Buffer Other Window")
-      (?c aw-split-window-fair "Split Fair Window")
-      (?v aw-split-window-vert "Split Vert Window")
-      (?b aw-split-window-horz "Split Horz Window")
-      (?1 delete-other-windows "Delete Other Windows")
-      (?? aw-show-dispatch-help))))
+	'((?x aw-delete-window "Delete Window")
+	  (?m aw-swap-window "Swap Windows")
+	  (?M aw-move-window "Move Window")
+	  (?c aw-copy-window "Copy Window")
+	  (?j aw-switch-buffer-in-window "Select Buffer")
+	  (?f aw-flip-window)
+	  (?p aw-switch-buffer-other-window "Switch Buffer Other Window")
+	  (?c aw-split-window-fair "Split Fair Window")
+	  (?v aw-split-window-vert "Split Vert Window")
+	  (?b aw-split-window-horz "Split Horz Window")
+	  (?1 delete-other-windows "Delete Other Windows")
+	  (?? aw-show-dispatch-help))))
 
 (use-package aggressive-indent
   :ensure t
@@ -219,64 +229,70 @@ Extended Format date in the date field and return it as a string obeing
   (bibtex-completion-notes-extension ".org")
   (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt")))
 
+(use-package cape
+  :ensure t
+  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+  ;; Press C-c p ? to for help.
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
+  ;; Alternatively bind Cape commands individually.
+  ;; :bind (("C-c p d" . cape-dabbrev)
+  ;;        ("C-c p h" . cape-history)
+  ;;        ("C-c p f" . cape-file)
+  ;;        ...)
+  :hook
+  (completion-at-point-functions . cape-dabbrev)
+  (completion-at-point-functions . cape-file)
+  (completion-at-point-functions . cape-elisp-block)
+  (completion-at-point-functions  .cape-keyword))
+
 (use-package cc-mode
   :custom
   (c-default-style "bsd"))
-
-(use-package company
-  :ensure t
-  :diminish
-  :bind
-  ("<tab>" . company-indent-or-complete-common)
-  :hook
-  (after-init . global-company-mode))
-
-(use-package company-auctex
-  :ensure t
-  :after latex
-  :config
-  (company-auctex-init))
 
 (use-package company-bibtex
   :ensure t
   :hook
   (bibtex-mode . (lambda () (add-to-list 'company-backends 'company-bibtex))))
 
-(use-package company-box
-  :ensure t
-  :diminish
-  :hook (company-mode . company-box-mode))
-
 (use-package company-coq
   :ensure t
   :hook (coq-mode . company-coq-mode))
 
-(use-package company-math
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-math-symbols-unicode)
-  (add-to-list 'company-backends 'company-latex-commands))
-
-(use-package company-org-block
-  :ensure t
-  :hook ((org-mode . (lambda ()
-		       (setq-local company-backends '(company-org-block))
-		       (company-mode +1)))))
-
-(use-package counsel
+(use-package consult
   :ensure t
   :bind
-  (("C-x b"   . counsel-switch-buffer)
-   ("C-x C-b" . counsel-ibuffer)
-   ("C-x C-f" . counsel-find-file)
-   ("M-x"     . counsel-M-x)
-   ("M-y"     . counsel-yank-pop)
-   ("<f2> i"  . counsel-info-lookup-symbol)
-   ("<f2> j"  . counsel-set-variable)
-   ("<f2> u"  . counsel-unicode-char))
-  :config
-  (add-to-list 'ivy-initial-inputs-alist
-	       '(counsel-M-x . "")))
+  (("C-x b"   . consult-buffer)
+   ("C-x C-f" . find-file)
+   ("C-s"     . consult-line)
+   ("M-x"     . execute-extended-command)))
+
+(use-package consult-mu
+  :after (consult mu4e)
+  :bind
+  :custom
+  ;;maximum number of results shown in minibuffer
+  (consult-mu-maxnum 200)
+  ;;show preview when pressing any keys
+  (consult-mu-preview-key 'any)
+  ;;do not mark email as read when previewed
+  (consult-mu-mark-previewed-as-read nil)
+  ;;do not amrk email as read when selected. This is a good starting point to ensure you would not miss important emails marked as read by mistake especially when trying this package out. Later you can change this to t.
+  (consult-mu-mark-viewed-as-read nil)
+  ;; open the message in mu4e-view-buffer when selected.
+  (consult-mu-action #'consult-mu--view-action))
+
+(use-package consult-mu-compose)
+(use-package consult-mu-contacts)
+(setq consult-mu-compose-preview-key "M-o")
+(setq consult-mu-embark-attach-file-key "C-a")
+
+(use-package corfu
+  :ensure t
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator))
+  :init
+  (global-corfu-mode))
 
 (use-package csv-mode
   :ensure t)
@@ -284,6 +300,19 @@ Extended Format date in the date field and return it as a string obeing
 (use-package cus-edit
   :custom
   (custom-file null-device "Don't store customizations"))
+
+;; Use Dabbrev with Corfu!
+(use-package dabbrev
+  :ensure t
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/"   . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  :config
+  (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+  ;; Since 29.1, use `dabbrev-ignored-buffer-regexps' on older.
+  (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
 
 (use-package diary
   :ensure diary-lib
@@ -323,6 +352,17 @@ Extended Format date in the date field and return it as a string obeing
   :custom
   (elpy-rpc-python-command "python3"))
 
+(use-package embark
+  :ensure t
+  :bind
+  (("C-."   . embark-act)         ;; Begin the embark process
+   ("C-;"   . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  )
+
+(use-package embark-consult
+  :ensure t)
+
 (use-package ess
   :ensure t)
 
@@ -349,13 +389,11 @@ Extended Format date in the date field and return it as a string obeing
   :config
   (unbind-key "C-;" flyspell-mode-map))
 
-(use-package flyspell-correct-ivy
-  :ensure t
+(use-package flyspell-correct
   :after flyspell
   :bind
-  ("C-<f12>" . flyspell-correct-wrapper)
-  :config
-  (setq flyspell-correct-interface #'flyspell-correct-ivy))
+  (:map flyspell-mode-map
+	("C-;" . flyspell-correct-wrapper)))
 
 (use-package gnus
   :ensure t
@@ -420,19 +458,6 @@ Extended Format date in the date field and return it as a string obeing
   :defer t
   :custom
   (ispell-dictionary "en_CA-w_accents"))
-
-(use-package ivy
-  :ensure t
-  :diminish
-  :bind
-  (("C-c v"   . ivy-push-view)
-   ("C-c V"   . ivy-pop-view)
-   ("C-c C-r" . ivy-resume))
-  :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-count-format "(%d/%d) ")
-  :config
-  (ivy-mode 1))
 
 (use-package ivy-bibtex
   :ensure t
@@ -513,10 +538,16 @@ Otherwise split the current paragraph into one sentence per line."
   (:map LaTeX-mode-map
 	("M-q" . ales/fill-paragraph)))
 
-(use-package libmpdel
-  ;; used by mpdel to connect to mpd
+(use-package lsp-mode
+  :ensure t
   :custom
-  (libmpdel-hostname "asteria.home.arpa"))
+  (lsp-completion-provider :none) ;; we use Corfu!
+  :init
+  (defun my/lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless))) ;; Configure orderless
+  :hook
+  (lsp-completion-mode . my/lsp-mode-setup-completion))
 
 (use-package magit
   :ensure t
@@ -524,6 +555,13 @@ Otherwise split the current paragraph into one sentence per line."
   (put 'magit-clean 'disabled nil)
   :custom
   (magit-diff-refine-hunk 'all))
+
+(use-package marginalia
+  :ensure t
+  :bind (:map minibuffer-local-map
+              ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
 
 (use-package markdown-mode
   :ensure t
@@ -569,14 +607,6 @@ Otherwise split the current paragraph into one sentence per line."
   ;; mpd client
   :custom
   (mpc-host "asteria.home.arpa"))
-
-(use-package mpdel
-  ;; mpd client
-  ;; host/port customization under libmpdel package
-  :ensure t
-  :diminish
-  :config
-  (mpdel-mode))
 
 (use-package mu4e
   :ensure t
@@ -691,6 +721,10 @@ Otherwise split the current paragraph into one sentence per line."
   ;; compose messages in new frame
   (mu4e-compose-in-new-frame t)
 
+  ;; use default emacs completion
+  (mu4e-read-option-use-builtin nil)
+  (mu4e-completing-read-function 'completing-read)
+
   ;; hide long list off addresses from main view and silence warnings
   ;; about mu4e not recognizing user-mail-address against regexp
   (mu4e-main-hide-personal-addresses t)
@@ -704,8 +738,14 @@ Otherwise split the current paragraph into one sentence per line."
      ("/gmail/INBOX" . ?g)
      ("/queensu/INBOX" . ?q))))
 
+(use-package mu4e-column-faces
+  :ensure t
+  :after mu4e
+  :config (mu4e-column-faces-mode))
+
 ;; provided through git/chezmoi
-(use-package mu4e-goodies-tags)
+(use-package mu4e-goodies-tags
+  :after mu4e)
 
 (use-package oauth2
   :ensure t)
@@ -715,6 +755,16 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package octave
   :mode ("\\.m\'" . octave-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package org
   :bind (:map org-mode-map
@@ -1093,6 +1143,11 @@ If not, issue a warning."
 (use-package sass-mode
   :ensure t)
 
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
 (use-package scroll-bar
   :custom
   (scroll-bar-mode nil))
@@ -1128,11 +1183,6 @@ If not, issue a warning."
 (use-package spaceline
   :ensure t
   :requires spaceline-config)
-
-(use-package swiper
-  :ensure t
-  :bind
-  (("C-s" . swiper)))
 
 (use-package tex
   :ensure auctex
@@ -1173,17 +1223,23 @@ If not, issue a warning."
   :config
   (add-hook 'tuareg-mode-hook 'merlin-mode t))
 
-(use-package twittering-mode
-  :ensure t
-  :custom
-  (twittering-icon-mode t)
-  (twittering-icon-storage-file "~/.emacs.d/storage/twittering-mode-icons.gz")
-  (twittering-use-icon-storage t))
-
 (use-package vc-git
   :requires vc
   :config
   (add-to-list 'vc-handled-backends 'git))
+
+(use-package vertico
+  :ensure t
+  :custom
+  (vertico-scroll-margin 0) ;; Different scroll margin
+  (vertico-count 20) ;; Show more candidates
+  (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (vertico-mode))
+
+(use-package vertico-directory
+  :ensure vertico)
 
 (use-package visual-fill-column
   :ensure t)

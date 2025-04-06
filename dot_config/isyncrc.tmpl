@@ -12,13 +12,6 @@ PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
-IMAPAccount mcgill
-Host outlook.office365.com
-User ryan.kavanagh@mail.mcgill.ca
-PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" $XDG_STATE_HOME/xoauth2-tokens/ryan.kavanagh.mail.mcgill.ca"
-AuthMechs XOAUTH2
-TLSType IMAPS
-
 IMAPAccount CMU
 Host imap.gmail.com
 User rkavanag@alumni.cmu.edu
@@ -53,9 +46,6 @@ Account UQAM
 IMAPStore queensu-remote
 Account queensu
 
-IMAPStore mcgill-remote
-Account mcgill
-
 IMAPStore cmu-remote
 Account CMU
 
@@ -88,11 +78,6 @@ Subfolders Verbatim
 Path ~/Maildir/queensu/
 Inbox ~/Maildir/queensu/INBOX
 
-MaildirStore mcgill-maildir
-Subfolders Verbatim
-Path ~/Maildir/mcgill/
-Inbox ~/Maildir/mcgill/INBOX
-
 MaildirStore gmail-maildir
 Subfolders Verbatim
 Path ~/Maildir/gmail/
@@ -108,7 +93,7 @@ Far :uqam-remote:
 Near :uqam-maildir:
 Create Both
 Patterns INBOX
-Expunge Near
+Expunge Both
 Sync All
 
 Channel uqam-others
@@ -127,14 +112,6 @@ Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Ite
 Expunge Both
 Remove Both
 Sync All
-
-Channel mcgill
-Far :mcgill-remote:
-Near :mcgill-maildir:
-Create Near
-Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
-Expunge Near
-Sync Pull
 
 Channel cmu
 Far :cmu-remote:
@@ -164,6 +141,7 @@ Channel rak-misc
 Far :rak-remote:
 Near :rak-maildir:
 Create Both
+Remove Both
 Expunge Near
 Patterns * !Archive !Virtual !Virtual/* !INBOX !Lists !Lists/*
 Sync All
@@ -201,6 +179,7 @@ Channel gmail-others
 Far :gmail-remote:
 Near :gmail-maildir:
 Create Near
+Remove Both
 Expunge Near
 Pattern * !INBOX !"[Google Mail]/Sent Mail" !"[Google Mail]/Drafts"  !"[Google Mail]/Bin" !"[Google Mail]/All Mail"
 Sync Pull
@@ -209,6 +188,7 @@ Channel archive-to-gmail
 Far :ryan.a.kavanagh.gmail.com:
 Near :archive:
 Create Both
+Remove Both
 Expunge Both
 Pattern * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Spam" !"[Gmail]/Starred" !"[Gmail]/Trash"
 Sync All
