@@ -1,8 +1,21 @@
-rak-meta (0.21) unstable; urgency=medium
+rak-meta (0.22) unstable; urgency=medium
+
+  * git merge
+
+ -- Ryan Kavanagh <rak@debian.org>  Thu, 08 May 2025 16:37:18 -0400
+
+rak-meta (0.21-koios) unstable; urgency=medium
 
   * rak-sysadmin: systemd-resolved dropped by Debian, use resolvconf instead
 
  -- Ryan Kavanagh <rak@debian.org>  Mon, 31 Mar 2025 13:46:25 -0400
+
+rak-meta (0.21-asteria) unstable; urgency=medium
+
+  * rak-rlang: R packages 
+  * bunch of other manual packages now auto
+
+ -- Ryan Kavanagh <rak@debian.org>  Sat, 08 Mar 2025 12:21:28 -0500
 
 rak-meta (0.20) unstable; urgency=medium
 
