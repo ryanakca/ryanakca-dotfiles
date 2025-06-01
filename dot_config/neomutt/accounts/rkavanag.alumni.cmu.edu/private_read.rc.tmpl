@@ -1,8 +1,7 @@
 # vim: syntax=muttrc
 
 set imap_keepalive = 60
-{{- if .password.cmu }}
-set imap_pass = '{{ .password.cmu }}'
-{{- end }}
+set imap_authenticators = 'xoauth2'
+set imap_oauth_refresh_command = "~/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' \"$XDG_STATE_HOME/xoauth2-tokens/rkavanag.alumni.cmu.edu\""
 set imap_passive = 'no'
 set imap_user = 'rkavanag@alumni.cmu.edu'
