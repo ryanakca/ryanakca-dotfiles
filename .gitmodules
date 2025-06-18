@@ -4,3 +4,6 @@
 [submodule "dot_emacs.d/lisp/mu4e-goodies"]
 	path = dot_emacs.d/lisp/mu4e-goodies
 	url = git@github.com:panjie/mu4e-goodies.git
+[submodule "dot_emacs.d/straight/repos/straight.el"]
+	path = dot_emacs.d/straight/repos/straight.el
+	url = git@github.com:radian-software/straight.el.git

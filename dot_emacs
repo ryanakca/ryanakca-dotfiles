@@ -1,20 +1,22 @@
 ;; -*- emacs-lisp -*-
 ;; (setq debug-on-error t)
 
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (let ((default-directory  "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
-(package-initialize)
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; Boostrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (load bootstrap-file nil 'nomessage))
+;; use-package integration:
+(straight-use-package 'use-package)
 
-(eval-when-compile
-  (require 'use-package))
+(setq package-enable-at-startup nil)
 
 ;;; General emacs configuration
 (use-package emacs
@@ -52,18 +54,18 @@
 
 (if (string= (system-name) "demeter.rak.ac")
     (use-package leuven-theme ; nice theme for lecturing / projectors
-      :ensure t
+      :straight t
       :config
       (load-theme 'leuven t))
   (use-package moe-theme
-    :ensure t
+    :straight t
     :after powerline ; must be loaded after for powerline-moe-theme to work
     :config
     (moe-dark)
     (moe-theme-powerline)))
 
 (use-package ace-window
-  :ensure t
+  :straight t
   :custom
   ;; home row keys
   (aw-keys '(?h ?t ?n ?s ?a ?o ?e ?u ?i ?d))
@@ -86,7 +88,7 @@
 	  (?? aw-show-dispatch-help))))
 
 (use-package aggressive-indent
-  :ensure t
+  :straight t
   :config
   (global-aggressive-indent-mode 1))
 
@@ -94,7 +96,7 @@
   :diminish auto-revert-mode)
 
 (use-package avy
-  :ensure t
+  :straight t
   :config
   (avy-setup-default)
   :bind
@@ -221,7 +223,7 @@ Extended Format date in the date field and return it as a string obeing
 	   (seq-do (lambda (pair) (add-to-list 'bibtex-autokey-titleword-change-strings pair)) charMap))))
 
 (use-package bibtex-completion
-  :ensure ivy-bibtex
+  :straight ivy-bibtex
   :custom
   (bibtex-completion-bibliography "~/Documents/papers/library.bib")
   (bibtex-completion-library-path '("~/Documents/papers/pdfs/"))
@@ -230,7 +232,7 @@ Extended Format date in the date field and return it as a string obeing
   (bibtex-completion-pdf-extension '(".pdf" ".djvu" ".txt")))
 
 (use-package cape
-  :ensure t
+  :straight t
   ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
   ;; Press C-c p ? to for help.
   :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
@@ -250,16 +252,16 @@ Extended Format date in the date field and return it as a string obeing
   (c-default-style "bsd"))
 
 (use-package company-bibtex
-  :ensure t
+  :straight t
   :hook
   (bibtex-mode . (lambda () (add-to-list 'company-backends 'company-bibtex))))
 
 (use-package company-coq
-  :ensure t
+  :straight t
   :hook (coq-mode . company-coq-mode))
 
 (use-package consult
-  :ensure t
+  :straight t
   :bind
   (("C-x b"   . consult-buffer)
    ("C-x C-f" . find-file)
@@ -287,7 +289,7 @@ Extended Format date in the date field and return it as a string obeing
 (setq consult-mu-embark-attach-file-key "C-a")
 
 (use-package corfu
-  :ensure t
+  :straight t
   :bind
   (:map corfu-map
         ("SPC" . corfu-insert-separator))
@@ -295,7 +297,7 @@ Extended Format date in the date field and return it as a string obeing
   (global-corfu-mode))
 
 (use-package csv-mode
-  :ensure t)
+  :straight t)
 
 (use-package cus-edit
   :custom
@@ -303,7 +305,7 @@ Extended Format date in the date field and return it as a string obeing
 
 ;; Use Dabbrev with Corfu!
 (use-package dabbrev
-  :ensure t
+  :straight t
   ;; Swap M-/ and C-M-/
   :bind (("M-/"   . dabbrev-completion)
          ("C-M-/" . dabbrev-expand))
@@ -315,7 +317,7 @@ Extended Format date in the date field and return it as a string obeing
   (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
 
 (use-package diary
-  :ensure diary-lib
+  :straight diary-lib
   :custom
   (diary-display-function 'diary-fancy-display)
   :hook ((diary-list-entries . diary-include-other-diary-files)
@@ -324,36 +326,36 @@ Extended Format date in the date field and return it as a string obeing
 (use-package dictem)
 
 (use-package diminish
-  :ensure t)
+  :straight t)
 
 (use-package doi-utils
   ;; provided by org-ref
-  :ensure org-ref)
+  :straight org-ref)
 
 (use-package dtrt-indent
-  :ensure t)
+  :straight t)
 
 (use-package dune
-  :ensure t)
+  :straight t)
 
 (use-package dune-format
-  :ensure t)
+  :straight t)
 
 (use-package eldoc
   :diminish)
 
 (use-package elpher
-  :ensure t)
+  :straight t)
 
 (use-package elpy
-  :ensure t
+  :straight t
   :after python
   :config (elpy-enable)
   :custom
   (elpy-rpc-python-command "python3"))
 
 (use-package embark
-  :ensure t
+  :straight t
   :bind
   (("C-."   . embark-act)         ;; Begin the embark process
    ("C-;"   . embark-dwim)        ;; good alternative: M-.
@@ -361,13 +363,13 @@ Extended Format date in the date field and return it as a string obeing
   )
 
 (use-package embark-consult
-  :ensure t)
+  :straight t)
 
 (use-package ess
-  :ensure t)
+  :straight t)
 
 (use-package erc
-  :ensure t
+  :straight t
   :custom
   (erc-hide-list '("JOIN" "PART" "QUIT"))
   (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
@@ -381,7 +383,7 @@ Extended Format date in the date field and return it as a string obeing
   )
 
 (use-package fill-column-indicator
-  :ensure t)
+  :straight t)
 
 (use-package flyspell
   :bind
@@ -396,7 +398,7 @@ Extended Format date in the date field and return it as a string obeing
 	("C-;" . flyspell-correct-wrapper)))
 
 (use-package gnus
-  :ensure t
+  :straight t
   :defer t
   :bind
   ;; (:map gnus-summary-buffer-map
@@ -446,28 +448,28 @@ Extended Format date in the date field and return it as a string obeing
   (gnus-group-mode . gnus-topic-mode))
 
 (use-package haskell-mode
-  :ensure t
+  :straight t
   :hook ((haskell-mode . turn-on-haskell-doc-mode)
 	 (haskell-mode . turn-on-haskell-indentation)))
 
 (use-package info-look
-  :ensure t)
+  :straight t)
 
 (use-package ispell
-  :ensure t
+  :straight t
   :defer t
   :custom
   (ispell-dictionary "en_CA-w_accents"))
 
 (use-package ivy-bibtex
-  :ensure t
+  :straight t
   :bind (("C-c b" . ivy-bibtex)))
 
 (use-package ivy-hydra
-  :ensure t)
+  :straight t)
 
 (use-package latex
-  :ensure auctex
+  :straight auctex
   :after info-look
   :mode ("\\.tex\\'" . LaTeX-mode)
   :init
@@ -539,7 +541,7 @@ Otherwise split the current paragraph into one sentence per line."
 	("M-q" . ales/fill-paragraph)))
 
 (use-package lsp-mode
-  :ensure t
+  :straight t
   :custom
   (lsp-completion-provider :none) ;; we use Corfu!
   :init
@@ -550,21 +552,21 @@ Otherwise split the current paragraph into one sentence per line."
   (lsp-completion-mode . my/lsp-mode-setup-completion))
 
 (use-package magit
-  :ensure t
+  :straight t
   :config
   (put 'magit-clean 'disabled nil)
   :custom
   (magit-diff-refine-hunk 'all))
 
 (use-package marginalia
-  :ensure t
+  :straight t
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
 
 (use-package markdown-mode
-  :ensure t
+  :straight t
   :init
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
@@ -581,7 +583,7 @@ Otherwise split the current paragraph into one sentence per line."
 
 (use-package merlin
   ;; ocaml assistant
-  :ensure t)
+  :straight t)
 
 (use-package message
   :custom
@@ -594,7 +596,7 @@ Otherwise split the current paragraph into one sentence per line."
   (message-mode . visual-fill-column-mode))
 
 (use-package message-view-patch
-  :ensure t)
+  :straight t)
 
 (use-package minibuffer
   :config
@@ -609,7 +611,7 @@ Otherwise split the current paragraph into one sentence per line."
   (mpc-host "asteria.home.arpa"))
 
 (use-package mu4e
-  :ensure t
+  :straight t
   :bind
   (("<f6>" . mu4e))
   :config
@@ -739,7 +741,7 @@ Otherwise split the current paragraph into one sentence per line."
      ("/queensu/INBOX" . ?q))))
 
 (use-package mu4e-column-faces
-  :ensure t
+  :straight t
   :after mu4e
   :config (mu4e-column-faces-mode))
 
@@ -748,16 +750,16 @@ Otherwise split the current paragraph into one sentence per line."
   :after mu4e)
 
 (use-package oauth2
-  :ensure t)
+  :straight t)
 
 (use-package ocp-indent
-  :ensure t)
+  :straight t)
 
 (use-package octave
   :mode ("\\.m\'" . octave-mode))
 
 (use-package orderless
-  :ensure t
+  :straight t
   :custom
   ;; Configure a custom style dispatcher (see the Consult wiki)
   ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
@@ -775,20 +777,20 @@ Otherwise split the current paragraph into one sentence per line."
   (org-link-file-path-type 'relative))
 
 (use-package org-chef
-  :ensure t)
+  :straight t)
 
 (use-package org-noter
-  :ensure t
+  :straight t
   :custom
   ;; Surely there's an easier way of setting this?
   (org-noter-notes-search-path '("~/Documents/papers/notes/")))
 
 (use-package org-ref
-  :ensure t
+  :straight t
   :after ivy-bibtex)
 
 (use-package org-ref-arxiv
-  :ensure org-ref
+  :straight org-ref
   :custom
   (arxiv-entry-format-string "@Misc{%s,
 title = {%s},
@@ -835,7 +837,7 @@ Returns a formatted BibTeX entry."
   (advice-add 'arxiv-get-bibtex-entry-via-arxiv-api :override 'my/arxiv-get-bibtex-entry-via-arxiv-api))
 
 (use-package org-ref-bibtex
-  :ensure org-ref
+  :straight org-ref
   :after bibtex-completion ; needs bibtex-completion-library-path
   :custom
   (org-ref-title-case-types '(("article" "title")
@@ -887,10 +889,10 @@ Returns a formatted BibTeX entry."
   ((prog-mode . flyspell-prog-mode)))
 
 (use-package reftex-cite
-  :ensure t)
+  :straight t)
 
 (use-package org-ref-core
-  :ensure org-ref
+  :straight org-ref
   :after org-ref-bibtex
   :after reftex-cite
   :after ivy-bibtex
@@ -1034,27 +1036,27 @@ If not, issue a warning."
      orcb-clean-nil-opinionated)))
 
 (use-package org-ref-isbn
-  :ensure org-ref)
+  :straight org-ref)
 
 (use-package org-ref-pdf
-  :ensure org-ref)
+  :straight org-ref)
 
 (use-package ox-md
   ;; org-mode to markdown exporter
-  :ensure org
+  :straight org
   :after (org))
 
 (use-package outline
-  :ensure t
+  :straight t
   :hook (LaTeX-mode . outline-minor-mode))
 
 (use-package outline-magic
-  :ensure t
+  :straight t
   :after outline
   :bind (:map outline-minor-mode-map ([f10] . outline-cycle)))
 
 (use-package paren
-  :ensure t
+  :straight t
   :config
   (show-paren-mode t)
   :custom
@@ -1062,7 +1064,7 @@ If not, issue a warning."
   (show-paren-style 'expression))
 
 (use-package pdf-tools
-  :ensure t
+  :straight t
   :config
   (pdf-tools-install))
 
@@ -1072,10 +1074,10 @@ If not, issue a warning."
 	("C-s" . isearch-forward)))
 
 (use-package powerline
-  :ensure t)
+  :straight t)
 
 (use-package proof-general
-  :ensure t
+  :straight t
   :custom
   (proof-disappearing-proofs t)
   (proof-electric-terminator-enable t)
@@ -1085,13 +1087,13 @@ If not, issue a warning."
   (proof-locked-face ((t (:weight bold)))))
 
 (use-package py-autopep8
-  :ensure t
+  :straight t
   :hook (python-mode . py-autopep8-enable-on-save)
   :custom
   (py-autopep8-options '("--max-line-length=80")))
 
 (use-package python
-  :ensure t
+  :straight t
   :mode ("\\.py\\'" . python-mode)
   :custom (python-python-command "/usr/bin/python3")
   :interpreter ("python3" . python-mode)
@@ -1101,14 +1103,14 @@ If not, issue a warning."
   (python-shell-interpreter "python3"))
 
 (use-package rainbow-delimiters
-  :ensure t
+  :straight t
   :hook ((LaTeX-mode prog-mode) . rainbow-delimiters-mode))
 
 (use-package rainbow-mode
-  :ensure t)
+  :straight t)
 
 (use-package reftex
-  :ensure t
+  :straight t
   :after latex
   :hook (LaTeX-mode . reftex-mode)
   :custom
@@ -1141,7 +1143,7 @@ If not, issue a warning."
   (rfc2047-quote-decoded-words-containing-tspecials t))
 
 (use-package sass-mode
-  :ensure t)
+  :straight t)
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -1168,7 +1170,7 @@ If not, issue a warning."
   (setq smerge-command-prefix (kbd "C-c v")))
 
 (use-package sml-mode
-  :ensure t
+  :straight t
   :mode ("\\.sml\\'" . sml-mode))
 
 (use-package solar
@@ -1181,11 +1183,11 @@ If not, issue a warning."
   (calendar-location-name "Montreal, QC"))
 
 (use-package spaceline
-  :ensure t
+  :straight t
   :requires spaceline-config)
 
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :custom
   (reftex-plug-into-AUCTeX t)
   (TeX-parse-self t) ; Parse documents to provide completion for packages, etc.
@@ -1219,7 +1221,7 @@ If not, issue a warning."
   (tramp-default-method "ssh"))
 
 (use-package tuareg
-  :ensure t
+  :straight t
   :config
   (add-hook 'tuareg-mode-hook 'merlin-mode t))
 
@@ -1229,7 +1231,7 @@ If not, issue a warning."
   (add-to-list 'vc-handled-backends 'git))
 
 (use-package vertico
-  :ensure t
+  :straight t
   :custom
   (vertico-scroll-margin 0) ;; Different scroll margin
   (vertico-count 20) ;; Show more candidates
@@ -1239,25 +1241,25 @@ If not, issue a warning."
   (vertico-mode))
 
 (use-package vertico-directory
-  :ensure vertico)
+  :straight vertico)
 
 (use-package visual-fill-column
-  :ensure t)
+  :straight t)
 
 (use-package wc-mode
-  :ensure t)
+  :straight t)
 
 (use-package windmove
-  :ensure t
+  :straight t
   :config
   (windmove-default-keybindings)
   :custom
   (windmove-wrap-around t))
 
 (use-package ws-butler
-  :ensure t
+  :straight t
   :config
   (ws-butler-global-mode))
 
 (use-package yaml-mode
-  :ensure t)
+  :straight t)
