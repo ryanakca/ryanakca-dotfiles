@@ -5,7 +5,7 @@
 set copy = no
 set from = 'Ryan Kavanagh <kavanagh.ryan@uqam.ca>'
 set smtp_authenticators = 'xoauth2'
-set smtp_oauth_refresh_command = "~/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' $XDG_STATE_HOME/xoauth2-tokens/kavanagh.ryan.uqam.ca"
+set smtp_oauth_refresh_command = "~/bin/mutt_oauth2.py --encryption-pipe='cat' --decryption-pipe='cat' \"$XDG_STATE_HOME/xoauth2-tokens/kavanagh.ryan.uqam.ca\""
 set smtp_url = 'smtp://kavanagh.ryan@uqam.ca@smtp.office365.com:587/'
 
 set signature = "`pwd`/signature"
