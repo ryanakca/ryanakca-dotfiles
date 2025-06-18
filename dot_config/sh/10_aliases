@@ -2,9 +2,9 @@
 
 alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
 
-alias 1920s='mplayer -playlist http://kara.fast-serv.com:8398/listen.pls'
-alias dismuke='mplayer -playlist https://early1900s.org/radiodismuke/radiodismuke.pls'
-alias wzum='mplayer http://pubmusic.streamguys1.com/wzum-aac'
+alias 1920s='mpv -playlist http://kara.fast-serv.com:8398/listen.pls'
+alias dismuke='mpv -playlist https://early1900s.org/radiodismuke/radiodismuke.pls'
+alias wzum='mpv http://pubmusic.streamguys1.com/wzum-aac'
 
 alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
