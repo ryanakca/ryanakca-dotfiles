@@ -15,6 +15,8 @@
   (load bootstrap-file nil 'nomessage))
 ;; use-package integration:
 (straight-use-package 'use-package)
+;; prevent org version mismatches
+(straight-use-package 'org)
 
 (setq package-enable-at-startup nil)
 
@@ -371,16 +373,53 @@ Extended Format date in the date field and return it as a string obeing
 (use-package erc
   :straight t
   :custom
-  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-hide-list '("JOIN" "PART" "QUIT" "353"))
   (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
-  ;; :config
-  ;; (erc-tls :server "libera.pounce.rak.ac"
-  ;; 	   :port 40404
-  ;; 	   :nick "rak"
-  ;; 	   :client-certificate '("/home/rak/.config/catgirl/weechat.pem"
-  ;; 				 "/home/rak/.config/catgirl/weechat.pem")
-  ;; 	   :user "koios-erc")
-  )
+  (erc-fill-column 120)
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 20)
+  (erc-track-exclude '("#debian-devel-changes"))
+  (erc-track-visibility nil)
+  (erc-truncate-mode t)
+  (erc-input-line-position -1)
+  :config
+  (defun my/connect-irc ()
+    (interactive)
+    (erc-tls :server "libera.pounce.rak.ac"
+	     :port 40404
+	     :nick "rak"
+	     :client-certificate '("/home/rak/.config/catgirl/weechat.pem"
+				   "/home/rak/.config/catgirl/weechat.pem")
+	     :user "koios-erc")
+    (erc-tls :server "oftc.pounce.rak.ac"
+	     :port 40404
+	     :nick "rak"
+	     :client-certificate '("/home/rak/.config/catgirl/weechat.pem"
+				   "/home/rak/.config/catgirl/weechat.pem")
+	     :user "koios-erc")
+    (erc-tls :server "tilde.pounce.rak.ac"
+	     :port 40404
+	     :nick "rak"
+	     :client-certificate '("/home/rak/.config/catgirl/weechat-sdf.pem"
+				   "/home/rak/.config/catgirl/weechat-sdf.pem")
+	     :user "koios-erc")
+    (erc-tls :server "sdf.pounce.rak.ac"
+	     :port 40404
+	     :nick "rak"
+	     :client-certificate '("/home/rak/.config/catgirl/weechat-sdf.pem"
+				   "/home/rak/.config/catgirl/weechat-sdf.pem")
+	     :user "koios-erc"))
+  (add-to-list 'erc-modules 'nickbar)
+  (add-to-list 'erc-modules 'nicks)
+  (add-to-list 'erc-modules 'notifications)
+  (add-to-list 'erc-modules 'spelling)
+  (add-to-list 'erc-modules 'truncate)
+  :hook
+  ((erc-mode . (lambda ()
+		 ;; to help ensure the ERC> prompt stays at the bottom
+		 (setq-local scroll-conservatively 101))))
+  :bind
+  (("C-<f6>" . my/connect-irc)))
 
 (use-package fill-column-indicator
   :straight t)
@@ -570,10 +609,14 @@ Otherwise split the current paragraph into one sentence per line."
   :init
   (autoload 'markdown-mode "markdown-mode"
     "Major mode for editing Markdown files" t)
-  :hook ((markdown-mode . (lambda ()
-			    (setq-default indent-tabs-mode nil))))
+  :hook
+  ((markdown-mode . (lambda ()
+		      (setq-default indent-tabs-mode nil))))
+  (markdown-mode . turn-off-auto-fill)
+  (markdown-mode . visual-line-mode)
+  (markdown-mode . visual-fill-column-mode)
   :mode (("\\.markdown\\'" . markdown-mode)
-	 ("\\.mdown\'" . markdown-mode)))
+         ("\\.mdown\'" . markdown-mode)))
 
 (use-package menu-bar
   :config
