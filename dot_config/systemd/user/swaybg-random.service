@@ -5,7 +5,7 @@ Description=Randomize Wayland background
 Type=exec
 Restart=always
 RuntimeMaxSec=1h
-ExecStart=/home/rak/bin/swaybg-random
+ExecStart=swaybg-random
 
 [Install]
 WantedBy=wayland-session.target
