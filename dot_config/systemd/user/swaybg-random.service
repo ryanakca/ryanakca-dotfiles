@@ -5,7 +5,7 @@ Description=Randomize Wayland background
 Type=exec
 Restart=always
 RuntimeMaxSec=1h
-ExecStart=swaybg-random
+ExecStart=%h/.local/bin/swaybg-random
 
 [Install]
 WantedBy=wayland-session.target
