@@ -8,14 +8,14 @@ TLSType IMAPS
 IMAPAccount queensu
 Host outlook.office365.com
 User 9rak@queensu.ca
-PassCmd "~/bin/mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" $XDG_STATE_HOME/xoauth2-tokens/9rak.queensu.ca"
+PassCmd "mutt_oauth2.py --client-id="08162f7c-0fd2-4200-a84a-f25a4db0b584" --client-secret="TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82" --encryption-pipe="cat" --decryption-pipe="cat" $XDG_STATE_HOME/xoauth2-tokens/9rak.queensu.ca"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
 IMAPAccount CMU
 Host imap.gmail.com
 User rkavanag@alumni.cmu.edu
-PassCmd "~/bin/mutt_oauth2.py --encryption-pipe=cat --decryption-pipe=cat $XDG_STATE_HOME/xoauth2-tokens/rkavanag.alumni.cmu.edu"
+PassCmd "mutt_oauth2.py --encryption-pipe=cat --decryption-pipe=cat $XDG_STATE_HOME/xoauth2-tokens/rkavanag.alumni.cmu.edu"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
@@ -29,7 +29,7 @@ TLSType IMAPS
 IMAPAccount ryan.a.kavanagh.gmail.com
 Host imap.gmail.com
 User ryan.a.kavanagh@gmail.com
-PassCmd "~/bin/mutt_oauth2.py --encryption-pipe=cat --decryption-pipe=cat $XDG_STATE_HOME/xoauth2-tokens/ryan.a.kavanagh.gmail.com"
+PassCmd "mutt_oauth2.py --encryption-pipe=cat --decryption-pipe=cat $XDG_STATE_HOME/xoauth2-tokens/ryan.a.kavanagh.gmail.com"
 AuthMechs XOAUTH2
 TLSType IMAPS
 
@@ -100,7 +100,7 @@ Channel uqam-others
 Far :uqam-remote:
 Near :uqam-maildir:
 Create Both
-Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox !Probl*
+Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Flux RSS" !Journal !Notes !Outbox !Probl*
 Expunge Near
 Sync All
 
@@ -108,7 +108,7 @@ Channel queensu
 Far :queensu-remote:
 Near :queensu-maildir:
 Create Both
-Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Deleted Items" !"Flux RSS" !Journal !Notes !Outbox
+Patterns * !Calendar !Calendar/* !Contacts !"Conversation History" !"Flux RSS" !Journal !Notes !Outbox
 Expunge Both
 Remove Both
 Sync All
@@ -118,7 +118,7 @@ Far :cmu-remote:
 Near :cmu-maildir:
 Create Both
 Expunge Near
-Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred"
 Sync All
 
 Channel rak-inbox
@@ -172,7 +172,7 @@ Far :gmail-remote:
 Near :gmail-maildir:
 Create Near
 Expunge Near
-Pattern INBOX "[Google Mail]/Sent Mail" "[Google Mail]/Drafts"  "[Google Mail]/Bin"
+Pattern INBOX "[Google Mail]/Sent Mail" "[Google Mail]/Drafts" "[Google Mail]/Bin"
 Sync Pull
 
 Channel gmail-others
