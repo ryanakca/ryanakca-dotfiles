@@ -1,10 +1,25 @@
 #!/bin/sh
 
-alias apt-upgrade='sudo apt-get update && sudo apt-get dist-upgrade'
+apt-upgrade() {
+    sudo apt-get update && sudo apt-get dist-upgrade
+}
 
-alias 1920s='mpv -playlist http://kara.fast-serv.com:8398/listen.pls'
-alias dismuke='mpv -playlist https://early1900s.org/radiodismuke/radiodismuke.pls'
-alias wzum='mpv http://pubmusic.streamguys1.com/wzum-aac'
+1920s() {
+    mpv -playlist 'http://kara.fast-serv.com:8398/listen.pls'
+}
+dismuke() {
+    mpv -playlist 'https://early1900s.org/radiodismuke/radiodismuke.pls'
+}
+wzum() {
+    mpv 'http://pubmusic.streamguys1.com/wzum-aac'
+}
+wesa() {
+    # WESA JazzWorks
+    mpv 'https://ais-sa3.cdnstream1.com/2558_128.aac'
+}
+wyep() {
+    mpv 'https://ais-sa3.cdnstream1.com/2557_128.aac'
+}
 
 alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
