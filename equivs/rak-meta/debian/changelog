@@ -1,3 +1,15 @@
+rak-meta (0.25) unstable; urgency=medium
+
+  * rak-sysadmin: drop etckeeper
+
+ -- Ryan Kavanagh <rak@debian.org>  Mon, 16 Mar 2026 13:26:03 -0400
+
+rak-meta (0.24) unstable; urgency=medium
+
+  * rak-sway: python3-psutils python3-tenacity
+
+ -- Ryan Kavanagh <rak@debian.org>  Mon, 29 Sep 2025 14:53:18 -0400
+
 rak-meta (0.23) unstable; urgency=medium
 
   * rak-sway: sway-notification-center and python3-i3ipc 
