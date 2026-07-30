@@ -6,8 +6,8 @@ profile thinkpad_L15_home {
     output "Ancor Communications Inc VE248 H5LMQS022049" mode 1920x1080 position 0,0
 }
 profile thinkpad_L15_office {
+    output "Dell Inc. DELL P2722H DZC4GH3" mode 1920x1080 position 0,0
     output "AU Optronics 0x25ED Unknown" mode 1920x1080 position 0,1080
-    output "Samsung Electric Company LF27T370F HCNRB00047" mode 1920x1080 position 0,0
 }
 profile thinkpad_L15_SH-2420 {
     output "AU Optronics 0x25ED Unknown" mode 1920x1080 position 0,0
