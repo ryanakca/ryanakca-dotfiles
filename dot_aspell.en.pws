@@ -1,21 +1,26 @@
-personal_ws-1.1 en 133 
+personal_ws-1.1 en 145 
+Bengston
 Bohrer
 Bovik
 Bram
 Brookes
+CERN
 CFP
 CMS
+Carbone's
 Compositionally
 Coq
 Dekker
 Dingel
 Drs
+ECOOP
 ECT
 FreeBSD
 Frobenius
 GHC
 GPAs
 GPS
+Github
 Hassan
 Hirschkoff
 Hyland
@@ -25,6 +30,7 @@ LCF
 Lambek
 Lawvere
 Lightstone
+MPST
 Madiot
 McGill
 NSERC
@@ -40,10 +46,12 @@ Rudie
 SPARC
 Springer
 TSO
+Tirore
 UPMC
 Unital
 Wajc
 Yoneda
+Zenodo
 acyclic
 adjoint
 adjunction
@@ -62,6 +70,7 @@ boolean
 cartesian
 changelogs
 checkpointing
+coinduction
 coinductive
 compositional
 compositionality
@@ -83,6 +92,7 @@ essentialised
 executional
 existentials
 formalisations
+formalizations
 functor
 incentivisation
 interleavings
@@ -91,6 +101,7 @@ isomorphism
 linearisation
 linearisations
 logics
+mechanizations
 metadata
 metatheory
 metavariables
@@ -122,6 +133,7 @@ sequentialise
 sigbovik
 subphrases
 subsequence
+subtyping
 supérieure
 surjective
 toolchains

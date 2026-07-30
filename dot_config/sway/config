@@ -73,7 +73,7 @@ bindsym --to-code {
                 'swaymsg exit'
 
     # Lock screen
-    $mod+F5 exec swaymsg 'output * dpms toggle'
+    $mod+F5 exec swaymsg 'output * power toggle'
     $mod+F7 exec $lock
 
     # List all windows

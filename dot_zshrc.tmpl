@@ -49,7 +49,7 @@ export MANWIDTH=80
 export MANOPT="-L en"
 export PAGER=less
 export LESS=-FQXR
-export PDFVIEWER=evince
+export PDFVIEWER=papers
 export BROWSER=firefox
 export KRB5CCNAME=DIR:${HOME}/.cache/krb5cc # kerberos credentials cache
 export GOPATH=${HOME}/.go
@@ -587,12 +587,7 @@ NO_verbose		\
 # GPG / SSH AGENT
 
 if command -v keychain > /dev/null && test -d ~/.ssh/keys/{{ .chezmoi.hostname }}; then
-    keychain --inherit any ~/.ssh/keys/{{ .chezmoi.hostname }}/id_*[^p][^u][^b]
-    [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
-    [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
-           . $HOME/.keychain/$HOSTNAME-sh
-    [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] &&
-           . $HOME/.keychain/$HOSTNAME-sh-gpg
+    keychain --ssh-allow-forwarded ~/.ssh/keys/{{ .chezmoi.hostname }}/id_*[^p][^u][^b]
 fi
 
 # vim: set ft=zsh:
