@@ -20,6 +20,9 @@ wesa() {
 wyep() {
     mpv 'https://ais-sa3.cdnstream1.com/2557_128.aac'
 }
+slpr() {
+    lpr -P PK-4680.A "$@"
+}
 
 alias mplayer-fb='mplayer -vo fbdev'
 alias links2-fb='links2 -driver fb'
