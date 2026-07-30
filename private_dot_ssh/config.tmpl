@@ -6,7 +6,7 @@ NoHostAuthenticationForLocalhost yes
 ## Debian hosts
 Host master
     Hostname %h.debian.org
-Host *.debian.org master !*.ssh.debian.org !ssh.debian.org
+Host *.debian.org *.debian.net master !*.ssh.debian.org !ssh.debian.org
     ProxyJump ssh.debian.org
 Match final host *.debian.org
     UserKnownHostsFile ~/.ssh/known_hosts.d/debian
