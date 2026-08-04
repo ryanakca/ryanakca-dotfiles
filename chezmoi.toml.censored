@@ -1,3 +1,4 @@
+encryption = "gpg"
 [gpg]
     recipient = "4E469519ED677734268FBD958F7BF8FC4A11C97A"
 [data]
