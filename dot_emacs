@@ -551,6 +551,12 @@ Otherwise split the current paragraph into one sentence per line."
    (LaTeX-mode . (lambda () (set (make-local-variable 'TeX-electric-math)
 				 (cons "\\(" "\\)"))))
    (LaTeX-mode . (lambda ()
+		   (add-to-list 'LaTeX-indent-environment-list
+                                '("refsection" current-indentation))
+		   (add-to-list 'LaTeX-indent-environment-list
+                                '("refsegment" current-indentation))))
+   (LaTeX-mode . (lambda () (add-to-list 'LaTeX-verbatim-environments "Piton")))
+   (LaTeX-mode . (lambda ()
 		   (LaTeX-add-environments
 		    '("axiom" LaTeX-env-label)
 		    '("theorem" LaTeX-env-label)
@@ -559,6 +565,7 @@ Otherwise split the current paragraph into one sentence per line."
 		    '("corollary" LaTeX-env-label)
 		    '("lemma" LaTeX-env-label)
 		    '("example" LaTeX-env-label)
+		    '("exercise" LaTeX-env-label)
 		    '("conjecture" LaTeX-env-label)
 		    '("figure" LaTeX-env-label))))
    (LaTeX-mode . (lambda ()
@@ -572,7 +579,8 @@ Otherwise split the current paragraph into one sentence per line."
 		   (add-to-list 'LaTeX-label-alist '("definition" . "def:"))
 		   (add-to-list 'LaTeX-label-alist '("proposition" . "prop:"))
 		   (add-to-list 'LaTeX-label-alist '("theorem" . "theorem:"))
-		   (add-to-list 'LaTeX-label-alist '("example" . "ex:"))
+		   (add-to-list 'LaTeX-label-alist '("example" . "exa:"))
+		   (add-to-list 'LaTeX-label-alist '("exercise" . "exe:"))
 		   (add-to-list 'LaTeX-label-alist '("lemma" . "lemma:"))
 		   (add-to-list 'LaTeX-label-alist '("figure" . "fig:")))))
   :config
@@ -1171,7 +1179,8 @@ If not, issue a warning."
 			("corollary" ?c "cor:%F:" "~\\ref{%s}" t ("corollary" "cor.") -3)
 			("lemma" ?l "lemma:%F:" "~\\ref{%s}" t ("lemma" "lem.") -3)
 			("conjecture" ?j "conj:%F:" "~\\ref{%s}" t ("conjecture" "conj.") -3)
-			("example" ?X "ex:%F:" "~\\ref{%s}" t ("example" "ex.") -3)
+			("example" ?X "exa:%F:" "~\\ref{%s}" t ("example" "ex.") -3)
+			("exercise" ?x "exe:%F:" "~\\ref{%s}" t ("exercise" "ex.") -3)
 			("figure" ?F "fig:%F:" "~\\ref{%s}" t ("figure" "fig.") -3)
 			("ax" ?a "ax:%F:" "~\\ref{%s}" t ("axiom" "ax.") -3)
 			("thm" ?h "theorem:%F:" "~\\ref{%s}" t ("theorem" "th.") -3)
