@@ -23,13 +23,13 @@
 # m h  dom mon dow   command
 0   *  *   *  *   zsh -c "rkinits" >/dev/null 2>&1
 0   0  *   *  *   TEXMFHOME=${HOME}/.texmf updmap -user > /dev/null
-0   0  *   *  *   /home/rak/bin/Internet.m3u.sh
+0   0  *   *  *   ${HOME}/.local/bin/Internet.m3u.sh
 0   0  *   *  sun mount | grep -q /media/t && /media/t/Archives/irc-logs/backup.sh
 0   2  *   *  *   mount | grep -q /media/t && /media/t/Archives/email/rak.ac/backup.sh
 30  2  *   *  *   mount | grep -q /media/t && /media/t/Archives/git.rak.ac/backup.sh
-0   4  *   *  *   /home/rak/bin/borg-home.sh > /dev/null
+0   4  *   *  *   ${HOME}/.local/bin/borg-home.sh > /dev/null
 30  4  *   *  *   mount | grep -q /media/t && /media/t/borg-tosh.sh > /dev/null
-0   23 1,15 * *   /home/rak/bin/borg-check.sh
+0   23 1,15 * *   ${HOME}/.local/bin/borg-check.sh
 35  23 *   *  *   recollindex >/dev/null 2>&1
 0   *  *   *  *   ${HOME}/Documents/papers/commit-push.sh >/dev/null 2>&1
 0   0  *   *  *   /usr/sbin/tmpreaper --mtime-dir 30d ~/Downloads
