@@ -1,0 +1,2 @@
+#!/bin/sh
+sbuild --dist=experimental --extra-repository='deb http://deb.debian.org/debian experimental main contrib non-free' --build-dep-resolver=aspcud $@
