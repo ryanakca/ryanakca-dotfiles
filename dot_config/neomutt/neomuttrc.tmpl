@@ -135,7 +135,7 @@ source "$XDG_CONFIG_HOME/neomutt/score.rc"
 source "$XDG_CONFIG_HOME/neomutt/color.rc"
 source "$XDG_CONFIG_HOME/neomutt/gpg.rc"
 
-{{- if hasPrefix .chezmoi.homedir "/sdf"  }}
+{{- if hasPrefix .chezmoi.homeDir "/sdf"  }}
 set from = 'Ryan Kavanagh <rak@sdf.org>'
 {{- end }}
 
