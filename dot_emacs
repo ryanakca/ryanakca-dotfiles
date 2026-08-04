@@ -373,7 +373,13 @@ Extended Format date in the date field and return it as a string obeing
 (use-package erc
   :straight t
   :custom
-  (erc-hide-list '("JOIN" "PART" "QUIT" "353"))
+  (erc-hide-list '("JOIN" "PART" "QUIT"
+                   ;; https://www.rfc-editor.org/rfc/rfc2812.txt
+                   "305" ; ":You are no longer marked as being away"
+                   "306" ; ":You have been marked as being away"
+                   "332" ; RPL_TOPIC "<channel> :<topic>"
+                   "353" ; RPL_NAMEREPLY
+                   ))
   (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
   (erc-fill-column 120)
   (erc-fill-function 'erc-fill-static)
