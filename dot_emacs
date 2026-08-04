@@ -271,6 +271,7 @@ Extended Format date in the date field and return it as a string obeing
    ("M-x"     . execute-extended-command)))
 
 (use-package consult-mu
+  :straight (consult-mu :type git :host github :repo "armindarvish/consult-mu" :files (:defaults "extras/*.el"))
   :after (consult mu4e)
   :bind
   :custom
