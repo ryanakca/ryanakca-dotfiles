@@ -12,6 +12,10 @@ bin/mutt
 .config/systemd/user/ssh-agent.service.d/*
 .config/systemd/user/ssh-agent.service.d
 .config/neomutt/news.rc
+.config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/*
+.config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca
+.config/neomutt/accounts/ryank.mail.cs.mcgill.ca/*
+.config/neomutt/accounts/ryank.mail.cs.mcgill.ca
 .mbsyncrc
 .xkb
 afs
