@@ -275,6 +275,7 @@ Depends:
  imv,
  jq,
  kanshi,
+ libnotify-bin,
  light,
  python3-dbus-next,
  python3-i3ipc,
@@ -294,6 +295,8 @@ Depends:
  xdg-desktop-portal-wlr,
  xwayland,
  ${misc:Depends},
+Recommends:
+ icon-theme-adwaita,
 Description: rak - sway
  slurp: select screen region, pipe to grim for screenshot of region
 Architecture: all

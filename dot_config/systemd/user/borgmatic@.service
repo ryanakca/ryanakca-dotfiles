@@ -7,6 +7,7 @@ After=network-online.target
 ConditionACPower=true
 ConditionFileNotEmpty=/home/rak/.config/borgmatic/%I.yaml
 Documentation=https://torsion.org/borgmatic/
+OnFailure=notify-unit-failure@%i.service
 
 [Service]
 Type=oneshot

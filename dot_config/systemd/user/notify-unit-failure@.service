@@ -1,0 +1,5 @@
+[Unit]
+Description=Failure Notification
+
+[Service]
+ExecStart=notify-send --icon /usr/share/icons/Adwaita/symbolic/status/task-past-due-symbolic.svg "systemd unit failure" "systemd unit %I failed"
