@@ -11,8 +11,9 @@ bin/mutt
 .config/systemd/user/default.target.wants/swaybg-random.service
 .config/systemd/user/ssh-agent.service.d/*
 .config/systemd/user/ssh-agent.service.d
-config/systemd/user/mbsync.service
-config/systemd/user/mbsync.timer
+.config/systemd/user/mbsync.service
+.config/systemd/user/mbsync.timer
+.config/systemd/user/timers.target.wants/mbsync.timer
 .config/neomutt/news.rc
 .config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca/*
 .config/neomutt/accounts/ryan.kavanagh.mail.mcgill.ca
