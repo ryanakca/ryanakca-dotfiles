@@ -20,6 +20,15 @@ crontab
 afs
 {{- end }}
 
+{{- if not (eq .chezmoi.hostname "asteria") }}
+.config/borgmatic/music.yaml
+.config/borgmatic/pictures.yaml
+.config/borgmatic/tosh.yaml
+.config/systemd/user/timers.target.wants/borgmatic@music.timer
+.config/systemd/user/timers.target.wants/borgmatic@pictures.timer
+.config/systemd/user/timers.target.wants/borgmatic@tosh.timer
+{{- end }}
+
 # files in home
 .*~
 .**/*~
