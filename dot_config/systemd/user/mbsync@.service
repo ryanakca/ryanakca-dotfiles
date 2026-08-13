@@ -1,9 +1,10 @@
 [Unit]
 Description=Mailbox synchronization service
+OnFailure=notify-unit-failure@%n.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync -a
+ExecStart=/usr/bin/mbsync %i
 
 [Install]
 WantedBy=default.target

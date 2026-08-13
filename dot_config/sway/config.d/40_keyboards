@@ -10,6 +10,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
 # Home Kinesis Advantage Pro
 input "1523:7:HID_05f3:0007" {
+    xkb_model "kinesis"
     xkb_options "nbsp:level3n,lalt_meta:lalt_meta,ralt_super:ralt_super,caps:swapescape,grp:shifts_toggle,lv3:switch"
 }
 
