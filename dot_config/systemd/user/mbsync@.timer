@@ -4,6 +4,8 @@ Description=Mailbox synchronization timer
 [Timer]
 OnBootSec=2m
 OnUnitActiveSec=15m
+FixedRandomDelay=true
+RandomizedDelaySec=5m
 
 [Install]
 WantedBy=timers.target
