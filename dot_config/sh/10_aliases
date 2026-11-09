@@ -21,7 +21,7 @@ wyep() {
     mpv 'https://ais-sa3.cdnstream1.com/2557_128.aac'
 }
 slpr() {
-    lpr -P PK-4680.A "$@"
+    lpr -P PK-4680.A -o Stpl=Rear -o Duplex=DuplexNoTumble "$@"
 }
 
 alias mplayer-fb='mplayer -vo fbdev'
